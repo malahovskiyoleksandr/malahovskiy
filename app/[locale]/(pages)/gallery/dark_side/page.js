@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
-import "./dark_side.module.scss";
 import styles from "./dark_side.module.scss";
 
 const images = [
