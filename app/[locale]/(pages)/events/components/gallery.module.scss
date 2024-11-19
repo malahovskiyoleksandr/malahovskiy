@@ -1,0 +1,18 @@
+.LightGallery {
+    display: flex;
+    justify-content: center;
+    width: 800px;
+    // margin: 2rem 0;
+
+    .Item_LightGallery {
+        margin: 2rem 0;
+
+        .main_photo {
+            width: 100%;
+        }
+
+        .main_image {
+            // width: 100%;
+        }
+    }
+}
