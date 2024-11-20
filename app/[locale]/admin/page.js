@@ -1,7 +1,8 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import styles from "./admin.module.scss";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function AdminPage() {
   const router = useRouter();
@@ -9,18 +10,18 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(true); // Состояние загрузки страницы
 
   useEffect(() => {
-    const token = localStorage.getItem('token'); // Получаем токен из localStorage
+    const token = localStorage.getItem("token"); // Получаем токен из localStorage
     if (!token) {
-      router.push('/login'); // Если токена нет, перенаправляем на страницу входа
+      router.push("/login"); // Если токена нет, перенаправляем на страницу входа
       return;
     }
 
     // Проверяем токен через API
-    fetch('/api/protected', {
+    fetch("/api/protected", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => {
-        if (!res.ok) throw new Error('Unauthorized');
+        if (!res.ok) throw new Error("Unauthorized");
         return res.json();
       })
       .then((data) => {
@@ -28,8 +29,8 @@ export default function AdminPage() {
         setLoading(false); // Убираем состояние загрузки
       })
       .catch(() => {
-        localStorage.removeItem('token'); // Удаляем недействительный токен
-        router.push('/login'); // Перенаправляем на страницу входа
+        localStorage.removeItem("token"); // Удаляем недействительный токен
+        router.push("/login"); // Перенаправляем на страницу входа
       });
   }, [router]);
 
@@ -38,22 +39,23 @@ export default function AdminPage() {
   }
 
   return (
-    <div>
-      <h1>Welcome to the Admin Panel</h1> 
+    <div className={styles.container}>
+      <h1 className={styles.title}>Добро пожаловать в Панель Администратора</h1>
       {user && (
-        <div>
-          <p><strong>Email:</strong> {user.email}</p>
-          <p><strong>Role:</strong> {user.role}</p>
+        <div className={styles.userInfo}>
+          <p>Email: {user.email}</p>
+          <p>Роль: {user.role}</p>
         </div>
       )}
       <button
+        className={styles.logoutButton}
         onClick={() => {
-          localStorage.removeItem('token'); // Удаляем токен
-          router.push('/login'); // Перенаправляем на страницу входа
+          localStorage.removeItem("token"); // Удаляем токен
+          router.push("/login"); // Перенаправляем на страницу входа
         }}
       >
-        Logout
+        Выйти
       </button>
-    </div> 
+    </div>
   );
 }

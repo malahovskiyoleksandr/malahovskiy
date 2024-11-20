@@ -1,0 +1,58 @@
+$primary-color: #0070f3;
+$button-hover-color: #005bb5;
+$background-color: #f4f7fc;
+$card-background: #ffffff;
+$border-color: #ddd;
+$text-color: #333;
+$subtext-color: #666;
+$shadow-color: rgba(0, 0, 0, 0.1);
+
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: $background-color;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px $shadow-color;
+}
+
+.title {
+  text-align: center;
+  font-size: 28px;
+  color: $text-color;
+  margin-bottom: 20px;
+}
+
+.userInfo {
+  background-color: $card-background;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px $shadow-color;
+  margin-bottom: 30px;
+  font-size: 16px;
+  
+  p {
+    color: $subtext-color;
+    margin: 10px 0;
+  }
+
+  strong {
+    color: $text-color;
+  }
+}
+
+.logoutButton {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  color: #fff;
+  background-color: $primary-color;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: $button-hover-color;
+  }
+}
