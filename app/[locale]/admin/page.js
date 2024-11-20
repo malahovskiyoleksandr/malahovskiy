@@ -39,7 +39,7 @@ export default function AdminPage() {
 
   return (
     <div>
-      <h1>Welcome to the Admin Panel</h1>
+      <h1>Welcome to the Admin Panel</h1> 
       {user && (
         <div>
           <p><strong>Email:</strong> {user.email}</p>
@@ -54,7 +54,7 @@ export default function AdminPage() {
       >
         Logout
       </button>
-    </div>
+    </div> 
   );
 }
 
