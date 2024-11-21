@@ -145,6 +145,7 @@ export default function Header() {
             </motion.div>
           </NavbarItem>
         ))}
+        <Link href="/login">login</Link>
       </NavbarContent>
       <LanguageChanger />
 

@@ -1,13 +1,18 @@
 import { generateToken } from '@/lib/auth';
 
 export async function POST(req) {
-  const { email, password } = await req.json();
-
-  // Пример проверки учетных данных (захардкожено для примера)
-  if (email === 'maksimkrygliak@gmail.com' && password === '123') {
-    const token = generateToken({ email, role: 'admin' }); // Создаем токен
-    return new Response(JSON.stringify({ token }), { status: 200 });
+  try {
+    const { email, password } = await req.json();
+    
+    // Пример проверки данных (вы заменяете на реальную логику)
+    if (email === '123@gmail.com' && password === '123') {
+      const token = generateToken({ email, role: 'admin' });
+      return new Response(JSON.stringify({ token }), { status: 200 });
+    } else {
+      return new Response(JSON.stringify({ error: 'Invalid credentials' }), { status: 401 });
+    }
+  } catch (error) {
+    console.error(error);
+    return new Response(JSON.stringify({ error: 'Server error' }), { status: 500 });
   }
-
-  return new Response(JSON.stringify({ error: 'Invalid credentials' }), { status: 401 });
 }
