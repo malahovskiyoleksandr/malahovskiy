@@ -6,7 +6,7 @@ import styles from "./home.module.scss";
 async function getPersonData() {
   const sanya = {
     uk: {
-      name: "Олександр Малаховський 10592",
+      name: "Олександр Малаховський 10",
       description:
         "Тільки недолугі громадяни можуть не сприйняти той факт, що бути художником це круто, т.к. художнику можно все))))",
     },
