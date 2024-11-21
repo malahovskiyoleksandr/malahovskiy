@@ -1,0 +1,81 @@
+$primary-color: #0070f3;
+$hover-color: #005bb5;
+$bg-color: #ffffff;
+$shadow-color: rgba(0, 0, 0, 0.1);
+$border-color: #ddd;
+$focus-border-color: $primary-color;
+
+.container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: $bg-color;
+  box-shadow: 0 4px 12px $shadow-color;
+}
+
+.title {
+  text-align: center;
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputGroup {
+  margin-bottom: 15px;
+}
+
+.label {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+  
+  &:focus {
+    border-color: $focus-border-color;
+    outline: none;
+  }
+}
+
+.button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  color: #fff;
+  background-color: $primary-color;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: $hover-color;
+  }
+}
+
+.link {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: $primary-color;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

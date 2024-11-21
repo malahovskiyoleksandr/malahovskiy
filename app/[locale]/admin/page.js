@@ -57,34 +57,3 @@ export default function AdminPage() {
     </div> 
   );
 }
-
-// 'use client';
-
-// import { useEffect } from 'react';
-// import { useRouter } from 'next/navigation';
-
-// export default function AdminPage() {
-//   const router = useRouter();
-
-//   useEffect(() => {
-//     const token = localStorage.getItem('token');
-//     if (!token) {
-//       router.push('/login'); // Перенаправление на страницу входа
-//       return;
-//     }
-
-//     // Проверка токена через API
-//     fetch('/api/protected', {
-//       headers: { Authorization: `Bearer ${token}` },
-//     })
-//       .then((res) => {
-//         if (!res.ok) throw new Error('Unauthorized');
-//       })
-//       .catch(() => {
-//         localStorage.removeItem('token');
-//         router.push('/login');
-//       });
-//   }, []);
-
-//   return <div>Welcome to the Admin Panel!</div>;
-// }
