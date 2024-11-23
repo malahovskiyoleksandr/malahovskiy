@@ -1,64 +1,164 @@
-$primary-color: #0070f3;
-$button-hover-color: #005bb5;
-$background-color: #f4f7fc;
-$card-background: #ffffff;
-$border-color: #ddd;
-$text-color: #333;
-$subtext-color: #666;
-$shadow-color: rgba(0, 0, 0, 0.1);
+/* admin.module.scss */
+
+$color-sand-light: #faf0e6;
+$color-sand-medium: #e2d4b7;
+$color-sand-dark: #d0b084;
+$color-text-dark: #4f4f4f;
+$color-text-muted: #7a7a7a;
+$color-accent: #b99a5b;
+$color-accent-hover: #a3844b;
+$color-bg: #f4f1e5;
 
 .container {
-  max-width: 600px;
-  margin: 50px auto;
-  padding: 30px;
-  background-color: $background-color;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px $shadow-color;
-}
-
-.title {
-  text-align: center;
-  font-size: 28px;
-  color: $text-color;
-  margin-bottom: 20px;
-}
-
-.userInfo {
-  background-color: $card-background;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px $shadow-color;
-  margin-bottom: 30px;
-  font-size: 16px;
-  
-  p {
-    color: $subtext-color;
-    margin: 10px 0;
-  }
-
-  strong {
-    color: $text-color;
-  }
-}
-
-.logoutButton {
   width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  color: #fff;
-  background-color: $primary-color;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 40px;
+  background-color: $color-bg;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  color: $color-text-dark;
 
-  &:hover {
-    background-color: $button-hover-color;
+  .title {
+    display: block;
+    font-size: 26px;
+    font-weight: 600;
+    color: $color-text-dark;
+    text-align: center;
+    margin-bottom: 30px;
   }
+
+  .admin_header {
+    display: flex;
+    justify-content: space-between;
+    // gap: 10px;
+
+    .userInfo {
+      font-size: 16px;
+      color: $color-text-muted;
+
+      p {
+        margin: 0;
+      }
+    }
+
+    .logoutButton {
+      align-self: flex-start;
+      padding: 12px 25px;
+      margin-top: 20px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+      background-color: $color-accent;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s;
+
+      &:hover {
+        background-color: $color-accent-hover;
+        transform: translateY(-3px);
+      }
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+
+    .input_list,
+    .textarea_list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      h2 {
+        font-size: 20px;
+        font-weight: 600;
+        color: $color-text-dark;
+      }
+
+      .input_item,
+      .textarea_item {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        label {
+          font-size: 14px;
+          font-weight: bold;
+          color: $color-text-muted;
+        }
+
+        input {
+          padding: 12px;
+          font-size: 14px;
+          border: 2px solid $color-sand-medium;
+          border-radius: 8px;
+          background-color: $color-sand-light;
+          color: $color-text-dark;
+          transition: all 0.3s ease;
+
+          &:focus {
+            border-color: $color-accent;
+            outline: none;
+            box-shadow: 0 0 5px rgba(185, 154, 91, 0.7);
+          }
+        }
+
+        textarea {
+          padding: 12px;
+          font-size: 14px;
+          border: 2px solid $color-sand-medium;
+          border-radius: 8px;
+          background-color: $color-sand-light;
+          color: $color-text-dark;
+          resize: vertical;
+          transition: all 0.3s ease;
+
+          &:focus {
+            border-color: $color-accent;
+            outline: none;
+            box-shadow: 0 0 5px rgba(185, 154, 91, 0.7);
+          }
+        }
+      }
+    }
+
+    button[type="submit"] {
+      align-self: flex-start;
+      padding: 12px 30px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+      background-color: $color-accent;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s;
+
+      &:hover {
+        background-color: $color-accent-hover;
+        transform: translateY(-3px);
+      }
+    }
+  }
+  .submit_message {
+    margin-top: 15px;
+    font-size: 20px;
+    color: green;
+    // color: $color-text-dark;
+    text-align: center;
+    font-weight: 700;
+  }
+
 }
 
 .Loading {
+  font-size: 25px;
+  margin-top: 25%;
   text-align: center;
-  font-size: 30px;
-  margin-top: 20%;
+  color: $color-text-muted;
+  font-weight: 500;
 }

@@ -19,7 +19,6 @@ export default function LoginPage() {
     const data = await res.json();
     if (data.token) {
       localStorage.setItem("token", data.token); // Сохраняем токен
-      alert("Вхід успішний!");
       window.location.href = "/admin"; // Перенаправляем на админку
     } else {
       alert("Не вiрний логiн або пароль");
