@@ -16,6 +16,7 @@
 //   }
 // }
 
+import { NextResponse } from "next/server";
 import fs from "fs/promises";
 import path from "path";
 
@@ -42,14 +43,22 @@ export async function POST(req) {
     await fs.writeFile(filePath, JSON.stringify(jsonData, null, 2), "utf-8");
 
     // Возвращаем успешный ответ
-    return new Response(
-      JSON.stringify({ message: "Данные успешно обновлены!" }),
+    // return new Response(
+    //   JSON.stringify({ message: "Данные успешно обновлены!" }),
+    //   { status: 200 }
+    // );
+    return NextResponse.json(
+      { message: "Данные успешно обновлены!" },
       { status: 200 }
     );
   } catch (error) {
     console.error("Ошибка:", error);
-    return new Response(
-      JSON.stringify({ message: "Ошибка при обновлении данных." }),
+    // return new Response(
+    //   JSON.stringify({ message: "Ошибка при обновлении данных." }),
+    //   { status: 500 }
+    // );
+    return NextResponse.json(
+      { message: "Ошибка при получении данных." },
       { status: 500 }
     );
   }
