@@ -25,34 +25,11 @@ async function getData(locale) {
   } catch (error) {
     console.error("Error reading JSON file:", error);
     return {
-      name: data[locale]?.name || data["en"].name || "Default Name",
-      description: data[locale]?.description || data["en"].description || "Default Description",
+      name: "Default Name",
+      description: "Default Description",
     };
   }
 }
-
-// async function getPersonData() {
-// const sanya = {
-//   uk: {
-//     name: "Олександр Малаховський",
-//     description:
-//       "Тільки недолугі громадяни можуть не сприйняти той факт, що бути художником це круто, т.к. художнику можно все))))",
-//   },
-//   en: {
-//     name: "Oleksandr Malakhovsky",
-//     description:
-//       "Determining our own reality is a deeply personal and subjective experience.",
-//   },
-//   de: {
-//     name: "Oleksandr Malakhovskyi",
-//     description:
-//       "Die Definition unserer eigenen Realität ist eine zutiefst persönliche und subjektive Erfahrung.",
-//   },
-// };
-//   return {
-//     sanya,
-//   };
-// }
 
 export default async function Home({ params }) {
   const { locale } = params;

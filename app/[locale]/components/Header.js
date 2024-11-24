@@ -1,91 +1,5 @@
-// "use client";
-// import React from "react";
-// import {Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Link, Button} from "@nextui-org/react";
-// import LanguageChanger from "../components/LanguageChanger";
-// import { useIntl } from "react-intl";
-// import Image from "next/image";
-// import Logo from "@/public/images/logo.png";
-
-// export default function App() {
-//   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-
-//   const menuItems = [
-//     "Profile",
-//     "Dashboard",
-//     "Activity",
-//     "Analytics",
-//     "System",
-//     "Deployments",
-//     "My Settings",
-//     "Team Settings",
-//     "Help & Feedback",
-//     "Log Out",
-//   ];
-
-//   return (
-//     <Navbar onMenuOpenChange={setIsMenuOpen}>
-//       <NavbarContent>
-//         <NavbarMenuToggle
-//           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-//           className="sm:hidden"
-//         />
-//         <NavbarBrand>
-//           {/* <AcmeLogo /> */}
-//           <p className="font-bold text-inherit">ACME</p>
-//         </NavbarBrand>
-//       </NavbarContent>
-
-//       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-//         <NavbarItem>
-//           <Link color="foreground" href="#">
-//             Features
-//           </Link>
-//         </NavbarItem>
-//         <NavbarItem isActive>
-//           <Link href="#" aria-current="page">
-//             Customers
-//           </Link>
-//         </NavbarItem>
-//         <NavbarItem>
-//           <Link color="foreground" href="#">
-//             Integrations
-//           </Link>
-//         </NavbarItem>
-//       </NavbarContent>
-//       <NavbarContent justify="end">
-//         <NavbarItem className="hidden lg:flex">
-//           <Link href="#">Login</Link>
-//         </NavbarItem>
-//         <NavbarItem>
-//           <Button as={Link} color="primary" href="#" variant="flat">
-//             Sign Up
-//           </Button>
-//         </NavbarItem>
-//       </NavbarContent>
-//       <NavbarMenu>
-//         {menuItems.map((item, index) => (
-//           <NavbarMenuItem key={`${item}-${index}`}>
-//             <Link
-//               color={
-//                 index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"
-//               }
-//               className="w-full"
-//               href="#"
-//               size="lg"
-//             >
-//               {item}
-//             </Link>
-//           </NavbarMenuItem>
-//         ))}
-//       </NavbarMenu>
-//     </Navbar>
-//   );
-// }
-
-
-
-
 "use client";
+
 import React from "react";
 import Link from "next/link";
 import styles from "./styles/header.module.scss";
@@ -104,68 +18,62 @@ import { useIntl } from "react-intl";
 import Image from "next/image";
 import Logo from "@/public/images/logo.png";
 
-async function getmenuItems() {
-  const menu_item = [
-    {
-      uk: {
-        name: "Головна",
-      },
-      en: {
-        name: "Main",
-      },
-      de: {
-        name: "Hauptsächlich",
-      },
-      href: "/home",
+const menu_item = [
+  {
+    uk: {
+      name: "Головна",
     },
-    {
-      uk: {
-        name: "Галерея",
-      },
-      en: {
-        name: "Gallery",
-      },
-      de: {
-        name: "Galerie",
-      },
-      href: "/gallery",
+    en: {
+      name: "Main",
     },
-    {
-      uk: {
-        name: "Заходи",
-      },
-      en: {
-        name: "Events",
-      },
-      de: {
-        name: "Veranstaltungen",
-      },
-      href: "/events",
+    de: {
+      name: "Hauptsächlich",
     },
-  ];
-
-  return {
-    menu_item,
-  };
-}
+    href: "/home",
+  },
+  {
+    uk: {
+      name: "Галерея",
+    },
+    en: {
+      name: "Gallery",
+    },
+    de: {
+      name: "Galerie",
+    },
+    href: "/gallery",
+  },
+  {
+    uk: {
+      name: "Заходи",
+    },
+    en: {
+      name: "Events",
+    },
+    de: {
+      name: "Veranstaltungen",
+    },
+    href: "/events",
+  },
+];
 
 export default function Header() {
   const intl = useIntl();
 
-  const [menu_itemData, setMenu_itemData] = React.useState(null);
+  // const [menu_itemData, setMenu_itemData] = React.useState(null);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-  // Получаем данные из getmenuItems при первом рендере
-  React.useEffect(() => {
-    const fetchData = async () => {
-      const data = await getmenuItems();
-      setMenu_itemData(data.menu_item);
-    };
-    fetchData();
-  }, []);
+  // Получаем данные из getMenuItems при первом рендере
+  // React.useEffect(() => {
+  //   const fetchData = async () => {
+  //     const data = await getMenuItems();
+  //     // setMenu_itemData(data.menu_item);
+  //   };
+  //   fetchData();
+  // }, []);
 
   // Если данные еще не загружены, возвращаем null или лоадер
-  if (!menu_itemData) return null;
+  // if (!menu_itemData) return null;
 
   const locale = intl.locale;
 
@@ -222,7 +130,7 @@ export default function Header() {
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        {menu_itemData.map((item, index) => (
+        {menu_item.map((item, index) => (
           <NavbarItem key={index}>
             <motion.div
               whileHover={{ color: "#966600" }}
@@ -247,7 +155,7 @@ export default function Header() {
       <LanguageChanger />
 
       <NavbarMenu className={styles.items_list}>
-        {menu_itemData.map((item, index) => (
+        {menu_item.map((item, index) => (
           <NavbarMenuItem key={index}>
             <Link
               color="foreground"
