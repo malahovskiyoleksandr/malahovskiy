@@ -1,44 +1,56 @@
-import fs from "fs";
+import fs from "fs/promises";
 import path from "path";
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   if (req.method === "POST") {
-    const newData = req.body; // Получаем данные из запроса
-    const filePath = path.join(
-      process.cwd(),
-      "app",
-      "[locale]",
-      "(pages)",
-      "home",
-      "home.json"
-    );
-    
-    // Читаем текущие данные из файла
-    fs.readFile(filePath, "utf-8", (err, data) => {
-      if (err) {
-        console.error("Ошибка чтения файла:", err);
-        return res.status(500).json({ message: "Ошибка при чтении данных." });
+    try {
+      const newData = req.body;
+
+      // Проверяем входящие данные
+      if (!newData || typeof newData !== "object") {
+        return res.status(400).json({ message: "Некорректные данные." });
       }
 
-      // Преобразуем текущие данные в объект
-      let jsonData = JSON.parse(data);
+      const filePath = path.join(
+        process.cwd(),
+        "app",
+        "[locale]",
+        "(pages)",
+        "home",
+        "home.json"
+      );
 
-      // Обновляем поле name
-      jsonData.name = newData.name || jsonData.name; // Если в запросе есть новое имя, обновляем его
-
-      // Записываем измененные данные обратно в файл
-      fs.writeFile(filePath, JSON.stringify(jsonData, null, 2), (err) => {
-        if (err) {
-          console.error("Ошибка записи данных в файл:", err);
+      // Читаем текущие данные
+      let fileContent;
+      try {
+        fileContent = await fs.readFile(filePath, "utf-8");
+      } catch (err) {
+        if (err.code === "ENOENT") {
+          // Файл не найден
           return res
-            .status(500)
-            .json({ message: "Ошибка при сохранении данных." });
+            .status(404)
+            .json({ message: "Файл данных не найден." });
         }
+        throw err;
+      }
 
-        return res.status(200).json({ message: "Данные успешно обновлены!" });
-      });
-    });
+      const jsonData = JSON.parse(fileContent);
+
+      // Обновляем данные
+      jsonData.name = newData.name || jsonData.name;
+
+      // Записываем данные обратно в файл
+      await fs.writeFile(filePath, JSON.stringify(jsonData, null, 2), "utf-8");
+
+      return res.status(200).json({ message: "Данные успешно обновлены!" });
+    } catch (err) {
+      console.error("Ошибка обработки запроса:", err);
+      return res
+        .status(500)
+        .json({ message: "Ошибка сервера. Попробуйте позже." });
+    }
   } else {
-    return res.status(405).json({ message: "Метод не поддерживается" });
+    res.setHeader("Allow", ["POST"]);
+    return res.status(405).json({ message: "Метод не поддерживается." });
   }
 }
