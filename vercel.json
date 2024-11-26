@@ -1,6 +1,6 @@
 {
     "build": {
-      "ignoredBuildStep": "git diff --quiet HEAD^ HEAD ./app"
+      "ignoreCommand": "git diff --quiet HEAD^ HEAD ./app"
     }
   }
   
