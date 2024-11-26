@@ -14,7 +14,7 @@ export default function AdminPage() {
     en: { name: "Oleksandr Malakhovsky", description: "..." },
     de: { name: "Oleksandr Malakhovskyi", description: "..." },
   });
-  // console.log(data)
+  const [file, setFile] = useState(null);
 
   // const [currentLang, setCurrentLang] = useState("uk");
   const [message, setMessage] = useState("");
@@ -43,18 +43,28 @@ export default function AdminPage() {
         localStorage.removeItem("token"); // Удаляем недействительный токен
         router.push("/login"); // Перенаправляем на страницу входа
       });
-
-    fetch("/api/get-data")
-      .then((response) => response.json())
-      .then((data) => {
-        setData(data); // Устанавливаем данные для редактирования
-        setLoading(false); // Ожидание завершено
-      })
-      .catch(() => {
-        setMessage("Ошибка при загрузке данных.");
-        setLoading(false);
-      });
   }, [router]);
+
+  const handleUpload = async () => {
+    if (!file) {
+      alert("Please select a file");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    const res = await fetch("/api/upload", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (res.ok) {
+      alert("File uploaded successfully");
+    } else {
+      alert("File upload failed");
+    }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -62,17 +72,20 @@ export default function AdminPage() {
     // Отправка данных на сервер для обновления
     fetch("/api/update-data", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data), // Данные для обновления
     })
-      .then((response) => response.json())
-      .then((result) => {
-        setMessage(result.message); // Отображаем сообщение об успехе
+      .then((response) => {
+        if (!response.ok) throw new Error("Ошибка при обновлении данных.");
+        return response.json();
       })
-      .catch(() => {
-        setMessage("Ошибка при обновлении данных.");
+      .then((result) => {
+        console.log(result.message); // Сообщение об успехе
+        setMessage("Данные успешно обновлены!");
+      })
+      .catch((error) => {
+        console.error(error);
+        setMessage("Ошибка при сохранении данных.");
       });
   };
 
@@ -103,7 +116,14 @@ export default function AdminPage() {
           Выйти
         </button>
       </div>
-      <form onSubmit={handleSubmit} className={styles.from}>
+
+      <div>
+        <h1>Upload Image</h1>
+        <input type="file" onChange={(e) => setFile(e.target.files[0])} />
+        <button onClick={handleUpload}>Upload</button>
+      </div>
+
+      {/* <form onSubmit={handleSubmit} className={styles.from}>
         <div className={styles.input_list}>
           <h2>Им`я</h2>
           <div className={styles.input_item}>
@@ -212,7 +232,7 @@ export default function AdminPage() {
         <button className={styles.button_submit} type="submit">
           Зберегти
         </button>
-      </form>
+      </form> */}
       {message && <p className={styles.submit_message}>{message}</p>}
     </section>
   );

@@ -10,9 +10,7 @@ async function getData(locale) {
   try {
     const filePath = path.join(
       process.cwd(),
-      "app",
-      "[locale]",
-      "(pages)",
+      "public",
       "home",
       "home.json"
     );
@@ -30,6 +28,31 @@ async function getData(locale) {
     };
   }
 }
+
+// async function getData(locale) {
+//   try {
+//     const filePath = path.join(
+//       process.cwd(),
+//       "app",
+//       "[locale]",
+//       "(pages)",
+//       "home",
+//       "home.json"
+//     );
+//     const fileContent = await fs.readFile(filePath, "utf8");
+//     const data = JSON.parse(fileContent);
+//     return {
+//       name: data[locale]?.name || "Default Name",
+//       description: data[locale]?.description || "Default Description",
+//     };
+//   } catch (error) {
+//     console.error("Error reading JSON file:", error);
+//     return {
+//       name: "Default Name",
+//       description: "Default Description",
+//     };
+//   }
+// }
 
 export default async function Home({ params }) {
   const { locale } = params;
