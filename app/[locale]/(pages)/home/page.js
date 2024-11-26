@@ -10,8 +10,7 @@ async function getData(locale) {
   try {
     const filePath = path.join(
       process.cwd(),
-      "public",
-      "home",
+      "data",
       "home.json"
     );
     const fileContent = await fs.readFile(filePath, "utf8");
