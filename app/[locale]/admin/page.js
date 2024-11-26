@@ -43,28 +43,37 @@ export default function AdminPage() {
         localStorage.removeItem("token"); // Удаляем недействительный токен
         router.push("/login"); // Перенаправляем на страницу входа
       });
+    
+    
+      fetch('/api/github-get')
+      .then(response => response.json())
+      .then(data => {
+        setData(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        setError(error.message);
+        setLoading(false);
+      });
   }, [router]);
 
-  const handleUpload = async () => {
-    if (!file) {
-      alert("Please select a file");
-      return;
+  const handleSave = async () => {
+    try {
+      const response = await fetch('/api/github-post', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error('Error saving data');
+      }
+
+      alert('Данные успешно сохранены!');
+    } catch (error) {
+      alert(`Ошибка сохранения данных: ${error.message}`);
     }
-
-    const formData = new FormData();
-    formData.append("file", file);
-
-    const res = await fetch("/api/upload", {
-      method: "POST",
-      body: formData,
-    });
-
-    if (res.ok) {
-      alert("File uploaded successfully");
-    } else {
-      alert("File upload failed");
-    }
-  };
+  };  
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -93,6 +102,8 @@ export default function AdminPage() {
     return <div className={styles.Loading}>Loading...</div>; // Отображаем индикатор загрузки
   }
 
+  if (error) return <p>Ошибка: {error}</p>;
+
   return (
     <section className={styles.container}>
       <h1 className={styles.title}>Ласкаво просимо до Панелі Адміністратора</h1>
@@ -118,10 +129,15 @@ export default function AdminPage() {
       </div>
 
       <div>
-        <h1>Upload Image</h1>
-        <input type="file" onChange={(e) => setFile(e.target.files[0])} />
-        <button onClick={handleUpload}>Upload</button>
-      </div>
+      <h1>Админка</h1>
+      <textarea
+        value={JSON.stringify(data, null, 2)}
+        onChange={e => setData(JSON.parse(e.target.value))}
+        rows={20}
+        cols={80}
+      />
+      <button onClick={handleSave}>Сохранить изменения</button>
+    </div>
 
       {/* <form onSubmit={handleSubmit} className={styles.from}>
         <div className={styles.input_list}>
