@@ -102,7 +102,7 @@ export default function AdminPage() {
     return <div className={styles.Loading}>Loading...</div>; // Отображаем индикатор загрузки
   }
 
-  if (error) return <p>Ошибка: {error}</p>;
+  // if (error) return <p>Ошибка: {error}</p>;
 
   return (
     <section className={styles.container}>
