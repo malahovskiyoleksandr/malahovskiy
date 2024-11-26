@@ -28,7 +28,7 @@ const menu_item = [
     },
     de: {
       name: "Hauptsächlich",
-    },
+    }, 
     href: "/home",
   },
   {
