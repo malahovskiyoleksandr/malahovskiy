@@ -1,28 +1,32 @@
-import fetch from 'node-fetch';
+import { NextResponse } from "next/server";
 
-const GITHUB_REPO = 'malahovskiyoleksandr/malahovskiy';
-const GITHUB_FILE_PATH = 'data/home.json';
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN; // Создайте токен с доступом к репозиторию
+const GITHUB_REPO = "malahovskiyoleksandr/malahovskiy";
+const GITHUB_FILE_PATH = "data/home.json";
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
-export default async function handler(req, res) {
-  const url = `https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE_PATH}`;
-
+export async function GET() {
   try {
-    const response = await fetch(url, {
-      headers: {
-        Authorization: `Bearer ${GITHUB_TOKEN}`,
-      },
-    });
+    const response = await fetch(
+      `https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE_PATH}`,
+      {
+        method: "GET",
+        // headers: {
+        //   Authorization: `Bearer ${GITHUB_TOKEN}`,
+        // },
+      }
+    );
 
-    if (!response.ok) {
-      throw new Error(`GitHub API error: ${response.statusText}`);
+    if (!response.ok ) {
+      throw new Error("Ошибка при получении файла с GitHub");
     }
 
-    const fileData = await response.json();
-    const content = Buffer.from(fileData.content, 'base64').toString('utf-8');
-
-    res.status(200).json(JSON.parse(content));
+    const Data = await response.json();
+    const Content = Buffer.from(Data.content, "base64").toString(
+      "utf-8"
+    ); // Декодирование содержимого файла из base64
+    return NextResponse.json(JSON.parse(Content));
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error("Ошибка:", error.message);
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

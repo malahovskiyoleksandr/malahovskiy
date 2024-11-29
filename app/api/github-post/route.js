@@ -1,52 +1,60 @@
-import fetch from 'node-fetch';
+import { NextResponse } from "next/server";
 
-const GITHUB_REPO = 'username/repo';
-const GITHUB_FILE_PATH = 'data/events.json';
+const GITHUB_REPO = "malahovskiyoleksandr/malahovskiy";
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
-export default async function handler(req, res) {
-  if (req.method === 'POST') {
-    const { newData } = req.body;
-    const url = `https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE_PATH}`;
+export async function POST(request) {
+  console.log(request)
+  try {
+    const { filePath, fileContent, commitMessage } = await request.json();
 
-    try {
-      // Получение текущей информации о файле
-      const getResponse = await fetch(url, {
-        headers: {
-          Authorization: `Bearer ${GITHUB_TOKEN}`,
-        },
-      });
-
-      if (!getResponse.ok) {
-        throw new Error(`GitHub API error: ${getResponse.statusText}`);
-      }
-
-      const fileData = await getResponse.json();
-
-      // Обновление файла
-      const updatedContent = Buffer.from(JSON.stringify(newData, null, 2)).toString('base64');
-      const updateResponse = await fetch(url, {
-        method: 'PUT',
-        headers: {
-          Authorization: `Bearer ${GITHUB_TOKEN}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          message: 'Update data.json',
-          content: updatedContent,
-          sha: fileData.sha, // Необходимо для обновления файла
-        }),
-      });
-
-      if (!updateResponse.ok) {
-        throw new Error(`GitHub API error: ${updateResponse.statusText}`);
-      }
-
-      res.status(200).json({ message: 'File updated successfully' });
-    } catch (error) {
-      res.status(500).json({ error: error.message });
+    if (!filePath || !fileContent || !commitMessage) {
+      return NextResponse.json({ error: "Invalid request data (API)" }, { status: 400 });
     }
-  } else {
-    res.status(405).json({ message: 'Method not allowed' });
+
+    // Проверяем, существует ли файл
+    const getFileUrl = `https://api.github.com/repos/${GITHUB_REPO}/contents/${filePath}`;
+    let fileSHA = null;
+
+    const getResponse = await fetch(getFileUrl, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${GITHUB_TOKEN}`,
+      },
+    });
+
+    if (getResponse.ok) {
+      const fileData = await getResponse.json();
+      fileSHA = fileData.sha;
+    } else if (getResponse.status !== 404) {
+      throw new Error("Ошибка при проверке существования файла.");
+    }
+
+    // Кодируем содержимое файла в Base64
+    const fileContentBase64 = Buffer.from(fileContent).toString("base64");
+
+    // Загружаем или обновляем файл
+    const putResponse = await fetch(getFileUrl, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${GITHUB_TOKEN}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        message: commitMessage,
+        content: fileContentBase64,
+        sha: fileSHA || undefined,
+      }),
+    });
+
+    if (!putResponse.ok) {
+      throw new Error("Ошибка при загрузке файла.(API)");
+    }
+
+    const result = await putResponse.json();
+    return NextResponse.json({ success: true, result });
+  } catch (error) {
+    console.error("(API)Ошибка:", error.message);
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

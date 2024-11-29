@@ -3,59 +3,27 @@ import Image from "next/image";
 import mainImage from "@/public/images/mainPhoto.jpg";
 import styles from "./home.module.scss";
 
-import fs from "fs/promises";
-import path from "path";
+// import fs from "fs/promises";
+// import path from "path";
 
 async function getData(locale) {
-  try {
-    const filePath = path.join(
-      process.cwd(),
-      "data",
-      "home.json"
-    );
-    const fileContent = await fs.readFile(filePath, "utf8");
-    const data = JSON.parse(fileContent);
-    return {
-      name: data[locale]?.name || "Default Name",
-      description: data[locale]?.description || "Default Description",
-    };
-  } catch (error) {
-    console.error("Error reading JSON file:", error);
-    return {
-      name: "Default Name",
-      description: "Default Description",
-    };
-  }
+  fetch("/api/github-get")
+    .then((res) => {
+      if (!res.ok) throw new Error("Ошибка загрузки данных");
+      return res.json();
+    })
+    .then((data) => {
+      return data;
+    })
+    .catch(() => {
+      console.log("error /api/github-get");
+    });
 }
-
-// async function getData(locale) {
-//   try {
-//     const filePath = path.join(
-//       process.cwd(),
-//       "app",
-//       "[locale]",
-//       "(pages)",
-//       "home",
-//       "home.json"
-//     );
-//     const fileContent = await fs.readFile(filePath, "utf8");
-//     const data = JSON.parse(fileContent);
-//     return {
-//       name: data[locale]?.name || "Default Name",
-//       description: data[locale]?.description || "Default Description",
-//     };
-//   } catch (error) {
-//     console.error("Error reading JSON file:", error);
-//     return {
-//       name: "Default Name",
-//       description: "Default Description",
-//     };
-//   }
-// }
 
 export default async function Home({ params }) {
   const { locale } = params;
   const person = await getData(locale);
+  console.log(person);
 
   return (
     <>
@@ -99,11 +67,9 @@ export default async function Home({ params }) {
             }
           />
           <div className={styles.main_block_description}>
-            <h1 className={styles.artist_name}>
-              {person.name}
-            </h1>
+            <h1 className={styles.artist_name}>{/* {person.name} */}</h1>
             <p className={styles.artist_name__description}>
-              {person.description}
+              {/* {person.description} */}
             </p>
           </div>
         </div>
