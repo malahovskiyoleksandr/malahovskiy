@@ -3,11 +3,8 @@ import Image from "next/image";
 import mainImage from "@/public/images/mainPhoto.jpg";
 import styles from "./home.module.scss";
 
-// import fs from "fs/promises";
-// import path from "path";
-
 async function getData(locale) {
-  fetch("/api/github-get")
+  return fetch("/api/github-get")
     .then((res) => {
       if (!res.ok) throw new Error("Ошибка загрузки данных");
       return res.json();

@@ -10,6 +10,7 @@ export default function AdminPage() {
   const [user, setUser] = useState(null); // Состояние для хранения информации о пользователе
   const [loading, setLoading] = useState(true); // Состояние загрузки страницы
   const [file, setFile] = useState();
+  
   useEffect(() => {
     const token = localStorage.getItem("token"); // Получаем токен из localStorage
     if (!token) {
