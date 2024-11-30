@@ -3,20 +3,6 @@ import Image from "next/image";
 import mainImage from "@/public/images/mainPhoto.jpg";
 import styles from "./home.module.scss";
 
-// async function getData(locale) {
-//   fetch("/api/github-get")
-//     .then((res) => {
-//       if (!res.ok) throw new Error("Ошибка загрузки данных");
-//       return res.json();
-//     })
-//     .then((data) => {
-//       return data;
-//     })
-//     .catch(() => {
-//       console.log("error /api/github-get");
-//     });
-// }
-
 export async function getData() {
   const GITHUB_API_URL = `https://api.github.com/repos/malahovskiyoleksandr/malahovskiy/contents/data/home.json`;
   const GITHUB_TOKEN = process.env.GITHUB_TOKEN; // Храните токен в переменных окружения

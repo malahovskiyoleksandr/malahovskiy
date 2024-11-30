@@ -35,19 +35,37 @@ export default function AdminPage() {
         router.push("/login"); // Перенаправляем на страницу входа
       });
 
-    fetch("/api/github-get")
-      .then((res) => {
-        if (!res.ok) throw new Error("Ошибка загрузки данных");
-        return res.json();
-      })
-      .then((data) => {
-        setFile(data); // Устанавливаем данные пользователя
-        setLoading(false); // Убираем состояние загрузки
-      })
-      .catch(() => {
-        console.log("error /api/github-get");
-      });
+    // fetch("/api/github-get")
+    //   .then((res) => {
+    //     if (!res.ok) throw new Error("Ошибка загрузки данных");
+    //     return res.json();
+    //   })
+    //   .then((data) => {
+    //     setFile(data); // Устанавливаем данные пользователя
+    //     setLoading(false); // Убираем состояние загрузки
+    //   })
+    //   .catch(() => {
+    //     console.log("error /api/github-get");
+    //   });
   }, [router]);
+
+  useEffect(() => {
+    if (!file) {
+      // Запрашиваем данные только если файл еще не загружен
+      fetch("/api/github-get")
+        .then((res) => {
+          if (!res.ok) throw new Error("Ошибка загрузки данных");
+          return res.json();
+        })
+        .then((data) => {
+          setFile(data); // Устанавливаем данные
+        })
+        .catch(() => {
+          console.log("error /api/github-get");
+        });
+    }
+  }, [file]);
+  
 
   if (loading) {
     return <div className={styles.Loading}>Loading...</div>; // Отображаем индикатор загрузки
@@ -91,8 +109,8 @@ export default function AdminPage() {
         <button
           className={styles.logoutButton}
           onClick={() => {
-            localStorage.removeItem("token"); // Удаляем токен
-            router.push("/login"); // Перенаправляем на страницу входа
+            localStorage.removeItem("token");
+            router.push("/login");
           }}
         >
           Выйти
@@ -102,19 +120,17 @@ export default function AdminPage() {
       <form
         className={styles.from}
         onSubmit={(e) => {
-          e.preventDefault(); // Предотвращаем стандартное поведение формы
-          const formData = new FormData(e.target); // Создаем объект FormData из формы
-          const updatedName = formData.get("ukName"); // Получаем значение из поля "ukName"
-          // console.log(typeof(updatedName))
-          // const updatedData = typeof(updatedName)
+          e.preventDefault();
+          const formData = new FormData(e.target);
+          const updatedName = formData.get("ukName");
           const updatedData = {
             ...file,
             home: {
               ...file.home,
-              uk: { ...file.home.uk, name: updatedName }, // Обновляем только имя в локали UK
+              uk: { ...file.home.uk, name: updatedName },
             },
           };
-          handleFileUpload(JSON.stringify(updatedData)); // Передаем обновленные данные в функцию
+          handleFileUpload(JSON.stringify(updatedData));
         }}
       >
         <div className={styles.input_list}>
@@ -124,8 +140,8 @@ export default function AdminPage() {
             <input
               className={styles.input_title}
               type="text"
-              name="ukName" // Указываем имя для поля, чтобы FormData могла его считать
-              defaultValue={file ? file.home.uk.name : ""} // Устанавливаем значение по умолчанию
+              name="ukName"
+              defaultValue={file ? file.home.uk.name : ""}
             />
           </div>
         </div>
@@ -133,21 +149,6 @@ export default function AdminPage() {
           Сохранить
         </button>
       </form>
-
-      {/* <form className={styles.from}>
-        <div className={styles.input_list}>
-          <h2>Им`я</h2>
-          <div className={styles.input_item}>
-            <label className={styles.name}>UK</label>
-            <input
-              className={styles.input_title}
-              type="text"
-              defaultValue={file ? file.home.uk.name : "nul"}
-              onChange={(e) => handleFileUpload(e.target.value)}
-            />
-          </div>
-        </div>
-      </form> */}
     </section>
   );
 }
