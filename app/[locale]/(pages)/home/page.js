@@ -3,24 +3,53 @@ import Image from "next/image";
 import mainImage from "@/public/images/mainPhoto.jpg";
 import styles from "./home.module.scss";
 
-async function getData(locale) {
-  return fetch("/api/github-get")
-    .then((res) => {
-      if (!res.ok) throw new Error("Ошибка загрузки данных");
-      return res.json();
-    })
-    .then((data) => {
-      return data;
-    })
-    .catch(() => {
-      console.log("error /api/github-get");
-    });
+// async function getData(locale) {
+//   fetch("/api/github-get")
+//     .then((res) => {
+//       if (!res.ok) throw new Error("Ошибка загрузки данных");
+//       return res.json();
+//     })
+//     .then((data) => {
+//       return data;
+//     })
+//     .catch(() => {
+//       console.log("error /api/github-get");
+//     });
+// }
+
+export async function getData() {
+  const GITHUB_API_URL = `https://api.github.com/repos/malahovskiyoleksandr/malahovskiy/contents/data/home.json`;
+  const GITHUB_TOKEN = process.env.GITHUB_TOKEN; // Храните токен в переменных окружения
+
+  const response = await fetch(GITHUB_API_URL, {
+    headers: {
+      Authorization: `Bearer ${GITHUB_TOKEN}`, // Аутентификация через токен
+      Accept: "application/vnd.github.v3+json", // Версия API
+    },
+  });
+
+  if (!response.ok) {
+    console.error("Failed to fetch data from GitHub");
+    return {
+      notFound: true,
+    };
+  }
+
+  const data = await response.json();
+  const jsonString = Buffer.from(data.content, "base64").toString("utf-8");
+  return {
+    jsonString
+    // props: {
+    //   jsonObject: JSON.parse(jsonString)
+    // },
+  };
 }
 
 export default async function Home({ params }) {
   const { locale } = params;
   const person = await getData(locale);
-  console.log(person);
+  const personObj = JSON.parse(person.jsonString)
+  // console.log(personObj.home.uk.name);
 
   return (
     <>
@@ -64,9 +93,11 @@ export default async function Home({ params }) {
             }
           />
           <div className={styles.main_block_description}>
-            <h1 className={styles.artist_name}>{/* {person.name} */}</h1>
+            <h1 className={styles.artist_name}>{
+              personObj.home.uk.name
+            }</h1>
             <p className={styles.artist_name__description}>
-              {/* {person.description} */}
+              {personObj.home.uk.description}
             </p>
           </div>
         </div>
