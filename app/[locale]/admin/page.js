@@ -33,25 +33,47 @@ export default function AdminPage() {
         localStorage.removeItem("token");
         router.push("/login");
       });
-    console.log('useEffect1')
   }, [router]);
 
   // Загружаем данные с API
   useEffect(() => {
-    Get();
-    console.log('useEffect2')
+    // Вызов Get() для получения данных
+    async function fetchData() {
+      const result = await Get();
+      console.log(result)
+      // setData1(result); // Сохраняем данные в data1
+      setFile(result); // Устанавливаем данные в состояние file (если нужно)
+      setLoading(false); // Загружено
+    }
+
+    fetchData(); // Вызов функции для получения данных
   }, []);
 
+  const GITHUB_REPO = "malahovskiyoleksandr/malahovskiy";
+  const GITHUB_FILE_PATH = "data/home.json";
   async function Get() {
     try {
-      const res = await fetch("/api/github-get");
-      if (!res.ok) throw new Error("Ошибка загрузки данных");
-      const data = await res.json();
-      console.log("Полученные данные с API:", data); // Для отладки
-      setFile(data); // Устанавливаем новые данные в состояние
-      setLoading(false); // Убираем состояние загрузки
+      const response = await fetch(
+        `https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE_PATH}`,
+        {
+          method: "GET",
+          headers: {
+            // "Cache-Control": "no-store",
+            // Authorization: `Bearer ${GITHUB_TOKEN}`,
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Ошибка при получении файла с GitHub");
+      }
+
+      const Data = await response.json();
+      const Content = Buffer.from(Data.content, "base64").toString("utf-8");
+      return JSON.parse(Content);
     } catch (error) {
-      console.log("Ошибка при загрузке данных:", error);
+      console.error("Ошибка:", error.message);
+      // return NextResponse.json({ error: error.message }, { status: 500 });
     }
   }
 
@@ -87,7 +109,12 @@ export default function AdminPage() {
   }
 
   return (
-    <section className={styles.container} key={file?.home?.uk?.name || "loading"}> {/* Принудительный ререндер */}
+    <section
+      className={styles.container}
+      key={file?.home?.uk?.name || "loading"}
+    >
+      {" "}
+      {/* Принудительный ререндер */}
       <h1 className={styles.title}>Ласкаво просимо до Панелі Адміністратора</h1>
       <div className={styles.admin_header}>
         {user && (
@@ -106,7 +133,6 @@ export default function AdminPage() {
           Выйти
         </button>
       </div>
-
       <form
         className={styles.from}
         onSubmit={(e) => {

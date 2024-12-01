@@ -10,9 +10,10 @@ export async function GET() {
       `https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE_PATH}`,
       {
         method: "GET",
-        // headers: {
-        //   Authorization: `Bearer ${GITHUB_TOKEN}`,
-        // },
+        headers: {
+          "Cache-Control": "no-store",
+          // Authorization: `Bearer ${GITHUB_TOKEN}`,
+        },
       }
     );
 
