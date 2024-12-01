@@ -7,29 +7,32 @@ export async function getData() {
   const GITHUB_API_URL = `https://api.github.com/repos/malahovskiyoleksandr/malahovskiy/contents/data/home.json`;
   const GITHUB_TOKEN = process.env.GITHUB_TOKEN; // Храните токен в переменных окружения
 
-  const response = await fetch(GITHUB_API_URL, {
-    headers: {
-      Authorization: `Bearer ${GITHUB_TOKEN}`, // Аутентификация через токен
-      Accept: "application/vnd.github.v3+json", // Версия API
-    },
-  });
+  try {
+    const response = await fetch(GITHUB_API_URL, {
+      headers: {
+        Authorization: `Bearer ${GITHUB_TOKEN}`, // Аутентификация через токен
+        Accept: "application/vnd.github.v3+json", // Версия API
+      },
+    });
 
-  if (!response.ok) {
-    console.error("Failed to fetch data from GitHub");
+    if (!response.ok) {
+      throw new Error("Failed to fetch data from GitHub");
+    }
+
+    const data = await response.json();
+    const jsonString = Buffer.from(data.content, "base64").toString("utf-8");
+
+    return {
+      jsonString,
+    };
+  } catch (error) {
+    console.error("Error:", error.message); // Логируем ошибку
     return {
       notFound: true,
     };
   }
-
-  const data = await response.json();
-  const jsonString = Buffer.from(data.content, "base64").toString("utf-8");
-  return {
-    jsonString
-    // props: {
-    //   jsonObject: JSON.parse(jsonString)
-    // },
-  };
 }
+
 
 export default async function Home({ params }) {
   const { locale } = params;

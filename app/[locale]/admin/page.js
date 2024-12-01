@@ -1,6 +1,5 @@
 "use client";
 
-// import { Textarea } from "@nextui-org/react";
 import styles from "./admin.module.scss";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -35,28 +34,25 @@ export default function AdminPage() {
         router.push("/login"); // Перенаправляем на страницу входа
       });
 
-    console.log("1"); //////////////////////////////////////////////
+    console.log("1");
   }, [router]);
 
   useEffect(() => {
     Get();
-    console.log("2"); //////////////////////////////////////////////
+    console.log("2");
   }, []);
 
   async function Get() {
-    fetch("/api/github-get")
-      .then((res) => {
-        if (!res.ok) throw new Error("Ошибка загрузки данных");
-        return res.json();
-      })
-      .then((data) => {
-        setFile(data); // Устанавливаем новые данные
-        setLoading(false); // Убираем состояние загрузки
-        console.log("4"); //////////////////////////////////////////////
-      })
-      .catch(() => {
-        console.log("error /api/github-get");
-      });
+    try {
+      const res = await fetch("/api/github-get");
+      if (!res.ok) throw new Error("Ошибка загрузки данных");
+      const data = await res.json();
+      setFile(data); // Устанавливаем данные
+      setLoading(false); // Убираем состояние загрузки
+      console.log("4");
+    } catch (error) {
+      console.log("error /api/github-get", error);
+    }
   }
 
   async function handleFileUpload(data) {
@@ -80,16 +76,18 @@ export default function AdminPage() {
       const responseData = await response.json();
       console.log("Файл успешно обновлен:", responseData);
 
-      setFile(data);
+      setFile(data); // Обновляем состояние с новыми данными
     } catch (error) {
       console.error("Ошибка при загрузке файла:", error.message);
     }
   }
 
-  if (loading) {
+  if (loading || !file) {
     return <div className={styles.Loading}>Loading...</div>;
   }
-  console.log("3"); //////////////////////////////////////////////
+
+  console.log("3");
+
   return (
     <section className={styles.container}>
       <h1 className={styles.title}>Ласкаво просимо до Панелі Адміністратора</h1>
@@ -136,7 +134,7 @@ export default function AdminPage() {
               className={styles.input_title}
               type="text"
               name="ukName"
-              value ={file?.home?.uk?.name || ""}
+              value={file?.home?.uk?.name || ""} // Используем правильные данные для value
               onChange={(e) => {
                 // Обновляем локальное состояние при вводе текста
                 setFile({
