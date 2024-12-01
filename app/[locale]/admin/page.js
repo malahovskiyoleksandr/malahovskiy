@@ -10,14 +10,14 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(true); // Состояние загрузки страницы
   const [file, setFile] = useState(null);
 
+  // Логика для получения информации о пользователе и проверки токена
   useEffect(() => {
-    const token = localStorage.getItem("token"); // Получаем токен из localStorage
+    const token = localStorage.getItem("token");
     if (!token) {
-      router.push("/login"); // Если токена нет, перенаправляем на страницу входа
+      router.push("/login");
       return;
     }
 
-    // Проверяем токен через API
     fetch("/api/protected", {
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -30,16 +30,16 @@ export default function AdminPage() {
         setLoading(false); // Убираем состояние загрузки
       })
       .catch(() => {
-        localStorage.removeItem("token"); // Удаляем недействительный токен
-        router.push("/login"); // Перенаправляем на страницу входа
+        localStorage.removeItem("token");
+        router.push("/login");
       });
-
-    console.log("1");
+    console.log('useEffect1')
   }, [router]);
 
+  // Загружаем данные с API
   useEffect(() => {
     Get();
-    console.log("2");
+    console.log('useEffect2')
   }, []);
 
   async function Get() {
@@ -47,18 +47,19 @@ export default function AdminPage() {
       const res = await fetch("/api/github-get");
       if (!res.ok) throw new Error("Ошибка загрузки данных");
       const data = await res.json();
-      setFile(data); // Устанавливаем данные
+      console.log("Полученные данные с API:", data); // Для отладки
+      setFile(data); // Устанавливаем новые данные в состояние
       setLoading(false); // Убираем состояние загрузки
-      console.log("4");
     } catch (error) {
-      console.log("error /api/github-get", error);
+      console.log("Ошибка при загрузке данных:", error);
     }
   }
 
+  // Обработка загрузки данных на GitHub
   async function handleFileUpload(data) {
-    const filePath = "data/home.json"; // Путь в репозитории
-    const fileContent = JSON.stringify(data); // Контент файла
-    const commitMessage = "Обновление файла через API"; // Сообщение коммита
+    const filePath = "data/home.json";
+    const fileContent = JSON.stringify(data);
+    const commitMessage = "Обновление файла через API";
 
     try {
       const response = await fetch("/api/github-post", {
@@ -75,21 +76,18 @@ export default function AdminPage() {
 
       const responseData = await response.json();
       console.log("Файл успешно обновлен:", responseData);
-
       setFile(data); // Обновляем состояние с новыми данными
     } catch (error) {
       console.error("Ошибка при загрузке файла:", error.message);
     }
   }
 
-  if (loading || !file) {
+  if (loading) {
     return <div className={styles.Loading}>Loading...</div>;
   }
 
-  console.log("3");
-
   return (
-    <section className={styles.container}>
+    <section className={styles.container} key={file?.home?.uk?.name || "loading"}> {/* Принудительный ререндер */}
       <h1 className={styles.title}>Ласкаво просимо до Панелі Адміністратора</h1>
       <div className={styles.admin_header}>
         {user && (
@@ -129,21 +127,20 @@ export default function AdminPage() {
           <h2>Имя</h2>
           <div className={styles.input_item}>
             <label className={styles.name}>UK</label>
-            {console.log("10", file)}
             <input
               className={styles.input_title}
               type="text"
               name="ukName"
-              value={file?.home?.uk?.name || ""} // Используем правильные данные для value
+              value={file?.home?.uk?.name || ""} // Обновляем значение поля с актуальными данными
               onChange={(e) => {
                 // Обновляем локальное состояние при вводе текста
-                setFile({
-                  ...file,
+                setFile((prevFile) => ({
+                  ...prevFile,
                   home: {
-                    ...file.home,
-                    uk: { ...file.home.uk, name: e.target.value },
+                    ...prevFile.home,
+                    uk: { ...prevFile.home.uk, name: e.target.value },
                   },
-                });
+                }));
               }}
             />
           </div>
