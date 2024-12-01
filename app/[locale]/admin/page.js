@@ -3,6 +3,7 @@
 import styles from "./admin.module.scss";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { Textarea } from "@nextui-org/react";
 
 export default function AdminPage() {
   const router = useRouter();
@@ -155,8 +156,15 @@ export default function AdminPage() {
               onChange={handleChange} // Обрабатываем изменения
             />
           </div>
+          <div className={styles.input_item}>
+            <label className={styles.name}>UK</label>
+            <textarea
+              name="description"
+              value={file?.home?.uk?.description || ""}
+              onChange={handleChange}
+            ></textarea>
+          </div>
         </div>
-
         <button type="submit" className={styles.submitButton}>
           Сохранить
         </button>
@@ -164,24 +172,6 @@ export default function AdminPage() {
     </section>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // "use client";
 
