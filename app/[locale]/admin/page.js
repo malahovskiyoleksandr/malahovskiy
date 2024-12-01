@@ -1,6 +1,6 @@
 "use client";
 
-import { Textarea } from "@nextui-org/react";
+// import { Textarea } from "@nextui-org/react";
 import styles from "./admin.module.scss";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -9,8 +9,8 @@ export default function AdminPage() {
   const router = useRouter();
   const [user, setUser] = useState(null); // Состояние для хранения информации о пользователе
   const [loading, setLoading] = useState(true); // Состояние загрузки страницы
-  const [file, setFile] = useState();
-  
+  const [file, setFile] = useState(null);
+
   useEffect(() => {
     const token = localStorage.getItem("token"); // Получаем токен из localStorage
     if (!token) {
@@ -35,45 +35,33 @@ export default function AdminPage() {
         router.push("/login"); // Перенаправляем на страницу входа
       });
 
-    // fetch("/api/github-get")
-    //   .then((res) => {
-    //     if (!res.ok) throw new Error("Ошибка загрузки данных");
-    //     return res.json();
-    //   })
-    //   .then((data) => {
-    //     setFile(data); // Устанавливаем данные пользователя
-    //     setLoading(false); // Убираем состояние загрузки
-    //   })
-    //   .catch(() => {
-    //     console.log("error /api/github-get");
-    //   });
+    console.log("1"); //////////////////////////////////////////////
   }, [router]);
 
   useEffect(() => {
-    if (!file) {
-      // Запрашиваем данные только если файл еще не загружен
-      fetch("/api/github-get")
-        .then((res) => {
-          if (!res.ok) throw new Error("Ошибка загрузки данных");
-          return res.json();
-        })
-        .then((data) => {
-          setFile(data); // Устанавливаем данные
-        })
-        .catch(() => {
-          console.log("error /api/github-get");
-        });
-    }
-  }, [file]);
-  
+    Get();
+    console.log("2"); //////////////////////////////////////////////
+  }, []);
 
-  if (loading) {
-    return <div className={styles.Loading}>Loading...</div>; // Отображаем индикатор загрузки
+  async function Get() {
+    fetch("/api/github-get")
+      .then((res) => {
+        if (!res.ok) throw new Error("Ошибка загрузки данных");
+        return res.json();
+      })
+      .then((data) => {
+        setFile(data); // Устанавливаем новые данные
+        setLoading(false); // Убираем состояние загрузки
+        console.log("4"); //////////////////////////////////////////////
+      })
+      .catch(() => {
+        console.log("error /api/github-get");
+      });
   }
 
   async function handleFileUpload(data) {
     const filePath = "data/home.json"; // Путь в репозитории
-    const fileContent = data; // Контент файла
+    const fileContent = JSON.stringify(data); // Контент файла
     const commitMessage = "Обновление файла через API"; // Сообщение коммита
 
     try {
@@ -89,13 +77,19 @@ export default function AdminPage() {
         throw new Error("Ошибка при загрузке файла.");
       }
 
-      const data = await response.json();
-      console.log("Файл успешно обновлен:", data);
+      const responseData = await response.json();
+      console.log("Файл успешно обновлен:", responseData);
+
+      setFile(data);
     } catch (error) {
       console.error("Ошибка при загрузке файла:", error.message);
     }
   }
 
+  if (loading) {
+    return <div className={styles.Loading}>Loading...</div>;
+  }
+  console.log("3"); //////////////////////////////////////////////
   return (
     <section className={styles.container}>
       <h1 className={styles.title}>Ласкаво просимо до Панелі Адміністратора</h1>
@@ -130,18 +124,29 @@ export default function AdminPage() {
               uk: { ...file.home.uk, name: updatedName },
             },
           };
-          handleFileUpload(JSON.stringify(updatedData));
+          handleFileUpload(updatedData);
         }}
       >
         <div className={styles.input_list}>
           <h2>Имя</h2>
           <div className={styles.input_item}>
             <label className={styles.name}>UK</label>
+            {console.log("10", file)}
             <input
               className={styles.input_title}
               type="text"
               name="ukName"
-              defaultValue={file ? file.home.uk.name : ""}
+              value ={file?.home?.uk?.name || ""}
+              onChange={(e) => {
+                // Обновляем локальное состояние при вводе текста
+                setFile({
+                  ...file,
+                  home: {
+                    ...file.home,
+                    uk: { ...file.home.uk, name: e.target.value },
+                  },
+                });
+              }}
             />
           </div>
         </div>
