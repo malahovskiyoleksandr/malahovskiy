@@ -1,0 +1,15 @@
+[
+    {
+      "id": 1,
+      "title": "Sunset",
+      "description": "A beautiful sunset over the mountains.",
+      "imageUrl": "images/sunset.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Forest",
+      "description": "A calm forest in the morning.",
+      "imageUrl": "images/forest.jpg"
+    }
+  ]
+  

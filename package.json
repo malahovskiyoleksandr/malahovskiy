@@ -43,7 +43,8 @@
     "react-hook-form": "^7.53.0",
     "react-i18next": "^15.1.0",
     "react-intl": "^6.8.4",
-    "react-photoswipe-gallery": "^3.0.2"
+    "react-photoswipe-gallery": "^3.0.2",
+    "swiper": "^11.1.15"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.5",
