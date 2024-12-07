@@ -2,9 +2,13 @@ import Link from "next/link";
 // import { motion } from "framer-motion"; // Импортируем framer-motion
 import styles from "./gallery.module.scss";
 import Image from "next/image";
-import dark_side from "@/public/gallery/dark_side.jpg";
-import industrial from "@/public/gallery/industrial.jpg";
-import portraits from "@/public/gallery/portraits.jpg";
+// import galleryData from "@/data/database.json";
+import { NextResponse } from "next/server";
+
+export const revalidate = 5;
+// import dark_side from "@/public/gallery/dark_side.jpg";
+// import industrial from "@/public/gallery/industrial.jpg";
+// import portraits from "@/public/gallery/portraits.jpg";
 // import getIntl from "@/app/intl";
 
 // Анимации для каждого изображения
@@ -15,53 +19,69 @@ import portraits from "@/public/gallery/portraits.jpg";
 //   visible: { opacity: 1, x: 0, y: 0 }, // Конечное состояние
 // };
 
-async function getCollection_Lines_Data() {
-  const collections = [
-    {
-      href: "/gallery/industrial",
-      alt: "industrial",
-      src: industrial,
-      name: {
-        uk: "industrial art",
-        en: "industrial art",
-        de: "Industrielle Kunst",
-      },
-    },
-    {
-      href: "/gallery/portraits",
-      alt: "portraits",
-      src: portraits,
-      name: "portraits",
-      name: {
-        uk: "стилізація образiв",
-        en: "image stylization",
-        de: "bildstilisierung",
-      },
-    },
-    {
-      href: "/gallery/dark_side",
-      alt: "dark_side",
-      src: dark_side,
-      name: {
-        uk: "dark side",
-        en: "dark side",
-        de: "dunkle seite",
-      },
-    },
-  ];
-  return collections;
+export async function getData() {
+  try {
+    const response = await fetch(
+      `https://api.github.com/repos/malahovskiyoleksandr/malahovskiy/contents/data/database.json`,
+      {
+        method: "GET",
+        cache: "no-store",
+        headers: {
+          "Cache-Control": "no-cache", // Запрещаем использование кеша
+          // Authorization: `Bearer ${GITHUB_TOKEN}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      return NextResponse.json(
+        { error: "Ошибка при получении данных с GitHub" },
+        { status: response.status }
+      );
+    }
+
+    const Data = await response.json();
+    const decodedData = JSON.parse(
+      Buffer.from(Data.content, "base64").toString("utf-8")
+    );
+    // console.log(decodedData)
+    // Декодирование содержимого файла из base64
+    return decodedData;
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Ошибка сервера: " + error.message },
+      { status: 500 }
+    ); 
+  }
+  // try {
+  //   const response = await fetch("https://oleksandrmalakhovskyi.vercel.app/api/github-get", {
+  //     // cache: "force-cache", // Указывает на использование ISR
+  //   });
+
+  //   if (!response.ok) {
+  //     throw new Error("Не удалось загрузить данные с API");
+  //   }
+
+  //   const data = await response.json();
+
+  //   return data;
+  // } catch (error) {
+  //   console.error("Ошибка при получении данных:", error);
+  //   return console.log("error Home.page");
+  // }
 }
 
-export default async function Gallery({ params: { locale } }) {
-  const collectionLines = await getCollection_Lines_Data();
+export default async function Gallery({ params }) {
+  const locale = params.locale;
+  const collectionLines = await getData();
 
   return (
     <section className={styles.type_pictures}>
-      {collectionLines.map((line, index) => (
+      {Object.entries(collectionLines?.gallery).map(([key, value], index) => (
         <Link
-          key={line.href}
+          key={key}
           className={styles.link}
-          href={line.href}
+          href={value.href}
           style={{
             flexDirection: index % 2 === 1 ? "row-reverse" : "unset",
           }}
@@ -70,9 +90,9 @@ export default async function Gallery({ params: { locale } }) {
             className={styles.image}
             // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
             // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
-            alt={line.alt}
-            src={line.src}
-            placeholder="blur" // размытие заднего фона при загрузке картинки
+            alt={value.name?.[locale] || "Gallery Image"}
+            src={value.src}
+            // placeholder="blur" // размытие заднего фона при загрузке картинки
             // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
             quality={50}
             priority={false} // если true - loading = 'lazy' отменяеться
@@ -104,12 +124,8 @@ export default async function Gallery({ params: { locale } }) {
               textAlign: index % 2 === 1 ? "right" : "left",
             }}
           >
-            <h2 className={styles.name}>{line.name[locale]}</h2>
-            <p className={styles.about}>
-              Определение нашей собственной реальности — это глубоко личный и
-              субъективный опыт. Хотя мы никогда не сможем знать всего, мы можем
-              стремиться быть открытыми для новых идей
-            </p>
+            <h2 className={styles.name}>{value?.name?.[locale] || ""}</h2>
+            <p className={styles.about}>{value.description?.[locale]}</p>
           </div>
         </Link>
       ))}

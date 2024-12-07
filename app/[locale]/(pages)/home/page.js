@@ -1,43 +1,67 @@
 // import { motion } from "framer-motion";
 import Image from "next/image";
-import mainImage from "@/public/images/mainPhoto.jpg";
+// import mainImage from "@/public/images/mainPhoto.jpg";
 import styles from "./home.module.scss";
+import { NextResponse } from "next/server";
 
-export async function getData() {
-  const GITHUB_API_URL = `https://api.github.com/repos/malahovskiyoleksandr/malahovskiy/contents/data/home.json`;
-  const GITHUB_TOKEN = process.env.GITHUB_TOKEN; // Храните токен в переменных окружения
-  
+export const revalidate = 5;
+
+export async function getData() { 
   try {
-    const response = await fetch(GITHUB_API_URL, {
-      headers: {
-        Authorization: `Bearer ${GITHUB_TOKEN}`, // Аутентификация через токен
-        Accept: "application/vnd.github.v3+json", // Версия API
-      },
-    });
+    const response = await fetch(
+      `https://api.github.com/repos/malahovskiyoleksandr/malahovskiy/contents/data/database.json`,
+      {
+        method: "GET",
+        cache: "no-store",
+        headers: {
+          "Cache-Control": "no-cache", // Запрещаем использование кеша
+          // Authorization: `Bearer ${GITHUB_TOKEN}`,
+        },
+      }
+    );
 
     if (!response.ok) {
-      throw new Error("Failed to fetch data from GitHub");
+      return NextResponse.json(
+        { error: "Ошибка при получении данных с GitHub" },
+        { status: response.status }
+      );
     }
 
-    const data = await response.json();
-    const jsonString = Buffer.from(data.content, "base64").toString("utf-8");
-
-    return {
-      jsonString,
-    };
+    const Data = await response.json();
+    const decodedData = JSON.parse(
+      Buffer.from(Data.content, "base64").toString("utf-8")
+    );
+    // console.log(decodedData)
+    // Декодирование содержимого файла из base64
+    return decodedData;
   } catch (error) {
-    console.error("Error:", error.message); // Логируем ошибку
-    return {
-      notFound: true,
-    };
+    return NextResponse.json(
+      { error: "Ошибка сервера: " + error.message },
+      { status: 500 }
+    ); 
   }
-}
+  // try {
+  //   const response = await fetch("https://oleksandrmalakhovskyi.vercel.app/api/github-get", {
+  //     // cache: "force-cache", // Указывает на использование ISR
+  //   });
 
+  //   if (!response.ok) {
+  //     throw new Error("Не удалось загрузить данные с API");
+  //   }
+
+  //   const data = await response.json();
+
+  //   return data;
+  // } catch (error) {
+  //   console.error("Ошибка при получении данных:", error);
+  //   return console.log("error Home.page");
+  // }
+}
 
 export default async function Home({ params }) {
   const { locale } = params;
   const person = await getData();
-  const personObj = JSON.parse(person.jsonString)
+  // console.log(person)
 
   return (
     <>
@@ -59,8 +83,8 @@ export default async function Home({ params }) {
             // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
             // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
             alt="mainImage"
-            src={mainImage}
-            placeholder="blur" // размытие заднего фона при загрузке картинки
+            src={person?.home?.main_image?.src || ""}
+            // placeholder="blur" // размытие заднего фона при загрузке картинки
             // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
             quality={100}
             priority={false} // если true - loading = 'lazy' отменяеться
@@ -68,8 +92,8 @@ export default async function Home({ params }) {
             fill={false} //заставляет изображение заполнять родительский элемент
             // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
             sizes="100%"
-            // width={300} // задать правильное соотношение сторон адаптивного изображения
-            // height={200}
+            width={300} // задать правильное соотношение сторон адаптивного изображения
+            height={200}
             style={
               {
                 // width: "100%",
@@ -81,11 +105,11 @@ export default async function Home({ params }) {
             }
           />
           <div className={styles.main_block_description}>
-            <h1 className={styles.artist_name}>{
-              personObj.home[locale].name
-            }</h1>
+            <h1 className={styles.artist_name}>
+              {person?.home?.name?.[locale] || ""}
+            </h1>
             <p className={styles.artist_name__description}>
-              {personObj.home[locale].description}
+            {person?.home?.description?.[locale] || ""}
             </p>
           </div>
         </div>
@@ -93,4 +117,3 @@ export default async function Home({ params }) {
     </>
   );
 }
-export const revalidate = 10;
