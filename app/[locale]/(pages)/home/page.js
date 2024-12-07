@@ -1,6 +1,6 @@
 // import { motion } from "framer-motion";
 import Image from "next/image";
-// import mainImage from "@/public/images/mainPhoto.jpg";
+import mainImage from "@/public/images/mainPhoto.jpg";
 import styles from "./home.module.scss";
 
 export const revalidate = 5;
@@ -49,8 +49,8 @@ export default async function Home({ params }) {
             // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
             // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
             alt="mainImage"
-            src={person?.home?.main_image?.src || ""}
-            // placeholder="blur" // размытие заднего фона при загрузке картинки
+            src={mainImage}
+            placeholder="blur" // размытие заднего фона при загрузке картинки
             // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
             quality={100}
             priority={false} // если true - loading = 'lazy' отменяеться
@@ -58,8 +58,8 @@ export default async function Home({ params }) {
             fill={false} //заставляет изображение заполнять родительский элемент
             // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
             sizes="100%"
-            width={300} // задать правильное соотношение сторон адаптивного изображения
-            height={200}
+            // width={300} // задать правильное соотношение сторон адаптивного изображения
+            // height={200}
             style={
               {
                 // width: "100%",
@@ -72,10 +72,10 @@ export default async function Home({ params }) {
           />
           <div className={styles.main_block_description}>
             <h1 className={styles.artist_name}>
-              {person?.home?.name?.[locale] || ""}
+              {person?.home?.[locale]?.name || ""}
             </h1>
             <p className={styles.artist_name__description}>
-            {person?.home?.description?.[locale] || ""}
+              {person?.home?.[locale]?.description || ""}
             </p>
           </div>
         </div>

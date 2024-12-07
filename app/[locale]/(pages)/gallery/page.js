@@ -3,8 +3,6 @@ import Link from "next/link";
 import styles from "./gallery.module.scss";
 import Image from "next/image";
 import galleryData from "@/data/database.json";
-
-export const revalidate = 5;
 // import dark_side from "@/public/gallery/dark_side.jpg";
 // import industrial from "@/public/gallery/industrial.jpg";
 // import portraits from "@/public/gallery/portraits.jpg";
@@ -45,7 +43,7 @@ export default async function Gallery({ params }) {
   return (
     <section className={styles.type_pictures}>
       {/* {console.log(galleryData.gallery)} */}
-      {Object.entries(collectionLines.gallery).map(([key, value], index) => (
+      {Object.entries(galleryData.gallery).map(([key, value], index) => (
         // console.log(`${key}: ${value}`)
         <Link
           key={key}

@@ -7,7 +7,6 @@ import { Textarea } from "@nextui-org/react";
 import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
 import { Input } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
-import Image from "next/image";
 
 export default function AdminPage() {
   const router = useRouter();
@@ -59,61 +58,20 @@ export default function AdminPage() {
     loadData();
   }, []);
 
-  const handleChange_Home = (e, lang) => {
+  const handleChange = (e, lang) => {
     const { name, value } = e.target;
 
     setDatabase((prevFile) => ({
       ...prevFile,
       home: {
         ...prevFile.home,
-        [name]: {
-          ...prevFile.home[name],
-          [lang]: value,
+        [lang]: {
+          ...prevFile.home[lang],
+          [name]: value,
         },
       },
     }));
   };
-
-  const handleChange_Gallery = (e, lang) => {
-    const { name, value } = e.target;
-
-    setDatabase((prevFile) => ({
-      ...prevFile,
-      gallery: {
-        ...prevFile.gallery,
-        industrial: {
-          ...prevFile.gallery.industrial,
-          [name]: {
-            ...prevFile.gallery.industrial[name],
-            [lang]: value,
-          },
-        },
-      },
-    }));
-  };
-
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0]; // Берем первый файл из выбранных
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        console.log("Image Data URL:", event.target.result); // Предпросмотр
-        // Сохраняем данные в состоянии
-        setDatabase((prev) => ({
-          ...prev,
-          home: {
-            ...prev.home,
-            main_image: {
-              ...prev.home.main_image,
-              src: event.target.result, // Например, обновляем путь к изображению
-            },
-          },
-        }));
-      };
-      reader.readAsDataURL(file); // Конвертируем файл в Data URL
-    }
-  };
-  
 
   async function handleFileUpload(data) {
     const filePath = "data/database.json";
@@ -195,8 +153,8 @@ export default function AdminPage() {
                           type="text"
                           label="Name"
                           name="name"
-                          value={database?.home?.name?.[lang] || ""}
-                          onChange={(e) => handleChange_Home(e, lang)}
+                          value={database?.home?.[lang]?.name || ""}
+                          onChange={(e) => handleChange(e, lang)}
                         />
                       </div>
                     ))}
@@ -214,54 +172,11 @@ export default function AdminPage() {
                           name="description"
                           placeholder="Enter your description"
                           className="max-w-xs"
-                          value={database?.home?.description?.[lang] || ""}
-                          onChange={(e) => handleChange_Home(e, lang)}
+                          value={database?.home?.[lang]?.description || ""}
+                          onChange={(e) => handleChange(e, lang)}
                         />
                       </div>
                     ))}
-                  </div>
-
-                  <div className={styles.mainImage}>
-                    <div className={styles.currentImage}>
-                      <label className={styles.label}>Old</label>
-                      <Image
-                        className={styles.main_image}
-                        // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
-                        // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
-                        alt="mainImage"
-                        src={database?.home?.main_image?.src || ""}
-                        // placeholder="blur" // размытие заднего фона при загрузке картинки
-                        // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
-                        quality={100}
-                        priority={false} // если true - loading = 'lazy' отменяеться
-                        loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
-                        fill={false} //заставляет изображение заполнять родительский элемент
-                        // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
-                        sizes="100%"
-                        width={100} // задать правильное соотношение сторон адаптивного изображения
-                        height={100}
-                        style={
-                          {
-                            // width: "100%",
-                            // height: "200px",
-                            // objectFit: "cover", // Изображение масштабируется, не обрезаясь
-                            // objectFit: "contain", // Изображение масштабируется, не обрезаясь
-                            // objectPosition: "top",
-                          }
-                        }
-                      />
-                    </div>
-                    <div className={styles.newImage}>
-                      <label className={styles.label}>New</label>
-                      <Input
-                        type="file"
-                        label="Name"
-                        name="name"
-                        accept="image/*"
-                        // value={database?.home?.name?.[lang] || ""}
-                        onChange={(e) => handleImageUpload(e, lang)}
-                      />
-                    </div>
                   </div>
                   <Button color="warning" type="submit">
                     Зберегти
@@ -286,9 +201,9 @@ export default function AdminPage() {
                           label="Name"
                           name="name"
                           value={
-                            database?.gallery?.industrial?.name?.[lang] || ""
+                            database?.gallery?.industrial?.[lang]?.name || ""
                           }
-                          onChange={(e) => handleChange_Gallery(e, lang)}
+                          onChange={(e) => handleChange(e, lang)}
                         />
                       </div>
                     ))}
@@ -305,9 +220,9 @@ export default function AdminPage() {
                           label="Name"
                           name="name"
                           value={
-                            database?.gallery?.portraits?.name?.[lang] || ""
+                            database?.gallery?.portraits?.[lang]?.name || ""
                           }
-                          onChange={(e) => handleChange_Gallery(e, lang)}
+                          onChange={(e) => handleChange(e, lang)}
                         />
                       </div>
                     ))}
@@ -324,9 +239,9 @@ export default function AdminPage() {
                           label="Name"
                           name="name"
                           value={
-                            database?.gallery?.dark_side?.name?.[lang] || ""
+                            database?.gallery?.dark_side?.[lang]?.name || ""
                           }
-                          onChange={(e) => handleChange_Gallery(e, lang)}
+                          onChange={(e) => handleChange(e, lang)}
                         />
                       </div>
                     ))}
@@ -345,11 +260,10 @@ export default function AdminPage() {
                           placeholder="Enter your description"
                           className="max-w-xs"
                           value={
-                            database?.gallery?.industrial?.description?.[
-                              lang
-                            ] || ""
+                            database?.gallery?.industrial?.[lang]
+                              ?.description || ""
                           }
-                          onChange={(e) => handleChange_Gallery(e, lang)}
+                          onChange={(e) => handleChange(e, lang)}
                         />
                       </div>
                     ))}
@@ -367,10 +281,10 @@ export default function AdminPage() {
                           placeholder="Enter your description"
                           className="max-w-xs"
                           value={
-                            database?.gallery?.portraits?.description?.[lang] ||
+                            database?.gallery?.portraits?.[lang]?.description ||
                             ""
                           }
-                          onChange={(e) => handleChange_Gallery(e, lang)}
+                          onChange={(e) => handleChange(e, lang)}
                         />
                       </div>
                     ))}
@@ -388,10 +302,10 @@ export default function AdminPage() {
                           placeholder="Enter your description"
                           className="max-w-xs"
                           value={
-                            database?.gallery?.dark_side?.description?.[lang] ||
+                            database?.gallery?.dark_side?.[lang]?.description ||
                             ""
                           }
-                          onChange={(e) => handleChange_Gallery(e, lang)}
+                          onChange={(e) => handleChange(e, lang)}
                         />
                       </div>
                     ))}
