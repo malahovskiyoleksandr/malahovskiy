@@ -2,6 +2,7 @@
 import Image from "next/image";
 // import mainImage from "@/public/images/mainPhoto.jpg";
 import styles from "./home.module.scss";
+import { NextResponse } from "next/server";
 
 export const revalidate = 5;
 
