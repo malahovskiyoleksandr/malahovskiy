@@ -1,15 +1,37 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import styles from "./industrial.module.scss";
-import imagesData from "@/data/database.json";
+// import imagesData from "@/data/database.json";
+
 
 export default function PhotoGallery() {
-  const images = imagesData.gallery.industrial.page;
+  const [database, setDatabase] = useState();
+
   const image_listRef = useRef(null);
+
+    // Загружаем данные с API
+    useEffect(() => {
+      const loadData = async () => {
+        try {
+          const response = await fetch("/api/github-get");
+          if (!response.ok) {
+            throw new Error("Ошибка при обращении к API GET");
+          }
+          const data = await response.json();
+          setDatabase(data);
+          setLoading(false);
+        } catch (error) {
+          console.error("Ошибка: fetch(github-get)", error);
+        }
+      };
+  
+      loadData();
+    }, []);
 
   useEffect(() => {
     // Инициализация PhotoSwipe Lightbox
@@ -67,6 +89,8 @@ export default function PhotoGallery() {
       };
     }
   }, []);
+
+  const images = database?.gallery?.industrial?.page
   
   return (
     <div id="gallery" className={styles.image_list} ref={image_listRef}>
