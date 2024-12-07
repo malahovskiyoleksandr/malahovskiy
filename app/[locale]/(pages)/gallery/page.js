@@ -74,13 +74,10 @@ export async function getData() {
 export default async function Gallery({ params }) {
   const locale = params.locale;
   const collectionLines = await getData();
-  // console.log(collectionLines)
-  // console.log("collectionLines11", collectionLines)
 
   return (
     <section className={styles.type_pictures}>
-      {Object.entries(collectionLines.gallery).map(([key, value], index) => (
-        // console.log(`${key}: ${value}`)
+      {Object.entries(collectionLines?.gallery).map(([key, value], index) => (
         <Link
           key={key}
           className={styles.link}
