@@ -4,7 +4,14 @@ import styles from "./admin.module.scss";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Textarea } from "@nextui-org/react";
-import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
+import {
+  Tabs,
+  Tab,
+  Card,
+  CardBody,
+  Switch,
+  CardHeader,
+} from "@nextui-org/react";
 import { Input } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
 
@@ -12,7 +19,32 @@ export default function AdminPage() {
   const router = useRouter();
   const [user, setUser] = useState(null); // Состояние для хранения информации о пользователе
   const [loading, setLoading] = useState(true); // Состояние загрузки страницы
-  const [database, setDatabase] = useState(); // Состояние для данных из GitHub
+  const [file, setFile] = useState(null); // Состояние для данных из GitHub
+
+  // Функция для получения данных из GitHub
+  async function getData() {
+    try {
+      const response = await fetch(
+        `https://api.github.com/repos/malahovskiyoleksandr/malahovskiy/contents/data/home.json`,
+        {
+          method: "GET",
+          headers: {
+            // "Authorization": `Bearer ${GITHUB_TOKEN}`, // если требуется токен
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Ошибка при получении файла с GitHub");
+      }
+
+      const data = await response.json();
+      const content = Buffer.from(data.content, "base64").toString("utf-8");
+      return JSON.parse(content);
+    } catch (error) {
+      console.error("Ошибка:", error.message);
+    }
+  }
 
   // Логика для получения информации о пользователе и проверки токена
   useEffect(() => {
@@ -41,27 +73,21 @@ export default function AdminPage() {
 
   // Загружаем данные с API
   useEffect(() => {
-    const loadData = async () => {
-      try {
-        const response = await fetch("/api/github-get");
-        if (!response.ok) {
-          throw new Error("Ошибка при обращении к API GET");
-        }
-        const data = await response.json();
-        setDatabase(data);
+    async function fetchData() {
+      const data = await getData();
+      if (data) {
+        setFile(data);
         setLoading(false);
-      } catch (error) {
-        console.error("Ошибка: fetch(github-get)", error);
       }
-    };
+    }
 
-    loadData();
+    fetchData();
   }, []);
 
   const handleChange = (e, lang) => {
     const { name, value } = e.target;
 
-    setDatabase((prevFile) => ({
+    setFile((prevFile) => ({
       ...prevFile,
       home: {
         ...prevFile.home,
@@ -74,7 +100,7 @@ export default function AdminPage() {
   };
 
   async function handleFileUpload(data) {
-    const filePath = "data/database.json";
+    const filePath = "data/home.json";
     const fileContent = JSON.stringify(data);
     const commitMessage = "Обновление файла через API";
 
@@ -93,7 +119,7 @@ export default function AdminPage() {
 
       const responseData = await response.json();
       console.log("Файл успешно обновлен:", responseData);
-      setDatabase(data); // Обновляем состояние с новыми данными
+      setFile(data); // Обновляем состояние с новыми данными
     } catch (error) {
       console.error("Ошибка при загрузке файла:", error.message);
     }
@@ -101,7 +127,7 @@ export default function AdminPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const updatedData = { ...database }; // Делаем копию данных
+    const updatedData = { ...file }; // Делаем копию данных
     handleFileUpload(updatedData); // Отправляем обновленные данные
   };
 
@@ -115,10 +141,10 @@ export default function AdminPage() {
         {user && (
           <div className={styles.profile}>
             {/* <img
-                src="/images/admin-avatar.jpg"
-                alt="Admin"
-                className={styles.avatar}
-              /> */}
+              src="/images/admin-avatar.jpg"
+              alt="Admin"
+              className={styles.avatar}
+            /> */}
             <div>
               <h2>User: {user.email}</h2>
               <p>Role: {user.role}</p>
@@ -153,7 +179,7 @@ export default function AdminPage() {
                           type="text"
                           label="Name"
                           name="name"
-                          value={database?.home?.[lang]?.name || ""}
+                          value={file.home?.[lang]?.name || ""}
                           onChange={(e) => handleChange(e, lang)}
                         />
                       </div>
@@ -172,7 +198,7 @@ export default function AdminPage() {
                           name="description"
                           placeholder="Enter your description"
                           className="max-w-xs"
-                          value={database?.home?.[lang]?.description || ""}
+                          value={file.home?.[lang]?.description || ""}
                           onChange={(e) => handleChange(e, lang)}
                         />
                       </div>
@@ -188,132 +214,10 @@ export default function AdminPage() {
           <Tab key="music" title="Галерея">
             <Card>
               <CardBody>
-                <form className={styles.form} onSubmit={handleSubmit}>
-                  <div className={styles.inputList_Industrial}>
-                    <h2>Industrial</h2>
-                    {["uk", "en", "de"].map((lang) => (
-                      <div className={styles.inputItem} key={lang}>
-                        <label className={styles.label}>
-                          {lang.toUpperCase()}
-                        </label>
-                        <Input
-                          type="text"
-                          label="Name"
-                          name="name"
-                          value={
-                            database?.gallery?.industrial?.[lang]?.name || ""
-                          }
-                          onChange={(e) => handleChange(e, lang)}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                  <div className={styles.inputList_Portraits}>
-                    <h2>Portraits</h2>
-                    {["uk", "en", "de"].map((lang) => (
-                      <div className={styles.inputItem} key={lang}>
-                        <label className={styles.label}>
-                          {lang.toUpperCase()}
-                        </label>
-                        <Input
-                          type="text"
-                          label="Name"
-                          name="name"
-                          value={
-                            database?.gallery?.portraits?.[lang]?.name || ""
-                          }
-                          onChange={(e) => handleChange(e, lang)}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                  <div className={styles.inputList_DarkSide}>
-                    <h2>Dark_side</h2>
-                    {["uk", "en", "de"].map((lang) => (
-                      <div className={styles.inputItem} key={lang}>
-                        <label className={styles.label}>
-                          {lang.toUpperCase()}
-                        </label>
-                        <Input
-                          type="text"
-                          label="Name"
-                          name="name"
-                          value={
-                            database?.gallery?.dark_side?.[lang]?.name || ""
-                          }
-                          onChange={(e) => handleChange(e, lang)}
-                        />
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className={styles.textareaList_Industrial}>
-                    <h2>Industrial</h2>
-                    {["uk", "en", "de"].map((lang) => (
-                      <div className={styles.textareaItem} key={lang}>
-                        <label className={styles.label}>
-                          {lang.toUpperCase()}
-                        </label>
-                        <Textarea
-                          label="Description"
-                          name="description"
-                          placeholder="Enter your description"
-                          className="max-w-xs"
-                          value={
-                            database?.gallery?.industrial?.[lang]
-                              ?.description || ""
-                          }
-                          onChange={(e) => handleChange(e, lang)}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                  <div className={styles.textareaList_Portraits}>
-                    <h2>Portraits</h2>
-                    {["uk", "en", "de"].map((lang) => (
-                      <div className={styles.textareaItem} key={lang}>
-                        <label className={styles.label}>
-                          {lang.toUpperCase()}
-                        </label>
-                        <Textarea
-                          label="Description"
-                          name="description"
-                          placeholder="Enter your description"
-                          className="max-w-xs"
-                          value={
-                            database?.gallery?.portraits?.[lang]?.description ||
-                            ""
-                          }
-                          onChange={(e) => handleChange(e, lang)}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                  <div className={styles.textareaList_DarkSide}>
-                    <h2>DarkSide</h2>
-                    {["uk", "en", "de"].map((lang) => (
-                      <div className={styles.textareaItem} key={lang}>
-                        <label className={styles.label}>
-                          {lang.toUpperCase()}
-                        </label>
-                        <Textarea
-                          label="Description"
-                          name="description"
-                          placeholder="Enter your description"
-                          className="max-w-xs"
-                          value={
-                            database?.gallery?.dark_side?.[lang]?.description ||
-                            ""
-                          }
-                          onChange={(e) => handleChange(e, lang)}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                  <Button color="warning" type="submit">
-                    Зберегти
-                  </Button>
-                </form>
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                fugiat nulla pariatur.
               </CardBody>
             </Card>
           </Tab>

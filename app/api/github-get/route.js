@@ -1,39 +1,33 @@
 import { NextResponse } from "next/server";
 
-// const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
-const DATA = "database.json";
+const GITHUB_REPO = "malahovskiyoleksandr/malahovskiy";
+const GITHUB_FILE_PATH = "data/home.json";
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
 export async function GET() {
   try {
     const response = await fetch(
-      `https://api.github.com/repos/malahovskiyoleksandr/malahovskiy/contents/data/${DATA}`,
+      `https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE_PATH}`,
       {
         method: "GET",
-        cache: "no-store",
         headers: {
-          "Cache-Control": "no-cache", // Запрещаем использование кеша
+          "Cache-Control": "no-store",
           // Authorization: `Bearer ${GITHUB_TOKEN}`,
         },
       }
     );
 
-    if (!response.ok) {
-      return NextResponse.json(
-        { error: "Ошибка при получении данных с GitHub" },
-        { status: response.status }
-      );
+    if (!response.ok ) {
+      throw new Error("Ошибка при получении файла с GitHub");
     }
 
     const Data = await response.json();
-    const decodedData = JSON.parse(
-      Buffer.from(Data.content, "base64").toString("utf-8")
-    );
-    // Декодирование содержимого файла из base64
-    return NextResponse.json(decodedData);
+    const Content = Buffer.from(Data.content, "base64").toString(
+      "utf-8"
+    ); // Декодирование содержимого файла из base64
+    return NextResponse.json(JSON.parse(Content));
   } catch (error) {
-    return NextResponse.json(
-      { error: "Ошибка сервера: " + error.message },
-      { status: 500 }
-    );
+    console.error("Ошибка:", error.message);
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

@@ -3,31 +3,41 @@ import Image from "next/image";
 import mainImage from "@/public/images/mainPhoto.jpg";
 import styles from "./home.module.scss";
 
-export const revalidate = 5;
+export async function getData() {
+  const GITHUB_API_URL = `https://api.github.com/repos/malahovskiyoleksandr/malahovskiy/contents/data/home.json`;
+  const GITHUB_TOKEN = process.env.GITHUB_TOKEN; // Храните токен в переменных окружения
 
-export async function getData() { 
   try {
-    const response = await fetch("http://localhost:3000/api/github-get", {
-      // cache: "force-cache", // Указывает на использование ISR
+    const response = await fetch(GITHUB_API_URL, {
+      headers: {
+        Authorization: `Bearer ${GITHUB_TOKEN}`, // Аутентификация через токен
+        Accept: "application/vnd.github.v3+json", // Версия API
+      },
     });
 
     if (!response.ok) {
-      throw new Error("Не удалось загрузить данные с API");
+      throw new Error("Failed to fetch data from GitHub");
     }
 
     const data = await response.json();
+    const jsonString = Buffer.from(data.content, "base64").toString("utf-8");
 
-    return data;
+    return {
+      jsonString,
+    };
   } catch (error) {
-    console.error("Ошибка при получении данных:", error);
-    return console.log("error Home.page");
+    console.error("Error:", error.message); // Логируем ошибку
+    return {
+      notFound: true,
+    };
   }
 }
+
 
 export default async function Home({ params }) {
   const { locale } = params;
   const person = await getData();
-  // console.log(person)
+  const personObj = JSON.parse(person.jsonString)
 
   return (
     <>
@@ -71,11 +81,11 @@ export default async function Home({ params }) {
             }
           />
           <div className={styles.main_block_description}>
-            <h1 className={styles.artist_name}>
-              {person?.home?.[locale]?.name || ""}
-            </h1>
+            <h1 className={styles.artist_name}>{
+              personObj.home[locale].name
+            }</h1>
             <p className={styles.artist_name__description}>
-              {person?.home?.[locale]?.description || ""}
+              {personObj.home[locale].description}
             </p>
           </div>
         </div>
@@ -83,3 +93,4 @@ export default async function Home({ params }) {
     </>
   );
 }
+export const revalidate = 10;
