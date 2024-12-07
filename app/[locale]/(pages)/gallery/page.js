@@ -51,7 +51,8 @@ export default async function Gallery({ params: { locale } }) {
 
   return (
     <section className={styles.type_pictures}>
-      {Object.entries(collectionLines?.gallery).map(([key, value], index) => (
+      {collectionLines?.gallery &&
+  Object.entries(collectionLines.gallery).map(([key, value], index) => (
         <Link
           key={key}
           className={styles.link}
