@@ -14,7 +14,6 @@ export default function AdminPage() {
   const [user, setUser] = useState(null); // Состояние для хранения информации о пользователе
   const [loading, setLoading] = useState(true); // Состояние загрузки страницы
   const [database, setDatabase] = useState(); // Состояние для данных из GitHub
-  const [photo, setPhoto] = useState(); // Состояние для данных из GitHub
 
   // Логика для получения информации о пользователе и проверки токена
   useEffect(() => {
@@ -92,15 +91,30 @@ export default function AdminPage() {
       },
     }));
   };
-  
-  const handleFileChange = (event) => {
-    const uploadedFile = event.target.files[0];
-    console.log(uploadedFile)
-    if (uploadedFile) {
-      setPhoto(uploadedFile);
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0]; // Берем первый файл из выбранных
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        console.log("Image Data URL:", event.target.result); // Предпросмотр
+        // Сохраняем данные в состоянии
+        setDatabase((prev) => ({
+          ...prev,
+          home: {
+            ...prev.home,
+            main_image: {
+              ...prev.home.main_image,
+              src: event.target.result, // Например, обновляем путь к изображению
+            },
+          },
+        }));
+      };
+      reader.readAsDataURL(file); // Конвертируем файл в Data URL
     }
   };
-  console.log()
+  
+
   async function handleFileUpload(data) {
     const filePath = "data/database.json";
     const fileContent = JSON.stringify(data);
@@ -245,7 +259,7 @@ export default function AdminPage() {
                         name="name"
                         accept="image/*"
                         // value={database?.home?.name?.[lang] || ""}
-                        onChange={(e) => handleFileChange(e)}
+                        onChange={(e) => handleImageUpload(e, lang)}
                       />
                     </div>
                   </div>

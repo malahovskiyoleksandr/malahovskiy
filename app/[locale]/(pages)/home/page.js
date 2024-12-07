@@ -2,60 +2,26 @@
 import Image from "next/image";
 // import mainImage from "@/public/images/mainPhoto.jpg";
 import styles from "./home.module.scss";
-import { NextResponse } from "next/server";
 
 export const revalidate = 5;
 
 export async function getData() { 
   try {
-    const response = await fetch(
-      `https://api.github.com/repos/malahovskiyoleksandr/malahovskiy/contents/data/database.json`,
-      {
-        method: "GET",
-        cache: "no-store",
-        headers: {
-          "Cache-Control": "no-cache", // Запрещаем использование кеша
-          // Authorization: `Bearer ${GITHUB_TOKEN}`,
-        },
-      }
-    );
+    const response = await fetch("http://localhost:3000/api/github-get", {
+      // cache: "force-cache", // Указывает на использование ISR
+    });
 
     if (!response.ok) {
-      return NextResponse.json(
-        { error: "Ошибка при получении данных с GitHub" },
-        { status: response.status }
-      );
+      throw new Error("Не удалось загрузить данные с API");
     }
 
-    const Data = await response.json();
-    const decodedData = JSON.parse(
-      Buffer.from(Data.content, "base64").toString("utf-8")
-    );
-    // console.log(decodedData)
-    // Декодирование содержимого файла из base64
-    return decodedData;
+    const data = await response.json();
+
+    return data;
   } catch (error) {
-    return NextResponse.json(
-      { error: "Ошибка сервера: " + error.message },
-      { status: 500 }
-    ); 
+    console.error("Ошибка при получении данных:", error);
+    return console.log("error Home.page");
   }
-  // try {
-  //   const response = await fetch("https://oleksandrmalakhovskyi.vercel.app/api/github-get", {
-  //     // cache: "force-cache", // Указывает на использование ISR
-  //   });
-
-  //   if (!response.ok) {
-  //     throw new Error("Не удалось загрузить данные с API");
-  //   }
-
-  //   const data = await response.json();
-
-  //   return data;
-  // } catch (error) {
-  //   console.error("Ошибка при получении данных:", error);
-  //   return console.log("error Home.page");
-  // }
 }
 
 export default async function Home({ params }) {

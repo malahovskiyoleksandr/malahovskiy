@@ -2,8 +2,7 @@ import Link from "next/link";
 // import { motion } from "framer-motion"; // Импортируем framer-motion
 import styles from "./gallery.module.scss";
 import Image from "next/image";
-// import galleryData from "@/data/database.json";
-import { NextResponse } from "next/server";
+import galleryData from "@/data/database.json";
 
 export const revalidate = 5;
 // import dark_side from "@/public/gallery/dark_side.jpg";
@@ -21,63 +20,33 @@ export const revalidate = 5;
 
 export async function getData() {
   try {
-    const response = await fetch(
-      `https://api.github.com/repos/malahovskiyoleksandr/malahovskiy/contents/data/database.json`,
-      {
-        method: "GET",
-        cache: "no-store",
-        headers: {
-          "Cache-Control": "no-cache", // Запрещаем использование кеша
-          // Authorization: `Bearer ${GITHUB_TOKEN}`,
-        },
-      }
-    );
+    const response = await fetch("http://localhost:3000/api/github-get", {
+      // cache: "force-cache", // Указывает на использование ISR
+    });
 
     if (!response.ok) {
-      return NextResponse.json(
-        { error: "Ошибка при получении данных с GitHub" },
-        { status: response.status }
-      );
+      throw new Error("Не удалось загрузить данные с API");
     }
 
-    const Data = await response.json();
-    const decodedData = JSON.parse(
-      Buffer.from(Data.content, "base64").toString("utf-8")
-    );
-    // console.log(decodedData)
-    // Декодирование содержимого файла из base64
-    return decodedData;
+    const data = await response.json();
+
+    return data;
   } catch (error) {
-    return NextResponse.json(
-      { error: "Ошибка сервера: " + error.message },
-      { status: 500 }
-    ); 
+    console.error("Ошибка при получении данных:", error);
+    return console.log("error Home.page");
   }
-  // try {
-  //   const response = await fetch("https://oleksandrmalakhovskyi.vercel.app/api/github-get", {
-  //     // cache: "force-cache", // Указывает на использование ISR
-  //   });
-
-  //   if (!response.ok) {
-  //     throw new Error("Не удалось загрузить данные с API");
-  //   }
-
-  //   const data = await response.json();
-
-  //   return data;
-  // } catch (error) {
-  //   console.error("Ошибка при получении данных:", error);
-  //   return console.log("error Home.page");
-  // }
 }
 
 export default async function Gallery({ params }) {
   const locale = params.locale;
   const collectionLines = await getData();
+  // console.log("collectionLines11", collectionLines)
 
   return (
     <section className={styles.type_pictures}>
-      {Object.entries(collectionLines?.gallery).map(([key, value], index) => (
+      {/* {console.log(galleryData.gallery)} */}
+      {Object.entries(collectionLines.gallery).map(([key, value], index) => (
+        // console.log(`${key}: ${value}`)
         <Link
           key={key}
           className={styles.link}
