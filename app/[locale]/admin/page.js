@@ -7,12 +7,14 @@ import { Textarea } from "@nextui-org/react";
 import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
 import { Input } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
+import Image from "next/image";
 
 export default function AdminPage() {
   const router = useRouter();
   const [user, setUser] = useState(null); // Состояние для хранения информации о пользователе
   const [loading, setLoading] = useState(true); // Состояние загрузки страницы
-  const [database, setDatabase] = useState(null); // Состояние для данных из GitHub
+  const [database, setDatabase] = useState(); // Состояние для данных из GitHub
+  const [photo, setPhoto] = useState(); // Состояние для данных из GitHub
 
   // Логика для получения информации о пользователе и проверки токена
   useEffect(() => {
@@ -51,30 +53,56 @@ export default function AdminPage() {
         setDatabase(data);
         setLoading(false);
       } catch (error) {
-        console.error("Ошибка:", error);
+        console.error("Ошибка: fetch(github-get)", error);
       }
     };
 
     loadData();
   }, []);
 
-  const handleChange = (e, lang) => {
+  const handleChange_Home = (e, lang) => {
     const { name, value } = e.target;
 
     setDatabase((prevFile) => ({
       ...prevFile,
       home: {
         ...prevFile.home,
-        [lang]: {
-          ...prevFile.home[lang],
-          [name]: value,
+        [name]: {
+          ...prevFile.home[name],
+          [lang]: value,
         },
       },
     }));
   };
 
+  const handleChange_Gallery = (e, lang) => {
+    const { name, value } = e.target;
+
+    setDatabase((prevFile) => ({
+      ...prevFile,
+      gallery: {
+        ...prevFile.gallery,
+        industrial: {
+          ...prevFile.gallery.industrial,
+          [name]: {
+            ...prevFile.gallery.industrial[name],
+            [lang]: value,
+          },
+        },
+      },
+    }));
+  };
+  
+  const handleFileChange = (event) => {
+    const uploadedFile = event.target.files[0];
+    console.log(uploadedFile)
+    if (uploadedFile) {
+      setPhoto(uploadedFile);
+    }
+  };
+  console.log()
   async function handleFileUpload(data) {
-    const filePath = "data/home.json";
+    const filePath = "data/database.json";
     const fileContent = JSON.stringify(data);
     const commitMessage = "Обновление файла через API";
 
@@ -153,8 +181,8 @@ export default function AdminPage() {
                           type="text"
                           label="Name"
                           name="name"
-                          value={database?.home?.[lang]?.name || ""}
-                          onChange={(e) => handleChange(e, lang)}
+                          value={database?.home?.name?.[lang] || ""}
+                          onChange={(e) => handleChange_Home(e, lang)}
                         />
                       </div>
                     ))}
@@ -172,11 +200,54 @@ export default function AdminPage() {
                           name="description"
                           placeholder="Enter your description"
                           className="max-w-xs"
-                          value={database?.home?.[lang]?.description || ""}
-                          onChange={(e) => handleChange(e, lang)}
+                          value={database?.home?.description?.[lang] || ""}
+                          onChange={(e) => handleChange_Home(e, lang)}
                         />
                       </div>
                     ))}
+                  </div>
+
+                  <div className={styles.mainImage}>
+                    <div className={styles.currentImage}>
+                      <label className={styles.label}>Old</label>
+                      <Image
+                        className={styles.main_image}
+                        // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
+                        // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
+                        alt="mainImage"
+                        src={database?.home?.main_image?.src || ""}
+                        // placeholder="blur" // размытие заднего фона при загрузке картинки
+                        // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
+                        quality={100}
+                        priority={false} // если true - loading = 'lazy' отменяеться
+                        loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
+                        fill={false} //заставляет изображение заполнять родительский элемент
+                        // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
+                        sizes="100%"
+                        width={100} // задать правильное соотношение сторон адаптивного изображения
+                        height={100}
+                        style={
+                          {
+                            // width: "100%",
+                            // height: "200px",
+                            // objectFit: "cover", // Изображение масштабируется, не обрезаясь
+                            // objectFit: "contain", // Изображение масштабируется, не обрезаясь
+                            // objectPosition: "top",
+                          }
+                        }
+                      />
+                    </div>
+                    <div className={styles.newImage}>
+                      <label className={styles.label}>New</label>
+                      <Input
+                        type="file"
+                        label="Name"
+                        name="name"
+                        accept="image/*"
+                        // value={database?.home?.name?.[lang] || ""}
+                        onChange={(e) => handleFileChange(e)}
+                      />
+                    </div>
                   </div>
                   <Button color="warning" type="submit">
                     Зберегти
@@ -200,8 +271,10 @@ export default function AdminPage() {
                           type="text"
                           label="Name"
                           name="name"
-                          value={database?.gallery?.industrial?.[lang]?.name || ""}
-                          onChange={(e) => handleChange(e, lang)}
+                          value={
+                            database?.gallery?.industrial?.name?.[lang] || ""
+                          }
+                          onChange={(e) => handleChange_Gallery(e, lang)}
                         />
                       </div>
                     ))}
@@ -217,8 +290,10 @@ export default function AdminPage() {
                           type="text"
                           label="Name"
                           name="name"
-                          value={database?.gallery?.portraits?.[lang]?.name || ""}
-                          onChange={(e) => handleChange(e, lang)}
+                          value={
+                            database?.gallery?.portraits?.name?.[lang] || ""
+                          }
+                          onChange={(e) => handleChange_Gallery(e, lang)}
                         />
                       </div>
                     ))}
@@ -234,14 +309,16 @@ export default function AdminPage() {
                           type="text"
                           label="Name"
                           name="name"
-                          value={database?.gallery?.dark_side?.[lang]?.name || ""}
-                          onChange={(e) => handleChange(e, lang)}
+                          value={
+                            database?.gallery?.dark_side?.name?.[lang] || ""
+                          }
+                          onChange={(e) => handleChange_Gallery(e, lang)}
                         />
                       </div>
                     ))}
                   </div>
 
-                  <div className={styles.textareaList}>
+                  <div className={styles.textareaList_Industrial}>
                     <h2>Industrial</h2>
                     {["uk", "en", "de"].map((lang) => (
                       <div className={styles.textareaItem} key={lang}>
@@ -253,13 +330,17 @@ export default function AdminPage() {
                           name="description"
                           placeholder="Enter your description"
                           className="max-w-xs"
-                          value={database?.gallery?.industrial?.[lang]?.description || ""}
-                          onChange={(e) => handleChange(e, lang)}
+                          value={
+                            database?.gallery?.industrial?.description?.[
+                              lang
+                            ] || ""
+                          }
+                          onChange={(e) => handleChange_Gallery(e, lang)}
                         />
                       </div>
                     ))}
                   </div>
-                  <div className={styles.textareaList}>
+                  <div className={styles.textareaList_Portraits}>
                     <h2>Portraits</h2>
                     {["uk", "en", "de"].map((lang) => (
                       <div className={styles.textareaItem} key={lang}>
@@ -271,13 +352,16 @@ export default function AdminPage() {
                           name="description"
                           placeholder="Enter your description"
                           className="max-w-xs"
-                          value={database?.gallery?.portraits?.[lang]?.description || ""}
-                          onChange={(e) => handleChange(e, lang)}
+                          value={
+                            database?.gallery?.portraits?.description?.[lang] ||
+                            ""
+                          }
+                          onChange={(e) => handleChange_Gallery(e, lang)}
                         />
                       </div>
                     ))}
                   </div>
-                  <div className={styles.textareaList}>
+                  <div className={styles.textareaList_DarkSide}>
                     <h2>DarkSide</h2>
                     {["uk", "en", "de"].map((lang) => (
                       <div className={styles.textareaItem} key={lang}>
@@ -289,8 +373,11 @@ export default function AdminPage() {
                           name="description"
                           placeholder="Enter your description"
                           className="max-w-xs"
-                          value={database?.gallery?.dark_side?.[lang]?.description || ""}
-                          onChange={(e) => handleChange(e, lang)}
+                          value={
+                            database?.gallery?.dark_side?.description?.[lang] ||
+                            ""
+                          }
+                          onChange={(e) => handleChange_Gallery(e, lang)}
                         />
                       </div>
                     ))}

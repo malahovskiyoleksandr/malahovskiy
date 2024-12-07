@@ -1,32 +1,33 @@
 {
   "home": {
-    "uk": {
-      "name": "Олександр Малаховський",
-      "description": "Тільки недолугі громадяни можуть не сприйняти той факт, що бути художником це круто, т.к. художнику можно все))))"
+    "name": {
+      "uk": "Олександр Малаховський",
+      "en": "Oleksandr Malakhovsky",
+      "de": "Oleksandr Malakhovskyi"
     },
-    "en": {
-      "name": "Oleksandr Malakhovsky",
-      "description": "Determining our own reality is a deeply personal and subjective experience.))))"
+    "description": {
+      "uk": "Тільки недолугі громадяни можуть не сприйняти той факт, що бути художником це круто, т.к. художнику можно все))))",
+      "en": "Determining our own reality is a deeply personal and subjective experience.))))",
+      "de": "Die Definition unserer eigenen Realität ist eine zutiefst persönliche und subjektive Erfahrung.))))"
     },
-    "de": {
-      "name": "Oleksandr Malakhovskyi",
-      "description": "Die Definition unserer eigenen Realität ist eine zutiefst persönliche und subjektive Erfahrung.))))"
+    "main_image": {
+      "src": "/images/mainPhoto.jpg"
     }
   },
   "gallery": {
     "industrial": {
-      "uk": {
-        "name": "UK Industrial art",
-        "description": "UK description"
+      "name": {
+        "uk": "UK Industrial art",
+        "en": "EN Industrial art",
+        "de": "DE Industrial art"
       },
-      "en": {
-        "name": "EN Industrial art",
-        "description": "EN description"
+      "description": {
+        "uk": "UK description industrial",
+        "en": "EN description industrial",
+        "de": "DE description industrial"
       },
-      "de": {
-        "name": "DE Industrial art",
-        "description": "DE description"
-      },
+      "href": "/gallery/industrial",
+      "src": "/gallery/industrial.jpg",
       "page": [
         {
           "id": 1,
@@ -59,22 +60,166 @@
           "de": {
             "description": "Name des Gemäldes"
           }
+        },
+        {
+          "id": 2,
+          "name": "Image 2",
+          "src": "/gallery/industrial/3.jpg",
+          "width": 745,
+          "height": 1000,
+          "uk": {
+            "description": "Назва картини"
+          },
+          "en": {
+            "description": "Name of the painting"
+          },
+          "de": {
+            "description": "Name des Gemäldes"
+          }
+        },
+        {
+          "id": 2,
+          "name": "Image 2",
+          "src": "/gallery/industrial/4.jpg",
+          "width": 745,
+          "height": 1000,
+          "uk": {
+            "description": "Назва картини"
+          },
+          "en": {
+            "description": "Name of the painting"
+          },
+          "de": {
+            "description": "Name des Gemäldes"
+          }
+        },
+        {
+          "id": 2,
+          "name": "Image 2",
+          "src": "/gallery/industrial/5.jpg",
+          "width": 745,
+          "height": 1000,
+          "uk": {
+            "description": "Назва картини"
+          },
+          "en": {
+            "description": "Name of the painting"
+          },
+          "de": {
+            "description": "Name des Gemäldes"
+          }
+        },
+        {
+          "id": 2,
+          "name": "Image 2",
+          "src": "/gallery/industrial/6.jpg",
+          "width": 745,
+          "height": 1000,
+          "uk": {
+            "description": "Назва картини"
+          },
+          "en": {
+            "description": "Name of the painting"
+          },
+          "de": {
+            "description": "Name des Gemäldes"
+          }
+        },
+        {
+          "id": 2,
+          "name": "Image 2",
+          "src": "/gallery/industrial/4.jpg",
+          "width": 745,
+          "height": 1000,
+          "uk": {
+            "description": "Назва картини"
+          },
+          "en": {
+            "description": "Name of the painting"
+          },
+          "de": {
+            "description": "Name des Gemäldes"
+          }
+        },
+        {
+          "id": 2,
+          "name": "Image 2",
+          "src": "/gallery/industrial/3.jpg",
+          "width": 745,
+          "height": 1000,
+          "uk": {
+            "description": "Назва картини"
+          },
+          "en": {
+            "description": "Name of the painting"
+          },
+          "de": {
+            "description": "Name des Gemäldes"
+          }
+        },
+        {
+          "id": 2,
+          "name": "Image 2",
+          "src": "/gallery/industrial/1.jpg",
+          "width": 745,
+          "height": 1000,
+          "uk": {
+            "description": "Назва картини"
+          },
+          "en": {
+            "description": "Name of the painting"
+          },
+          "de": {
+            "description": "Name des Gemäldes"
+          }
+        },
+        {
+          "id": 2,
+          "name": "Image 2",
+          "src": "/gallery/industrial/2.jpg",
+          "width": 745,
+          "height": 1000,
+          "uk": {
+            "description": "Назва картини"
+          },
+          "en": {
+            "description": "Name of the painting"
+          },
+          "de": {
+            "description": "Name des Gemäldes"
+          }
+        },
+        {
+          "id": 2,
+          "name": "Image 2",
+          "src": "/gallery/industrial/2.jpg",
+          "width": 745,
+          "height": 1000,
+          "uk": {
+            "description": "Назва картини"
+          },
+          "en": {
+            "description": "Name of the painting"
+          },
+          "de": {
+            "description": "Name des Gemäldes"
+          }
         }
       ]
     },
     "portraits": {
-      "uk": {
-        "name": "UK portraits",
-        "description": "UK description"
+      "name": {
+        "uk": "UK portraits",
+        "en": "EN portraits",
+        "de": "DE portraits"
       },
-      "en": {
-        "name": "EN portraits",
-        "description": "EN description"
+      "description": {
+        "uk": "UK description portraits",
+        "en": "EN description portraits",
+        "de": "DE description portraits"
       },
-      "de": {
-        "name": "DE portraits",
-        "description": "DE description"
-      },
+      "href": "/gallery/portraits",
+      "src": "/gallery/portraits.jpg",
       "page": [
         {
           "id": 1,
@@ -111,18 +256,18 @@
       ]
     },
     "dark_side": {
-      "uk": {
-        "name": "UK dark_side",
-        "description": "UK description"
+      "name": {
+        "uk": "UK dark_side",
+        "en": "EN dark_side",
+        "de": "DE dark_side"
       },
-      "en": {
-        "name": "EN dark_side",
-        "description": "EN description"
+      "description": {
+        "uk": "UK description dark_side",
+        "en": "EN description dark_side",
+        "de": "DE description dark_side"
       },
-      "de": {
-        "name": "DE dark_side",
-        "description": "DE description"
-      },
+      "href": "/gallery/dark_side",
+      "src": "/gallery/dark_side.jpg",
       "page": [
         {
           "id": 1,

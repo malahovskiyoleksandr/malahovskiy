@@ -1,30 +1,39 @@
 import { NextResponse } from "next/server";
 
 // const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
-const DATA_HOME = "database.json"
+const DATA = "database.json";
 
 export async function GET() {
   try {
     const response = await fetch(
-      `https://api.github.com/repos/malahovskiyoleksandr/malahovskiy/contents/data/${DATA_HOME}`,
+      `https://api.github.com/repos/malahovskiyoleksandr/malahovskiy/contents/data/${DATA}`,
       {
         method: "GET",
+        cache: "no-store",
         headers: {
-          // "Cache-Control": "no-store",
+          "Cache-Control": "no-cache", // Запрещаем использование кеша
           // Authorization: `Bearer ${GITHUB_TOKEN}`,
         },
       }
     );
 
     if (!response.ok) {
-      throw new Error("Ошибка при получении файла с GitHub");
+      return NextResponse.json(
+        { error: "Ошибка при получении данных с GitHub" },
+        { status: response.status }
+      );
     }
 
     const Data = await response.json();
-    const deCodeData = Buffer.from(Data.content, "base64").toString("utf-8"); // Декодирование содержимого файла из base64
-    return NextResponse.json(JSON.parse(deCodeData));
+    const decodedData = JSON.parse(
+      Buffer.from(Data.content, "base64").toString("utf-8")
+    );
+    // Декодирование содержимого файла из base64
+    return NextResponse.json(decodedData);
   } catch (error) {
-    console.error("Ошибка:", error.message);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json(
+      { error: "Ошибка сервера: " + error.message },
+      { status: 500 }
+    );
   }
 }
