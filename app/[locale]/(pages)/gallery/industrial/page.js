@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import styles from "./industrial.module.scss";
+// import imagesData from "@/data/database.json";
 
 
 export default function PhotoGallery() {
@@ -89,7 +90,7 @@ export default function PhotoGallery() {
   }, []);
 
   // const images = database?.gallery?.industrial?.page;
-  console.log(database)
+  // console.log(images)
   
   return (
     <div id="gallery" className={styles.image_list} ref={image_listRef}>
