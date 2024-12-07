@@ -23,7 +23,7 @@ export default function PhotoGallery() {
           }
           const data = await response.json();
           setDatabase(data);
-          setLoading(false);
+          // setLoading(false);
         } catch (error) {
           console.error("Ошибка: fetch(github-get)", error);
         }
@@ -89,11 +89,12 @@ export default function PhotoGallery() {
     }
   }, []);
 
-  // const images = database?.gallery?.portraits?.page
+  // const images = database?.gallery?.industrial?.page;
+  // console.log(images)
   
   return (
     <div id="gallery" className={styles.image_list} ref={image_listRef}>
-      {database?.gallery?.portraits?.page.map((image, index) => (
+      {database?.gallery?.industrial?.page.map((image, index) => (
         <Link
           className={styles.image_Link}
           key={index}
@@ -118,21 +119,6 @@ export default function PhotoGallery() {
             // sizes="100vh"
             width={image.width} // задать правильное соотношение сторон адаптивного изображения
             height={image.height}
-            // style={{
-            //   width: "350px",
-            //   height: "250px",
-            //   objectFit: "cover", // Изображение масштабируется, обрезаясь
-            //     objectFit: "contain", // Изображение масштабируется, не обрезаясь
-            //     objectPosition: line.index === 0 ? "0% 30%" : "top",
-            //     objectPosition:
-            //       index === 0
-            //         ? "0% 50%"
-            //         : index === 1
-            //         ? "0% 30%"
-            //         : index === 2
-            //         ? "0% 45%"
-            //         : "center",
-            // }}
           />
           <label htmlFor={image.id} className={styles.image_label}>{image.name}</label>
         </Link>
@@ -140,15 +126,4 @@ export default function PhotoGallery() {
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
 
