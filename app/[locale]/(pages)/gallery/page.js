@@ -20,7 +20,7 @@ export const revalidate = 5;
 
 export async function getData() {
   try {
-    const response = await fetch("http://localhost:3000/api/github-get", {
+    const response = await fetch("https://oleksandrmalakhovskyi.vercel.app/api/github-get", {
       // cache: "force-cache", // Указывает на использование ISR
     });
 
