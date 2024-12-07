@@ -36,8 +36,9 @@ export async function getData() {
 
 export default async function Home({ params }) {
   const { locale } = params;
-  const person = await getData();
+  const person = await getData(locale);
   const personObj = JSON.parse(person.jsonString)
+  // console.log(personObj.home.uk.name);
 
   return (
     <>
@@ -82,10 +83,10 @@ export default async function Home({ params }) {
           />
           <div className={styles.main_block_description}>
             <h1 className={styles.artist_name}>{
-              personObj.home[locale].name
+              personObj.home.uk.name
             }</h1>
             <p className={styles.artist_name__description}>
-              {personObj.home[locale].description}
+              {personObj.home.uk.description}
             </p>
           </div>
         </div>

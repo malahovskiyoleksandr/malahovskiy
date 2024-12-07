@@ -1,148 +1,52 @@
-// .image_list {
-//   display: grid;
-//   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-//   gap: 2rem;
-//   padding: 4rem;
-//   min-height: calc(100vh - 50px);
-//   place-items: center;
-//   background-color: rgb(226, 230, 236);
-//   // background-color: rgb(153, 111, 111);
-
-//   .image_Link {
-//     // padding: 2rem;
-//     border-radius: 2px;
-//     // height: 500px;
-//     // border: 2rem solid rgb(88, 55, 17);
-//     box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.5);
-
-//     .image {
-//       width: 100%;
-//       height: 100%;
-//       // max-height: 170px;
-//       object-fit: cover;
-//     }
-//   }
-// }
-
-// @media (max-width: 768px) {
-//   //mobile
-//   .image_list {
-//     height: unset;
-//     padding: 3rem;
-
-//     .image_Link {
-//       .image {
-//       }
-//     }
-//   }
-// }
-
-// @media (max-width: 480px) {
-//   //mobile small
-//   .image_list {
-//     padding: 2rem;
-
-//     .image_Link {
-//       padding: 2rem;
-//       .image {
-//         max-height: unset;
-//       }
-//     }
-//   }
-// }
-
-
-
-
-
-
-
-
-.galleryWrapper {
-  display: flex;
-  flex-direction: column;
-  padding: 2rem;
+.image_list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 4rem;
+  min-height: calc(100vh - 50px);
+  place-items: center;
   background-color: rgb(226, 230, 236);
+  // background-color: rgb(153, 111, 111);
 
-  // Для ПК: горизонтальная прокрутка колесиком
-  .desktopGallery {
-    display: none;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    gap: 1rem;
-    flex-wrap: nowrap;
-    padding: 2rem 0;
+  .image_Link {
+    // padding: 2rem;
+    border-radius: 2px;
+    // height: 500px;
+    // border: 2rem solid rgb(88, 55, 17);
+    box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.5);
 
-    .imageList {
-      display: flex;
-    }
-
-    .imageLink {
-      flex: 0 0 auto;
-      border-radius: 4px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      transition: transform 0.3s ease;
-
-      &:hover {
-        transform: scale(1.05);
-      }
-
-      .image {
-        width: 300px;
-        height: 200px;
-        object-fit: cover;
-      }
-    }
-  }
-
-  // Для мобильных устройств: слайдер
-  .mobileGallery {
-    display: block;
-    .swiper-slide {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .imageLink {
-      width: 80%;
-      max-width: 300px;
-      border-radius: 4px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      transition: transform 0.3s ease;
-
-      &:hover {
-        transform: scale(1.05);
-      }
-
-      .image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
+    .image {
+      width: 100%;
+      height: 100%;
+      // max-height: 170px;
+      object-fit: cover;
     }
   }
 }
 
-// Мобильная адаптация
 @media (max-width: 768px) {
-  .desktopGallery {
-    display: none;
-  }
+  //mobile
+  .image_list {
+    height: unset;
+    padding: 3rem;
 
-  .mobileGallery {
-    display: block;
+    .image_Link {
+      .image {
+      }
+    }
   }
 }
 
-@media (min-width: 769px) {
-  .desktopGallery {
-    display: block;
-  }
+@media (max-width: 480px) {
+  //mobile small
+  .image_list {
+    padding: 2rem;
 
-  .mobileGallery {
-    display: none;
+    .image_Link {
+      padding: 2rem;
+      .image {
+        max-height: unset;
+      }
+    }
   }
 }

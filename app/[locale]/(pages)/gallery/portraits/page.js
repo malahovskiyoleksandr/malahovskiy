@@ -5,10 +5,53 @@ import Link from "next/link";
 import Image from "next/image";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import styles from "./portraits.module.scss";
-import imagesData from '@/data/gallery.json';
+
+const images = [
+  {
+    id: 1,
+    src: "/gallery/portraits/1.jpg",
+    width: 1205,
+    height: 1600,
+    name: "Image 1",
+  },
+  {
+    id: 2,
+    src: "/gallery/portraits/2.jpg",
+    width: 1285,
+    height: 1600,
+    name: "Image 2",
+  },
+  {
+    id: 3,
+    src: "/gallery/portraits/3.jpg",
+    width: 399,
+    height: 537,
+    name: "Image 3",
+  },
+  {
+    id: 4,
+    src: "/gallery/portraits/4.jpg",
+    width: 1649,
+    height: 1873,
+    name: "Image 4",
+  },
+  {
+    id: 5,
+    src: "/gallery/portraits/5.jpg",
+    width: 872,
+    height: 1068,
+    name: "Image 5",
+  },
+  {
+    id: 6,
+    src: "/gallery/portraits/6.jpg",
+    width: 621,
+    height: 900,
+    name: "Image 6",
+  },
+];
 
 export default function PhotoGallery() {
-  const images = imagesData.gallery.portraits.page
   useEffect(() => {
     if (typeof window !== "undefined") {
       const lightbox = new PhotoSwipeLightbox({

@@ -5,83 +5,81 @@ import Link from "next/link";
 import Image from "next/image";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import styles from "./dark_side.module.scss";
-import imagesData from '@/data/gallery.json';
 
-// const images = [
-//   {
-//     id: 1,
-//     src: "/gallery/dark_side/1.jpg",
-//     width: 1600,
-//     height: 1261,
-//     name: "Image 1",
-//   },
-//   {
-//     id: 2,
-//     src: "/gallery/dark_side/2.jpg",
-//     width: 1079,
-//     height: 1443,
-//     name: "Image 2",
-//   },
-//   {
-//     id: 3,
-//     src: "/gallery/dark_side/3.jpg",
-//     width: 582,
-//     height: 790,
-//     name: "Image 3",
-//   },
-//   {
-//     id: 4,
-//     src: "/gallery/dark_side/4.jpg",
-//     width: 1785,
-//     height: 1309,
-//     name: "Image 4",
-//   },
-//   // {
-//   //   id: 4,
-//   //   src: "/gallery/dark_side/4.jpg",
-//   //   width: 1785,
-//   //   height: 1309,
-//   //   name: "Image 4",
-//   // },
-//   // {
-//   //   id: 4,
-//   //   src: "/gallery/dark_side/4.jpg",
-//   //   width: 1785,
-//   //   height: 1309,
-//   //   name: "Image 4",
-//   // },
-//   // {
-//   //   id: 4,
-//   //   src: "/gallery/dark_side/4.jpg",
-//   //   width: 1785,
-//   //   height: 1309,
-//   //   name: "Image 4",
-//   // },
-//   // {
-//   //   id: 4,
-//   //   src: "/gallery/dark_side/4.jpg",
-//   //   width: 1785,
-//   //   height: 1309,
-//   //   name: "Image 4",
-//   // },
-//   // {
-//   //   id: 4,
-//   //   src: "/gallery/dark_side/4.jpg",
-//   //   width: 1785,
-//   //   height: 1309,
-//   //   name: "Image 4",
-//   // },
-//   // {
-//   //   id: 4,
-//   //   src: "/gallery/dark_side/4.jpg",
-//   //   width: 1785,
-//   //   height: 1309,
-//   //   name: "Image 4",
-//   // },
-// ];
+const images = [
+  {
+    id: 1,
+    src: "/gallery/dark_side/1.jpg",
+    width: 1600,
+    height: 1261,
+    name: "Image 1",
+  },
+  {
+    id: 2,
+    src: "/gallery/dark_side/2.jpg",
+    width: 1079,
+    height: 1443,
+    name: "Image 2",
+  },
+  {
+    id: 3,
+    src: "/gallery/dark_side/3.jpg",
+    width: 582,
+    height: 790,
+    name: "Image 3",
+  },
+  {
+    id: 4,
+    src: "/gallery/dark_side/4.jpg",
+    width: 1785,
+    height: 1309,
+    name: "Image 4",
+  },
+  // {
+  //   id: 4,
+  //   src: "/gallery/dark_side/4.jpg",
+  //   width: 1785,
+  //   height: 1309,
+  //   name: "Image 4",
+  // },
+  // {
+  //   id: 4,
+  //   src: "/gallery/dark_side/4.jpg",
+  //   width: 1785,
+  //   height: 1309,
+  //   name: "Image 4",
+  // },
+  // {
+  //   id: 4,
+  //   src: "/gallery/dark_side/4.jpg",
+  //   width: 1785,
+  //   height: 1309,
+  //   name: "Image 4",
+  // },
+  // {
+  //   id: 4,
+  //   src: "/gallery/dark_side/4.jpg",
+  //   width: 1785,
+  //   height: 1309,
+  //   name: "Image 4",
+  // },
+  // {
+  //   id: 4,
+  //   src: "/gallery/dark_side/4.jpg",
+  //   width: 1785,
+  //   height: 1309,
+  //   name: "Image 4",
+  // },
+  // {
+  //   id: 4,
+  //   src: "/gallery/dark_side/4.jpg",
+  //   width: 1785,
+  //   height: 1309,
+  //   name: "Image 4",
+  // },
+];
 
 export default function PhotoGallery() {
-  const images = imagesData.gallery.dark_side.page
   useEffect(() => {
     if (typeof window !== "undefined") {
       const lightbox = new PhotoSwipeLightbox({
