@@ -6,7 +6,7 @@ import styles from "./home.module.scss";
 export async function getData() {
   const GITHUB_API_URL = `https://api.github.com/repos/malahovskiyoleksandr/malahovskiy/contents/data/home.json`;
   const GITHUB_TOKEN = process.env.GITHUB_TOKEN; // Храните токен в переменных окружения
-
+  
   try {
     const response = await fetch(GITHUB_API_URL, {
       headers: {
