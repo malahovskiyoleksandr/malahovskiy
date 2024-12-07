@@ -2,22 +2,12 @@ import Link from "next/link";
 // import { motion } from "framer-motion"; // Импортируем framer-motion
 import styles from "./gallery.module.scss";
 import Image from "next/image";
-// import galleryData from "@/data/database.json";
+import dark_side from "@/public/gallery/dark_side.jpg";
+import industrial from "@/public/gallery/industrial.jpg";
+import portraits from "@/public/gallery/portraits.jpg";
+// import getIntl from "@/app/intl";
 import { NextResponse } from "next/server";
 
-export const revalidate = 5;
-// import dark_side from "@/public/gallery/dark_side.jpg";
-// import industrial from "@/public/gallery/industrial.jpg";
-// import portraits from "@/public/gallery/portraits.jpg";
-// import getIntl from "@/app/intl";
-
-// Анимации для каждого изображения
-// const imageVariants = {
-//   hiddenLeft: { opacity: 0, x: -200 }, // Появление слева
-//   hiddenRight: { opacity: 0, x: 200 }, // Появление справа
-//   hiddenTop: { opacity: 0, y: -200 }, // Появление сверху
-//   visible: { opacity: 1, x: 0, y: 0 }, // Конечное состояние
-// };
 
 export async function getData() {
   try {
@@ -53,27 +43,11 @@ export async function getData() {
       { status: 500 }
     ); 
   }
-  // try {
-  //   const response = await fetch("https://oleksandrmalakhovskyi.vercel.app/api/github-get", {
-  //     // cache: "force-cache", // Указывает на использование ISR
-  //   });
-
-  //   if (!response.ok) {
-  //     throw new Error("Не удалось загрузить данные с API");
-  //   }
-
-  //   const data = await response.json();
-
-  //   return data;
-  // } catch (error) {
-  //   console.error("Ошибка при получении данных:", error);
-  //   return console.log("error Home.page");
-  // }
 }
 
-export default async function Gallery({ params }) {
-  const locale = params.locale;
+export default async function Gallery({ params: { locale } }) {
   const collectionLines = await getData();
+  console.log(collectionLines.gallery)
 
   return (
     <section className={styles.type_pictures}>
