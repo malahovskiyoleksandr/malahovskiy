@@ -1,13 +1,7 @@
 import Link from "next/link";
-// import { motion } from "framer-motion"; // Импортируем framer-motion
 import styles from "./gallery.module.scss";
 import Image from "next/image";
-import dark_side from "@/public/gallery/dark_side.jpg";
-import industrial from "@/public/gallery/industrial.jpg";
-import portraits from "@/public/gallery/portraits.jpg";
-// import getIntl from "@/app/intl";
 import { NextResponse } from "next/server";
-
 
 export async function getData() {
   try {
@@ -41,69 +35,69 @@ export async function getData() {
     return NextResponse.json(
       { error: "Ошибка сервера: " + error.message },
       { status: 500 }
-    ); 
+    );
   }
 }
 
 export default async function Gallery({ params: { locale } }) {
   const collectionLines = await getData();
-  console.log(collectionLines.gallery)
+  console.log(collectionLines.gallery);
 
   return (
     <section className={styles.type_pictures}>
       {collectionLines?.gallery &&
-  Object.entries(collectionLines.gallery).map(([key, value], index) => (
-        <Link
-          key={key}
-          className={styles.link}
-          href={value.href}
-          style={{
-            flexDirection: index % 2 === 1 ? "row-reverse" : "unset",
-          }}
-        >
-          <Image
-            className={styles.image}
-            // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
-            // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
-            alt={value.name?.[locale] || "Gallery Image"}
-            src={value.src}
-            // placeholder="blur" // размытие заднего фона при загрузке картинки
-            // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
-            quality={50}
-            priority={false} // если true - loading = 'lazy' отменяеться
-            // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
-            fill={true} //заставляет изображение заполнять родительский элемент
-            // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
-            sizes="100vh"
-            // width={300} // задать правильное соотношение сторон адаптивного изображения
-            // height={200}
+        Object.entries(collectionLines.gallery).map(([key, value], index) => (
+          <Link
+            key={key}
+            className={styles.link}
+            href={value.href}
             style={{
-              // width: "100%",
-              // height: "200px",
-              objectFit: "cover", // Изображение масштабируется, обрезаясь
-              // objectFit: "contain", // Изображение масштабируется, не обрезаясь
-              // objectPosition: line.index === 0 ? "0% 30%" : "top",
-              objectPosition:
-                index === 0
-                  ? "0% 50%"
-                  : index === 1
-                  ? "0% 30%"
-                  : index === 2
-                  ? "0% 45%"
-                  : "center",
-            }}
-          />
-          <div
-            className={styles.description}
-            style={{
-              textAlign: index % 2 === 1 ? "right" : "left",
+              flexDirection: index % 2 === 1 ? "row-reverse" : "unset",
             }}
           >
-            <h2 className={styles.name}>{value?.name?.[locale] || ""}</h2>
-            <p className={styles.about}>{value.description?.[locale]}</p>
-          </div>
-        </Link>
-      ))}
+            <Image
+              className={styles.image}
+              // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
+              // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
+              alt={value.name?.[locale] || "Gallery Image"}
+              src={value.src}
+              // placeholder="blur" // размытие заднего фона при загрузке картинки
+              // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
+              quality={50}
+              priority={false} // если true - loading = 'lazy' отменяеться
+              // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
+              fill={true} //заставляет изображение заполнять родительский элемент
+              // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
+              sizes="100vh"
+              // width={300} // задать правильное соотношение сторон адаптивного изображения
+              // height={200}
+              style={{
+                // width: "100%",
+                // height: "200px",
+                objectFit: "cover", // Изображение масштабируется, обрезаясь
+                // objectFit: "contain", // Изображение масштабируется, не обрезаясь
+                // objectPosition: line.index === 0 ? "0% 30%" : "top",
+                objectPosition:
+                  index === 0
+                    ? "0% 50%"
+                    : index === 1
+                    ? "0% 30%"
+                    : index === 2
+                    ? "0% 45%"
+                    : "center",
+              }}
+            />
+            <div
+              className={styles.description}
+              style={{
+                textAlign: index % 2 === 1 ? "right" : "left",
+              }}
+            >
+              <h2 className={styles.name}>{value?.name?.[locale] || ""}</h2>
+              <p className={styles.about}>{value.description?.[locale]}</p>
+            </div>
+          </Link>
+        ))}
     </section>
   );
 }
