@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import styles from "./industrial.module.scss";
-// import imagesData from "@/data/database.json";
 
 
 export default function PhotoGallery() {
@@ -48,46 +47,46 @@ export default function PhotoGallery() {
     }
   }, []);
 
-  const handleWheel = (e) => {
-    const image_list = image_listRef.current;
-    if (image_list) {
-      e.preventDefault(); // Отключаем стандартную прокрутку
+  // const handleWheel = (e) => {
+  //   const image_list = image_listRef.current;
+  //   if (image_list) {
+  //     e.preventDefault(); // Отключаем стандартную прокрутку
   
-      const delta = Math.max(-1, Math.min(1, e.deltaY || -e.detail)); // Направление прокрутки
-      const scrollAmount = delta * 500; // Количество пикселей для прокрутки
+  //     const delta = Math.max(-1, Math.min(1, e.deltaY || -e.detail)); // Направление прокрутки
+  //     const scrollAmount = delta * 500; // Количество пикселей для прокрутки
   
-      let start = image_list.scrollLeft;
-      let end = start + scrollAmount;
-      let startTime = null;
+  //     let start = image_list.scrollLeft;
+  //     let end = start + scrollAmount;
+  //     let startTime = null;
   
-      // Функция для анимации прокрутки
-      const animateScroll = (currentTime) => {
-        if (!startTime) startTime = currentTime;
-        const progress = (currentTime - startTime) / 200; // 300 — это продолжительность анимации в миллисекундах
+  //     // Функция для анимации прокрутки
+  //     const animateScroll = (currentTime) => {
+  //       if (!startTime) startTime = currentTime;
+  //       const progress = (currentTime - startTime) / 200; // 300 — это продолжительность анимации в миллисекундах
   
-        if (progress < 1) {
-          // Интерполяция между стартовым и конечным значением
-          image_list.scrollLeft = start + (end - start) * progress;
-          requestAnimationFrame(animateScroll); // Запрашиваем следующий кадр анимации
-        } else {
-          image_list.scrollLeft = end; // Устанавливаем окончательное значение
-        }
-      };
+  //       if (progress < 1) {
+  //         // Интерполяция между стартовым и конечным значением
+  //         image_list.scrollLeft = start + (end - start) * progress;
+  //         requestAnimationFrame(animateScroll); // Запрашиваем следующий кадр анимации
+  //       } else {
+  //         image_list.scrollLeft = end; // Устанавливаем окончательное значение
+  //       }
+  //     };
   
-      requestAnimationFrame(animateScroll); // Начинаем анимацию
-    }
-  };
+  //     requestAnimationFrame(animateScroll); // Начинаем анимацию
+  //   }
+  // };
   
-  useEffect(() => {
-    const image_list = image_listRef.current;
-    if (image_list) {
-      image_list.addEventListener("wheel", handleWheel, { passive: false });
+  // useEffect(() => {
+  //   const image_list = image_listRef.current;
+  //   if (image_list) {
+  //     image_list.addEventListener("wheel", handleWheel, { passive: false });
   
-      return () => {
-        image_list.removeEventListener("wheel", handleWheel);
-      };
-    }
-  }, []);
+  //     return () => {
+  //       image_list.removeEventListener("wheel", handleWheel);
+  //     };
+  //   }
+  // }, []);
 
   // const images = database?.gallery?.industrial?.page;
   // console.log(images)
