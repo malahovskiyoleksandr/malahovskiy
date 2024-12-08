@@ -6,30 +6,48 @@ import Image from "next/image";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import styles from "./industrial.module.scss";
 
-
 export default function PhotoGallery() {
   const [database, setDatabase] = useState();
 
   const image_listRef = useRef(null);
 
-    // Загружаем данные с API
-    useEffect(() => {
-      const loadData = async () => {
-        try {
-          const response = await fetch("/api/github-get");
-          if (!response.ok) {
-            throw new Error("Ошибка при обращении к API GET");
-          }
-          const data = await response.json();
-          setDatabase(data);
-          // setLoading(false);
-        } catch (error) {
-          console.error("Ошибка: fetch(github-get)", error);
+  useEffect(() => {
+    async function getData() {
+      try {
+        const response = await fetch("https://api.github.com/repos/malahovskiyoleksandr/malahovskiy/contents/data/database.json");
+        if (!response.ok) {
+          throw new Error("Ошибка при обращении к API GET");
         }
-      };
-  
-      loadData();
-    }, []);
+        const data = await response.json();
+        const decodedData = JSON.parse(
+          Buffer.from(data.content, "base64").toString("utf-8")
+        );
+        setDatabase(decodedData);
+      } catch (error) {
+        console.error("Ошибка: fetch(github-get)", error);
+      }
+    }
+    getData()
+  }, []);
+
+  // Загружаем данные с API
+  // useEffect(() => {
+  //   const loadData = async () => {
+  //     try {
+  //       const response = await fetch("/api/github-get");
+  //       if (!response.ok) {
+  //         throw new Error("Ошибка при обращении к API GET");
+  //       }
+  //       const data = await response.json();
+  //       setDatabase(data);
+  //       // setLoading(false);
+  //     } catch (error) {
+  //       console.error("Ошибка: fetch(github-get)", error);
+  //     }
+  //   };
+
+  //   loadData();
+  // }, []);
 
   useEffect(() => {
     // Инициализация PhotoSwipe Lightbox
@@ -47,52 +65,53 @@ export default function PhotoGallery() {
     }
   }, []);
 
-  // const handleWheel = (e) => {
-  //   const image_list = image_listRef.current;
-  //   if (image_list) {
-  //     e.preventDefault(); // Отключаем стандартную прокрутку
-  
-  //     const delta = Math.max(-1, Math.min(1, e.deltaY || -e.detail)); // Направление прокрутки
-  //     const scrollAmount = delta * 500; // Количество пикселей для прокрутки
-  
-  //     let start = image_list.scrollLeft;
-  //     let end = start + scrollAmount;
-  //     let startTime = null;
-  
-  //     // Функция для анимации прокрутки
-  //     const animateScroll = (currentTime) => {
-  //       if (!startTime) startTime = currentTime;
-  //       const progress = (currentTime - startTime) / 200; // 300 — это продолжительность анимации в миллисекундах
-  
-  //       if (progress < 1) {
-  //         // Интерполяция между стартовым и конечным значением
-  //         image_list.scrollLeft = start + (end - start) * progress;
-  //         requestAnimationFrame(animateScroll); // Запрашиваем следующий кадр анимации
-  //       } else {
-  //         image_list.scrollLeft = end; // Устанавливаем окончательное значение
-  //       }
-  //     };
-  
-  //     requestAnimationFrame(animateScroll); // Начинаем анимацию
-  //   }
-  // };
-  
-  // useEffect(() => {
-  //   const image_list = image_listRef.current;
-  //   if (image_list) {
-  //     image_list.addEventListener("wheel", handleWheel, { passive: false });
-  
-  //     return () => {
-  //       image_list.removeEventListener("wheel", handleWheel);
-  //     };
-  //   }
-  // }, []);
+  const handleWheel = (e) => {
+    const image_list = image_listRef.current;
+    if (image_list) {
+      e.preventDefault(); // Отключаем стандартную прокрутку
+
+      const delta = Math.max(-1, Math.min(1, e.deltaY || -e.detail)); // Направление прокрутки
+      const scrollAmount = delta * 500; // Количество пикселей для прокрутки
+
+      let start = image_list.scrollLeft;
+      let end = start + scrollAmount;
+      let startTime = null;
+
+      // Функция для анимации прокрутки
+      const animateScroll = (currentTime) => {
+        if (!startTime) startTime = currentTime;
+        const progress = (currentTime - startTime) / 200; // 300 — это продолжительность анимации в миллисекундах
+
+        if (progress < 1) {
+          // Интерполяция между стартовым и конечным значением
+          image_list.scrollLeft = start + (end - start) * progress;
+          requestAnimationFrame(animateScroll); // Запрашиваем следующий кадр анимации
+        } else {
+          image_list.scrollLeft = end; // Устанавливаем окончательное значение
+        }
+      };
+
+      requestAnimationFrame(animateScroll); // Начинаем анимацию
+    }
+  };
+
+  useEffect(() => {
+    const image_list = image_listRef.current;
+    if (image_list) {
+      image_list.addEventListener("wheel", handleWheel, { passive: false });
+
+      return () => {
+        image_list.removeEventListener("wheel", handleWheel);
+      };
+    }
+  }, []);
 
   // const images = database?.gallery?.industrial?.page;
-  // console.log(images)
-  
+  // console.log(database)
+
   return (
     <div id="gallery" className={styles.image_list} ref={image_listRef}>
+      {/* {console.log(database?.gallery?.industrial?.page)} */}
       {database?.gallery?.industrial?.page.map((image, index) => (
         <Link
           className={styles.image_Link}
@@ -119,33 +138,14 @@ export default function PhotoGallery() {
             width={image.width} // задать правильное соотношение сторон адаптивного изображения
             height={image.height}
           />
-          <label htmlFor={image.id} className={styles.image_label}>{image.name}</label>
+          <label htmlFor={image.id} className={styles.image_label}>
+            {image.name}
+          </label>
         </Link>
       ))}
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // "use client";
 
