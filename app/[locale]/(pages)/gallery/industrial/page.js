@@ -5,51 +5,31 @@ import Link from "next/link";
 import Image from "next/image";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import styles from "./industrial.module.scss";
-import image1 from "@/public/gallery/industrial/1.jpg"
+import image1 from "@/public/gallery/industrial/1.jpg";
 
 export default function PhotoGallery() {
   const [database, setDatabase] = useState();
 
   const image_listRef = useRef(null);
 
-  // useEffect(() => {
-  //   async function getData() {
-  //     try {
-  //       const response = await fetch("/api/github-get");
-  //       if (!response.ok) {
-  //         throw new Error("Ошибка при обращении к API GET");
-  //       }
-  //       const data = await response.json();
-  //       // const decodedData = JSON.parse(
-  //       //   Buffer.from(data.content, "base64").toString("utf-8")
-  //       // );
-  //       console.log(data)
-  //       setDatabase(data);
-  //     } catch (error) {
-  //       console.error("Ошибка: fetch(github-get)", error);
-  //     }
-  //   }
-  //   getData()
-  // }, []); 
-
   // Загружаем данные с API
-  // useEffect(() => {
-  //   const loadData = async () => {
-  //     try {
-  //       const response = await fetch("/api/github-get");
-  //       if (!response.ok) {
-  //         throw new Error("Ошибка при обращении к API GET");
-  //       }
-  //       const data = await response.json();
-  //       setDatabase(data);
-  //       // setLoading(false);
-  //     } catch (error) {
-  //       console.error("Ошибка: fetch(github-get)", error);
-  //     }
-  //   };
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const response = await fetch("/api/github-get");
+        if (!response.ok) {
+          throw new Error("Ошибка при обращении к API GET");
+        }
+        const data = await response.json();
+        setDatabase(data);
+        // setLoading(false);
+      } catch (error) {
+        console.error("Ошибка: fetch(github-get)", error);
+      }
+    };
 
-  //   loadData();
-  // }, []);
+    loadData();
+  }, []);
 
   // useEffect(() => {
   //   // Инициализация PhotoSwipe Lightbox
@@ -114,21 +94,22 @@ export default function PhotoGallery() {
   return (
     <div id="gallery" className={styles.image_list} ref={image_listRef}>
       {/* {console.log(database?.gallery?.industrial?.page)} */}
-      {/* {database?.gallery?.industrial?.page.map((image, index) => ( */}
-        {/* <Link
+      {database?.gallery?.industrial?.page.map((image, index) => (
+        <Link
           className={styles.image_Link}
           key={index}
           href={image.src}
           data-pswp-width={image.width}
           data-pswp-height={image.height}
-        > */}
+        >
+          {console.log(image)}
           <Image
             // id={image.id}
             className={styles.image}
             // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
             // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
-            alt='111'
-            src={'/gallery/industrial/1.jpg'}
+            alt="111"
+            src={"/gallery/industrial/1.jpg"}
             // placeholder="blur" // размытие заднего фона при загрузке картинки
             // blurDataURL="/path-to-small-blurry-version.jpg" // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
             quality={10}
@@ -143,8 +124,8 @@ export default function PhotoGallery() {
           {/* <label htmlFor={image.id} className={styles.image_label}>
             {image.name}
           </label> */}
-        {/* </Link> */}
-      {/* ))} */}
+        </Link>
+      ))}
     </div>
   );
 }
