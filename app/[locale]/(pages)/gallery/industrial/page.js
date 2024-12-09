@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import styles from "./industrial.module.scss";
+import image1 from "@/public/gallery/industrial/1.jpg"
 
 export default function PhotoGallery() {
   const [database, setDatabase] = useState();
@@ -127,7 +128,7 @@ export default function PhotoGallery() {
             // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
             // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
             alt={image.name}
-            src={image.src}
+            src={image1}
             // placeholder="blur" // размытие заднего фона при загрузке картинки
             // blurDataURL="/path-to-small-blurry-version.jpg" // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
             quality={10}
