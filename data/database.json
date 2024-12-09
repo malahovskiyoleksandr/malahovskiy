@@ -252,6 +252,54 @@
           "de": {
             "description": "Name des Gemäldes"
           }
+        },
+        {
+          "id": 2,
+          "name": "Image 2",
+          "src": "/gallery/portraits/2.jpg",
+          "width": 1285,
+          "height": 1600,
+          "uk": {
+            "description": "Назва картини"
+          },
+          "en": {
+            "description": "Name of the painting"
+          },
+          "de": {
+            "description": "Name des Gemäldes"
+          }
+        },
+        {
+          "id": 2,
+          "name": "Image 2",
+          "src": "/gallery/portraits/2.jpg",
+          "width": 1285,
+          "height": 1600,
+          "uk": {
+            "description": "Назва картини"
+          },
+          "en": {
+            "description": "Name of the painting"
+          },
+          "de": {
+            "description": "Name des Gemäldes"
+          }
+        },
+        {
+          "id": 2,
+          "name": "Image 2",
+          "src": "/gallery/portraits/2.jpg",
+          "width": 1285,
+          "height": 1600,
+          "uk": {
+            "description": "Назва картини"
+          },
+          "en": {
+            "description": "Name of the painting"
+          },
+          "de": {
+            "description": "Name des Gemäldes"
+          }
         }
       ]
     },

@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import styles from "./portraits.module.scss";
-// import imagesData from "@/data/database.json";
 
 export default function PhotoGallery() {
   const [database, setDatabase] = useState();
@@ -13,7 +12,7 @@ export default function PhotoGallery() {
   const image_listRef = useRef(null);
 
   useEffect(() => {
-    // Загружаем данные с API
+    let lightbox; // Инициализация Lightbox
     const loadData = async () => {
       try {
         const response = await fetch("/api/github-get");
@@ -22,37 +21,51 @@ export default function PhotoGallery() {
         }
         const data = await response.json();
         setDatabase(data);
-        // setLoading(false);
       } catch (error) {
         console.error("Ошибка: fetch(github-get)", error);
       }
     };
+  
+    // Вызов загрузки данных
     loadData();
-
+  
     // Инициализация PhotoSwipe Lightbox
     if (typeof window !== "undefined") {
-      const lightbox = new PhotoSwipeLightbox({
+      lightbox = new PhotoSwipeLightbox({
         gallery: "#gallery",
         children: "a",
         pswpModule: () => import("photoswipe"),
       });
       lightbox.init();
-
-      return () => {
-        lightbox.destroy(); // Уничтожить экземпляр при размонтировании
-      };
     }
-
+  
     const image_list = image_listRef.current;
-    if (image_list) {
-      image_list.addEventListener("wheel", handleWheel, { passive: false });
-      image_list.addEventListener("mousewheel", handleWheel, false);
-      image_list.addEventListener("DOMMouseScroll", handleWheel, false); // Firefox
-
-      return () => {
+  
+    // Добавление слушателей событий прокрутки
+    const addScrollListeners = () => {
+      if (image_list) {
+        image_list.addEventListener("wheel", handleWheel, { passive: false });
+        image_list.addEventListener("mousewheel", handleWheel, false);
+        image_list.addEventListener("DOMMouseScroll", handleWheel, false); // Firefox
+      }
+    };
+  
+    // Удаление слушателей событий прокрутки
+    const removeScrollListeners = () => {
+      if (image_list) {
         image_list.removeEventListener("wheel", handleWheel);
-      };
-    }
+        image_list.removeEventListener("mousewheel", handleWheel);
+        image_list.removeEventListener("DOMMouseScroll", handleWheel);
+      }
+    };
+  
+    addScrollListeners();
+  
+    return () => {
+      // Очистка всех ресурсов
+      if (lightbox) lightbox.destroy();
+      removeScrollListeners();
+    };
   }, []);
 
   const handleWheel = (e) => {
@@ -85,16 +98,13 @@ export default function PhotoGallery() {
     }
   };
 
-  // const images = database?.gallery?.industrial?.page;
-  // console.log(images)
-
   return (
     <div id="gallery" className={styles.image_list} ref={image_listRef}>
       {database?.gallery?.portraits?.page.map((image, index) => (
-        <Link
+        <a
           className={styles.image_Link}
           key={index}
-          href="#"
+          href={image.src}
           data-pswp-width={image.width}
           data-pswp-height={image.height}
         >
@@ -119,7 +129,7 @@ export default function PhotoGallery() {
           <label htmlFor={image.id} className={styles.image_label}>
             {image.name}
           </label>
-        </Link>
+        </a>
       ))}
     </div>
   );
