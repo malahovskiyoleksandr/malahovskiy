@@ -104,7 +104,7 @@ export default function PhotoGallery() {
         <Link
           className={styles.image_Link}
           key={index}
-          href={image?.src}
+          href="https://oleksandrmalakhovskyi.vercel.app/gallery/industrial/1.jpg"
           data-pswp-width={image.width}
           data-pswp-height={image.height}
         >
