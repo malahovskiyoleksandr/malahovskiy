@@ -271,67 +271,67 @@
       "page": [
         {
           "id": 1,
-          "name": "11_Gloomy sky (CYBERPUNK 2022)",
+          "name": {
+            "uk": "Похмуре небо (CYBERPUNK 2022)",
+            "en": "Gloomy sky (CYBERPUNK 2022)",
+            "de": "Düsterer Himmel (CYBERPUNK 2022)"
+          },
+          "description": {
+            "uk": "",
+            "en": "",
+            "de": ""
+          },
           "src": "/gallery/portraits/11_Gloomy sky (CYBERPUNK 2022).jpg",
           "width": 1920,
-          "height": 2390,
-          "uk": {
-            "description": "Назва картини"
-          },
-          "en": {
-            "description": "Name of the painting"
-          },
-          "de": {
-            "description": "Name des Gemäldes"
-          }
+          "height": 2390
         },
         {
           "id": 2,
-          "name": "12_Rebellion (DIESELPUNK 2023)",
+          "name": {
+            "uk": "Rebellion (DIESELPUNK 2023)",
+            "en": "Rebellion (DIESELPUNK 2023)",
+            "de": "Rebellion (DIESELPUNK 2023)"
+          },
+          "description": {
+            "uk": "Цей образ заснован на тематиці 'dieselpunk' у кіно. Звісно, за основу стилізації я взяв серію 'Mad Max' та ідеї Джорджа Міллера. Уперше підготовка перед початком малювання зайняла більше часу, ніж сам процес. Завдяки моєму арт-директору Oleksii Chernik (artstation.com/gratshnag) було прописан у текстовому вигляді опис персонажу, світло, сюжет, сцена, елементи одежи, поза та характер рухів. Модель також була обрана таким чином, щоб її зовнішність співпадала з задумкою. Тількі потім - декілька десятків ескізів, а вже після них - реалізація всього задуму на холсті.",
+            "en": "This image is based on the 'dieselpunk' theme of the movie. Of course, I took the 'Mad Max' series and George Miller's ideas as the basis for styling. The first preparation before starting the drawing took more time than the process itself. Thanks to my art director Oleksii Chernik (artstation.com/gratshnag), it was a written description of the character, light, plot, scene, elements of clothing, pose and character of movements. The model was also chosen in such a way that its appearance coincided with the idea. Only then - several tens of sketches, and after them - the realization of the whole idea on canvas.",
+            "de": "Dieses Bild basiert auf dem „Dieselpunk“-Thema des Films. Natürlich habe ich die „Mad Max“-Reihe und die Ideen von George Miller als Grundlage für das Styling genommen. Die ersten Vorbereitungen vor dem Beginn des Zeichnens nahmen mehr Zeit in Anspruch als der Prozess selbst. Dank meines Art Directors Oleksii Chernik (artstation.com/gratshnag) war es eine schriftliche Beschreibung des Charakters, des Lichts, der Handlung, der Szene, der Kleidungselemente, der Pose und des Bewegungscharakters. Das Modell wurde auch so ausgewählt, dass sein Aussehen mit der Idee übereinstimmte. Erst dann – mehrere Dutzend Skizzen und danach – die Umsetzung der gesamten Idee auf Leinwand."
+          },
           "src": "/gallery/portraits/12_Rebellion (DIESELPUNK 2023).jpg",
           "width": 1285,
-          "height": 1600,
-          "uk": {
-            "description": "Назва картини"
-          },
-          "en": {
-            "description": "Name of the painting"
-          },
-          "de": {
-            "description": "Name des Gemäldes"
-          }
+          "height": 1600
         },
         {
           "id": 3,
-          "name": "13_The recipe of a real STEAMPUNK",
+          "name": {
+            "uk": "The recipe of a real STEAMPUNK",
+            "en": "The recipe of a real STEAMPUNK",
+            "de": "The recipe of a real STEAMPUNK"
+          },
+          "description": {
+            "uk": "Рецепт справжнього СТІМПАНКУ",
+            "en": "The recipe of a real STEAMPUNK ",
+            "de": "Das Rezept eines echten STEAMPUNK"
+          },
           "src": "/gallery/portraits/13_The recipe of a real STEAMPUNK.jpg",
           "width": 1920,
-          "height": 2549,
-          "uk": {
-            "description": "Назва картини"
-          },
-          "en": {
-            "description": "Name of the painting"
-          },
-          "de": {
-            "description": "Name des Gemäldes"
-          }
+          "height": 2549
         },
         {
           "id": 4,
-          "name": "23_Alina",
+          "name": {
+            "uk": "Alina",
+            "en": "Alina",
+            "de": "Alina"
+          },
+          "description": {
+            "uk": "",
+            "en": "",
+            "de": ""
+          },
           "src": "/gallery/portraits/23_Alina.jpg",
           "width": 1097,
-          "height": 1351,
-          "uk": {
-            "description": "Назва картини"
-          },
-          "en": {
-            "description": "Name of the painting"
-          },
-          "de": {
-            "description": "Name des Gemäldes"
-          }
+          "height": 1351
         }
       ]
     },
@@ -351,51 +351,67 @@
       "page": [
         {
           "id": 1,
-          "name": "DARK SIDE 2",
-          "src": "/gallery/dark_side/15_DARK SIDE 2.jpg",
-          "width": 6111,
-          "height": 4472,
-          "uk": {
-            "description": "Назва картини"
+          "name": {
+            "uk": "DARK SIDE 1",
+            "en": "DARK SIDE 1",
+            "de": "DUNKLE SEITE 1"
           },
-          "en": {
-            "description": "Name of the painting"
+          "description": {
+            "uk": "",
+            "en": "",
+            "de": ""
           },
-          "de": {
-            "description": "Name des Gemäldes"
-          }
+          "src": "/gallery/dark_side/14_DARK SIDE 1.jpg",
+          "width": 6101,
+          "height": 4808
         },
         {
           "id": 2,
-          "name": "DARK SIDE 3",
-          "src": "/gallery/dark_side/16_DARK SIDE 3.jpg",
-          "width": 6077,
-          "height": 8160,
-          "uk": {
-            "description": "Назва картини"
+          "name": {
+            "uk": "DARK SIDE 2",
+            "en": "DARK SIDE 2",
+            "de": "DUNKLE SEITE 2"
           },
-          "en": {
-            "description": "Name of the painting"
+          "description": {
+            "uk": "",
+            "en": "",
+            "de": ""
           },
-          "de": {
-            "description": "Name des Gemäldes"
-          }
+          "src": "/gallery/dark_side/15_DARK SIDE 2.jpg",
+          "width": 6111,
+          "height": 4472
         },
         {
           "id": 3,
-          "name": "DARK SIDE 4",
+          "name": {
+            "uk": "DARK SIDE 3",
+            "en": "DARK SIDE 3",
+            "de": "DUNKLE SEITE 3"
+          },
+          "description": {
+            "uk": "Темне фэнтези бере свій початок у XVIII сторіччі та пов'язано з розквітом готичних романів жахів",
+            "en": "",
+            "de": ""
+          },
+          "src": "/gallery/dark_side/16_DARK SIDE 3.jpg",
+          "width": 6077,
+          "height": 8160
+        },
+        {
+          "id": 4,
+          "name": {
+            "uk": "DARK SIDE 4",
+            "en": "DARK SIDE 4",
+            "de": "DUNKLE SEITE 4"
+          },
+          "description": {
+            "uk": "У своїх книгах Говард Філіпс Лавкрафт привертає увагу читачів містикою, розпадом і загальним занепадом. І це ілюстрація до епізоду одного з його творів.",
+            "en": "",
+            "de": ""
+          },
           "src": "/gallery/dark_side/17_DARK SIDE 4.jpg",
           "width": 6077,
-          "height": 8160,
-          "uk": {
-            "description": "Назва картини"
-          },
-          "en": {
-            "description": "Name of the painting"
-          },
-          "de": {
-            "description": "Name des Gemäldes"
-          }
+          "height": 8160
         }
       ]
     }
