@@ -92,15 +92,15 @@ export default function AdminPage() {
       },
     }));
   };
-  
+
   const handleFileChange = (event) => {
     const uploadedFile = event.target.files[0];
-    console.log(uploadedFile)
+    console.log(uploadedFile);
     if (uploadedFile) {
       setPhoto(uploadedFile);
     }
   };
-  console.log()
+  console.log();
   async function handleFileUpload(data) {
     const filePath = "data/database.json";
     const fileContent = JSON.stringify(data);
@@ -164,50 +164,42 @@ export default function AdminPage() {
           Выйти
         </button>
       </header>
-      <div className="flex w-full flex-col">
+      <div className={styles.main}>
         <Tabs aria-label="Options">
-          <Tab key="photos" title="Головна">
+          <Tab key="main" title="Головна">
             <Card>
               <CardBody>
                 <form className={styles.form} onSubmit={handleSubmit}>
                   <div className={styles.inputList}>
                     <h2>Имя</h2>
                     {["uk", "en", "de"].map((lang) => (
-                      <div className={styles.inputItem} key={lang}>
-                        <label className={styles.label}>
-                          {lang.toUpperCase()}
-                        </label>
-                        <Input
-                          type="text"
-                          label="Name"
-                          name="name"
-                          value={database?.home?.name?.[lang] || ""}
-                          onChange={(e) => handleChange_Home(e, lang)}
-                        />
-                      </div>
+                      <Input
+                        key={lang}
+                        type="text"
+                        label={`Name ${lang.toUpperCase()}`}
+                        name="name"
+                        value={database?.home?.name?.[lang] || ""}
+                        onChange={(e) => handleChange_Home(e, lang)}
+                      />
                     ))}
                   </div>
 
                   <div className={styles.textareaList}>
                     <h2>Описание</h2>
                     {["uk", "en", "de"].map((lang) => (
-                      <div className={styles.textareaItem} key={lang}>
-                        <label className={styles.label}>
-                          {lang.toUpperCase()}
-                        </label>
-                        <Textarea
-                          label="Description"
-                          name="description"
-                          placeholder="Enter your description"
-                          className="max-w-xs"
-                          value={database?.home?.description?.[lang] || ""}
-                          onChange={(e) => handleChange_Home(e, lang)}
-                        />
-                      </div>
+                      <Textarea
+                        key={lang}
+                        label={`Description ${lang.toUpperCase()}`}
+                        name="description"
+                        placeholder="Enter your description"
+                        className="max-w-xs"
+                        value={database?.home?.description?.[lang] || ""}
+                        onChange={(e) => handleChange_Home(e, lang)}
+                      />
                     ))}
                   </div>
 
-                  <div className={styles.mainImage}>
+                  {/* <div className={styles.mainImage}>
                     <div className={styles.currentImage}>
                       <label className={styles.label}>Old</label>
                       <Image
@@ -248,7 +240,7 @@ export default function AdminPage() {
                         onChange={(e) => handleFileChange(e)}
                       />
                     </div>
-                  </div>
+                  </div> */}
                   <Button color="warning" type="submit">
                     Зберегти
                   </Button>
@@ -256,131 +248,133 @@ export default function AdminPage() {
               </CardBody>
             </Card>
           </Tab>
-          <Tab key="music" title="Галерея">
+          <Tab key="gallery" title="Галерея">
             <Card>
               <CardBody>
                 <form className={styles.form} onSubmit={handleSubmit}>
-                  <div className={styles.inputList_Industrial}>
+                  <div className={styles.industrial_box}>
                     <h2>Industrial</h2>
-                    {["uk", "en", "de"].map((lang) => (
-                      <div className={styles.inputItem} key={lang}>
-                        <label className={styles.label}>
-                          {lang.toUpperCase()}
-                        </label>
-                        <Input
-                          type="text"
-                          label="Name"
-                          name="name"
-                          value={
-                            database?.gallery?.industrial?.name?.[lang] || ""
-                          }
-                          onChange={(e) => handleChange_Gallery(e, lang)}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                  <div className={styles.inputList_Portraits}>
-                    <h2>Portraits</h2>
-                    {["uk", "en", "de"].map((lang) => (
-                      <div className={styles.inputItem} key={lang}>
-                        <label className={styles.label}>
-                          {lang.toUpperCase()}
-                        </label>
-                        <Input
-                          type="text"
-                          label="Name"
-                          name="name"
-                          value={
-                            database?.gallery?.portraits?.name?.[lang] || ""
-                          }
-                          onChange={(e) => handleChange_Gallery(e, lang)}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                  <div className={styles.inputList_DarkSide}>
-                    <h2>Dark_side</h2>
-                    {["uk", "en", "de"].map((lang) => (
-                      <div className={styles.inputItem} key={lang}>
-                        <label className={styles.label}>
-                          {lang.toUpperCase()}
-                        </label>
-                        <Input
-                          type="text"
-                          label="Name"
-                          name="name"
-                          value={
-                            database?.gallery?.dark_side?.name?.[lang] || ""
-                          }
-                          onChange={(e) => handleChange_Gallery(e, lang)}
-                        />
-                      </div>
-                    ))}
+                    <div className={styles.inputList_Industrial}>
+                      {["uk", "en", "de"].map((lang) => (
+                        <div className={styles.inputItem} key={lang}>
+                          <Input
+                            type="text"
+                            label={`Name ${lang.toUpperCase()}`}
+                            name="name"
+                            value={
+                              database?.gallery?.industrial?.name?.[lang] || ""
+                            }
+                            onChange={(e) => handleChange_Gallery(e, lang)}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                    <div className={styles.textareaList_Industrial}>
+                      {["uk", "en", "de"].map((lang) => (
+                        <div className={styles.textareaItem} key={lang}>
+                          <Textarea
+                            label={`Description ${lang.toUpperCase()}`}
+                            name="description"
+                            placeholder="Enter your description"
+                            className="max-w-xs"
+                            value={
+                              database?.gallery?.industrial?.description?.[
+                                lang
+                              ] || ""
+                            }
+                            onChange={(e) => handleChange_Gallery(e, lang)}
+                          />
+                        </div>
+                      ))}
+                    </div>
                   </div>
 
-                  <div className={styles.textareaList_Industrial}>
-                    <h2>Industrial</h2>
-                    {["uk", "en", "de"].map((lang) => (
-                      <div className={styles.textareaItem} key={lang}>
-                        <label className={styles.label}>
-                          {lang.toUpperCase()}
-                        </label>
-                        <Textarea
-                          label="Description"
-                          name="description"
-                          placeholder="Enter your description"
-                          className="max-w-xs"
-                          value={
-                            database?.gallery?.industrial?.description?.[
-                              lang
-                            ] || ""
-                          }
-                          onChange={(e) => handleChange_Gallery(e, lang)}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                  <div className={styles.textareaList_Portraits}>
+                  <div className={styles.portraits_box}>
                     <h2>Portraits</h2>
-                    {["uk", "en", "de"].map((lang) => (
-                      <div className={styles.textareaItem} key={lang}>
-                        <label className={styles.label}>
-                          {lang.toUpperCase()}
-                        </label>
-                        <Textarea
-                          label="Description"
-                          name="description"
-                          placeholder="Enter your description"
-                          className="max-w-xs"
-                          value={
-                            database?.gallery?.portraits?.description?.[lang] ||
-                            ""
-                          }
-                          onChange={(e) => handleChange_Gallery(e, lang)}
-                        />
-                      </div>
-                    ))}
+                    <div className={styles.inputList_Portraits}>
+                      {["uk", "en", "de"].map((lang) => (
+                        <div className={styles.inputItem} key={lang}>
+                          <label className={styles.label}>
+                            {lang.toUpperCase()}
+                          </label>
+                          <Input
+                            type="text"
+                            label="Name"
+                            name="name"
+                            value={
+                              database?.gallery?.portraits?.name?.[lang] || ""
+                            }
+                            onChange={(e) => handleChange_Gallery(e, lang)}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                    <div className={styles.textareaList_Portraits}>
+                      <h2>Portraits</h2>
+                      {["uk", "en", "de"].map((lang) => (
+                        <div className={styles.textareaItem} key={lang}>
+                          <label className={styles.label}>
+                            {lang.toUpperCase()}
+                          </label>
+                          <Textarea
+                            label="Description"
+                            name="description"
+                            placeholder="Enter your description"
+                            className="max-w-xs"
+                            value={
+                              database?.gallery?.portraits?.description?.[
+                                lang
+                              ] || ""
+                            }
+                            onChange={(e) => handleChange_Gallery(e, lang)}
+                          />
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                  <div className={styles.textareaList_DarkSide}>
+
+                  <div className={styles.darkSide_box}>
                     <h2>DarkSide</h2>
-                    {["uk", "en", "de"].map((lang) => (
-                      <div className={styles.textareaItem} key={lang}>
-                        <label className={styles.label}>
-                          {lang.toUpperCase()}
-                        </label>
-                        <Textarea
-                          label="Description"
-                          name="description"
-                          placeholder="Enter your description"
-                          className="max-w-xs"
-                          value={
-                            database?.gallery?.dark_side?.description?.[lang] ||
-                            ""
-                          }
-                          onChange={(e) => handleChange_Gallery(e, lang)}
-                        />
-                      </div>
-                    ))}
+                    <div className={styles.inputList_DarkSide}>
+                      {["uk", "en", "de"].map((lang) => (
+                        <div className={styles.inputItem} key={lang}>
+                          <label className={styles.label}>
+                            {lang.toUpperCase()}
+                          </label>
+                          <Input
+                            type="text"
+                            label="Name"
+                            name="name"
+                            value={
+                              database?.gallery?.dark_side?.name?.[lang] || ""
+                            }
+                            onChange={(e) => handleChange_Gallery(e, lang)}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                    <div className={styles.textareaList_DarkSide}>
+                      <h2>DarkSide</h2>
+                      {["uk", "en", "de"].map((lang) => (
+                        <div className={styles.textareaItem} key={lang}>
+                          <label className={styles.label}>
+                            {lang.toUpperCase()}
+                          </label>
+                          <Textarea
+                            label="Description"
+                            name="description"
+                            placeholder="Enter your description"
+                            className="max-w-xs"
+                            value={
+                              database?.gallery?.dark_side?.description?.[
+                                lang
+                              ] || ""
+                            }
+                            onChange={(e) => handleChange_Gallery(e, lang)}
+                          />
+                        </div>
+                      ))}
+                    </div>
                   </div>
                   <Button color="warning" type="submit">
                     Зберегти
@@ -389,7 +383,7 @@ export default function AdminPage() {
               </CardBody>
             </Card>
           </Tab>
-          <Tab key="videos" title="Заходи">
+          <Tab key="events" title="Заходи">
             <Card>
               <CardBody>
                 Excepteur sint occaecat cupidatat non proident, sunt in culpa

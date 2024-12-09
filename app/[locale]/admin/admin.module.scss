@@ -69,19 +69,19 @@ $text-color: #fff;
     }
   }
 
-  .menu {
-    display: block;
-    width: 10rem;
+  .main {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
 
-    .menu_item {
-      width: 100%;
-      // background-color: #0070f3;
-    }
-    .menu_card {
+    .form {
       display: flex;
-      justify-content: space-between;
-      min-width: 500px;
-      background-color: #00f3c2;
+      flex-direction: column;
+      gap: 2rem;
+
+      .industrial_box {
+
+      }
     }
   }
 }

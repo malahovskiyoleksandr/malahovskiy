@@ -1,10 +1,9 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
-import styles from "./industrial.module.scss";
+import styles from "../gallery.module.scss";
 
 export default function PhotoGallery() {
   const [database, setDatabase] = useState();
