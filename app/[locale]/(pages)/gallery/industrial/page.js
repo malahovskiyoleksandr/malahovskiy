@@ -101,10 +101,10 @@ export default function PhotoGallery() {
   return (
     <div id="gallery" className={styles.image_list} ref={image_listRef}>
       {database?.gallery?.industrial?.page.map((image, index) => (
-        <Link
+        <a
           className={styles.image_Link}
           key={index}
-          href="https://oleksandrmalakhovskyi.vercel.app/gallery/industrial/1.jpg"
+          href={image.src}
           data-pswp-width={image.width}
           data-pswp-height={image.height}
         >
@@ -129,7 +129,7 @@ export default function PhotoGallery() {
           <label htmlFor={image.id} className={styles.image_label}>
             {image.name}
           </label>
-        </Link>
+        </a>
       ))}
     </div>
   );
