@@ -31,179 +31,35 @@
       "page": [
         {
           "id": 1,
-          "name": "Image 1",
-          "src": "/gallery/industrial/1.jpg",
-          "width": 1600,
-          "height": 1295,
-          "uk": {
-            "description": "Назва картини"
+          "name": {
+            "uk": "СКРУБЕР",
+            "en": "SCRUBBER",
+            "de": "WÄSCHER"
           },
-          "en": {
-            "description": "Name of the painting"
+          "description": {
+            "uk": "«АЗОВСТАЛЬ», МАРІУПОЛЬ, УКРАЇНА",
+            "en": "AZOVSTAL, MARIUPOL, UKRAINE",
+            "de": "AZOVSTAL, MARIUPOL, UKRAINE"
           },
-          "de": {
-            "description": "Name des Gemäldes"
-          }
+          "src": "/gallery/industrial/1_SCRUBBER.jpg",
+          "width": 6115,
+          "height": 8160
         },
         {
           "id": 2,
-          "name": "Image 2",
-          "src": "/gallery/industrial/2.jpg",
-          "width": 745,
-          "height": 1000,
-          "uk": {
-            "description": "Назва картини"
+          "name": {
+            "uk": "ПРОКАТНИЙ СТАН",
+            "en": "ROLLING MILL",
+            "de": "WALZWERK"
           },
-          "en": {
-            "description": "Name of the painting"
+          "description": {
+            "uk": "Спроба намалювати поєднання води і вогню в одному об'єкті",
+            "en": "This is my attempt to draw a combination of water and fire in one object",
+            "de": "Dies ist mein Versuch, eine Kombination aus Wasser und Feuer in einem Objekt zu zeichnen."
           },
-          "de": {
-            "description": "Name des Gemäldes"
-          }
-        },
-        {
-          "id": 2,
-          "name": "Image 2",
-          "src": "/gallery/industrial/3.jpg",
-          "width": 745,
-          "height": 1000,
-          "uk": {
-            "description": "Назва картини"
-          },
-          "en": {
-            "description": "Name of the painting"
-          },
-          "de": {
-            "description": "Name des Gemäldes"
-          }
-        },
-        {
-          "id": 2,
-          "name": "Image 2",
-          "src": "/gallery/industrial/4.jpg",
-          "width": 745,
-          "height": 1000,
-          "uk": {
-            "description": "Назва картини"
-          },
-          "en": {
-            "description": "Name of the painting"
-          },
-          "de": {
-            "description": "Name des Gemäldes"
-          }
-        },
-        {
-          "id": 2,
-          "name": "Image 2",
-          "src": "/gallery/industrial/5.jpg",
-          "width": 745,
-          "height": 1000,
-          "uk": {
-            "description": "Назва картини"
-          },
-          "en": {
-            "description": "Name of the painting"
-          },
-          "de": {
-            "description": "Name des Gemäldes"
-          }
-        },
-        {
-          "id": 2,
-          "name": "Image 2",
-          "src": "/gallery/industrial/6.jpg",
-          "width": 745,
-          "height": 1000,
-          "uk": {
-            "description": "Назва картини"
-          },
-          "en": {
-            "description": "Name of the painting"
-          },
-          "de": {
-            "description": "Name des Gemäldes"
-          }
-        },
-        {
-          "id": 2,
-          "name": "Image 2",
-          "src": "/gallery/industrial/4.jpg",
-          "width": 745,
-          "height": 1000,
-          "uk": {
-            "description": "Назва картини"
-          },
-          "en": {
-            "description": "Name of the painting"
-          },
-          "de": {
-            "description": "Name des Gemäldes"
-          }
-        },
-        {
-          "id": 2,
-          "name": "Image 2",
-          "src": "/gallery/industrial/3.jpg",
-          "width": 745,
-          "height": 1000,
-          "uk": {
-            "description": "Назва картини"
-          },
-          "en": {
-            "description": "Name of the painting"
-          },
-          "de": {
-            "description": "Name des Gemäldes"
-          }
-        },
-        {
-          "id": 2,
-          "name": "Image 2",
-          "src": "/gallery/industrial/1.jpg",
-          "width": 745,
-          "height": 1000,
-          "uk": {
-            "description": "Назва картини"
-          },
-          "en": {
-            "description": "Name of the painting"
-          },
-          "de": {
-            "description": "Name des Gemäldes"
-          }
-        },
-        {
-          "id": 2,
-          "name": "Image 2",
-          "src": "/gallery/industrial/2.jpg",
-          "width": 745,
-          "height": 1000,
-          "uk": {
-            "description": "Назва картини"
-          },
-          "en": {
-            "description": "Name of the painting"
-          },
-          "de": {
-            "description": "Name des Gemäldes"
-          }
-        },
-        {
-          "id": 2,
-          "name": "Image 2",
-          "src": "/gallery/industrial/2.jpg",
-          "width": 745,
-          "height": 1000,
-          "uk": {
-            "description": "Назва картини"
-          },
-          "en": {
-            "description": "Name of the painting"
-          },
-          "de": {
-            "description": "Name des Gemäldes"
-          }
+          "src": "/gallery/industrial/2_ROLLING MILL.jpg",
+          "width": 1920,
+          "height": 1228
         }
       ]
     },
@@ -223,10 +79,10 @@
       "page": [
         {
           "id": 1,
-          "name": "Image 1",
-          "src": "/gallery/portraits/1.jpg",
-          "width": 1205,
-          "height": 1600,
+          "name": "11_Gloomy sky (CYBERPUNK 2022)",
+          "src": "/gallery/portraits/11_Gloomy sky (CYBERPUNK 2022).jpg",
+          "width": 1920,
+          "height": 2390,
           "uk": {
             "description": "Назва картини"
           },
@@ -239,8 +95,8 @@
         },
         {
           "id": 2,
-          "name": "Image 2",
-          "src": "/gallery/portraits/2.jpg",
+          "name": "12_Rebellion (DIESELPUNK 2023)",
+          "src": "/gallery/portraits/12_Rebellion (DIESELPUNK 2023).jpg",
           "width": 1285,
           "height": 1600,
           "uk": {
@@ -254,11 +110,11 @@
           }
         },
         {
-          "id": 2,
-          "name": "Image 2",
-          "src": "/gallery/portraits/2.jpg",
-          "width": 1285,
-          "height": 1600,
+          "id": 3,
+          "name": "13_The recipe of a real STEAMPUNK",
+          "src": "/gallery/portraits/13_The recipe of a real STEAMPUNK.jpg",
+          "width": 1920,
+          "height": 2549,
           "uk": {
             "description": "Назва картини"
           },
@@ -270,27 +126,11 @@
           }
         },
         {
-          "id": 2,
-          "name": "Image 2",
-          "src": "/gallery/portraits/2.jpg",
-          "width": 1285,
-          "height": 1600,
-          "uk": {
-            "description": "Назва картини"
-          },
-          "en": {
-            "description": "Name of the painting"
-          },
-          "de": {
-            "description": "Name des Gemäldes"
-          }
-        },
-        {
-          "id": 2,
-          "name": "Image 2",
-          "src": "/gallery/portraits/2.jpg",
-          "width": 1285,
-          "height": 1600,
+          "id": 4,
+          "name": "23_Alina",
+          "src": "/gallery/portraits/23_Alina.jpg",
+          "width": 1097,
+          "height": 1351,
           "uk": {
             "description": "Назва картини"
           },
@@ -319,10 +159,10 @@
       "page": [
         {
           "id": 1,
-          "name": "Image 1",
-          "src": "/gallery/dark_side/1.jpg",
-          "width": 1600,
-          "height": 1261,
+          "name": "DARK SIDE 2",
+          "src": "/gallery/dark_side/15_DARK SIDE 2.jpg",
+          "width": 6111,
+          "height": 4472,
           "uk": {
             "description": "Назва картини"
           },
@@ -335,10 +175,26 @@
         },
         {
           "id": 2,
-          "name": "Image 2",
-          "src": "/gallery/dark_side/2.jpg",
-          "width": 1079,
-          "height": 1443,
+          "name": "DARK SIDE 3",
+          "src": "/gallery/dark_side/16_DARK SIDE 3.jpg",
+          "width": 6077,
+          "height": 8160,
+          "uk": {
+            "description": "Назва картини"
+          },
+          "en": {
+            "description": "Name of the painting"
+          },
+          "de": {
+            "description": "Name des Gemäldes"
+          }
+        },
+        {
+          "id": 3,
+          "name": "DARK SIDE 4",
+          "src": "/gallery/dark_side/17_DARK SIDE 4.jpg",
+          "width": 6077,
+          "height": 8160,
           "uk": {
             "description": "Назва картини"
           },
