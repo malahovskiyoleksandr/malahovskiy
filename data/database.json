@@ -60,6 +60,198 @@
           "src": "/gallery/industrial/2_ROLLING MILL.jpg",
           "width": 1920,
           "height": 1228
+        },
+        {
+          "id": 3,
+          "name": {
+            "uk": "Домена піч №4 (3)",
+            "en": "BLAST FURNACE #4 (3)",
+            "de": "HOCHOFEN #4 (3)."
+          },
+          "description": {
+            "uk": "«АЗОВСТАЛЬ», МАРІУПОЛЬ, УКРАЇНА. Світло знаходить незвичайні акценти в оточенні промислових будівель.",
+            "en": "The light finds unusual accents, while being surrounded by buildings. AZOVSTAL I&SW, MARIUPOL, UKRAINE.",
+            "de": "AZOVSTAL, MARIUPOL, UKRAINE. Das Licht findet ungewöhnliche Akzente, während es von Gebäuden umgeben ist."
+          },
+          "src": "/gallery/industrial/3_BLAST FURNACE 4 (3).jpg",
+          "width": 6111,
+          "height": 4981
+        },
+        {
+          "id": 4,
+          "name": {
+            "uk": "ПОЧУТТЯ",
+            "en": "FEELINGS",
+            "de": "GEFÜHLE"
+          },
+          "description": {
+            "uk": "Вночі завод наповнюється незвичайним світлом.",
+            "en": "At night the plant is filled with unusual light.",
+            "de": "Nachts ist die Anlage mit ungewöhnlichem Licht erfüllt."
+          },
+          "src": "/gallery/industrial/4_FEELINGS.jpg",
+          "width": 6101,
+          "height": 2931
+        },
+        {
+          "id": 5,
+          "name": {
+            "uk": "СТАРА ДОМНА",
+            "en": "OLD BLAST FURNACE",
+            "de": "ALTER HOCHOFEN"
+          },
+          "description": {
+            "uk": "Стара доменна піч №3. «АЗОВСТАЛЬ», МАРІУПОЛЬ, УКРАЇНА.",
+            "en": "This old blast furnace #3 of AZOVSTAL I&SW, MARIUPOL, UKRAINE.",
+            "de": "Dieser alte Hochofen #3. AZOVSTAL, MARIUPOL, UKRAINE."
+          },
+          "src": "/gallery/industrial/5_OLD BLAST FURNACE.jpg",
+          "width": 5703,
+          "height": 8160
+        },
+        {
+          "id": 6,
+          "name": {
+            "uk": "ДОМЕННА ПІЧ №2",
+            "en": "BLAST FURNACE #2",
+            "de": "HOCHOFEN #2"
+          },
+          "description": {
+            "uk": "Доменна піч №2, «АЗОВСТАЛЬ», МАРІУПОЛЬ, УКРАЇНА.",
+            "en": "Blast furnace #2 of AZOVSTAL I&SW, MARIUPOL, UKRAINE.",
+            "de": "Hochofen #2. AZOVSTAL, MARIUPOL, UKRAINE."
+          },
+          "src": "/gallery/industrial/6_BLAST FURNACE #2.jpg",
+          "width": 6107,
+          "height": 4798
+        },
+        {
+          "id": 7,
+          "name": {
+            "uk": "ДОМЕННА ПІЧ №4 (2)",
+            "en": "BLAST FURNACE #4 (2)",
+            "de": "HOCHOFEN #4 (2)"
+          },
+          "description": {
+            "uk": "Це продовження роботи над зображенням доменної печі №4, «АЗОВСТАЛЬ», МАРІУПОЛЬ, УКРАЇНА.",
+            "en": "This is a continuation of the work on the image of the blast furnace No.4 of AZOVSTAL I&SW, MARIUPOL, UKRAINE.",
+            "de": "Dies ist eine Fortsetzung der Arbeit am Bild des Hochofens #4. AZOVSTAL, MARIUPOL, UKRAINE."
+          },
+          "src": "/gallery/industrial/7_BLAST FURNACE #4 (2).jpg",
+          "width": 6093,
+          "height": 7938
+        },
+        {
+          "id": 8,
+          "name": {
+            "uk": "ЗАЛІЗНЕ СЕРЦЕ (2)",
+            "en": "IRON HEART (2)",
+            "de": "EISERNES HERZ (2)"
+          },
+          "description": {
+            "uk": "Елементи енергопостачання повітронагрівача схожі на органи великої істоти. Домна №4. «АЗОВСТАЛЬ», МАРІУПОЛЬ, УКРАЇНА.",
+            "en": "The energy supply elements of the air heater are similar to the organs of a large creature. Blast furnace No.4 of AZOVSTAL I&SW, MARIUPOL, UKRAINE.",
+            "de": "Die Energieversorgungselemente des Lufterhitzers ähneln den Organen eines großen Lebewesens. Hochofen #4. AZOVSTAL, MARIUPOL, UKRAINE."
+          },
+          "src": "/gallery/industrial/8_IRON HEART (2).jpg",
+          "width": 6111,
+          "height": 4690
+        },
+        {
+          "id": 9,
+          "name": {
+            "uk": "ЗАЛІЗНЕ СЕРЦЕ (1)",
+            "en": "IRON HEART (1)",
+            "de": "EISERNES HERZ (1)"
+          },
+          "description": {
+            "uk": "У в жанрі індастріал світло і вогонь неподільні. Домна №4, «АЗОВСТАЛЬ», МАРІУПОЛЬ, УКРАЇНА.",
+            "en": "Light and fire are indivisible in the industrial genre. Blast furnace No.4 of AZOVSTAL I&SW, MARIUPOL, UKRAINE.",
+            "de": "Licht und Feuer sind im industriellen Genre untrennbar. Hochofen #4. AZOVSTAL, MARIUPOL, UKRAINE."
+          },
+          "src": "/gallery/industrial/9_IRON HEART (1).jpg",
+          "width": 6101,
+          "height": 4274
+        },
+        {
+          "id": 10,
+          "name": {
+            "uk": "ДОМЕННА ПІЧ №4 (1).",
+            "en": "BLAST FURNACE #4 (1)",
+            "de": "HOCHOFEN #4 (1)"
+          },
+          "description": {
+            "uk": "Це одна з моїх перших картин в жанрі INDUSTRIAL. Написано під враженням від потужної енергетики діючої доменної печі №4. «АЗОВСТАЛЬ», МАРІУПОЛЬ, УКРАЇНА.",
+            "en": "This is one of my first paintings in the INDUSTRIAL genre. Written under the impression of the powerful energy of the working blast furnace No.4 of AZOVSTAL I&SW, MARIUPOL, UKRAINE.",
+            "de": "Dies ist eines meiner ersten Gemälde im INDUSTRIELLEN Genre. Geschrieben unter dem Eindruck der kraftvollen Energie des in Betrieb befindlichen Hochofens #4. AZOVSTAL, MARIUPOL, UKRAINE."
+          },
+          "src": "/gallery/industrial/10_BLAST FURNACE #4 (1).jpg",
+          "width": 6111,
+          "height": 4670
+        },
+        {
+          "id": 11,
+          "name": {
+            "uk": "INDUSTRIAL 2023_1",
+            "en": "INDUSTRIAL 2023_1",
+            "de": "INDUSTRIAL 2023_1"
+          },
+          "description": {
+            "uk": "Це перший індустріальний арт для мене у новому місці. Нові враження та нові люди - це завжди цікаво.",
+            "en": "This is the first industrial art for me in a new place. New experiences and new people are always interesting.",
+            "de": "Für mich ist das die erste industrielle Kunst an einem neuen Ort. Neue Erfahrungen und neue Leute sind immer interessant."
+          },
+          "src": "/gallery/industrial/18_INDUSTRIAL 2023_1.jpg",
+          "width": 5807,
+          "height": 7916
+        },
+        {
+          "id": 12,
+          "name": {
+            "uk": "INDUSTRIAL 2023_2",
+            "en": "INDUSTRIAL 2023_2",
+            "de": "INDUSTRIAL 2023_2"
+          },
+          "description": {
+            "uk": "Індустріальний арт має давню історію. Але це і сьогодення і майбутнє. Часто це все стикається у єдиному об'єкті.",
+            "en": "Industrial art has a long history. But it is both the present and the future. Often it all comes together in a single object.",
+            "de": "Industrielle Kunst hat eine lange Geschichte. Aber das ist die Gegenwart und die Zukunft. Oftmals kollidiert alles in einem einzigen Objekt."
+          },
+          "src": "/gallery/industrial/19_INDUSTRIAL 2023_2.jpg",
+          "width": 5817,
+          "height": 8141
+        },
+        {
+          "id": 13,
+          "name": {
+            "uk": "Industrial art та світло",
+            "en": "Industrial art and light",
+            "de": "Industriekunst und Licht"
+          },
+          "description": {
+            "uk": "Індустріальне мистецтво має багато відтінків, які можна побачити лише за певних умов освітлення. А деякі з них можна побачити лише зсередини.",
+            "en": "Industrial art has many shades that can be seen only under certain lighting conditions. And some of them can only be seen from inside.",
+            "de": "Industriekunst hat viele Schattierungen, die nur unter bestimmten Lichtbedingungen sichtbar sind. Und einige davon sind nur von innen sichtbar."
+          },
+          "src": "/gallery/industrial/21_Spectrum_2024.jpg",
+          "width": 1993,
+          "height": 1468
+        },
+        {
+          "id": 14,
+          "name": {
+            "uk": "Industrial art and dreams.",
+            "en": "Industrial art and dreams.",
+            "de": "Industrielle Kunst und Träume" 
+          },
+          "description": {
+            "uk": "Часто Industrial art викликає складні почуття, які дозволяють мріяти та зображати знайомі архітектурні форми у новому ракурсі.",
+            "en": "Industrial art often evokes complex feelings that allow us to dream and depict familiar architectural forms from a new perspective.",
+            "de": "Industrielle Kunst ruft oft komplexe Gefühle hervor, die uns träumen lassen und vertraute architektonische Formen aus einer neuen Perspektive darstellen."
+          },
+          "src": "/gallery/industrial/22_Emerald city_2024.jpg",
+          "width": 6115,
+          "height": 8160
         }
       ]
     },
