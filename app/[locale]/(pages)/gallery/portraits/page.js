@@ -5,7 +5,8 @@ import Image from "next/image";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import styles from "../gallery.module.scss";
 
-export default function PhotoGallery() {
+export default function PhotoGallery({ params }) {
+  const locale = params.locale
   const [database, setDatabase] = useState();
 
   const image_listRef = useRef(null);
@@ -30,7 +31,7 @@ export default function PhotoGallery() {
   
     // Инициализация PhotoSwipe Lightbox
     if (typeof window !== "undefined") {
-      lightbox = new PhotoSwipeLightbox({
+      lightbox = new PhotoSwipeLightbox({ 
         gallery: "#gallery",
         children: "a",
         pswpModule: () => import("photoswipe"),
@@ -97,7 +98,7 @@ export default function PhotoGallery() {
     }
   };
 
-  return (
+  return ( 
     <div id="gallery" className={styles.image_list} ref={image_listRef}>
       {database?.gallery?.portraits?.page.map((image, index) => (
         <a
@@ -107,7 +108,7 @@ export default function PhotoGallery() {
           data-pswp-width={image.width}
           data-pswp-height={image.height}
         >
-          <Image
+          <Image 
             id={image.id}
             className={styles.image}
             // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
@@ -126,7 +127,7 @@ export default function PhotoGallery() {
             height={image.height}
           />
           <label htmlFor={image.id} className={styles.image_label}>
-            {image.name}
+            {image.name[locale]}
           </label>
         </a>
       ))}
