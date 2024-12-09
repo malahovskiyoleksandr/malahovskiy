@@ -93,12 +93,11 @@ export default function PhotoGallery() {
 
   return (
     <div id="gallery" className={styles.image_list} ref={image_listRef}>
-      {/* {console.log(database?.gallery?.industrial?.page)} */}
       {database?.gallery?.industrial?.page.map((image, index) => (
         <Link
           className={styles.image_Link}
           key={index}
-          href={image.src}
+          href="#"
           data-pswp-width={image.width}
           data-pswp-height={image.height}
         >
