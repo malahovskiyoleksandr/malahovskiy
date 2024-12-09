@@ -12,25 +12,25 @@ export default function PhotoGallery() {
 
   const image_listRef = useRef(null);
 
-  useEffect(() => {
-    async function getData() {
-      try {
-        const response = await fetch("/api/github-get");
-        if (!response.ok) {
-          throw new Error("Ошибка при обращении к API GET");
-        }
-        const data = await response.json();
-        // const decodedData = JSON.parse(
-        //   Buffer.from(data.content, "base64").toString("utf-8")
-        // );
-        console.log(data)
-        setDatabase(data);
-      } catch (error) {
-        console.error("Ошибка: fetch(github-get)", error);
-      }
-    }
-    getData()
-  }, []); 
+  // useEffect(() => {
+  //   async function getData() {
+  //     try {
+  //       const response = await fetch("/api/github-get");
+  //       if (!response.ok) {
+  //         throw new Error("Ошибка при обращении к API GET");
+  //       }
+  //       const data = await response.json();
+  //       // const decodedData = JSON.parse(
+  //       //   Buffer.from(data.content, "base64").toString("utf-8")
+  //       // );
+  //       console.log(data)
+  //       setDatabase(data);
+  //     } catch (error) {
+  //       console.error("Ошибка: fetch(github-get)", error);
+  //     }
+  //   }
+  //   getData()
+  // }, []); 
 
   // Загружаем данные с API
   // useEffect(() => {
@@ -51,62 +51,62 @@ export default function PhotoGallery() {
   //   loadData();
   // }, []);
 
-  useEffect(() => {
-    // Инициализация PhotoSwipe Lightbox
-    if (typeof window !== "undefined") {
-      const lightbox = new PhotoSwipeLightbox({
-        gallery: "#gallery",
-        children: "a",
-        pswpModule: () => import("photoswipe"),
-      });
-      lightbox.init();
+  // useEffect(() => {
+  //   // Инициализация PhotoSwipe Lightbox
+  //   if (typeof window !== "undefined") {
+  //     const lightbox = new PhotoSwipeLightbox({
+  //       gallery: "#gallery",
+  //       children: "a",
+  //       pswpModule: () => import("photoswipe"),
+  //     });
+  //     lightbox.init();
 
-      return () => {
-        lightbox.destroy(); // Уничтожить экземпляр при размонтировании
-      };
-    }
-  }, []);
+  //     return () => {
+  //       lightbox.destroy(); // Уничтожить экземпляр при размонтировании
+  //     };
+  //   }
+  // }, []);
 
-  const handleWheel = (e) => {
-    const image_list = image_listRef.current;
-    if (image_list) {
-      e.preventDefault(); // Отключаем стандартную прокрутку
+  // const handleWheel = (e) => {
+  //   const image_list = image_listRef.current;
+  //   if (image_list) {
+  //     e.preventDefault(); // Отключаем стандартную прокрутку
 
-      const delta = Math.max(-1, Math.min(1, e.deltaY || -e.detail)); // Направление прокрутки
-      const scrollAmount = delta * 500; // Количество пикселей для прокрутки
+  //     const delta = Math.max(-1, Math.min(1, e.deltaY || -e.detail)); // Направление прокрутки
+  //     const scrollAmount = delta * 500; // Количество пикселей для прокрутки
 
-      let start = image_list.scrollLeft;
-      let end = start + scrollAmount;
-      let startTime = null;
+  //     let start = image_list.scrollLeft;
+  //     let end = start + scrollAmount;
+  //     let startTime = null;
 
-      // Функция для анимации прокрутки
-      const animateScroll = (currentTime) => {
-        if (!startTime) startTime = currentTime;
-        const progress = (currentTime - startTime) / 200; // 300 — это продолжительность анимации в миллисекундах
+  //     // Функция для анимации прокрутки
+  //     const animateScroll = (currentTime) => {
+  //       if (!startTime) startTime = currentTime;
+  //       const progress = (currentTime - startTime) / 200; // 300 — это продолжительность анимации в миллисекундах
 
-        if (progress < 1) {
-          // Интерполяция между стартовым и конечным значением
-          image_list.scrollLeft = start + (end - start) * progress;
-          requestAnimationFrame(animateScroll); // Запрашиваем следующий кадр анимации
-        } else {
-          image_list.scrollLeft = end; // Устанавливаем окончательное значение
-        }
-      };
+  //       if (progress < 1) {
+  //         // Интерполяция между стартовым и конечным значением
+  //         image_list.scrollLeft = start + (end - start) * progress;
+  //         requestAnimationFrame(animateScroll); // Запрашиваем следующий кадр анимации
+  //       } else {
+  //         image_list.scrollLeft = end; // Устанавливаем окончательное значение
+  //       }
+  //     };
 
-      requestAnimationFrame(animateScroll); // Начинаем анимацию
-    }
-  };
+  //     requestAnimationFrame(animateScroll); // Начинаем анимацию
+  //   }
+  // };
 
-  useEffect(() => {
-    const image_list = image_listRef.current;
-    if (image_list) {
-      image_list.addEventListener("wheel", handleWheel, { passive: false });
+  // useEffect(() => {
+  //   const image_list = image_listRef.current;
+  //   if (image_list) {
+  //     image_list.addEventListener("wheel", handleWheel, { passive: false });
 
-      return () => {
-        image_list.removeEventListener("wheel", handleWheel);
-      };
-    }
-  }, []);
+  //     return () => {
+  //       image_list.removeEventListener("wheel", handleWheel);
+  //     };
+  //   }
+  // }, []);
 
   // const images = database?.gallery?.industrial?.page;
   // console.log(database)
@@ -114,20 +114,20 @@ export default function PhotoGallery() {
   return (
     <div id="gallery" className={styles.image_list} ref={image_listRef}>
       {/* {console.log(database?.gallery?.industrial?.page)} */}
-      {database?.gallery?.industrial?.page.map((image, index) => (
-        <Link
+      {/* {database?.gallery?.industrial?.page.map((image, index) => ( */}
+        {/* <Link
           className={styles.image_Link}
           key={index}
           href={image.src}
           data-pswp-width={image.width}
           data-pswp-height={image.height}
-        >
+        > */}
           <Image
             // id={image.id}
             className={styles.image}
             // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
             // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
-            alt={image.name}
+            alt='111'
             src={image1}
             // placeholder="blur" // размытие заднего фона при загрузке картинки
             // blurDataURL="/path-to-small-blurry-version.jpg" // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
@@ -137,14 +137,14 @@ export default function PhotoGallery() {
             fill={false} //заставляет изображение заполнять родительский элемент
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
             // sizes="100vh"
-            width={image.width} // задать правильное соотношение сторон адаптивного изображения
-            height={image.height}
+            width={400} // задать правильное соотношение сторон адаптивного изображения
+            height={400}
           />
           {/* <label htmlFor={image.id} className={styles.image_label}>
             {image.name}
           </label> */}
-        </Link>
-      ))}
+        {/* </Link> */}
+      {/* ))} */}
     </div>
   );
 }
