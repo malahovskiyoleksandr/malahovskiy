@@ -98,7 +98,7 @@ export default function PhotoGallery({ params }) {
     }
   };
 
-  return (
+  return ( 
     <div id="gallery" className={styles.image_list} ref={image_listRef}>
       {database?.gallery?.industrial?.page.map((image, index) => (
         <a
