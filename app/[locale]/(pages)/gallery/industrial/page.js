@@ -104,7 +104,7 @@ export default function PhotoGallery() {
         <Link
           className={styles.image_Link}
           key={index}
-          href="#"
+          href={image?.src}
           data-pswp-width={image.width}
           data-pswp-height={image.height}
         >
