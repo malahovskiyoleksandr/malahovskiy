@@ -7,7 +7,7 @@ export async function GET() {
   try {
     const response = await fetch(
       `https://api.github.com/repos/malahovskiyoleksandr/malahovskiy/contents/data/${DATA}`,
-      { 
+      {
         method: "GET",
         cache: "no-store",
         headers: {
