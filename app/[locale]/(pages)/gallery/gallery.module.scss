@@ -64,13 +64,13 @@
 
 
 .image_list {
-  display: flex; /* Выстраиваем изображения в строку */
+  display: flex; 
   align-items: center;
-  gap: 3rem; /* Расстояние между изображениями */
+  gap: 3rem;
+  padding: 10px;
   overflow-x: auto;
   // overflow-y: hidden;
   // white-space: nowrap;
-  padding: 10px;
   // scroll-snap-type: x mandatory;
   // scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
@@ -79,23 +79,46 @@
 
   .image_Link {
     position: relative;
-    flex: 0 0 600px; /* Фиксированный размер элементов */
-    // height: 300px;
-    scroll-snap-align: center; /* Привязка элементов к центру */
+    flex: 0 0 600px; 
+    // height: 600px;
+    scroll-snap-align: center;
     box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.5);
+
+    .Tooltip {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 1px solid white;
+      color: white;
+      font-size: 1.5rem;
+    }
 
     .image {
       height: 30rem;
       object-fit: cover;
     }
 
-    .image_label {
-      position: absolute;
-      bottom: 10px;
+    .image_name {
+      display: block;
+      left: 10px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: black;
+      margin: 0 0 1rem 0;
+    }
+
+    .image_description {
+      display: block;
       left: 10px;
       font-size: 1rem;
-      font-weight: bold;
-      color: white;
+      font-weight: 600;
+      color: black;
     }
   }
 }
@@ -112,10 +135,65 @@
   background: #555;
 }
 
-.image {
-  // width: 300px; /* Ширина изображения */
-  // height: auto; /* Автоматическая высота для сохранения пропорций */
-  object-fit: cover; /* Обрезка изображения по размеру */
-  border-radius: 8px; /* Скруглённые углы */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Тень */
+.popupContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2147483647; // Самый высокий z-index
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  max-width: 90%;
+  text-align: center;
 }
+
+.popupTitle {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.popupDescription {
+  font-size: 1rem;
+}
+
+.closePopupButton {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+}
+
+
+
+// .popup-container {
+//   position: fixed;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+//   z-index: 9999;
+//   background-color: white;
+//   padding: 20px;
+//   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+//   border-radius: 8px;
+//   max-width: 90%;
+//   text-align: center;
+// }
+
+// .popup-container button {
+//   margin-top: 20px;
+//   padding: 10px 20px;
+//   border: none;
+//   background-color: #007bff;
+//   color: white;
+//   border-radius: 4px;
+//   cursor: pointer;
+// }

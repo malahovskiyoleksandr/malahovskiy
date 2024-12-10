@@ -126,8 +126,11 @@ export default function PhotoGallery({ params }) {
             width={image.width} // задать правильное соотношение сторон адаптивного изображения
             height={image.height}
           />
-          <label htmlFor={image.id} className={styles.image_label}>
+          <label htmlFor={image.id} className={styles.image_name}>
             {image.name[locale]}
+          </label>
+          <label htmlFor={image.id} className={styles.image_description}>
+            {image.description[locale]}
           </label>
         </a>
       ))}
