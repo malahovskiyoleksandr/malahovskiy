@@ -72,10 +72,17 @@ export default function PhotoGallery({ params }) {
             }
 
             // Получаем id слайда и ищем данные в базе
-            const photoId = currentSlide.data?.element?.getAttribute("data-id");
+            const photoId = currentSlide?.data?.element?.getAttribute("data-id");
+            // console.log(database)
+            if (!database) {
+              console.log("Данные еще не загружены");
+              return;
+            }
+            console.log(database?.gallery?.dark_side?.page);
             const photoData = database?.gallery?.dark_side?.page.find(
-              (img) => String(img.id) === String(photoId)
+              (img) => img.id === photoId
             );
+            console.log(photoData?'good':"errr")
 
             if (!photoData) {
               console.error("Данные для фото не найдены");
@@ -84,24 +91,23 @@ export default function PhotoGallery({ params }) {
 
             // Создать и отобразить всплывающее окно
             const popupContainer = document.createElement("div");
-            popupContainer.className = styles.popupContainer;
-            // popupContainer.style.position = "fixed";
-            // popupContainer.style.top = "50%";
-            // popupContainer.style.left = "50%";
-            // popupContainer.style.transform = "translate(-50%, -50%)";
-            // popupContainer.style.zIndex = "2147483647"; // Самый высокий z-index
-            // popupContainer.style.backgroundColor = "white";
-            // popupContainer.style.padding = "20px";
-            // popupContainer.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
-            // popupContainer.style.borderRadius = "8px";
-            // popupContainer.style.maxWidth = "90%";
-            // popupContainer.style.textAlign = "center";
+            popupContainer.style.position = "fixed";
+            popupContainer.style.top = "50%";
+            popupContainer.style.left = "50%";
+            popupContainer.style.transform = "translate(-50%, -50%)";
+            popupContainer.style.zIndex = "2147483647"; // Самый высокий z-index
+            popupContainer.style.backgroundColor = "white";
+            popupContainer.style.padding = "20px";
+            popupContainer.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+            popupContainer.style.borderRadius = "8px";
+            popupContainer.style.maxWidth = "90%";
+            popupContainer.style.textAlign = "center";
 
             popupContainer.innerHTML = `
-            <h3 class="${styles.popupTitle}">Информация о фото</h3>
-            <p class="${styles.popupDescription}"><strong>Описание:</strong> ${photoData.name[locale]}</p>
-            <p class="${styles.popupDescription}"><strong>Источник:</strong> ${photoData.description[locale]}</p>
-            <button class="${styles.closePopupButton}" id="close-popup">
+            <h3>Информация о фото</h3>
+            <p><strong>Название:</strong> ${photoData.name[locale]}</p>
+            <p><strong>Описание:</strong> ${photoData.description[locale]}</p>
+            <button id="close-popup" style="margin-top: 20px; padding: 10px 20px; border: none; background-color: #007bff; color: white; border-radius: 4px; cursor: pointer;">
               Закрыть
             </button>
           `;

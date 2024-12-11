@@ -4,15 +4,19 @@ import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import styles from "../gallery.module.scss";
+import { Tooltip } from "@nextui-org/tooltip";
+import {Spinner} from "@nextui-org/react";
 
 export default function PhotoGallery({ params }) {
-  const locale = params.locale
+  const locale = params.locale;
   const [database, setDatabase] = useState();
 
   const image_listRef = useRef(null);
 
   useEffect(() => {
     let lightbox; // Инициализация Lightbox
+    const image_list = image_listRef.current;
+
     const loadData = async () => {
       try {
         const response = await fetch("/api/github-get");
@@ -25,22 +29,89 @@ export default function PhotoGallery({ params }) {
         console.error("Ошибка: fetch(github-get)", error);
       }
     };
-  
+
     // Вызов загрузки данных
     loadData();
-  
+
     // Инициализация PhotoSwipe Lightbox
     if (typeof window !== "undefined") {
-      lightbox = new PhotoSwipeLightbox({ 
+      lightbox = new PhotoSwipeLightbox({
         gallery: "#gallery",
         children: "a",
         pswpModule: () => import("photoswipe"),
+        wheelToZoom: true,
+      });
+
+      // Добавляем кастомную кнопку
+      lightbox.on("uiRegister", () => {
+        // Регистрация кастомной кнопки
+        lightbox.pswp.ui.registerElement({
+          name: "info-button",
+          ariaLabel: "Photo Info",
+          order: 15, // Порядок отображения
+          isButton: true,
+          html: `
+            <button
+              class="${styles.popupButton}
+              id="info-button">
+              Info
+            </button>`, // HTML кнопки
+          onClick: (event, el, pswp) => {
+            event.stopPropagation();
+            const currentSlide = pswp.currSlide;
+            console.log(currentSlide)
+
+            if (!currentSlide) {
+              console.error("Нет текущего слайда");
+              return;
+            }
+
+            // Получаем id слайда и ищем данные в базе
+            const photoId = currentSlide.data.element.getAttribute("data-id");
+
+            if (!database || !database.gallery?.industrial?.page) {
+              console.error("Данные еще не загружены");
+              return;
+            }
+            
+            const photoData = database?.gallery?.industrial?.page.find(
+              (img) => img.id === Number(photoId)
+            );
+            console.log("photoId:", photoId, "Type:", typeof photoId);
+            console.log(
+              "Database IDs:",
+              database?.gallery?.industrial?.page.map((img) => ({
+                id: img.id,
+                type: typeof img.id,
+              }))
+            );
+
+            // Создать и отобразить всплывающее окно
+            const popupContainer = document.createElement("div");
+            popupContainer.className = styles.popupContainer;
+
+            popupContainer.innerHTML = `
+            <h3 class="${styles.popupTitle}">Информация о фото</h3>
+            <p class="${styles.popupDescription}"><strong>Описание:</strong> ${photoData?.name[locale]}</p>
+            <p class="${styles.popupDescription}"><strong>Источник:</strong> ${photoData?.description[locale]}</p>
+            <button class="${styles.closePopupButton}" id="close-popup">
+              Закрыть
+            </button>
+          `;
+
+            document.body.appendChild(popupContainer);
+
+            document
+              .getElementById("close-popup")
+              .addEventListener("click", () => {
+                popupContainer.remove();
+              });
+          },
+        });
       });
       lightbox.init();
     }
-  
-    const image_list = image_listRef.current;
-  
+
     // Добавление слушателей событий прокрутки
     const addScrollListeners = () => {
       if (image_list) {
@@ -49,7 +120,7 @@ export default function PhotoGallery({ params }) {
         image_list.addEventListener("DOMMouseScroll", handleWheel, false); // Firefox
       }
     };
-  
+
     // Удаление слушателей событий прокрутки
     const removeScrollListeners = () => {
       if (image_list) {
@@ -58,9 +129,9 @@ export default function PhotoGallery({ params }) {
         image_list.removeEventListener("DOMMouseScroll", handleWheel);
       }
     };
-  
+
     addScrollListeners();
-  
+
     return () => {
       // Очистка всех ресурсов
       if (lightbox) lightbox.destroy();
@@ -98,7 +169,15 @@ export default function PhotoGallery({ params }) {
     }
   };
 
-  return ( 
+  if (!database) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <Spinner color="warning" label="Warning" labelColor="warning" />
+      </div>
+    );
+  }
+
+  return (
     <div id="gallery" className={styles.image_list} ref={image_listRef}>
       {database?.gallery?.industrial?.page.map((image, index) => (
         <a
@@ -107,8 +186,20 @@ export default function PhotoGallery({ params }) {
           href={image.src}
           data-pswp-width={image.width}
           data-pswp-height={image.height}
+          data-id={image.id}
+          onClick={(e) => e.preventDefault()} 
         >
-          <Image 
+          <Tooltip
+            content={
+              <div className="px-1 py-2">
+                <div className="text-small font-bold">{image.name[locale]}</div>
+                <div className="text-tiny">{image.description[locale]}</div>
+              </div>
+            }
+          >
+            <span className={styles.Tooltip}>i</span>
+          </Tooltip>
+          <Image
             id={image.id}
             className={styles.image}
             // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
@@ -126,12 +217,9 @@ export default function PhotoGallery({ params }) {
             width={image.width} // задать правильное соотношение сторон адаптивного изображения
             height={image.height}
           />
-          <label htmlFor={image.id} className={styles.image_name}>
-            {image.name[locale]}
-          </label>
-          <label htmlFor={image.id} className={styles.image_description}>
+          {/* <label htmlFor={image.id} className={styles.image_description}>
             {image.description[locale]}
-          </label>
+          </label> */}
         </a>
       ))}
     </div>
