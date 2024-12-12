@@ -6,6 +6,7 @@ import PhotoSwipeLightbox from "photoswipe/lightbox";
 import styles from "../gallery.module.scss";
 import { Tooltip } from "@nextui-org/tooltip";
 import {Spinner} from "@nextui-org/react";
+import Link from "next/link";
 
 export default function PhotoGallery({ params }) {
   const locale = params.locale;
@@ -14,7 +15,6 @@ export default function PhotoGallery({ params }) {
   const image_listRef = useRef(null);
 
   useEffect(() => {
-    let lightbox; // Инициализация Lightbox
     const image_list = image_listRef.current;
 
     const loadData = async () => {
@@ -29,88 +29,8 @@ export default function PhotoGallery({ params }) {
         console.error("Ошибка: fetch(github-get)", error);
       }
     };
-
     // Вызов загрузки данных
     loadData();
-
-    // Инициализация PhotoSwipe Lightbox
-    if (typeof window !== "undefined") {
-      lightbox = new PhotoSwipeLightbox({
-        gallery: "#gallery",
-        children: "a",
-        pswpModule: () => import("photoswipe"),
-        wheelToZoom: true,
-      });
-
-      // Добавляем кастомную кнопку
-      lightbox.on("uiRegister", () => {
-        // Регистрация кастомной кнопки
-        lightbox.pswp.ui.registerElement({
-          name: "info-button",
-          ariaLabel: "Photo Info",
-          order: 15, // Порядок отображения
-          isButton: true,
-          html: `
-            <button
-              class="${styles.popupButton}
-              id="info-button">
-              Info
-            </button>`, // HTML кнопки
-          onClick: (event, el, pswp) => {
-            event.stopPropagation();
-            const currentSlide = pswp.currSlide;
-            console.log(currentSlide)
-
-            if (!currentSlide) {
-              console.error("Нет текущего слайда");
-              return;
-            }
-
-            // Получаем id слайда и ищем данные в базе
-            const photoId = currentSlide.data.element.getAttribute("data-id");
-
-            if (!database || !database.gallery?.industrial?.page) {
-              console.error("Данные еще не загружены");
-              return;
-            }
-            
-            const photoData = database?.gallery?.industrial?.page.find(
-              (img) => img.id === Number(photoId)
-            );
-            console.log("photoId:", photoId, "Type:", typeof photoId);
-            console.log(
-              "Database IDs:",
-              database?.gallery?.industrial?.page.map((img) => ({
-                id: img.id,
-                type: typeof img.id,
-              }))
-            );
-
-            // Создать и отобразить всплывающее окно
-            const popupContainer = document.createElement("div");
-            popupContainer.className = styles.popupContainer;
-
-            popupContainer.innerHTML = `
-            <h3 class="${styles.popupTitle}">Информация о фото</h3>
-            <p class="${styles.popupDescription}"><strong>Описание:</strong> ${photoData?.name[locale]}</p>
-            <p class="${styles.popupDescription}"><strong>Источник:</strong> ${photoData?.description[locale]}</p>
-            <button class="${styles.closePopupButton}" id="close-popup">
-              Закрыть
-            </button>
-          `;
-
-            document.body.appendChild(popupContainer);
-
-            document
-              .getElementById("close-popup")
-              .addEventListener("click", () => {
-                popupContainer.remove();
-              });
-          },
-        });
-      });
-      lightbox.init();
-    }
 
     // Добавление слушателей событий прокрутки
     const addScrollListeners = () => {
@@ -134,10 +54,67 @@ export default function PhotoGallery({ params }) {
 
     return () => {
       // Очистка всех ресурсов
-      if (lightbox) lightbox.destroy();
       removeScrollListeners();
     };
   }, []);
+
+  useEffect(() => {
+    let lightbox; // Инициализация Lightbox
+    // Инициализация PhotoSwipe Lightbox
+    if (typeof window !== "undefined") {
+      lightbox = new PhotoSwipeLightbox({
+        gallery: "#gallery",
+        children: "a",
+        pswpModule: () => import("photoswipe"),
+        wheelToZoom: true,
+      });
+
+      // Добавляем кастомную кнопку
+      lightbox.on("uiRegister", () => {
+        // Регистрация кастомной кнопки
+        lightbox.pswp.ui.registerElement({
+          name: "info-button",
+          ariaLabel: "Photo Info",
+          order: 15, // Порядок отображения
+          isButton: true,
+          html: `
+            <button
+              class="${styles.popupButton}
+              id="info-button">
+              Info
+            </button>`, // HTML кнопки
+            onClick: (event, el, pswp) => {
+              event.stopPropagation();
+              const currentSlide = pswp.currSlide;
+              const photoId = currentSlide?.data?.element?.getAttribute("data-id");
+    
+              const photoData = database?.gallery?.industrial?.page.find(
+                (img) => img.id === Number(photoId)
+              );
+    
+              const popupContainer = document.createElement("div");
+              popupContainer.className = styles.popupContainer;
+              popupContainer.innerHTML = `
+                <h3 class="${styles.popupTitle}">Информация о фото</h3>
+                <p class="${styles.popupDescription}"><strong>Описание:</strong> ${photoData?.name[locale]}</p>
+                <p class="${styles.popupDescription}"><strong>Источник:</strong> ${photoData?.description[locale]}</p>
+                <button class="${styles.closePopupButton}" id="close-popup">Закрыть</button>
+              `;
+              document.body.appendChild(popupContainer);
+    
+              document.getElementById("close-popup").addEventListener("click", () => {
+                popupContainer.remove();
+              });
+            },
+          });
+        });
+        lightbox.init();
+    }
+    return () => {
+      // Очистка всех ресурсов
+      if (lightbox) lightbox.destroy();
+    };
+  }, [database]);
 
   const handleWheel = (e) => {
     const image_list = image_listRef.current;
@@ -172,7 +149,7 @@ export default function PhotoGallery({ params }) {
   if (!database) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <Spinner color="warning" label="Warning" labelColor="warning" />
+        <Spinner color="warning" label="Loading" labelColor="warning" />
       </div>
     );
   }
@@ -187,7 +164,7 @@ export default function PhotoGallery({ params }) {
           data-pswp-width={image.width}
           data-pswp-height={image.height}
           data-id={image.id}
-          onClick={(e) => e.preventDefault()} 
+          // onClick={(e) => e.preventDefault()} 
         >
           <Tooltip
             content={
