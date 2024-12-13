@@ -2,8 +2,8 @@ import Link from "next/link";
 // import { motion } from "framer-motion"; // Импортируем framer-motion
 import styles from "./gallery.module.scss";
 import Image from "next/image";
-// import galleryData from "@/data/database.json";
 import { NextResponse } from "next/server";
+import { Spinner } from "@nextui-org/react";
 
 export const revalidate = 5;
 // import dark_side from "@/public/gallery/dark_side.jpg";
@@ -74,6 +74,15 @@ export async function getData() {
 export default async function Gallery({ params }) {
   const locale = params.locale;
   const collectionLines = await getData();
+  console.log(collectionLines)
+
+  if (!collectionLines) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <Spinner color="warning" label="Loading" labelColor="warning" />
+      </div>
+    );
+  }
 
   return (
     <section className={styles.type_pictures}>

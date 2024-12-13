@@ -5,8 +5,7 @@ import Image from "next/image";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import styles from "../gallery.module.scss";
 import { Tooltip } from "@nextui-org/tooltip";
-import {Spinner} from "@nextui-org/react";
-import Link from "next/link";
+import { Spinner } from "@nextui-org/react";
 
 export default function PhotoGallery({ params }) {
   const locale = params.locale;
@@ -15,8 +14,6 @@ export default function PhotoGallery({ params }) {
   const image_listRef = useRef(null);
 
   useEffect(() => {
-    const image_list = image_listRef.current;
-
     const loadData = async () => {
       try {
         const response = await fetch("/api/github-get");
@@ -29,37 +26,13 @@ export default function PhotoGallery({ params }) {
         console.error("Ошибка: fetch(github-get)", error);
       }
     };
-    // Вызов загрузки данных
     loadData();
-
-    // Добавление слушателей событий прокрутки
-    const addScrollListeners = () => {
-      if (image_list) {
-        image_list.addEventListener("wheel", handleWheel, { passive: false });
-        image_list.addEventListener("mousewheel", handleWheel, false);
-        image_list.addEventListener("DOMMouseScroll", handleWheel, false); // Firefox
-      }
-    };
-
-    // Удаление слушателей событий прокрутки
-    const removeScrollListeners = () => {
-      if (image_list) {
-        image_list.removeEventListener("wheel", handleWheel);
-        image_list.removeEventListener("mousewheel", handleWheel);
-        image_list.removeEventListener("DOMMouseScroll", handleWheel);
-      }
-    };
-
-    addScrollListeners();
-
-    return () => {
-      // Очистка всех ресурсов
-      removeScrollListeners();
-    };
   }, []);
 
   useEffect(() => {
     let lightbox; // Инициализация Lightbox
+    const image_list = image_listRef.current;
+
     // Инициализация PhotoSwipe Lightbox
     if (typeof window !== "undefined") {
       lightbox = new PhotoSwipeLightbox({
@@ -83,36 +56,59 @@ export default function PhotoGallery({ params }) {
               id="info-button">
               Info
             </button>`, // HTML кнопки
-            onClick: (event, el, pswp) => {
-              event.stopPropagation();
-              const currentSlide = pswp.currSlide;
-              const photoId = currentSlide?.data?.element?.getAttribute("data-id");
-    
-              const photoData = database?.gallery?.industrial?.page.find(
-                (img) => img.id === Number(photoId)
-              );
-    
-              const popupContainer = document.createElement("div");
-              popupContainer.className = styles.popupContainer;
-              popupContainer.innerHTML = `
+          onClick: (event, el, pswp) => {
+            event.stopPropagation();
+            const currentSlide = pswp.currSlide;
+            const photoId =
+              currentSlide?.data?.element?.getAttribute("data-id");
+
+            const photoData = database?.gallery?.industrial?.page.find(
+              (img) => img.id === Number(photoId)
+            );
+
+            const popupContainer = document.createElement("div");
+            popupContainer.className = styles.popupContainer;
+            popupContainer.innerHTML = `
                 <h3 class="${styles.popupTitle}">Информация о фото</h3>
                 <p class="${styles.popupDescription}"><strong>Описание:</strong> ${photoData?.name[locale]}</p>
                 <p class="${styles.popupDescription}"><strong>Источник:</strong> ${photoData?.description[locale]}</p>
                 <button class="${styles.closePopupButton}" id="close-popup">Закрыть</button>
               `;
-              document.body.appendChild(popupContainer);
-    
-              document.getElementById("close-popup").addEventListener("click", () => {
+            document.body.appendChild(popupContainer);
+
+            document
+              .getElementById("close-popup")
+              .addEventListener("click", () => {
                 popupContainer.remove();
               });
-            },
-          });
+          },
         });
-        lightbox.init();
+      });
+      lightbox.init();
     }
+
+    const addScrollListeners = () => {
+      if (image_list) {
+        image_list.addEventListener("wheel", handleWheel, { passive: false });
+        image_list.addEventListener("mousewheel", handleWheel, false);
+        image_list.addEventListener("DOMMouseScroll", handleWheel, false); // Firefox
+      }
+    };
+    addScrollListeners();
+
+    // Удаление слушателей событий прокрутки
+    const removeScrollListeners = () => {
+      if (image_list) {
+        image_list.removeEventListener("wheel", handleWheel);
+        image_list.removeEventListener("mousewheel", handleWheel);
+        image_list.removeEventListener("DOMMouseScroll", handleWheel);
+      }
+    };
+
     return () => {
       // Очистка всех ресурсов
       if (lightbox) lightbox.destroy();
+      removeScrollListeners();
     };
   }, [database]);
 
@@ -164,7 +160,6 @@ export default function PhotoGallery({ params }) {
           data-pswp-width={image.width}
           data-pswp-height={image.height}
           data-id={image.id}
-          // onClick={(e) => e.preventDefault()} 
         >
           <Tooltip
             content={

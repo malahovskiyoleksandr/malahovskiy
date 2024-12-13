@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { useCurrentLocale } from "next-i18n-router/client";
 import i18nConfig from "@/i18nConfig";
+import styles from "./styles/language.module.scss";
 
 export default function LanguageChanger() {
   const router = useRouter();
@@ -38,14 +39,11 @@ export default function LanguageChanger() {
     <select
       onChange={handleChange}
       value={currentLocale}
-      style={{
-        fontFamily: "Mariupol-Regular",
-        backgroundColor: "transparent"
-      }}
+      className={styles.language_selector}
     >
-      <option value="uk">УКР</option>
-      <option value="en">ENG</option>
-      <option value="de">DE</option>
+      <option value="uk">Українська</option>
+      <option value="en">Англійська</option>
+      <option value="de">Німецька</option>
     </select>
   );
 }

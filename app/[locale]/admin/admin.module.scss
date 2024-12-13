@@ -72,7 +72,6 @@ $text-color: #fff;
   .main {
     display: flex;
     flex-direction: column;
-    width: 300px;
 
     .form {
       display: flex;
@@ -80,7 +79,64 @@ $text-color: #fff;
       gap: 2rem;
 
       .industrial_box {
+        .inputList_Industrial {
+          .inputItem {
+          }
+        }
+        .textareaList_Industrial {
+          .textareaItem {
+          }
+        }
+      }
 
+      .industrial_box__images {
+        // display: flex;
+        // flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        // width: 100%;
+
+        .industrial_box__image_item {
+          padding: 1rem;
+          background-color: #c7c7c7;
+          border-radius: 0.5rem;
+
+          .image {
+            margin: 0 auto;
+            height: 10rem;
+            width: auto;
+            object-fit: cover;
+          }
+
+          .industrial_box__image_item_nameDescription {
+            .inputItem {
+              margin: 0.5rem 0;
+            }
+          }
+        }
+      }
+
+      .portraits_box {
+        .inputList_Portraits {
+          .inputItem {
+          }
+        }
+        .textareaList_Portraits {
+          .textareaItem {
+          }
+        }
+      }
+
+      .darkSide_box {
+        .inputList_DarkSide {
+          .inputItem {
+          }
+        }
+        .textareaList_DarkSide {
+          .textareaItem {
+          }
+        }
       }
     }
   }

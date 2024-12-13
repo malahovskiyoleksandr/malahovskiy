@@ -17,6 +17,8 @@ import LanguageChanger from "../components/LanguageChanger";
 import { useIntl } from "react-intl";
 import Image from "next/image";
 import Logo from "@/public/images/logo.png";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const menu_item = [
   {
@@ -58,11 +60,30 @@ const menu_item = [
 ];
 
 export default function Header() {
+  const router = useRouter();
   const intl = useIntl();
 
-  // const [menu_itemData, setMenu_itemData] = React.useState(null);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
+    // Функция для обработки нажатия клавиш
+    useEffect(() => {
+      const handleKeyPress = (event) => {
+        // Проверяем, нажаты ли Ctrl и A
+        if (event.ctrlKey && event.key === "a") {
+          event.preventDefault(); // Предотвращаем стандартное поведение
+          console.log("admin")
+          router.push("/admin"); // Перенаправляем на админку
+        }
+      };
+  
+      // Добавляем обработчик события нажатия клавиш
+      window.addEventListener("keydown", handleKeyPress);
+  
+      // Очистка при размонтировании компонента
+      return () => {
+        window.removeEventListener("keydown", handleKeyPress);
+      };
+    }, [router]);
   // Получаем данные из getMenuItems при первом рендере
   // React.useEffect(() => {
   //   const fetchData = async () => {
@@ -150,7 +171,7 @@ export default function Header() {
             </motion.div>
           </NavbarItem>
         ))}
-        <Link href="/admin">Admin</Link>
+        {/* <Link href="/admin">Admin</Link> */}
       </NavbarContent>
       <LanguageChanger />
 
