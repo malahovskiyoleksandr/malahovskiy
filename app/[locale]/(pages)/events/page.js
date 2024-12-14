@@ -3,7 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 // import { motion } from "framer-motion";
 // import { useTranslation } from "react-i18next";
-import { EventsData } from "./events";
 import { Spinner } from "@nextui-org/react";
 import { NextResponse } from "next/server";
 
@@ -70,8 +69,9 @@ export async function getData() {
 
 export default async function Events({ params }) {
   const { locale } = params;
-  const events = await getData();
-  if (!events) {
+  const database = await getData();
+
+  if (!database) {
     return (
       <div className="flex items-center justify-center h-screen">
         <Spinner color="warning" label="Loading" labelColor="warning" />
@@ -86,7 +86,7 @@ export default async function Events({ params }) {
         <div
           className={`${styles.event_list} grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-6`}
         >
-            {events.events.map((event, index) => (
+            {database.events.map((event, index) => (
               <div
                 key={index}
                 className={styles.event}
@@ -131,7 +131,7 @@ export default async function Events({ params }) {
                   </div>
                   <span className={styles.event_data}>28 жовтня 2024</span>
                   <h3 className={styles.event_name}>{event?.title?.[locale]}</h3>
-                  <h3 className={styles.event_name}>{event?.description?.[locale]}</h3>
+                  {/* <h3 className={styles.event_name}>{event?.description?.[locale]}</h3> */}
                 </Link>
               </div>
             ))}
