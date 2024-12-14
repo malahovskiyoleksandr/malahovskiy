@@ -4,6 +4,9 @@ import Image from "next/image";
 // import { motion } from "framer-motion";
 // import { useTranslation } from "react-i18next";
 import { EventsData } from "./events";
+import { Spinner } from "@nextui-org/react";
+import { NextResponse } from "next/server";
+
 
 // const imageVariants = {
 //   hiddenLeft: { opacity: 0, x: -200 }, // Появление слева
@@ -13,62 +16,125 @@ import { EventsData } from "./events";
 //   visible: { opacity: 1, x: 0, y: 0 }, // Конечное состояние
 // };
 
+export async function getData() {
+  try {
+    const response = await fetch(
+      `https://api.github.com/repos/malahovskiyoleksandr/malahovskiy/contents/data/database.json`,
+      {
+        method: "GET",
+        cache: "no-store",
+        headers: {
+          "Cache-Control": "no-cache", // Запрещаем использование кеша
+          // Authorization: `Bearer ${GITHUB_TOKEN}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      return NextResponse.json(
+        { error: "Ошибка при получении данных с GitHub" },
+        { status: response.status }
+      );
+    }
+
+    const Data = await response.json();
+    const decodedData = JSON.parse(
+      Buffer.from(Data.content, "base64").toString("utf-8")
+    );
+    // console.log(decodedData)
+    // Декодирование содержимого файла из base64
+    return decodedData;
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Ошибка сервера: " + error.message },
+      { status: 500 }
+    );
+  }
+  // try {
+  //   const response = await fetch("https://oleksandrmalakhovskyi.vercel.app/api/github-get", {
+  //     // cache: "force-cache", // Указывает на использование ISR
+  //   });
+
+  //   if (!response.ok) {
+  //     throw new Error("Не удалось загрузить данные с API");
+  //   }
+
+  //   const data = await response.json();
+
+  //   return data;
+  // } catch (error) {
+  //   console.error("Ошибка при получении данных:", error);
+  //   return console.log("error Home.page");
+  // }
+}
+
 export default async function Events({ params }) {
   const { locale } = params;
-  const events = await EventsData();
+  const events = await getData();
+  if (!events) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <Spinner color="warning" label="Loading" labelColor="warning" />
+      </div>
+    );
+  }
 
   return (
     <>
       <section className={styles.main_block}>
         <h1 className={styles.zahodu_pidii}>Заходи та події</h1>
-        <div className={`${styles.event_list} grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-6`}>
-          {events.map((event) => (
-            <div
-              key={event.id}
-              className={styles.event}
-              // initial="hiddenTop"
-              // animate="visible"
-              // transition={{ duration: 0.5 }}
-              // variants={imageVariants}
-            >
-              <Link
-                href={`/events/${event[locale].title}`}
-                className={styles.link}
+        <div
+          className={`${styles.event_list} grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-6`}
+        >
+            {events.events.map((event, index) => (
+              <div
+                key={index}
+                className={styles.event}
+                // initial="hiddenTop"
+                // animate="visible"
+                // transition={{ duration: 0.5 }}
+                // variants={imageVariants}
               >
-                <div className={styles.image_box}>
-                  <Image
-                    className={styles.image}
-                    // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
-                    // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
-                    alt={event[locale].title}
-                    src={event.main_image}
-                    // placeholder="blur" // размытие заднего фона при загрузке картинки
-                    // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
-                    quality={10} //качество картнки в %
-                    priority={true} // если true - loading = 'lazy' отменяеться
-                    // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
-                    fill={true} //заставляет изображение заполнять родительский элемент
-                    // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
-                    sizes="100%"
-                    // width={300} // задать правильное соотношение сторон адаптивного изображения
-                    // height={200}
-                    style={
-                      {
-                        // width: "100%",
-                        // height: "200px",
-                        // objectFit: "cover", // Изображение масштабируется, обрезая края
-                        // objectFit: "contain", // Изображение масштабируется, не обрезаясь
-                        // objectPosition: "top",
-                        // margin: "0 0 1rem 0",
+                <Link
+                  href={`/events/${event?.title?.[locale]}`}
+                  className={styles.link}
+                >
+                  <div className={styles.image_box}>
+
+                    <Image
+                      className={styles.image}
+                      // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
+                      // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
+                      alt={event.title?.[locale]}
+                      src={event.main_image}
+                      // placeholder="blur" // размытие заднего фона при загрузке картинки
+                      // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
+                      quality={10} //качество картнки в %
+                      priority={true} // если true - loading = 'lazy' отменяеться
+                      // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
+                      fill={true} //заставляет изображение заполнять родительский элемент
+                      // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
+                      sizes="100%"
+                      // width={300} // задать правильное соотношение сторон адаптивного изображения
+                      // height={200}
+                      style={
+                        {
+                          // width: "200px",
+                          // height: "200px",
+                          // objectFit: "cover", // Изображение масштабируется, обрезая края
+                          // objectFit: "contain", // Изображение масштабируется, не обрезаясь
+                          // objectPosition: "top",
+                          // margin: "0 0 1rem 0",
+                        }
                       }
-                    }
-                  />
-                </div>
-                <span className={styles.event_data}>28 жовтня 2024</span>
-                <h3 className={styles.event_name}>{event[locale].title}</h3>
-              </Link>
-            </div>
-          ))}
+                    /> 
+                  </div>
+                  <span className={styles.event_data}>28 жовтня 2024</span>
+                  <h3 className={styles.event_name}>{event?.title?.[locale]}</h3>
+                  <h3 className={styles.event_name}>{event?.description?.[locale]}</h3>
+                </Link>
+              </div>
+            ))}
         </div>
       </section>
     </>

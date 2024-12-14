@@ -19,26 +19,39 @@
       color: #d38b47;
     }
 
+    .event_images_box {
+      position: relative;
+      height: 400px;
+      width: 100%;
+      
+      .event_images {
+        width: auto;
+        height: 100%;
+        object-fit: cover;
+
+      }
+    }
+
     .event_name {
       font-size: 1.7rem;
       line-height: 2.2rem;
       text-transform: uppercase;
       text-align: center;
-      font-family: 'Extatica-Medium', sans-serif;
+      font-family: "Extatica-Medium", sans-serif;
     }
-    
+
     .event__description {
       font-size: 1.1rem;
       line-height: 1.2rem;
       margin: 10px 0;
-      font-family: 'Mariupol-Bold', sans-serif;
+      font-family: "Mariupol-Bold", sans-serif;
       color: #241901;
     }
-    
+
     .event__description_content {
       font-size: 1.1rem;
       line-height: 1.2rem;
-      font-family: 'Mariupol-Regular', sans-serif;
+      font-family: "Mariupol-Regular", sans-serif;
       color: #241901;
     }
   }
