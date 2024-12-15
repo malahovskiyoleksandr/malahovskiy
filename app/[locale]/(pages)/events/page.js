@@ -54,13 +54,13 @@ export default async function Events({ params }) {
   const { locale } = params;
   const database = await getData();
 
-  // if (!database) {
-  //   return (
-  //     <div className="flex items-center justify-center h-screen">
-  //       <Spinner color="warning" label="Loading" labelColor="warning" />
-  //     </div>
-  //   );
-  // }
+  if (!database) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <Spinner color="warning" label="Loading" labelColor="warning" />
+      </div>
+    );
+  }
 
   return (
     <>
@@ -72,19 +72,18 @@ export default async function Events({ params }) {
           {console.log("database", database.events)}
             {database?.events.map((event, index) => (
               <div
-                key={event.id}
+                key={index}
                 className={styles.event}
                 // initial="hiddenTop"
                 // animate="visible"
                 // transition={{ duration: 0.5 }}
                 // variants={imageVariants}
               >
-                <Link
+                {/* <Link
                   href={`/events/${event.title[locale]}`}
                   className={styles.link}
                 >
                   <div className={styles.image_box}>
-
                     <Image
                       className={styles.image}
                       // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
@@ -115,7 +114,7 @@ export default async function Events({ params }) {
                   </div>
                   <span className={styles.event_data}>28 жовтня 2024</span>
                   <h3 className={styles.event_name}>{event?.title?.[locale] || ''}</h3>
-                </Link>
+                </Link> */}
               </div>
             ))}
         </div>
