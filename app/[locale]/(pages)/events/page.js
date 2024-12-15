@@ -40,7 +40,6 @@ export async function getData() {
     const decodedData = JSON.parse(
       Buffer.from(Data.content, "base64").toString("utf-8")
     );
-    // console.log(decodedData)
     // Декодирование содержимого файла из base64
     return decodedData;
   } catch (error) {
@@ -49,22 +48,6 @@ export async function getData() {
       { status: 500 }
     );
   }
-  // try {
-  //   const response = await fetch("https://oleksandrmalakhovskyi.vercel.app/api/github-get", {
-  //     // cache: "force-cache", // Указывает на использование ISR
-  //   });
-
-  //   if (!response.ok) {
-  //     throw new Error("Не удалось загрузить данные с API");
-  //   }
-
-  //   const data = await response.json();
-
-  //   return data;
-  // } catch (error) {
-  //   console.error("Ошибка при получении данных:", error);
-  //   return console.log("error Home.page");
-  // }
 }
 
 export default async function Events({ params }) {
@@ -105,7 +88,7 @@ export default async function Events({ params }) {
                       className={styles.image}
                       // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
                       // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
-                      alt={event.title?.[locale]}
+                      alt={event.title[locale]}
                       src={event.main_image}
                       // placeholder="blur" // размытие заднего фона при загрузке картинки
                       // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
@@ -130,7 +113,7 @@ export default async function Events({ params }) {
                     /> 
                   </div>
                   <span className={styles.event_data}>28 жовтня 2024</span>
-                  <h3 className={styles.event_name}>{event?.title?.[locale]}</h3>
+                  <h3 className={styles.event_name}>{event.title[locale]}</h3>
                   {/* <h3 className={styles.event_name}>{event?.description?.[locale]}</h3> */}
                 </Link>
               </div>
