@@ -1,6 +1,6 @@
 import Link from "next/link";
 // import { motion } from "framer-motion"; // Импортируем framer-motion
-import styles from "./gallery.module.scss";
+import styles from "./events.module.scss";
 import Image from "next/image";
 import { NextResponse } from "next/server";
 import { Spinner } from "@nextui-org/react";
