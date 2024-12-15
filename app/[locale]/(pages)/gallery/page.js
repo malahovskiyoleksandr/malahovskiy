@@ -44,7 +44,6 @@ export async function getData() {
     const decodedData = JSON.parse(
       Buffer.from(Data.content, "base64").toString("utf-8")
     );
-    // console.log(decodedData)
     // Декодирование содержимого файла из base64
     return decodedData;
   } catch (error) {
@@ -53,22 +52,6 @@ export async function getData() {
       { status: 500 }
     ); 
   }
-  // try {
-  //   const response = await fetch("https://oleksandrmalakhovskyi.vercel.app/api/github-get", {
-  //     // cache: "force-cache", // Указывает на использование ISR
-  //   });
-
-  //   if (!response.ok) {
-  //     throw new Error("Не удалось загрузить данные с API");
-  //   }
-
-  //   const data = await response.json();
-
-  //   return data;
-  // } catch (error) {
-  //   console.error("Ошибка при получении данных:", error);
-  //   return console.log("error Home.page");
-  // }
 }
 
 export default async function Gallery({ params }) {

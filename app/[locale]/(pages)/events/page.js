@@ -54,13 +54,13 @@ export default async function Events({ params }) {
   const { locale } = params;
   const database = await getData();
 
-  if (!database) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <Spinner color="warning" label="Loading" labelColor="warning" />
-      </div>
-    );
-  }
+  // if (!database) {
+  //   return (
+  //     <div className="flex items-center justify-center h-screen">
+  //       <Spinner color="warning" label="Loading" labelColor="warning" />
+  //     </div>
+  //   );
+  // }
 
   return (
     <>
@@ -70,7 +70,7 @@ export default async function Events({ params }) {
           className={`${styles.event_list} grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-6`}
         >
           {console.log("database", database.events)}
-            {/* {database.events.map((event, index) => (
+            {database?.events.map((event, index) => (
               <div
                 key={event.id}
                 className={styles.event}
@@ -114,10 +114,10 @@ export default async function Events({ params }) {
                     /> 
                   </div>
                   <span className={styles.event_data}>28 жовтня 2024</span>
-                  <h3 className={styles.event_name}>{event.title[locale]}</h3>
+                  <h3 className={styles.event_name}>{event?.title?.[locale] || ''}</h3>
                 </Link>
               </div>
-            ))} */}
+            ))}
         </div>
       </section>
     </>
