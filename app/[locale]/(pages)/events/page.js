@@ -69,9 +69,10 @@ export default async function Events({ params }) {
         <div
           className={`${styles.event_list} grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-6`}
         >
-            {database.events.map((event, index) => (
+          {console.log("database", database.events)}
+            {/* {database.events.map((event, index) => (
               <div
-                key={index}
+                key={event.id}
                 className={styles.event}
                 // initial="hiddenTop"
                 // animate="visible"
@@ -79,7 +80,7 @@ export default async function Events({ params }) {
                 // variants={imageVariants}
               >
                 <Link
-                  href={`/events/${event?.title?.[locale]}`}
+                  href={`/events/${event.title[locale]}`}
                   className={styles.link}
                 >
                   <div className={styles.image_box}>
@@ -114,10 +115,9 @@ export default async function Events({ params }) {
                   </div>
                   <span className={styles.event_data}>28 жовтня 2024</span>
                   <h3 className={styles.event_name}>{event.title[locale]}</h3>
-                  {/* <h3 className={styles.event_name}>{event?.description?.[locale]}</h3> */}
                 </Link>
               </div>
-            ))}
+            ))} */}
         </div>
       </section>
     </>
