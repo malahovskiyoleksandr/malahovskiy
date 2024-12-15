@@ -70,7 +70,7 @@ export default async function Events({ params }) {
           className={`${styles.event_list} grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-6`}
         >
           {console.log("database", database.events)}
-            {database?.events.map((event, index) => (
+            {database?.map((event, index) => (
               <div
                 key={index}
                 className={styles.event}
