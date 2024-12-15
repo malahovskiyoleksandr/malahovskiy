@@ -71,57 +71,53 @@ export default async function Gallery({ params }) {
     <section className={styles.type_pictures}>
       {collectionLines?.events &&
         Object.entries(collectionLines.events).map(([key, value], index) => (
-          <h3 className={styles.event_name}>{value?.title?.[locale] || ""}</h3>
-          // <Link
-          //   key={key}
-          //   className={styles.link}
-          //   href={value.href}
-          //   style={{
-          //     flexDirection: index % 2 === 1 ? "row-reverse" : "unset",
-          //   }}
-          // >
-          //   <Image
-          //     className={styles.image}
-          //     // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
-          //     // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
-          //     alt={value.name?.[locale] || "Gallery Image"}
-          //     src={value.src}
-          //     // placeholder="blur" // размытие заднего фона при загрузке картинки
-          //     // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
-          //     quality={50}
-          //     priority={false} // если true - loading = 'lazy' отменяеться
-          //     // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
-          //     fill={true} //заставляет изображение заполнять родительский элемент
-          //     // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
-          //     sizes="100vh"
-          //     // width={300} // задать правильное соотношение сторон адаптивного изображения
-          //     // height={200}
-          //     style={{
-          //       // width: "100%",
-          //       // height: "200px",
-          //       objectFit: "cover", // Изображение масштабируется, обрезаясь
-          //       // objectFit: "contain", // Изображение масштабируется, не обрезаясь
-          //       // objectPosition: line.index === 0 ? "0% 30%" : "top",
-          //       objectPosition:
-          //         index === 0
-          //           ? "0% 50%"
-          //           : index === 1
-          //           ? "0% 30%"
-          //           : index === 2
-          //           ? "0% 45%"
-          //           : "center",
-          //     }}
-          //   />
-          //   <div
-          //     className={styles.description}
-          //     style={{
-          //       textAlign: index % 2 === 1 ? "right" : "left",
-          //     }}
-          //   >
-          //     <h2 className={styles.name}>{value?.name?.[locale] || ""}</h2>
-          //     <p className={styles.about}>{value?.description?.[locale] || ""}</p>
-          //   </div>
-          // </Link>
+          <div
+            key={index}
+            className={styles.event}
+            // initial="hiddenTop"
+            // animate="visible"
+            // transition={{ duration: 0.5 }}
+            // variants={imageVariants}
+          >
+            <Link
+              href={`/events/${value.title[locale]}`}
+              className={styles.link}
+            >
+              <div className={styles.image_box}>
+                <Image
+                  className={styles.image}
+                  // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
+                  // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
+                  alt={value.title[locale]}
+                  src={value.main_image}
+                  // placeholder="blur" // размытие заднего фона при загрузке картинки
+                  // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
+                  quality={10} //качество картнки в %
+                  priority={true} // если true - loading = 'lazy' отменяеться
+                  // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
+                  fill={true} //заставляет изображение заполнять родительский элемент
+                  // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
+                  sizes="100%"
+                  // width={300} // задать правильное соотношение сторон адаптивного изображения
+                  // height={200}
+                  style={
+                    {
+                      // width: "200px",
+                      // height: "200px",
+                      // objectFit: "cover", // Изображение масштабируется, обрезая края
+                      // objectFit: "contain", // Изображение масштабируется, не обрезаясь
+                      // objectPosition: "top",
+                      // margin: "0 0 1rem 0",
+                    }
+                  }
+                />
+              </div>
+              <span className={styles.event_data}>28 жовтня 2024</span>
+              <h3 className={styles.event_name}>
+                {value?.title?.[locale] || ""}
+              </h3>
+            </Link>
+          </div>
         ))}
     </section>
   );
