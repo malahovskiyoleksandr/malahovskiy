@@ -49,6 +49,13 @@ export async function getData() {
   }
 }
 
+function generateSlug(title) {
+  return title
+    .toLowerCase()
+    .replace(/ /g, "-")
+    .replace(/[^\w-]+/g, "");
+}
+
 export default async function Events({ params }) {
   const { locale } = params;
   const database = await getData();
@@ -68,7 +75,6 @@ export default async function Events({ params }) {
         <div
           className={`${styles.event_list} grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-6`}
         >
-          {console.log("database", database.events)}
           {database?.events &&
             Object.entries(database.events).map(
               ([key, value], index) => (
@@ -81,7 +87,7 @@ export default async function Events({ params }) {
                   // variants={imageVariants}
                 >
                   <Link
-                    href={`/events/${value.title[locale]}`}
+                    href={`/events/${generateSlug(value.title.en)}`}
                     className={styles.link}
                   >
                     <div className={styles.image_box}>

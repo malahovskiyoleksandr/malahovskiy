@@ -2,36 +2,73 @@
 
 import styles from "./event.module.scss";
 import Image from "next/image";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { Spinner } from "@nextui-org/react";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
+import { notFound } from "next/navigation";
+import { useRouter } from "next/router";
 
-// export async function generateStatic({ params }) {
-//   const { locale } = params;
-//   return events.map((event) => ({
-//     slug: event[locale].title, // формируем slug на основе локали
-//   }));
-// }
+
 
 export default function EventPage({ params }) {
-  const { slug, locale } = params;
+  const { slug, locale } = params; // Получаем slug и текущую локаль
+
   const [database, setDatabase] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+
+  function generateSlug(title) {
+    return title
+      .toLowerCase()
+      .replace(/ /g, "-")
+      .replace(/[^\w-]+/g, "");
+  }
 
   useEffect(() => {
+    if (!slug) return;
+
     const loadData = async () => {
+      setIsLoading(true);
       try {
         const response = await fetch("/api/github-get");
         if (!response.ok) {
           throw new Error("Ошибка при обращении к API GET");
         }
         const data = await response.json();
-        setDatabase(data);
+
+        const event = data.events.find((event) => {
+          return generateSlug(event.title['en']) === slug; // Возвращаем результат сравнения
+        });
+
+        if (!event) {
+          throw new Error("Событие не найдено");
+        }
+        
+        setDatabase(event);
       } catch (error) {
         console.error("Ошибка: fetch(github-get)", error);
+      } finally {
+        setIsLoading(false);
       }
     };
+
     loadData();
-  }, []);
+  }, [slug, locale]);
+
+  // useEffect(() => {
+  //   const loadData = async () => {
+  //     try {
+  //       const response = await fetch("/api/github-get");
+  //       if (!response.ok) {
+  //         throw new Error("Ошибка при обращении к API GET");
+  //       }
+  //       const data = await response.json();
+  //       setDatabase(data);
+  //     } catch (error) {
+  //       console.error("Ошибка: fetch(github-get)", error);
+  //     }
+  //   };
+  //   loadData();
+  // }, []);
 
   useEffect(() => {
     let lightbox; // Инициализация Lightbox
@@ -96,15 +133,7 @@ export default function EventPage({ params }) {
     };
   }, [database]);
 
-  const decodedSlug = decodeURIComponent(slug);
-  // redirect(`/${locale}/events/${encodeURIComponent(localizedSlug)}`);
-
-  // Находим событие по текущему `slug`
-  const event = database?.events.find(
-    (event) => event.title[locale] === decodedSlug
-  );
-
-  if (!event) {
+  if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
         <Spinner color="warning" label="Loading" labelColor="warning" />
@@ -112,13 +141,21 @@ export default function EventPage({ params }) {
     );
   }
 
+  if (!database) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <p>Событие не найдено</p>
+      </div>
+    );
+  }
+
   return (
     <section className={styles.main_block}>
       <div className={styles.event}>
-        <h1 className={styles.event_name}>{event.title[locale]}</h1>
+        <h1 className={styles.event_name}>{database.title[locale]}</h1>
         <span className={styles.event_data}>28 жовтня 2024</span>
         <div className={styles.event_content}>
-          {event.content.map((block, index) => {
+          {database.content.map((block, index) => {
             if (block.type === "text") {
               return (
                 <p key={index} className={styles.event__description_content}>

@@ -421,8 +421,8 @@
       "id": 1,
       "title": {
         "uk": "Художники з українського міста Маріуполь виставляють у Дортмунді",
-        "en": "Художники з українського міста Маріуполь виставляють у Дортмунді",
-        "de": "Художники з українського міста Маріуполь виставляють у Дортмунді"
+        "en": "Artists from the Ukrainian city of Mariupol exhibit in Dortmund",
+        "de": "Künstler aus der ukrainischen Stadt Mariupol stellen in Dortmund aus"
       },
       "main_image": "/images/events/id1/post_most_reconnect.jpg",
       "content": [
@@ -503,6 +503,42 @@
         "de": "Kunstschaffende aus Mariupol zeigen in »PostMost« ihre Werke"
       },
       "main_image": "/images/events/id2/fb5.jpg",
+      "content": [
+        {
+          "type": "text",
+          "value": {
+            "uk": "Музей Хеша в Дортмунді Виставка «PostMost» у дортмундському музеї Hoesch демонструє живопис і графіку художників зі східноукраїнського сталеливарного міста Маріуполь. Багато з них живуть у регіоні й сьогодні. Виставка показує, як війна змінила життя там. Маріуполь на сході України з його міжнародним морським портом і металургійним заводом був одним із важливих промислових центрів України до початку війни. Художники там розпочали свій проект «PostMost» п’ять років тому, щоб показати з мистецької точки зору, як змінюється сталеве місто Маріуполь. Війна, яка почалася майже два роки тому, змінила мистецькі перспективи. Роботи, представлені на виставці, серед яких живопис, графіка, фотографії та колажі, присвячені війні та частково зруйнованій Батьківщині. Твори відображають страхи, але й показують надію на краще майбутнє. Наприклад, роботи Людмили Симонової. 38-річний художник з 2014 року жив у Маріуполі, а з початком війни втік до Реклінгхаузена. Двічі пережила війну і втечу, втратила дім. Сьогодні вона допомагає іншим українкам через арт-терапію. «PostMost» буквально означає «після мосту». Йдеться про міст через річку Кальміус, який розділяє в Маріуполі житлову та промислову частини міста. Опублікувати більшість. Виставка художників з Маріуполя.",
+            "en": "Hoesch Museum Dortmund The exhibition “PostMost” in Dortmund’s Hoesch Museum shows paintings and graphics by artists from the eastern Ukrainian steel city of Mariupol. Many of them still live in the region today. The exhibition shows how the war changed life there. Mariupol in eastern Ukraine, with its international seaport and iron and steel works, was one of Ukraine's important industrial centers until the outbreak of war. Artists there began their “PostMost” project five years ago to show from an artistic perspective how the steel city of Mariupol is changing. The outbreak of war almost two years ago changed artistic perspectives. The works shown in the exhibition, including paintings, graphics, photographs and collages, deal with the war and the partially destroyed homeland. The works reflect fears, but also show hope for a better future. For example, the works of Lyudmila Simonova. The 38-year-old artist had lived in Mariupol since 2014 and fled to Recklinghausen when the war began. She experienced war and flight twice and lost her home. Today she helps other Ukrainian women through art therapy. “PostMost” literally means “after the bridge”. This refers to the bridge over the Kalmius River, which separates the residential and industrial parts of the city in Mariupol. Post Most. An exhibition with artists from Mariupol.",
+            "de": "Hoesch-Museum Dortmund Die Ausstellung „PostMost“ im Dortmunder Hoesch-Museum zeigt Gemälde und Grafiken von Künstlerinnen und Künstlern aus der ostukrainischen Stahl-Stadt Mariupol. Viele von ihnen leben noch heute in der Region. Die Ausstellung zeigt, wie der Krieg das Leben dort verändert hat. Mariupol in der Ostukraine war mit seinem internationalen Seehafen und seinen Eisen- und Stahlwerken bis zum Kriegsausbruch eines der bedeutenden Industriezentren der Ukraine. Schon vor fünf Jahren begannen Künstlerinnen und Künstler dort mit ihrem Projekt „PostMost“, um aus künstlerischer Perspektive zu zeigen, wie sich die Stahlstadt Mariupol wandelt. Der Kriegsausbruch vor fast zwei Jahren veränderte den künstlerischen Blick. Die in der Ausstellung gezeigten Werke, darunter Gemälde, Grafiken, Fotografien und Collagen setzen sich mit dem Krieg und der zum Teil zerstörten Heimat auseinander. Die Werke spiegeln so die Ängste wider, aber zeigen auch die Hoffnung auf eine bessere Zukunft. Zum Beispiel die Werke von Lyudmila Simonova. Die 38-jährige Künstlerin lebte seit 2014 in Mariupol und flüchtete mit Kriegsbeginn nach Recklinghausen. Zweimal erlebte sie Krieg und Flucht, verlor ihr Zuhause. Heute hilft sie anderen ukrainischen Frauen mittels Kunsttherapie. „PostMost“ heißt wörtlich übersetzt „nach der Brücke“. Gemeint ist die Brücke über den Fluss Kalmius, der in Mariupol den Wohn- und Industrieteil der Stadt trennt. Post Most. Eine Ausstellung mit Kunstschaffenden aus Mariupol."
+          }
+        },
+        {
+          "type": "image",
+          "src": "/images/events/id2/fb4.jpg",
+          "description": {
+            "uk": "Назва картини",
+            "en": "Назва картини",
+            "de": "Назва картини"
+          }
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "Музей Хеша в Дортмунді Виставка «PostMost» у дортмундському музеї Hoesch демонструє живопис і графіку художників зі східноукраїнського сталеливарного міста Маріуполь. Багато з них живуть у регіоні й сьогодні. Виставка показує, як війна змінила життя там. Маріуполь на сході України з його міжнародним морським портом і металургійним заводом був одним із важливих промислових центрів України до початку війни. Художники там розпочали свій проект «PostMost» п’ять років тому, щоб показати з мистецької точки зору, як змінюється сталеве місто Маріуполь. Війна, яка почалася майже два роки тому, змінила мистецькі перспективи. Роботи, представлені на виставці, серед яких живопис, графіка, фотографії та колажі, присвячені війні та частково зруйнованій Батьківщині. Твори відображають страхи, але й показують надію на краще майбутнє. Наприклад, роботи Людмили Симонової. 38-річний художник з 2014 року жив у Маріуполі, а з початком війни втік до Реклінгхаузена. Двічі пережила війну і втечу, втратила дім. Сьогодні вона допомагає іншим українкам через арт-терапію. «PostMost» буквально означає «після мосту». Йдеться про міст через річку Кальміус, який розділяє в Маріуполі житлову та промислову частини міста. Опублікувати більшість. Виставка художників з Маріуполя.",
+            "en": "Hoesch Museum Dortmund The exhibition “PostMost” in Dortmund’s Hoesch Museum shows paintings and graphics by artists from the eastern Ukrainian steel city of Mariupol. Many of them still live in the region today. The exhibition shows how the war changed life there. Mariupol in eastern Ukraine, with its international seaport and iron and steel works, was one of Ukraine's important industrial centers until the outbreak of war. Artists there began their “PostMost” project five years ago to show from an artistic perspective how the steel city of Mariupol is changing. The outbreak of war almost two years ago changed artistic perspectives. The works shown in the exhibition, including paintings, graphics, photographs and collages, deal with the war and the partially destroyed homeland. The works reflect fears, but also show hope for a better future. For example, the works of Lyudmila Simonova. The 38-year-old artist had lived in Mariupol since 2014 and fled to Recklinghausen when the war began. She experienced war and flight twice and lost her home. Today she helps other Ukrainian women through art therapy. “PostMost” literally means “after the bridge”. This refers to the bridge over the Kalmius River, which separates the residential and industrial parts of the city in Mariupol. Post Most. An exhibition with artists from Mariupol.",
+            "de": "Hoesch-Museum Dortmund Die Ausstellung „PostMost“ im Dortmunder Hoesch-Museum zeigt Gemälde und Grafiken von Künstlerinnen und Künstlern aus der ostukrainischen Stahl-Stadt Mariupol. Viele von ihnen leben noch heute in der Region. Die Ausstellung zeigt, wie der Krieg das Leben dort verändert hat. Mariupol in der Ostukraine war mit seinem internationalen Seehafen und seinen Eisen- und Stahlwerken bis zum Kriegsausbruch eines der bedeutenden Industriezentren der Ukraine. Schon vor fünf Jahren begannen Künstlerinnen und Künstler dort mit ihrem Projekt „PostMost“, um aus künstlerischer Perspektive zu zeigen, wie sich die Stahlstadt Mariupol wandelt. Der Kriegsausbruch vor fast zwei Jahren veränderte den künstlerischen Blick. Die in der Ausstellung gezeigten Werke, darunter Gemälde, Grafiken, Fotografien und Collagen setzen sich mit dem Krieg und der zum Teil zerstörten Heimat auseinander. Die Werke spiegeln so die Ängste wider, aber zeigen auch die Hoffnung auf eine bessere Zukunft. Zum Beispiel die Werke von Lyudmila Simonova. Die 38-jährige Künstlerin lebte seit 2014 in Mariupol und flüchtete mit Kriegsbeginn nach Recklinghausen. Zweimal erlebte sie Krieg und Flucht, verlor ihr Zuhause. Heute hilft sie anderen ukrainischen Frauen mittels Kunsttherapie. „PostMost“ heißt wörtlich übersetzt „nach der Brücke“. Gemeint ist die Brücke über den Fluss Kalmius, der in Mariupol den Wohn- und Industrieteil der Stadt trennt. Post Most. Eine Ausstellung mit Kunstschaffenden aus Mariupol."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": {
+        "uk": "Художники з Маріуполя показують свої роботи в «ПостМості»",
+        "en": "Artists from Mariupol show their works in “PostMost”",
+        "de": "Kunstschaffende aus Mariupol zeigen in »PostMost« ihre Werke"
+      },
+      "main_image": "/images/events/id2/fb6.jpg",
       "content": [
         {
           "type": "text",

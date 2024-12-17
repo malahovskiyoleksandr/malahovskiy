@@ -1,18 +1,15 @@
 import { NextResponse } from "next/server";
 
-// const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
-const DATA = "database.json";
-
 export async function GET() {
   try {
     const response = await fetch(
-      `https://api.github.com/repos/malahovskiyoleksandr/malahovskiy/contents/data/${DATA}`,
+      `https://api.github.com/repos/malahovskiyoleksandr/malahovskiy/contents/data/database.json`,
       {
         method: "GET",
         cache: "no-store",
         headers: {
           "Cache-Control": "no-cache", // Запрещаем использование кеша
-          // Authorization: `Bearer ${GITHUB_TOKEN}`,
+          Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
         },
       }
     );
@@ -20,7 +17,8 @@ export async function GET() {
     if (!response.ok) {
       return NextResponse.json(
         { error: "Ошибка при получении данных с GitHub" },
-        { status: response.status }
+        { status: response.status },
+        { statusText: response.statusText }
       );
     }
 
