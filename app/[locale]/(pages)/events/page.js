@@ -1,18 +1,8 @@
 import styles from "./events.module.scss";
 import Link from "next/link";
 import Image from "next/image";
-// import { motion } from "framer-motion";
-// import { useTranslation } from "react-i18next";
 import { Spinner } from "@nextui-org/react";
 import { NextResponse } from "next/server";
-
-// const imageVariants = {
-//   hiddenLeft: { opacity: 0, x: -200 }, // Появление слева
-//   hiddenRight: { opacity: 0, x: 200 }, // Появление справа
-//   hiddenTop: { opacity: 0, y: -200 }, // Появление сверху
-//   hiddenDown: { opacity: 0, y: 200 }, // Появление снизу
-//   visible: { opacity: 1, x: 0, y: 0 }, // Конечное состояние
-// };
 
 export async function getData() {
   try {
@@ -81,10 +71,6 @@ export default async function Events({ params }) {
                 <div
                   key={index}
                   className={styles.event}
-                  // initial="hiddenTop"
-                  // animate="visible"
-                  // transition={{ duration: 0.5 }}
-                  // variants={imageVariants}
                 >
                   <Link
                     href={`/events/${generateSlug(value.title.en)}`}

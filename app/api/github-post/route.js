@@ -4,19 +4,18 @@ const GITHUB_REPO = "malahovskiyoleksandr/malahovskiy";
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
 export async function POST(request) {
-  console.log(request)
   try {
     const { filePath, fileContent, commitMessage } = await request.json();
 
     if (!filePath || !fileContent || !commitMessage) {
-      return NextResponse.json({ error: "Invalid request data (API)" }, { status: 400 });
+      return NextResponse.json({ error: "Invalid request data" }, { status: 400 });
     }
 
-    // Проверяем, существует ли файл
-    const getFileUrl = `https://api.github.com/repos/${GITHUB_REPO}/contents/${filePath}`;
+    const url = `https://api.github.com/repos/${GITHUB_REPO}/contents/${filePath}`;
     let fileSHA = null;
 
-    const getResponse = await fetch(getFileUrl, {
+    // Проверяем, существует ли файл
+    const getResponse = await fetch(url, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${GITHUB_TOKEN}`,
@@ -27,14 +26,14 @@ export async function POST(request) {
       const fileData = await getResponse.json();
       fileSHA = fileData.sha;
     } else if (getResponse.status !== 404) {
-      throw new Error("Ошибка при проверке существования файла.");
+      throw new Error("Ошибка проверки файла на GitHub");
     }
 
-    // Кодируем содержимое файла в Base64
-    const fileContentBase64 = Buffer.from(fileContent).toString("base64");
+    // Кодируем файл в Base64
+    const encodedContent = Buffer.from(fileContent).toString("base64");
 
-    // Загружаем или обновляем файл
-    const putResponse = await fetch(getFileUrl, {
+    // Обновляем или создаем файл
+    const putResponse = await fetch(url, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${GITHUB_TOKEN}`,
@@ -42,19 +41,19 @@ export async function POST(request) {
       },
       body: JSON.stringify({
         message: commitMessage,
-        content: fileContentBase64,
+        content: encodedContent,
         sha: fileSHA || undefined,
       }),
     });
 
     if (!putResponse.ok) {
-      throw new Error("Ошибка при загрузке файла.(API)");
+      throw new Error("Ошибка при обновлении файла на GitHub");
     }
 
     const result = await putResponse.json();
     return NextResponse.json({ success: true, result });
   } catch (error) {
-    console.error("(API)Ошибка:", error.message);
+    console.error("Ошибка API:", error.message);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

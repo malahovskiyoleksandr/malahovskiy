@@ -171,7 +171,7 @@ export default function Header() {
             </motion.div>
           </NavbarItem>
         ))}
-        {/* <Link href="/admin">Admin</Link> */}
+        <Link href="/admin">Admin</Link>
       </NavbarContent>
       <LanguageChanger />
 
