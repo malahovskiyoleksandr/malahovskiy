@@ -3,15 +3,30 @@
 import styles from "./admin.module.scss";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Textarea, Tabs, Tab, Card, CardBody, Input, Button, Spinner } from "@nextui-org/react";
+import {
+  Textarea,
+  Tabs,
+  Tab,
+  Card,
+  CardBody,
+  Input,
+  Button,
+  Spinner,
+  RadioGroup,
+  Radio,
+} from "@nextui-org/react";
 import Image from "next/image";
+import React from "react";
 
-export default function AdminPage() {
+export default function AdminPage({ params }) {
+  const locale = params.locale;
   const router = useRouter();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [database, setDatabase] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const [placement, setPlacement] = React.useState("top");
 
   // Проверка авторизации
   useEffect(() => {
@@ -79,24 +94,24 @@ export default function AdminPage() {
   // Отправка изменений на сервер
   const handleSubmit = async () => {
     setIsSubmitting(true);
-  
+
     const payload = {
       filePath: "data/database.json",
       fileContent: JSON.stringify(database, null, 2),
       commitMessage: "Изменения через админ-панель",
     };
-    
+
     try {
       const response = await fetch("/api/github-post", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-  
+
       if (!response.ok) {
         throw new Error("Ошибка при обновлении данных");
       }
-  
+
       const result = await response.json();
       console.log("Изменения успешно сохранены:", result);
     } catch (error) {
@@ -105,7 +120,6 @@ export default function AdminPage() {
       setIsSubmitting(false);
     }
   };
-  
 
   if (loading || !database) {
     return (
@@ -140,10 +154,168 @@ export default function AdminPage() {
       <div className={styles.main}>
         <Tabs aria-label="Админ Панель">
           {/* Редактирование главной страницы */}
-          <Tab key="home" title="Главная" className={styles.home}>
+          <Tab key="home" title="Головна" className={styles.home}>
             <Card>
               <CardBody>
                 <form className={styles.form}>
+                  <h2>Название сайта:</h2>
+                  {["uk", "en", "de"].map((lang) => (
+                    <Input
+                      key={lang}
+                      className={styles.input}
+                      label={`Название (${lang.toUpperCase()})`}
+                      value={database.home.name[lang]}
+                      onChange={(e) => handleChange(e, `home.name.${lang}`)}
+                    />
+                  ))}
+
+                  <h2>Описание:</h2>
+                  {["uk", "en", "de"].map((lang) => (
+                    <Textarea
+                      key={lang}
+                      className={styles.textarea}
+                      label={`Описание (${lang.toUpperCase()})`}
+                      value={database.home.description[lang]}
+                      onChange={(e) =>
+                        handleChange(e, `home.description.${lang}`)
+                      }
+                    />
+                  ))}
+
+                  <h2>Главное изображение:</h2>
+                  <Image
+                    src={database.home.main_image.src}
+                    alt="Main Image"
+                    width={300}
+                    height={200}
+                  />
+
+                  <Button
+                    color="success"
+                    onClick={handleSubmit}
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Сохранение..." : "Сохранить изменения"}
+                  </Button>
+                </form>
+              </CardBody>
+            </Card>
+          </Tab>
+
+          {/* Редактирование раздела галереи */}
+          <Tab key="gallery" title="Галерея" className={styles.gallery}>
+            <Tabs aria-label="Галерея">
+              {["industrial", "portraits", "dark_side"].map((section) => (
+                <Tab key={section} title={section}>
+                  <Card>
+                    <CardBody>
+                      <h2>{section}</h2>
+                      {["uk", "en", "de"].map((lang) => (
+                        <Input
+                          key={lang}
+                          label={`Название (${lang.toUpperCase()})`}
+                          value={database.gallery[section].name[lang]}
+                          onChange={(e) =>
+                            handleChange(e, `gallery.${section}.name.${lang}`)
+                          }
+                        />
+                      ))}
+                      {["uk", "en", "de"].map((lang) => (
+                        <Textarea
+                          key={lang}
+                          label={`Описание (${lang.toUpperCase()})`}
+                          value={database.gallery[section].description[lang]}
+                          onChange={(e) =>
+                            handleChange(
+                              e,
+                              `gallery.${section}.description.${lang}`
+                            )
+                          }
+                        />
+                      ))}
+
+                      {/* Редактирование изображений */}
+                      <div>
+                        {database.gallery[section].page.map((image, index) => (
+                          <div key={image.id} className={styles.imageSection}>
+                            <Image
+                              src={image.src}
+                              alt={image.name.en}
+                              width={100}
+                              height={100}
+                            />
+                            {["uk", "en", "de"].map((lang) => (
+                              <div key={lang}>
+                                <Input
+                                  label={`Название (${lang.toUpperCase()})`}
+                                  value={image.name[lang]}
+                                  onChange={(e) =>
+                                    handleChange(
+                                      e,
+                                      `gallery.${section}.page.${index}.name.${lang}`
+                                    )
+                                  }
+                                />
+                                <Textarea
+                                  label={`Описание (${lang.toUpperCase()})`}
+                                  value={image.description[lang]}
+                                  onChange={(e) =>
+                                    handleChange(
+                                      e,
+                                      `gallery.${section}.page.${index}.description.${lang}`
+                                    )
+                                  }
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        ))}
+                      </div>
+
+                      <Button
+                        color="success"
+                        onClick={handleSubmit}
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? "Сохранение..." : "Сохранить изменения"}
+                      </Button>
+                    </CardBody>
+                  </Card>
+                </Tab>
+              ))}
+            </Tabs>
+          </Tab>
+
+          <Tab key="events" title="Заходи" className={styles.gallery}>
+            {database.events.map((event, index) => (
+              <Card key={index}>
+                <CardBody>
+                  <div className="flex flex-col px-4">
+                    <div className="flex w-full flex-col">
+                      <Tabs aria-label="Options" placement="start">
+                        <Tab key="text" title="Text">
+                          <Card>
+                            <CardBody>{event.title[locale]}</CardBody>
+                          </Card>
+                        </Tab>
+                        <Tab key="photos" title="Photos">
+                          <Card>
+                            <CardBody></CardBody>
+                          </Card>
+                        </Tab>
+                        {/* <Tab key="videos" title="Videos">
+                          <Card>
+                            <CardBody>
+                              Excepteur sint occaecat cupidatat non proident,
+                              sunt in culpa qui officia deserunt mollit anim id
+                              est laborum.
+                            </CardBody>
+                          </Card>
+                        </Tab> */}
+                      </Tabs>
+                    </div>
+                  </div>
+                  {/* <form className={styles.form}>
                   <h2>Название сайта:</h2>
                   {["uk", "en", "de"].map((lang) => (
                     <Input
@@ -177,87 +349,16 @@ export default function AdminPage() {
                   <Button color="success" onClick={handleSubmit} disabled={isSubmitting}>
                     {isSubmitting ? "Сохранение..." : "Сохранить изменения"}
                   </Button>
-                </form>
-              </CardBody>
-            </Card>
-          </Tab>
-
-          {/* Редактирование раздела галереи */}
-          <Tab key="gallery" title="Галерея" className={styles.gallery}>
-            <Tabs aria-label="Галерея">
-              {["industrial", "portraits", "dark_side"].map((section) => (
-                <Tab key={section} title={section}>
-                  <Card>
-                    <CardBody>
-                      <h2>{section}</h2>
-                      {["uk", "en", "de"].map((lang) => (
-                        <Input
-                          key={lang}
-                          label={`Название (${lang.toUpperCase()})`}
-                          value={database.gallery[section].name[lang]}
-                          onChange={(e) => handleChange(e, `gallery.${section}.name.${lang}`)}
-                        />
-                      ))}
-                      {["uk", "en", "de"].map((lang) => (
-                        <Textarea
-                          key={lang}
-                          label={`Описание (${lang.toUpperCase()})`}
-                          value={database.gallery[section].description[lang]}
-                          onChange={(e) =>
-                            handleChange(e, `gallery.${section}.description.${lang}`)
-                          }
-                        />
-                      ))}
-
-                      {/* Редактирование изображений */}
-                      <div>
-                        {database.gallery[section].page.map((image, index) => (
-                          <div key={image.id} className={styles.imageSection}>
-                            <Image src={image.src} alt={image.name.en} width={100} height={100} />
-                            {["uk", "en", "de"].map((lang) => (
-                              <div key={lang}>
-                                <Input
-                                  label={`Название (${lang.toUpperCase()})`}
-                                  value={image.name[lang]}
-                                  onChange={(e) =>
-                                    handleChange(e, `gallery.${section}.page.${index}.name.${lang}`)
-                                  }
-                                />
-                                <Textarea
-                                  label={`Описание (${lang.toUpperCase()})`}
-                                  value={image.description[lang]}
-                                  onChange={(e) =>
-                                    handleChange(
-                                      e,
-                                      `gallery.${section}.page.${index}.description.${lang}`
-                                    )
-                                  }
-                                />
-                              </div>
-                            ))}
-                          </div>
-                        ))}
-                      </div>
-
-                      <Button color="success" onClick={handleSubmit} disabled={isSubmitting}>
-                        {isSubmitting ? "Сохранение..." : "Сохранить изменения"}
-                      </Button>
-                    </CardBody>
-                  </Card>
-                </Tab>
-              ))}
-            </Tabs>
+                </form> */}
+                </CardBody>
+              </Card>
+            ))}
           </Tab>
         </Tabs>
       </div>
     </div>
   );
 }
-
-
-
-
-
 
 // "use client";
 

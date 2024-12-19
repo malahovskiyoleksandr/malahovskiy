@@ -10,6 +10,7 @@ import { Spinner } from "@nextui-org/react";
 export default function PhotoGallery({ params }) {
   const locale = params.locale;
   const [database, setDatabase] = useState();
+  const [hoveredImage, setHoveredImage] = useState(null);
 
   const image_listRef = useRef(null);
 
@@ -142,6 +143,14 @@ export default function PhotoGallery({ params }) {
     }
   };
 
+  const handleMouseEnter = (image) => {
+    setHoveredImage(image); // Устанавливаем текущее изображение
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredImage(null); // Сбрасываем состояние при уходе мыши
+  };
+
   if (!database) {
     return (
       <div className="flex items-center justify-center h-screen">
@@ -153,6 +162,19 @@ export default function PhotoGallery({ params }) {
   return (
     <div id="gallery" className={styles.image_list} ref={image_listRef}>
       {database?.gallery?.industrial?.page.map((image, index) => (
+        // <Tooltip
+        // placement={"bottom"}
+        //   key={index}
+        //   content={
+        //     <div className={styles.Tooltip}>
+        //       <div className={styles.Tooltip_name}>{image.name[locale]}</div>
+        //       <div className={styles.Tooltip_description}>
+        //         {image.description[locale]}
+        //       </div>
+        //     </div>
+        //   }
+        //   classNames="Tooltip"
+        // >
         <a
           className={styles.image_Link}
           key={index}
@@ -161,16 +183,6 @@ export default function PhotoGallery({ params }) {
           data-pswp-height={image.height}
           data-id={image.id}
         >
-          <Tooltip
-            content={
-              <div className="px-1 py-2">
-                <div className="text-small font-bold">{image.name[locale]}</div>
-                <div className="text-tiny">{image.description[locale]}</div>
-              </div>
-            }
-          >
-            <span className={styles.Tooltip}>i</span>
-          </Tooltip>
           <Image
             id={image.id}
             className={styles.image}
@@ -180,7 +192,7 @@ export default function PhotoGallery({ params }) {
             src={image.src}
             // placeholder="blur" // размытие заднего фона при загрузке картинки
             // blurDataURL="/path-to-small-blurry-version.jpg" // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
-            quality={10}
+            quality={40}
             priority={true} // если true - loading = 'lazy' отменяеться
             // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
             fill={false} //заставляет изображение заполнять родительский элемент
@@ -188,11 +200,18 @@ export default function PhotoGallery({ params }) {
             // sizes="100vh"
             width={image.width} // задать правильное соотношение сторон адаптивного изображения
             height={image.height}
+            onMouseEnter={() => {
+              
+            }}
           />
-          {/* <label htmlFor={image.id} className={styles.image_description}>
-            {image.description[locale]}
-          </label> */}
+          <div className={styles.Tooltip}>
+            <div className={styles.Tooltip_name}>{image.name[locale]}</div>
+            <div className={styles.Tooltip_description}>
+              {image.description[locale]}
+            </div>
+          </div>
         </a>
+        // </Tooltip>
       ))}
     </div>
   );

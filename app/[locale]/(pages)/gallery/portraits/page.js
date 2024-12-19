@@ -180,7 +180,7 @@ export default function PhotoGallery({ params }) {
             src={image.src}
             // placeholder="blur" // размытие заднего фона при загрузке картинки
             // blurDataURL="/path-to-small-blurry-version.jpg" // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
-            quality={10}
+            quality={40}
             priority={true} // если true - loading = 'lazy' отменяеться
             // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
             fill={false} //заставляет изображение заполнять родительский элемент
