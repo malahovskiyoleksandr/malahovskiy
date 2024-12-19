@@ -4,13 +4,11 @@ import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import styles from "../gallery.module.scss";
-import { Tooltip } from "@nextui-org/tooltip";
 import { Spinner } from "@nextui-org/react";
 
 export default function PhotoGallery({ params }) {
   const locale = params.locale;
   const [database, setDatabase] = useState();
-  const [hoveredImage, setHoveredImage] = useState(null);
 
   const image_listRef = useRef(null);
 
@@ -29,7 +27,7 @@ export default function PhotoGallery({ params }) {
     };
     loadData();
   }, []);
-
+  
   useEffect(() => {
     let lightbox; // Инициализация Lightbox
     const image_list = image_listRef.current;
@@ -143,14 +141,6 @@ export default function PhotoGallery({ params }) {
     }
   };
 
-  const handleMouseEnter = (image) => {
-    setHoveredImage(image); // Устанавливаем текущее изображение
-  };
-
-  const handleMouseLeave = () => {
-    setHoveredImage(null); // Сбрасываем состояние при уходе мыши
-  };
-
   if (!database) {
     return (
       <div className="flex items-center justify-center h-screen">
@@ -162,19 +152,6 @@ export default function PhotoGallery({ params }) {
   return (
     <div id="gallery" className={styles.image_list} ref={image_listRef}>
       {database?.gallery?.industrial?.page.map((image, index) => (
-        // <Tooltip
-        // placement={"bottom"}
-        //   key={index}
-        //   content={
-        //     <div className={styles.Tooltip}>
-        //       <div className={styles.Tooltip_name}>{image.name[locale]}</div>
-        //       <div className={styles.Tooltip_description}>
-        //         {image.description[locale]}
-        //       </div>
-        //     </div>
-        //   }
-        //   classNames="Tooltip"
-        // >
         <a
           className={styles.image_Link}
           key={index}
@@ -200,139 +177,26 @@ export default function PhotoGallery({ params }) {
             // sizes="100vh"
             width={image.width} // задать правильное соотношение сторон адаптивного изображения
             height={image.height}
-            onMouseEnter={() => {
-              
+            style={{
+              // objectPosition: line.index === 0 ? "0% 30%" : "top",
+              // objectPosition:
+              //   index === 0
+              //     ? "0% 50%"
+              //     : index === 1
+              //     ? "0% 30%"
+              //     : index === 2
+              //     ? "0% 45%"
+              //     : "center",
             }}
           />
-          <div className={styles.Tooltip}>
-            <div className={styles.Tooltip_name}>{image.name[locale]}</div>
-            <div className={styles.Tooltip_description}>
+          <div className={styles.tooltip}>
+            <div className={styles.tooltip_name}>{image.name[locale]}</div>
+            <div className={styles.tooltip_description}>
               {image.description[locale]}
             </div>
           </div>
         </a>
-        // </Tooltip>
       ))}
     </div>
   );
 }
-
-// "use client";
-
-// import { useEffect, useRef } from "react";
-// import Link from "next/link";
-// import Image from "next/image";
-// import PhotoSwipeLightbox from "photoswipe/lightbox";
-// import styles from "./industrial.module.scss";
-// import imagesData from "@/data/database.json";
-
-// export default function PhotoGallery() {
-//   const images = imagesData.gallery.industrial.page;
-//   const image_listRef = useRef(null);
-
-//   useEffect(() => {
-//     // Инициализация PhotoSwipe Lightbox
-//     if (typeof window !== "undefined") {
-//       const lightbox = new PhotoSwipeLightbox({
-//         gallery: "#gallery",
-//         children: "a",
-//         pswpModule: () => import("photoswipe"),
-//       });
-//       lightbox.init();
-
-//       return () => {
-//         lightbox.destroy(); // Уничтожить экземпляр при размонтировании
-//       };
-//     }
-//   }, []);
-
-//   useEffect(() => {
-//     const image_list = image_listRef.current;
-
-//     function scrollHorizontally(e) {
-//       e = window.event || e; // Поддержка IE и современных браузеров
-//       const delta = Math.max(-1, Math.min(1, e.wheelDelta || -e.detail)); // Направление прокрутки
-//       if (image_list) {
-//         e.preventDefault(); // Отключаем стандартную вертикальную прокрутку
-//         image_list.scrollBy({
-//           left: delta * 200, // Прокрутка по горизонтали
-//           behavior: "smooth", // Плавная прокрутка
-//         });
-//       }
-//     }
-
-//     if (image_list) {
-//       if (image_list.addEventListener) {
-//         // Современные браузеры
-//         image_list.addEventListener("wheel", scrollHorizontally, {
-//           passive: false,
-//         });
-//         image_list.addEventListener("mousewheel", scrollHorizontally, false);
-//         image_list.addEventListener(
-//           "DOMMouseScroll",
-//           scrollHorizontally,
-//           false
-//         ); // Firefox
-//       } else if (image_list.attachEvent) {
-//         // Для старых версий IE
-//         image_list.attachEvent("onmousewheel", scrollHorizontally);
-//       }
-//     }
-
-//     return () => {
-//       if (image_list) {
-//         image_list.removeEventListener("mousewheel", scrollHorizontally);
-//         image_list.removeEventListener("DOMMouseScroll", scrollHorizontally);
-//       }
-//     };
-//   }, []);
-
-//   return (
-//     <div id="gallery" className={styles.image_list} ref={image_listRef}>
-//       {images.map((image, index) => (
-//         <Link
-//           className={styles.image_Link}
-//           key={index}
-//           href={image.src}
-//           data-pswp-width={image.width}
-//           data-pswp-height={image.height}
-//         >
-//           <Image
-//             id={image.id}
-//             className={styles.image}
-//             // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
-//             // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
-//             alt={image.name}
-//             src={image.src}
-//             // placeholder="blur" // размытие заднего фона при загрузке картинки
-//             // blurDataURL="/path-to-small-blurry-version.jpg" // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
-//             quality={10}
-//             priority={true} // если true - loading = 'lazy' отменяеться
-//             // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
-//             fill={false} //заставляет изображение заполнять родительский элемент
-//             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
-//             // sizes="100vh"
-//             width={image.width} // задать правильное соотношение сторон адаптивного изображения
-//             height={image.height}
-//             // style={{
-//             //   width: "350px",
-//             //   height: "250px",
-//             //   objectFit: "cover", // Изображение масштабируется, обрезаясь
-//             //     objectFit: "contain", // Изображение масштабируется, не обрезаясь
-//             //     objectPosition: line.index === 0 ? "0% 30%" : "top",
-//             //     objectPosition:
-//             //       index === 0
-//             //         ? "0% 50%"
-//             //         : index === 1
-//             //         ? "0% 30%"
-//             //         : index === 2
-//             //         ? "0% 45%"
-//             //         : "center",
-//             // }}
-//           />
-//           <label htmlFor={image.id}>{image.name}</label>
-//         </Link>
-//       ))}
-//     </div>
-//   );
-// }

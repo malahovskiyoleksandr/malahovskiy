@@ -161,16 +161,6 @@ export default function PhotoGallery({ params }) {
           data-pswp-height={image.height}
           data-id={image.id}
         >
-          <Tooltip
-            content={
-              <div className="px-1 py-2">
-                <div className="text-small font-bold">{image.name[locale]}</div>
-                <div className="text-tiny">{image.description[locale]}</div>
-              </div>
-            }
-          >
-            <span className={styles.Tooltip}>i</span>
-          </Tooltip>
           <Image
             id={image.id}
             className={styles.image}
@@ -189,9 +179,12 @@ export default function PhotoGallery({ params }) {
             width={image.width} // задать правильное соотношение сторон адаптивного изображения
             height={image.height}
           />
-          {/* <label htmlFor={image.id} className={styles.image_description}>
-            {image.description[locale]}
-          </label> */}
+          <div className={styles.tooltip}>
+            <div className={styles.tooltip_name}>{image.name[locale]}</div>
+            <div className={styles.tooltip_description}>
+              {image.description[locale]}
+            </div>
+          </div>
         </a>
       ))}
     </div>
