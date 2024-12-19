@@ -211,84 +211,97 @@ export default function AdminPage({ params }) {
           {/* Редактирование раздела галереи */}
           <Tab key="gallery" title="Галерея" className={styles.gallery}>
             <Tabs aria-label="Галерея">
-              {["industrial", "portraits", "dark_side"].map((section) => (
-                <Tab key={section} title={section}>
-                  <Card>
+              {database.gallery &&
+                Object.entries(database.gallery).map(([key, value], index) => (
+                  <Tab key={index} title={key}>
+                    <Card>
                     <CardBody>
-                      <h2>{section}</h2>
-                      {["uk", "en", "de"].map((lang) => (
-                        <Input
-                          key={lang}
-                          label={`Название (${lang.toUpperCase()})`}
-                          value={database.gallery[section].name[lang]}
-                          onChange={(e) =>
-                            handleChange(e, `gallery.${section}.name.${lang}`)
-                          }
-                        />
-                      ))}
-                      {["uk", "en", "de"].map((lang) => (
-                        <Textarea
-                          key={lang}
-                          label={`Описание (${lang.toUpperCase()})`}
-                          value={database.gallery[section].description[lang]}
-                          onChange={(e) =>
-                            handleChange(
-                              e,
-                              `gallery.${section}.description.${lang}`
-                            )
-                          }
-                        />
-                      ))}
+  <h2>{key}</h2>
+  {value.name &&
+    Object.entries(value.name).map(([lang, value], index) => (
+      <Input
+        key={index}
+        label={`Название (${lang.toUpperCase()})`}
+        value={value}
+        onChange={(e) =>
+          handleChange(e, `gallery.${key}.name.${lang}`)
+        }
+        onKeyDown={(e) => {
+          if (e.key === "Enter") handleSubmit();
+        }}
+      />
+    ))}
+  {value.description &&
+    Object.entries(value.description).map(([lang, value], index) => (
+      <Textarea
+        key={index}
+        label={`Описание (${lang.toUpperCase()})`}
+        value={value}
+        onChange={(e) =>
+          handleChange(e, `gallery.${key}.description.${lang}`)
+        }
+        onKeyDown={(e) => {
+          if (e.key === "Enter") handleSubmit();
+        }}
+      />
+    ))}
+  {/* Редактирование изображений */}
+  <div>
+    {value.page.map((image, index) => (
+      <div key={index} className={styles.imageSection}>
+        <Image
+          src={image.src}
+          alt={image.name.en}
+          width={100}
+          height={100}
+        />
+        {image.name &&
+          Object.entries(image.name).map(([lang, nameValue]) => (
+            <div key={lang}>
+              <Input
+                label={`Название (${lang.toUpperCase()})`}
+                value={nameValue}
+                onChange={(e) =>
+                  handleChange(
+                    e,
+                    `gallery.${key}.page.${index}.name.${lang}`
+                  )
+                }
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") handleSubmit();
+                }}
+              />
+              <Textarea
+                label={`Описание (${lang.toUpperCase()})`}
+                value={image.description[lang]}
+                onChange={(e) =>
+                  handleChange(
+                    e,
+                    `gallery.${key}.page.${index}.description.${lang}`
+                  )
+                }
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") handleSubmit();
+                }}
+              />
+            </div>
+          ))}
+      </div>
+    ))}
+  </div>
 
-                      {/* Редактирование изображений */}
-                      <div>
-                        {database.gallery[section].page.map((image, index) => (
-                          <div key={image.id} className={styles.imageSection}>
-                            <Image
-                              src={image.src}
-                              alt={image.name.en}
-                              width={100}
-                              height={100}
-                            />
-                            {["uk", "en", "de"].map((lang) => (
-                              <div key={lang}>
-                                <Input
-                                  label={`Название (${lang.toUpperCase()})`}
-                                  value={image.name[lang]}
-                                  onChange={(e) =>
-                                    handleChange(
-                                      e,
-                                      `gallery.${section}.page.${index}.name.${lang}`
-                                    )
-                                  }
-                                />
-                                <Textarea
-                                  label={`Описание (${lang.toUpperCase()})`}
-                                  value={image.description[lang]}
-                                  onChange={(e) =>
-                                    handleChange(
-                                      e,
-                                      `gallery.${section}.page.${index}.description.${lang}`
-                                    )
-                                  }
-                                />
-                              </div>
-                            ))}
-                          </div>
-                        ))}
-                      </div>
+  <Button
+    color="success"
+    onClick={handleSubmit}
+    disabled={isSubmitting}
+  >
+    {isSubmitting ? "Сохранение..." : "Сохранить изменения"}
+  </Button>
+</CardBody>
 
-                      <Button
-                        color="success"
-                        onClick={handleSubmit}
-                        disabled={isSubmitting}
-                      >
-                        {isSubmitting ? "Сохранение..." : "Сохранить изменения"}
-                      </Button>
-                    </CardBody>
-                  </Card>
-                </Tab>
-              ))}
+                    </Card>
+                  </Tab>
+                ))}
             </Tabs>
           </Tab>
 

@@ -650,8 +650,8 @@
     {
       "id": 3,
       "title": {
-        "uk": "Маріупольський художній проєкт &quot;POST MOST 5&quot; у Кам’янському",
-        "en": "",
+        "uk": "Маріупольський художній проєкт 'POST MOST' у Кам’янському",
+        "en": "Mariupol art project 'POST MOST' in Kamiansk",
         "de": ""
       },
       "data": "2 грудня 2023",
@@ -660,7 +660,7 @@
         {
           "type": "text",
           "value": {
-            "uk": "2 грудня у Музеї історії Кам’янського презентували виставку &quot;POST MOST 5. Живопис індустріальних міст&quot;.",
+            "uk": "2 грудня у Музеї історії Кам’янського презентували виставку 'POST MOST 5. Живопис індустріальних міст'.",
             "en": "",
             "de": ""
           }
@@ -684,7 +684,7 @@
         },
         {
           "type": "image",
-          "src": "/images/events/id3/ZAHID_3 KAMIANSKE_2.png",
+          "src": "/images/events/id3/ZAHID_3 KAMIANSKE_2.jpg",
           "description": {
             "uk": "Назва картини",
             "en": "Назва картини",
@@ -701,7 +701,7 @@
         },
         {
           "type": "image",
-          "src": "/images/events/id3/ZAHID_3 KAMIANSKE_3.png",
+          "src": "/images/events/id3/ZAHID_3 KAMIANSKE_3.jpg",
           "description": {
             "uk": "Назва картини",
             "en": "Назва картини",
@@ -718,7 +718,7 @@
         },
         {
           "type": "image",
-          "src": "/images/events/id3/ZAHID_3 KAMIANSKE_4.png",
+          "src": "/images/events/id3/ZAHID_3 KAMIANSKE_4.jpg",
           "description": {
             "uk": "Назва картини",
             "en": "Назва картини",
@@ -735,7 +735,7 @@
         },
         {
           "type": "image",
-          "src": "/images/events/id3/ZAHID_3 KAMIANSKE_5.png",
+          "src": "/images/events/id3/ZAHID_3 KAMIANSKE_5.jpg",
           "description": {
             "uk": "Назва картини",
             "en": "Назва картини",
