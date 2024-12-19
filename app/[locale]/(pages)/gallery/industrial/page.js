@@ -27,7 +27,7 @@ export default function PhotoGallery({ params }) {
     };
     loadData();
   }, []);
-  
+
   useEffect(() => {
     let lightbox; // Инициализация Lightbox
     const image_list = image_listRef.current;
@@ -68,9 +68,8 @@ export default function PhotoGallery({ params }) {
             const popupContainer = document.createElement("div");
             popupContainer.className = styles.popupContainer;
             popupContainer.innerHTML = `
-                <h3 class="${styles.popupTitle}">Информация о фото</h3>
-                <p class="${styles.popupDescription}"><strong>Описание:</strong> ${photoData?.name[locale]}</p>
-                <p class="${styles.popupDescription}"><strong>Источник:</strong> ${photoData?.description[locale]}</p>
+                <p class="${styles.popupTitle}">${photoData?.name[locale]}</p>
+                <p class="${styles.popupDescription}">${photoData?.description[locale]}</p>
                 <button class="${styles.closePopupButton}" id="close-popup">Закрыть</button>
               `;
             document.body.appendChild(popupContainer);
@@ -143,7 +142,7 @@ export default function PhotoGallery({ params }) {
 
   if (!database) {
     return (
-      <div className="flex items-center justify-center h-screen">
+      <div className="flex items-center justify-center h-[95vh]">
         <Spinner color="warning" label="Loading" labelColor="warning" />
       </div>
     );

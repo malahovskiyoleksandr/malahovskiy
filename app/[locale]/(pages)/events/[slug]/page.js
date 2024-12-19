@@ -135,7 +135,7 @@ export default function EventPage({ params }) {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-screen">
+      <div className="flex items-center justify-center h-[95vh]">
         <Spinner color="warning" label="Loading" labelColor="warning" />
       </div>
     );
@@ -143,7 +143,7 @@ export default function EventPage({ params }) {
 
   if (!database) {
     return (
-      <div className="flex items-center justify-center h-screen">
+      <div className="flex items-center justify-center h-[95vh]">
         <p>Событие не найдено</p>
       </div>
     );
