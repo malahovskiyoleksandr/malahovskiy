@@ -650,24 +650,24 @@
     {
       "id": 3,
       "title": {
-        "uk": "Художники з Маріуполя показують свої роботи в «ПостМості»",
-        "en": "Artists from Mariupol show their works in “PostMost”",
-        "de": "Kunstschaffende aus Mariupol zeigen in »PostMost« ihre Werke"
+        "uk": "Маріупольський художній проєкт &quot;POST MOST 5&quot; у Кам’янському",
+        "en": "",
+        "de": ""
       },
-      "data": "12.12.2024",
-      "main_image": "/images/events/id2/fb6.jpg",
+      "data": "2 грудня 2023",
+      "main_image": "/images/events/id3/ZAHID_3 KAMIANSKE_1.png",
       "content": [
         {
           "type": "text",
           "value": {
-            "uk": "Музей Хеша в Дортмунді Виставка «PostMost» у дортмундському музеї Hoesch демонструє живопис і графіку художників зі східноукраїнського сталеливарного міста Маріуполь. Багато з них живуть у регіоні й сьогодні. Виставка показує, як війна змінила життя там. Маріуполь на сході України з його міжнародним морським портом і металургійним заводом був одним із важливих промислових центрів України до початку війни. Художники там розпочали свій проект «PostMost» п’ять років тому, щоб показати з мистецької точки зору, як змінюється сталеве місто Маріуполь. Війна, яка почалася майже два роки тому, змінила мистецькі перспективи. Роботи, представлені на виставці, серед яких живопис, графіка, фотографії та колажі, присвячені війні та частково зруйнованій Батьківщині. Твори відображають страхи, але й показують надію на краще майбутнє. Наприклад, роботи Людмили Симонової. 38-річний художник з 2014 року жив у Маріуполі, а з початком війни втік до Реклінгхаузена. Двічі пережила війну і втечу, втратила дім. Сьогодні вона допомагає іншим українкам через арт-терапію. «PostMost» буквально означає «після мосту». Йдеться про міст через річку Кальміус, який розділяє в Маріуполі житлову та промислову частини міста. Опублікувати більшість. Виставка художників з Маріуполя.",
-            "en": "Hoesch Museum Dortmund The exhibition “PostMost” in Dortmund’s Hoesch Museum shows paintings and graphics by artists from the eastern Ukrainian steel city of Mariupol. Many of them still live in the region today. The exhibition shows how the war changed life there. Mariupol in eastern Ukraine, with its international seaport and iron and steel works, was one of Ukraine's important industrial centers until the outbreak of war. Artists there began their “PostMost” project five years ago to show from an artistic perspective how the steel city of Mariupol is changing. The outbreak of war almost two years ago changed artistic perspectives. The works shown in the exhibition, including paintings, graphics, photographs and collages, deal with the war and the partially destroyed homeland. The works reflect fears, but also show hope for a better future. For example, the works of Lyudmila Simonova. The 38-year-old artist had lived in Mariupol since 2014 and fled to Recklinghausen when the war began. She experienced war and flight twice and lost her home. Today she helps other Ukrainian women through art therapy. “PostMost” literally means “after the bridge”. This refers to the bridge over the Kalmius River, which separates the residential and industrial parts of the city in Mariupol. Post Most. An exhibition with artists from Mariupol.",
-            "de": "Hoesch-Museum Dortmund Die Ausstellung „PostMost“ im Dortmunder Hoesch-Museum zeigt Gemälde und Grafiken von Künstlerinnen und Künstlern aus der ostukrainischen Stahl-Stadt Mariupol. Viele von ihnen leben noch heute in der Region. Die Ausstellung zeigt, wie der Krieg das Leben dort verändert hat. Mariupol in der Ostukraine war mit seinem internationalen Seehafen und seinen Eisen- und Stahlwerken bis zum Kriegsausbruch eines der bedeutenden Industriezentren der Ukraine. Schon vor fünf Jahren begannen Künstlerinnen und Künstler dort mit ihrem Projekt „PostMost“, um aus künstlerischer Perspektive zu zeigen, wie sich die Stahlstadt Mariupol wandelt. Der Kriegsausbruch vor fast zwei Jahren veränderte den künstlerischen Blick. Die in der Ausstellung gezeigten Werke, darunter Gemälde, Grafiken, Fotografien und Collagen setzen sich mit dem Krieg und der zum Teil zerstörten Heimat auseinander. Die Werke spiegeln so die Ängste wider, aber zeigen auch die Hoffnung auf eine bessere Zukunft. Zum Beispiel die Werke von Lyudmila Simonova. Die 38-jährige Künstlerin lebte seit 2014 in Mariupol und flüchtete mit Kriegsbeginn nach Recklinghausen. Zweimal erlebte sie Krieg und Flucht, verlor ihr Zuhause. Heute hilft sie anderen ukrainischen Frauen mittels Kunsttherapie. „PostMost“ heißt wörtlich übersetzt „nach der Brücke“. Gemeint ist die Brücke über den Fluss Kalmius, der in Mariupol den Wohn- und Industrieteil der Stadt trennt. Post Most. Eine Ausstellung mit Kunstschaffenden aus Mariupol."
+            "uk": "2 грудня у Музеї історії Кам’янського презентували виставку &quot;POST MOST 5. Живопис індустріальних міст&quot;.",
+            "en": "",
+            "de": ""
           }
         },
         {
           "type": "image",
-          "src": "/images/events/id2/fb4.jpg",
+          "src": "/images/events/id3/ZAHID_3 KAMIANSKE_1.png",
           "description": {
             "uk": "Назва картини",
             "en": "Назва картини",
@@ -677,9 +677,133 @@
         {
           "type": "text",
           "value": {
-            "uk": "Музей Хеша в Дортмунді Виставка «PostMost» у дортмундському музеї Hoesch демонструє живопис і графіку художників зі східноукраїнського сталеливарного міста Маріуполь. Багато з них живуть у регіоні й сьогодні. Виставка показує, як війна змінила життя там. Маріуполь на сході України з його міжнародним морським портом і металургійним заводом був одним із важливих промислових центрів України до початку війни. Художники там розпочали свій проект «PostMost» п’ять років тому, щоб показати з мистецької точки зору, як змінюється сталеве місто Маріуполь. Війна, яка почалася майже два роки тому, змінила мистецькі перспективи. Роботи, представлені на виставці, серед яких живопис, графіка, фотографії та колажі, присвячені війні та частково зруйнованій Батьківщині. Твори відображають страхи, але й показують надію на краще майбутнє. Наприклад, роботи Людмили Симонової. 38-річний художник з 2014 року жив у Маріуполі, а з початком війни втік до Реклінгхаузена. Двічі пережила війну і втечу, втратила дім. Сьогодні вона допомагає іншим українкам через арт-терапію. «PostMost» буквально означає «після мосту». Йдеться про міст через річку Кальміус, який розділяє в Маріуполі житлову та промислову частини міста. Опублікувати більшість. Виставка художників з Маріуполя.",
-            "en": "Hoesch Museum Dortmund The exhibition “PostMost” in Dortmund’s Hoesch Museum shows paintings and graphics by artists from the eastern Ukrainian steel city of Mariupol. Many of them still live in the region today. The exhibition shows how the war changed life there. Mariupol in eastern Ukraine, with its international seaport and iron and steel works, was one of Ukraine's important industrial centers until the outbreak of war. Artists there began their “PostMost” project five years ago to show from an artistic perspective how the steel city of Mariupol is changing. The outbreak of war almost two years ago changed artistic perspectives. The works shown in the exhibition, including paintings, graphics, photographs and collages, deal with the war and the partially destroyed homeland. The works reflect fears, but also show hope for a better future. For example, the works of Lyudmila Simonova. The 38-year-old artist had lived in Mariupol since 2014 and fled to Recklinghausen when the war began. She experienced war and flight twice and lost her home. Today she helps other Ukrainian women through art therapy. “PostMost” literally means “after the bridge”. This refers to the bridge over the Kalmius River, which separates the residential and industrial parts of the city in Mariupol. Post Most. An exhibition with artists from Mariupol.",
-            "de": "Hoesch-Museum Dortmund Die Ausstellung „PostMost“ im Dortmunder Hoesch-Museum zeigt Gemälde und Grafiken von Künstlerinnen und Künstlern aus der ostukrainischen Stahl-Stadt Mariupol. Viele von ihnen leben noch heute in der Region. Die Ausstellung zeigt, wie der Krieg das Leben dort verändert hat. Mariupol in der Ostukraine war mit seinem internationalen Seehafen und seinen Eisen- und Stahlwerken bis zum Kriegsausbruch eines der bedeutenden Industriezentren der Ukraine. Schon vor fünf Jahren begannen Künstlerinnen und Künstler dort mit ihrem Projekt „PostMost“, um aus künstlerischer Perspektive zu zeigen, wie sich die Stahlstadt Mariupol wandelt. Der Kriegsausbruch vor fast zwei Jahren veränderte den künstlerischen Blick. Die in der Ausstellung gezeigten Werke, darunter Gemälde, Grafiken, Fotografien und Collagen setzen sich mit dem Krieg und der zum Teil zerstörten Heimat auseinander. Die Werke spiegeln so die Ängste wider, aber zeigen auch die Hoffnung auf eine bessere Zukunft. Zum Beispiel die Werke von Lyudmila Simonova. Die 38-jährige Künstlerin lebte seit 2014 in Mariupol und flüchtete mit Kriegsbeginn nach Recklinghausen. Zweimal erlebte sie Krieg und Flucht, verlor ihr Zuhause. Heute hilft sie anderen ukrainischen Frauen mittels Kunsttherapie. „PostMost“ heißt wörtlich übersetzt „nach der Brücke“. Gemeint ist die Brücke über den Fluss Kalmius, der in Mariupol den Wohn- und Industrieteil der Stadt trennt. Post Most. Eine Ausstellung mit Kunstschaffenden aus Mariupol."
+            "uk": "Унікальність експозиції полягає в тому, що там роботи художників не лише з Кам`янського, а й з Кривого Рогу, Запоріжжя, Дніпра і Маріуполя. Виставку створили учасники ГО &quot;Ліга вільних художників &quot;ARS ALTERA&quot; у межах мистецького проєкту &quot;POST MOST 5&quot;, який саме у Маріуполі виник й раніше експонувався. Роботи присвячені самобутній специфіці промислових міст. В них митці міркують про взаємодію людини з індустріальним середовищем, чи впливають вони одне на одного чи, навпаки, відторгають.",
+            "en": "",
+            "de": ""
+          }
+        },
+        {
+          "type": "image",
+          "src": "/images/events/id3/ZAHID_3 KAMIANSKE_2.png",
+          "description": {
+            "uk": "Назва картини",
+            "en": "Назва картини",
+            "de": "Назва картини"
+          }
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "Відрізнити один металургійний завод від іншого можуть інженери. Інші люди бачать циклопічні конструкції та розуміють, що всередині величезних ємностей знаходяться небезпечні для людини речовини та механізми. А митці дивляться ще глибше. І бачать в індустріальних пейзажах протиборство живої людської суті та ворожого середовища, створеного самою людиною. Цей проєкт ще до війни поєднував художників Маріуполя. Сьогодні вони розлетілись по різних містах та країнах. Приїхати на виставку до Кам’янського змогли не всі. За допомогою Інтернету вдалося протягнути міст до Німеччини та Австрії. Полотна з краєвидами «Азовсталі» сьогодні набули історичної цінності. Одного дня війна скінчиться, але зруйноване місто Марії (так перекладається з грецької Маріуполь) вже ніколи не буде таким, як раніше. На виставці в Музеї історії до колег з Маріуполя, Кривого Рогу, Одеси, Києва, Дніпра, Мерзебурга, Зігена та Брегенса приєдналися художники з Кам’янського. Усього 13 авторів, більшість із яких були присутні на презентації. А з рештою, наприклад, з Оленою Українцевою, можна було поспілкуватися в онлайн режимі – під час телемосту.",
+            "en": "",
+            "de": ""
+          }
+        },
+        {
+          "type": "image",
+          "src": "/images/events/id3/ZAHID_3 KAMIANSKE_3.png",
+          "description": {
+            "uk": "Назва картини",
+            "en": "Назва картини",
+            "de": "Назва картини"
+          }
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "Основною тематикою картин були індустріальні пейзажі, портрети роботників заводу. На них були як види нашого меткомбінату, екскурсію яким організували для учасників виставки, так і ще не зруйнованої «Азовсталі». Були й антивоєннікартини, присвячені руйнації останньої. Велику роботу з організації виставки було проведено членом НСХУ Олександром Малаховським, котрий перехопив естафету в реалізації проєкту від Олени Українцевої, яка нині перебуває в Німеччині.",
+            "en": "",
+            "de": ""
+          }
+        },
+        {
+          "type": "image",
+          "src": "/images/events/id3/ZAHID_3 KAMIANSKE_4.png",
+          "description": {
+            "uk": "Назва картини",
+            "en": "Назва картини",
+            "de": "Назва картини"
+          }
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "Вернісаж відвідав заступник міського голови Маріуполя Сергій Орлов, а також маріупольські художники, що наразі мешкають у різних містах. Метою проєкту &quot;POST MOST 5. Живопис індустріальних міст&quot; є дослідження художніми методами проблематики адаптації людини в індустріальному та постіндустріальному просторах та пошук загальних тенденцій розвитку мистецтва даного напряму в Україні та Європі у найбільш індустріально розвинених регіонах.",
+            "en": "",
+            "de": ""
+          }
+        },
+        {
+          "type": "image",
+          "src": "/images/events/id3/ZAHID_3 KAMIANSKE_5.png",
+          "description": {
+            "uk": "Назва картини",
+            "en": "Назва картини",
+            "de": "Назва картини"
+          }
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "https://nashreporter.com/suspilstvo/muzej-istoriyi-kamyanskogo-zaproshuye-na-vystavku-118604",
+            "en": "",
+            "de": ""
+          }
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "https://lcity.dp.ua/154554-u-kam-ianskomu-vidkrylasia-nova-vystavka-kartyn-foto/",
+            "en": "",
+            "de": ""
+          }
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "https://lcity.dp.ua/153711-u-muzei-kam-ianskoho-hotuiut-vystavku-industrialnykh-pejzazhiv/",
+            "en": "",
+            "de": ""
+          }
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "https://sobitie.com.ua/kultura/hudozhnij-proyekt-narodzhenyj-u-mariupoli-prezentuvaly-v-kamyanskomu-302225/",
+            "en": "",
+            "de": ""
+          }
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "https://www.ukr.net/news/details/dnipro/101337839.html",
+            "en": "",
+            "de": ""
+          }
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "https://ua-news.in.ua/y-kam-ianskomy-vidkrilasia-nova-vistavka-kartin-foto/",
+            "en": "",
+            "de": ""
+          }
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "https://nashreporter.com/suspilstvo/v-muzeyi-istoriyi-kamyanskogo-buv-vernisazh-119730",
+            "en": "",
+            "de": ""
+          }
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "https://mis.dp.ua/news-ua/zhyvopys-industrialnyh-mist-predstavyly-u-kamyanskomu?fbclid=IwAR37ky4-aV0LBa6BCG1IY9UIQy2Jmg75kKomyZqmsAJ-VoNC7T5TPAWf1kY",
+            "en": "",
+            "de": ""
           }
         }
       ]

@@ -73,73 +73,101 @@ $text-color: #fff;
     display: flex;
     flex-direction: column;
 
-    // .home {
+    .home {
+      .form {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
 
-    // }
-
-    .form {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      
-
-      .industrial_box {
-        .inputList_Industrial {
-          .inputItem {
-          }
-        }
-        .textareaList_Industrial {
-          .textareaItem {
-          }
-        }
-      }
-
-      .industrial_box__images {
-        // display: flex;
-        // flex-wrap: wrap;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 1rem;
-        // width: 100%;
-
-        .industrial_box__image_item {
-          padding: 1rem;
-          background-color: #c7c7c7;
-          border-radius: 0.5rem;
-
-          .image {
-            margin: 0 auto;
-            height: 10rem;
-            width: auto;
-            object-fit: cover;
-          }
-
-          .industrial_box__image_item_nameDescription {
+        .industrial_box {
+          .inputList_Industrial {
             .inputItem {
-              margin: 0.5rem 0;
+            }
+          }
+          .textareaList_Industrial {
+            .textareaItem {
+            }
+          }
+        }
+
+        .industrial_box__images {
+          // display: flex;
+          // flex-wrap: wrap;
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 1rem;
+          // width: 100%;
+
+          .industrial_box__image_item {
+            padding: 1rem;
+            background-color: #c7c7c7;
+            border-radius: 0.5rem;
+
+            .image {
+              margin: 0 auto;
+              height: 10rem;
+              width: auto;
+              object-fit: cover;
+            }
+
+            .industrial_box__image_item_nameDescription {
+              .inputItem {
+                margin: 0.5rem 0;
+              }
+            }
+          }
+        }
+
+        .portraits_box {
+          .inputList_Portraits {
+            .inputItem {
+            }
+          }
+          .textareaList_Portraits {
+            .textareaItem {
+            }
+          }
+        }
+
+        .darkSide_box {
+          .inputList_DarkSide {
+            .inputItem {
+            }
+          }
+          .textareaList_DarkSide {
+            .textareaItem {
             }
           }
         }
       }
+    }
 
-      .portraits_box {
-        .inputList_Portraits {
-          .inputItem {
-          }
-        }
-        .textareaList_Portraits {
-          .textareaItem {
-          }
-        }
-      }
+    .gallery {
+    }
 
-      .darkSide_box {
-        .inputList_DarkSide {
-          .inputItem {
-          }
-        }
-        .textareaList_DarkSide {
-          .textareaItem {
+    .events {
+      .events_container {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 1rem;
+
+        .event_item {
+          display: block;
+          width: 100%;
+          max-width: 300px;
+          padding: 0.3rem;
+
+          .image_box {
+            position: relative;
+            height: 200px;
+            margin-bottom: 1rem;
+            .image {
+              width: auto;
+              height: 100%;
+              object-fit: cover;
+              margin: 0 0 1rem 0;
+            }
           }
         }
       }

@@ -4,11 +4,10 @@
 @tailwind utilities;
 
 :root {
-  // --background: #f4f9ff;
-  // --font-color: #FFF0E0;
   --font-color: #000000;
   --fontform_lable-color: #624b1b;
-  // --font-color: #8a6c45;
+  --size-header: 7vh;
+  --size-body: 93vh;
 }
 
 body {

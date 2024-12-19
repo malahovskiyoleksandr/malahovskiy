@@ -1,5 +1,8 @@
 "use client";
 
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
 import styles from "./admin.module.scss";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -15,8 +18,13 @@ import {
   RadioGroup,
   Radio,
 } from "@nextui-org/react";
-import Image from "next/image";
-import React from "react";
+
+function generateSlug(title) {
+  return title
+    .toLowerCase()
+    .replace(/ /g, "-")
+    .replace(/[^\w-]+/g, "");
+}
 
 export default function AdminPage({ params }) {
   const locale = params.locale;
@@ -25,8 +33,6 @@ export default function AdminPage({ params }) {
   const [loading, setLoading] = useState(true);
   const [database, setDatabase] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const [placement, setPlacement] = React.useState("top");
 
   // Проверка авторизации
   useEffect(() => {
@@ -286,73 +292,54 @@ export default function AdminPage({ params }) {
             </Tabs>
           </Tab>
 
-          <Tab key="events" title="Заходи" className={styles.gallery}>
-            {database.events.map((event, index) => (
-              <Card key={index}>
-                <CardBody>
-                  <div className="flex flex-col px-4">
-                    <div className="flex w-full flex-col">
-                      <Tabs aria-label="Options" placement="start">
-                        <Tab key="text" title="Text">
-                          <Card>
-                            <CardBody>{event.title[locale]}</CardBody>
-                          </Card>
-                        </Tab>
-                        <Tab key="photos" title="Photos">
-                          <Card>
-                            <CardBody></CardBody>
-                          </Card>
-                        </Tab>
-                        {/* <Tab key="videos" title="Videos">
-                          <Card>
-                            <CardBody>
-                              Excepteur sint occaecat cupidatat non proident,
-                              sunt in culpa qui officia deserunt mollit anim id
-                              est laborum.
-                            </CardBody>
-                          </Card>
-                        </Tab> */}
-                      </Tabs>
-                    </div>
-                  </div>
-                  {/* <form className={styles.form}>
-                  <h2>Название сайта:</h2>
-                  {["uk", "en", "de"].map((lang) => (
-                    <Input
-                      key={lang}
-                      className={styles.input}
-                      label={`Название (${lang.toUpperCase()})`}
-                      value={database.home.name[lang]}
-                      onChange={(e) => handleChange(e, `home.name.${lang}`)}
-                    />
+          <Tab key="events" title="Заходи" className={styles.events}>
+            <Card>
+              <CardBody>
+                <section className={styles.events_container}>
+                  {database.events.map((event, index) => (
+                    <Link
+                      key={index}
+                      href={`/admin/${generateSlug(event.title.en)}`}
+                      className={styles.event_item}
+                    >
+                      <div className={styles.image_box}>
+                        <Image
+                          className={styles.image}
+                          // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
+                          // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
+                          alt={event.title[locale]}
+                          src={event.main_image}
+                          // placeholder="blur" // размытие заднего фона при загрузке картинки
+                          // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
+                          quality={10} //качество картнки в %
+                          priority={true} // если true - loading = 'lazy' отменяеться
+                          // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
+                          fill={true} //заставляет изображение заполнять родительский элемент
+                          // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
+                          sizes="100%"
+                          // width={300} // задать правильное соотношение сторон адаптивного изображения
+                          // height={200}
+                          style={
+                            {
+                              // width: "200px",
+                              // height: "200px",
+                              // objectFit: "cover", // Изображение масштабируется, обрезая края
+                              // objectFit: "contain", // Изображение масштабируется, не обрезаясь
+                              // objectPosition: "top",
+                              // margin: "0 0 1rem 0",
+                            }
+                          }
+                        />
+                      </div>
+                      <span className={styles.event_data}>28 жовтня 2024</span>
+                      <h3 className={styles.event_name}>
+                        {event.title[locale]}
+                      </h3>
+                    </Link>
                   ))}
-
-                  <h2>Описание:</h2>
-                  {["uk", "en", "de"].map((lang) => (
-                    <Textarea
-                      key={lang}
-                      className={styles.textarea}
-                      label={`Описание (${lang.toUpperCase()})`}
-                      value={database.home.description[lang]}
-                      onChange={(e) => handleChange(e, `home.description.${lang}`)}
-                    />
-                  ))}
-
-                  <h2>Главное изображение:</h2>
-                  <Image
-                    src={database.home.main_image.src}
-                    alt="Main Image"
-                    width={300}
-                    height={200}
-                  />
-
-                  <Button color="success" onClick={handleSubmit} disabled={isSubmitting}>
-                    {isSubmitting ? "Сохранение..." : "Сохранить изменения"}
-                  </Button>
-                </form> */}
-                </CardBody>
-              </Card>
-            ))}
+                </section>
+              </CardBody>
+            </Card>
           </Tab>
         </Tabs>
       </div>
