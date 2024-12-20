@@ -164,9 +164,8 @@ export default function EventPage({ params }) {
               );
             } else if (block.type === "image") {
               return (
-                <div className={styles.event_images_box} key={index}>
                   <Image
-                    className={styles.event_images}
+                    className={styles.image}
                     // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
                     // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
                     alt={block.description[locale] || "Event Image"}
@@ -176,11 +175,11 @@ export default function EventPage({ params }) {
                     quality={100} //качество картнки в %
                     priority={true} // если true - loading = 'lazy' отменяеться
                     // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
-                    fill={true} //заставляет изображение заполнять родительский элемент
+                    fill={false} //заставляет изображение заполнять родительский элемент
                     // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
                     sizes="100%"
-                    // width={300} // задать правильное соотношение сторон адаптивного изображения
-                    // height={200}
+                    width={300} // задать правильное соотношение сторон адаптивного изображения
+                    height={200}
                     style={
                       {
                         // width: "200px",
@@ -192,7 +191,6 @@ export default function EventPage({ params }) {
                       }
                     }
                   />
-                </div>
               );
             } else if (block.type === "imageS") {
               return (
@@ -222,11 +220,11 @@ export default function EventPage({ params }) {
                         quality={100}
                         priority={true} // если true - loading = 'lazy' отменяеться
                         // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
-                        fill={true} //заставляет изображение заполнять родительский элемент
+                        fill={false} //заставляет изображение заполнять родительский элемент
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
                         // sizes="100vh"
-                        // width={500} // задать правильное соотношение сторон адаптивного изображения
-                        // height={500}
+                        width={100} // задать правильное соотношение сторон адаптивного изображения
+                        height={100}
                       />
                     </a>
                   ))}
