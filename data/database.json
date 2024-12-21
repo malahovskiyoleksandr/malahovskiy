@@ -929,6 +929,16 @@
           }
         }
       ]
+    },
+    {
+      "title": {
+        "uk": "Новий івент",
+        "en": "New Event",
+        "de": "Neues Ereignis"
+      },
+      "date": "2024-01-01",
+      "main_image": "https://via.placeholder.com/300x200",
+      "content": []
     }
   ]
 }
