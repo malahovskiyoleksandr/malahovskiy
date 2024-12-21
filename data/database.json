@@ -939,7 +939,24 @@
       },
       "date": "2024-01-01",
       "main_image": "/images/events/id1/post_most_reconnect.jpg",
-      "content": []
+      "content": [
+        {
+          "type": "text",
+          "value": {
+            "uk": "111",
+            "en": "",
+            "de": ""
+          }
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "2222",
+            "en": "",
+            "de": ""
+          }
+        }
+      ]
     }
   ]
 }
