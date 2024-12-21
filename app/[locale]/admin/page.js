@@ -95,32 +95,54 @@ export default function AdminPage({ params }) {
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
-
+  
     try {
       const payload = {
         filePath: "data/database.json",
         fileContent: JSON.stringify(database, null, 2),
-        commitMessage: "Updated database via admin panel",
+        commitMessage: "Добавлен новый ивент через админ-панель",
       };
-
+  
       const response = await fetch("/api/github-post", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-
+  
       if (!response.ok) {
-        throw new Error("Failed to update data");
+        throw new Error("Ошибка при сохранении данных");
       }
-
+  
       const result = await response.json();
-      console.log("Changes saved successfully:", result);
+      console.log("Изменения успешно сохранены:", result);
     } catch (error) {
-      console.error("Error saving:", error.message);
+      console.error("Ошибка сохранения:", error.message);
     } finally {
       setIsSubmitting(false);
-    }
+    };
   };
+  
+
+  const handleAddEvent = () => {
+    setDatabase((prev) => {
+      const updated = { ...prev };
+      const newEvent = {
+        title: { uk: "Новий івент", en: "New Event", de: "Neues Ereignis" },
+        date: "2024-01-01",
+        main_image: "/path/to/default-image.jpg",
+        content: [],
+      };
+  
+      updated.events.push(newEvent);
+      const newEventIndex = updated.events.length - 1;
+  
+      // Перенаправляем на страницу редактирования
+      router.push(`/admin/${generateSlug(newEvent.title.en)}`);
+  
+      return updated;
+    });
+  };
+  
 
   if (isLoading) {
     return (
@@ -334,27 +356,53 @@ export default function AdminPage({ params }) {
           </Tab>
 
           {/* События */}
-          <Tab key="events" title="Заходи">
+          <Tab key="events" title="Заходи" className={styles.events}>
             <Card>
               <CardBody>
                 <section className={styles.events_container}>
                   {database.events.map((event, index) => (
                     <Link
+                      className={styles.event_link}
                       key={index}
                       href={`/admin/${generateSlug(event.title.en)}`}
                     >
-                      <div>
+                      <div className={styles.image_box}>
                         <Image
+                          className={styles.image}
+                          // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
+                          // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
                           alt={event.title[locale]}
                           src={event.main_image}
-                          width={300}
-                          height={200}
+                          // placeholder="blur" // размытие заднего фона при загрузке картинки
+                          // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
+                          quality={100} //качество картнки в %
+                          priority={true} // если true - loading = 'lazy' отменяеться
+                          // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
+                          fill={true} //заставляет изображение заполнять родительский элемент
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          // width={300} // задать правильное соотношение сторон адаптивного изображения
+                          // height={200}
+                          style={
+                            {
+                              // width: "200px",
+                              // height: "200px",
+                              // objectFit: "cover", // Изображение масштабируется, обрезая края
+                              // objectFit: "contain", // Изображение масштабируется, не обрезаясь
+                              // objectPosition: "top",
+                              // margin: "0 0 1rem 0",
+                            }
+                          }
                         />
-                        <h3>{event.title[locale]}</h3>
                       </div>
+                      <h3 className={styles.title}>{event.title[locale]}</h3>
+                      {/* <span className={styles.event_data}>28 жовтня 2024</span> */}
                     </Link>
                   ))}
                 </section>
+
+                <Button color="success" onClick={handleAddEvent}>
+                  Добавить новый ивент
+                </Button>
               </CardBody>
             </Card>
           </Tab>
