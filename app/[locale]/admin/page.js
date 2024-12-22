@@ -89,6 +89,14 @@ export default function AdminPage({ params }) {
       });
 
       target[keys[keys.length - 1]] = value;
+
+      // Логируем обновление
+      updated.logs.push({
+        timestamp: new Date().toISOString(),
+        action: "update",
+        target: path,
+        details: `Updated "${path}": "${oldValue}" → "${value}"`,
+      });
       return updated;
     });
   };
@@ -105,6 +113,14 @@ export default function AdminPage({ params }) {
     setDatabase((prev) => {
       const updated = { ...prev };
       updated.events.push(newEvent);
+
+      // Добавляем запись в логи
+      updated.logs.push({
+        timestamp: new Date().toISOString(),
+        action: "add",
+        target: "events",
+        details: `Added new event: ${newEvent.title.en}`,
+      });
       return updated;
     });
 
@@ -119,20 +135,27 @@ export default function AdminPage({ params }) {
     const confirmDelete = confirm(
       "Вы уверены, что хотите удалить этот ивент? Это действие нельзя отменить."
     );
-  
+
     if (confirmDelete) {
       setDatabase((prev) => {
         const updated = { ...prev };
         updated.events = prev.events.filter((_, i) => i !== index);
-  
-        // Отправляем обновленные данные после обновления состояния
-        handleSubmit(updated);
-  
+
+        // Логируем удаление
+        updated.logs.push({
+          timestamp: new Date().toISOString(),
+          action: "delete",
+          target: "events",
+          details: `Deleted event: ${deletedEvent.title.en}`,
+        });
+
         return updated; // Возвращаем обновленное состояние
       });
+      // Отправляем обновленные данные после обновления состояния
+      handleSubmit(updated);
     }
   };
-  
+
   const handleSubmit = async (updatedDatabase = database) => {
     try {
       const payload = {
@@ -140,24 +163,23 @@ export default function AdminPage({ params }) {
         fileContent: JSON.stringify(updatedDatabase, null, 2),
         commitMessage: "Updated database via admin panel",
       };
-  
+
       const response = await fetch("/api/github-post", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-  
+
       if (!response.ok) {
         throw new Error("Failed to update data");
       }
-  
+
       const result = await response.json();
       console.log("Changes saved successfully:", result);
     } catch (error) {
       console.error("Error saving:", error.message);
     }
   };
-  
 
   if (isLoading) {
     return (
@@ -432,6 +454,33 @@ export default function AdminPage({ params }) {
                 >
                   {isSubmitting ? "Збереження..." : "Зберегти зміни"}
                 </Button> */}
+              </CardBody>
+            </Card>
+          </Tab>
+
+          <Tab key="logs" title="Історія змін">
+            <Card>
+              <CardBody>
+                <h2>Історія змін</h2>
+                <div className={styles.logs}>
+                  {database.logs.map((log, index) => (
+                    <div key={index} className={styles.logItem}>
+                      <p>
+                        <strong>Время:</strong>{" "}
+                        {new Date(log.timestamp).toLocaleString()}
+                      </p>
+                      <p>
+                        <strong>Действие:</strong> {log.action}
+                      </p>
+                      <p>
+                        <strong>Цель:</strong> {log.target}
+                      </p>
+                      <p>
+                        <strong>Подробности:</strong> {log.details}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </CardBody>
             </Card>
           </Tab>

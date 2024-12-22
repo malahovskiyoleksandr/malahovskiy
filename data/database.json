@@ -930,5 +930,13 @@
         }
       ]
     }
+  ],
+  "logs": [
+    {
+      "timestamp": "2024-12-21T14:30:00Z",
+      "action": "add",
+      "target": "events",
+      "details": "Added new event 'New Year Celebration'"
+    }
   ]
 }
