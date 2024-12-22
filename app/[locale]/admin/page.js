@@ -17,12 +17,12 @@ import {
   Spinner,
 } from "@nextui-org/react";
 
-function generateSlug(title) {
+const generateSlug = (title) => {
   return title
     .toLowerCase()
     .replace(/ /g, "-")
     .replace(/[^\w-]+/g, "");
-}
+};
 
 export default function AdminPage({ params }) {
   const locale = params.locale;
@@ -95,54 +95,67 @@ export default function AdminPage({ params }) {
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
-  
+
     try {
       const payload = {
         filePath: "data/database.json",
         fileContent: JSON.stringify(database, null, 2),
-        commitMessage: "Добавлен новый ивент через админ-панель",
+        commitMessage: "Удалён ивент через админку",
       };
-  
+
       const response = await fetch("/api/github-post", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-  
+
       if (!response.ok) {
-        throw new Error("Ошибка при сохранении данных");
+        throw new Error("Ошибка при сохранении изменений");
       }
-  
+
       const result = await response.json();
       console.log("Изменения успешно сохранены:", result);
     } catch (error) {
       console.error("Ошибка сохранения:", error.message);
     } finally {
       setIsSubmitting(false);
-    };
+    }
   };
-  
 
-  const handleAddEvent = () => {
+  const handleAddEvent = async () => {
+    const newEvent = {
+      id: 5,
+      title: { uk: "Новий івент", en: "New Event", de: "Neues Ereignis" },
+      date: "2024-01-01",
+      main_image: "/images/events/id1/post_most_reconnect.jpg",
+      content: [],
+    };
+
     setDatabase((prev) => {
       const updated = { ...prev };
-      const newEvent = {
-        title: { uk: "Новий івент", en: "New Event", de: "Neues Ereignis" },
-        date: "2024-01-01",
-        main_image: "/path/to/default-image.jpg",
-        content: [],
-      };
-  
       updated.events.push(newEvent);
-      const newEventIndex = updated.events.length - 1;
-  
-      // Перенаправляем на страницу редактирования
-      router.push(`/admin/${generateSlug(newEvent.title.en)}`);
-  
       return updated;
     });
+
+    await handleSubmit();
+
+    // Используем правильный slug для перехода
+    const slug = generateSlug(newEvent.title.en);
+    router.push(`/admin/${slug}`);
   };
-  
+
+  const handleDeleteEvent = (index) => {
+    const confirmDelete = confirm(
+      "Вы уверены, что хотите удалить этот ивент? Это действие нельзя отменить."
+    );
+
+    if (confirmDelete) {
+      setDatabase((prev) => ({
+        ...prev,
+        events: prev.events.filter((_, i) => i !== index),
+      }));
+    }
+  };
 
   if (isLoading) {
     return (
@@ -178,7 +191,7 @@ export default function AdminPage({ params }) {
             router.push("/login");
           }}
         >
-          Выйти
+          Вийти
         </Button>
       </header>
 
@@ -361,47 +374,61 @@ export default function AdminPage({ params }) {
               <CardBody>
                 <section className={styles.events_container}>
                   {database.events.map((event, index) => (
-                    <Link
-                      className={styles.event_link}
-                      key={index}
-                      href={`/admin/${generateSlug(event.title.en)}`}
-                    >
-                      <div className={styles.image_box}>
-                        <Image
-                          className={styles.image}
-                          // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
-                          // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
-                          alt={event.title[locale]}
-                          src={event.main_image}
-                          // placeholder="blur" // размытие заднего фона при загрузке картинки
-                          // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
-                          quality={100} //качество картнки в %
-                          priority={true} // если true - loading = 'lazy' отменяеться
-                          // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
-                          fill={true} //заставляет изображение заполнять родительский элемент
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          // width={300} // задать правильное соотношение сторон адаптивного изображения
-                          // height={200}
-                          style={
-                            {
-                              // width: "200px",
-                              // height: "200px",
-                              // objectFit: "cover", // Изображение масштабируется, обрезая края
-                              // objectFit: "contain", // Изображение масштабируется, не обрезаясь
-                              // objectPosition: "top",
-                              // margin: "0 0 1rem 0",
+                    <div key={index} className={styles.events_box}>
+                      <Link
+                        className={styles.event_link}
+                        href={`/admin/${generateSlug(event.title.en)}`}
+                      >
+                        <div className={styles.image_box}>
+                          <Image
+                            className={styles.image}
+                            // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
+                            // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
+                            alt={event.title[locale]}
+                            src={event.main_image}
+                            // placeholder="blur" // размытие заднего фона при загрузке картинки
+                            // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
+                            quality={100} //качество картнки в %
+                            priority={true} // если true - loading = 'lazy' отменяеться
+                            // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
+                            fill={true} //заставляет изображение заполнять родительский элемент
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            // width={300} // задать правильное соотношение сторон адаптивного изображения
+                            // height={200}
+                            style={
+                              {
+                                // width: "200px",
+                                // height: "200px",
+                                // objectFit: "cover", // Изображение масштабируется, обрезая края
+                                // objectFit: "contain", // Изображение масштабируется, не обрезаясь
+                                // objectPosition: "top",
+                                // margin: "0 0 1rem 0",
+                              }
                             }
-                          }
-                        />
-                      </div>
-                      <h3 className={styles.title}>{event.title[locale]}</h3>
-                      {/* <span className={styles.event_data}>28 жовтня 2024</span> */}
-                    </Link>
+                          />
+                        </div>
+                        <h3 className={styles.title}>{event.title[locale]}</h3>
+                        {/* <span className={styles.event_data}>28 жовтня 2024</span> */}
+                      </Link>
+                      <Button
+                        color="danger"
+                        className={styles.delete_button}
+                        onClick={() => handleDeleteEvent(index)}
+                      >
+                        Видалити
+                      </Button>
+                    </div>
                   ))}
                 </section>
-
                 <Button color="success" onClick={handleAddEvent}>
-                  Добавить новый ивент
+                  Додати новий івент
+                </Button>
+                <Button
+                  color="success"
+                  onClick={handleSubmit}
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Збереження..." : "Зберегти зміни"}
                 </Button>
               </CardBody>
             </Card>

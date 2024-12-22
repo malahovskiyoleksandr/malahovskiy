@@ -153,27 +153,32 @@ $text-color: #fff;
         gap: 1rem;
         width: 100%;
 
-        .event_link {
+        .events_box {
           width: 100%;
           max-width: 300px;
-          // padding: 0.3rem;
-          height: 250px;
+          // height: 300px;
 
-          .image_box {
-            position: relative;
-            height: 200px;
-            margin-bottom: 1rem;
-            .image {
-              width: auto;
-              height: 100%;
-              object-fit: cover;
-              margin: 0 0 1rem 0;
+          .event_link {
+            .image_box {
+              position: relative;
+              height: 200px;
+              margin-bottom: 1rem;
+              .image {
+                width: auto;
+                height: 100%;
+                object-fit: cover;
+                margin: 0 0 1rem 0;
+              }
+            }
+  
+            .title {
+              display: block;
+              height: 30px;
             }
           }
 
-          .title {
-            display: block;
-            height: 30px;
+          .delete_button {
+            margin: 0.5rem 0;
           }
         }
       }

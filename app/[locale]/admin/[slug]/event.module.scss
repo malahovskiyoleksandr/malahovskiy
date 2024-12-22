@@ -1,20 +1,32 @@
 .main_block {
-  padding: 20px;
+  // padding: 5rem 0;
+  // margin: 0;
   background-color: #f9f9f9;
+
+  .header {
+    display: flex;
+    align-items: center;
+    // position: fixed;
+    width: 100%;
+    height: 3rem;
+    padding: 0 2rem;
+    background-color: #dadada;
+    z-index: 20;
+
+    >* {
+      margin: 0 0.5rem;
+    }
+  }
 
   .event {
     max-width: 800px;
     margin: 0 auto;
+    padding: 1.5rem;
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    padding: 20px;
     font-family: "Mariupol-Bold", sans-serif;
-
-    // > *{
-    //   margin: 2rem 0;
-    // }
 
     .name_events {
       .name_events_textarea {
@@ -32,6 +44,8 @@
 
     .event_content {
       margin: 1rem 0;
+      padding: 1rem;
+      background-color: #555;
 
       .block_type_text {
         margin: 1rem 0;

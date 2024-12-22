@@ -164,7 +164,8 @@ export default function EventPage({ params }) {
               );
             } else if (block.type === "image") {
               return (
-                  <Image
+                <Image
+                key={index}
                     className={styles.image}
                     // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
                     // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
