@@ -143,6 +143,42 @@ $text-color: #fff;
     }
 
     .gallery {
+      .name_events {
+      }
+
+      .description_events {
+      }
+
+      .tab_images_box {
+        margin: 5rem 0;
+
+        .imageSection {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          flex-wrap: wrap;
+          background-color: #e7e7e7;
+          border-radius: 10px;
+          margin: 2rem 0;
+          height: auto;
+
+          .image_box {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            .image {
+              object-fit: cover;
+            }
+          }
+          .imageSection_input_textarea__box {
+            width: 100%;
+            .imageSection_input {
+            }
+            .image_imageSection_textarea {
+            }
+          }
+        }
+      }
     }
 
     .events {
@@ -170,7 +206,7 @@ $text-color: #fff;
                 margin: 0 0 1rem 0;
               }
             }
-  
+
             .title {
               display: block;
               height: 30px;
@@ -191,21 +227,20 @@ $text-color: #fff;
       border: 1px solid #ddd;
       border-radius: 8px;
       background-color: #f9f9f9;
-    
+
       .logItem {
         margin-bottom: 1rem;
         padding: 0.5rem;
         border-bottom: 1px solid #ccc;
-    
+
         &:last-child {
           border-bottom: none;
         }
-    
+
         p {
           margin: 0.2rem 0;
         }
       }
     }
-    
   }
 }
