@@ -93,38 +93,9 @@ export default function AdminPage({ params }) {
     });
   };
 
-  const handleSubmit = async () => {
-    setIsSubmitting(true);
-
-    try {
-      const payload = {
-        filePath: "data/database.json",
-        fileContent: JSON.stringify(database, null, 2),
-        commitMessage: "Удалён ивент через админку",
-      };
-
-      const response = await fetch("/api/github-post", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      if (!response.ok) {
-        throw new Error("Ошибка при сохранении изменений");
-      }
-
-      const result = await response.json();
-      console.log("Изменения успешно сохранены:", result);
-    } catch (error) {
-      console.error("Ошибка сохранения:", error.message);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   const handleAddEvent = async () => {
     const newEvent = {
-      id: 5,
+      id: database.events.length + 1,
       title: { uk: "Новий івент", en: "New Event", de: "Neues Ereignis" },
       date: "2024-01-01",
       main_image: "/images/events/id1/post_most_reconnect.jpg",
@@ -140,22 +111,53 @@ export default function AdminPage({ params }) {
     await handleSubmit();
 
     // Используем правильный slug для перехода
-    const slug = generateSlug(newEvent.title.en);
-    router.push(`/admin/${slug}`);
+    // const slug = generateSlug(newEvent.title.en);
+    // router.push(`/admin/${slug}`);
   };
 
-  const handleDeleteEvent = (index) => {
+  const handleDeleteEvent = async (index) => {
     const confirmDelete = confirm(
       "Вы уверены, что хотите удалить этот ивент? Это действие нельзя отменить."
     );
-
+  
     if (confirmDelete) {
-      setDatabase((prev) => ({
-        ...prev,
-        events: prev.events.filter((_, i) => i !== index),
-      }));
+      setDatabase((prev) => {
+        const updated = { ...prev };
+        updated.events = prev.events.filter((_, i) => i !== index);
+  
+        // Отправляем обновленные данные после обновления состояния
+        handleSubmit(updated);
+  
+        return updated; // Возвращаем обновленное состояние
+      });
     }
   };
+  
+  const handleSubmit = async (updatedDatabase = database) => {
+    try {
+      const payload = {
+        filePath: "data/database.json",
+        fileContent: JSON.stringify(updatedDatabase, null, 2),
+        commitMessage: "Updated database via admin panel",
+      };
+  
+      const response = await fetch("/api/github-post", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to update data");
+      }
+  
+      const result = await response.json();
+      console.log("Changes saved successfully:", result);
+    } catch (error) {
+      console.error("Error saving:", error.message);
+    }
+  };
+  
 
   if (isLoading) {
     return (
@@ -423,13 +425,13 @@ export default function AdminPage({ params }) {
                 <Button color="success" onClick={handleAddEvent}>
                   Додати новий івент
                 </Button>
-                <Button
+                {/* <Button
                   color="success"
                   onClick={handleSubmit}
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? "Збереження..." : "Зберегти зміни"}
-                </Button>
+                </Button> */}
               </CardBody>
             </Card>
           </Tab>

@@ -387,22 +387,6 @@ export default function EventPage({ params }) {
                           }
                         }
                       />
-                      <div className={styles.block_actions}>
-                        <Button onClick={() => handleMoveBlock(subIndex, "up")}>
-                          Up
-                        </Button>
-                        <Button
-                          onClick={() => handleMoveBlock(subIndex, "down")}
-                        >
-                          Down
-                        </Button>
-                        <Button
-                          color="danger"
-                          onClick={() => handleDeleteBlock(subIndex)}
-                        >
-                          Delete
-                        </Button>
-                      </div>
                     </a>
                   ))}
                 </div>
