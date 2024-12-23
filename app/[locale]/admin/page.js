@@ -137,7 +137,7 @@ export default function AdminPage({ params }) {
           timestamp: new Date().toISOString(),
           action: "Добавление",
           target: path,
-          details: `Добавлен новый элемент: ${JSON.stringify(newItem)}`,
+          details: `Доданий новий елемент: ${JSON.stringify(newItem)}`,
         });
 
         return updated;
