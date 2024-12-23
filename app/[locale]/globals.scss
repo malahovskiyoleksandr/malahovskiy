@@ -6,8 +6,33 @@
 :root {
   --font-color: #000000;
   --fontform_lable-color: #624b1b;
-  --size-header: 5vh;
-  --size-body: 95vh;
+  --size-header: 2.5rem;
+  --size-body: 100vh;
+
+  --color-bg: #f9f9f9; // Фоновый цвет
+  --color-primary: #3f51b5; // Основной цвет
+  --color-primary-hover: #303f9f; // Основной цвет при наведении
+  --color-accent: #ff5722; // Акцентный цвет
+  --color-accent-hover: #e64a19; // Акцентный цвет при наведении
+  --color-text: #212121; // Основной текст
+  --color-text-light: #757575; // Второстепенный текст
+  --color-border: #e0e0e0; // Цвет границ
+
+  --font-family-base: 'Roboto', sans-serif; // Базовый шрифт
+  --font-size-base: 1rem; // Базовый размер шрифта
+  --font-size-small: 0.875rem; // Размер шрифта для мелкого текста
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+
+  --header-height: 3.5rem; // Высота шапки
+  --container-width: 1200px; // Максимальная ширина контейнера
+
+  --spacing-small: 0.5rem;
+  --spacing-medium: 1rem;
+  --spacing-large: 2rem;
+
+  --border-radius: 4px;
+  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Тень для элементов
 }
 
 body {

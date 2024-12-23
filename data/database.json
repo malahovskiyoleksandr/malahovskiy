@@ -434,6 +434,17 @@
   },
   "events": [
     {
+      "id": 5,
+      "title": {
+        "uk": "Новий івент",
+        "en": "New Event",
+        "de": "Neues Ereignis"
+      },
+      "date": "2024-01-01",
+      "main_image": "/images/events/id1/post_most_reconnect.jpg",
+      "content": []
+    },
+    {
       "id": 1,
       "title": {
         "uk": "Художники з українського міста Маріуполь виставляють у Дортмунді",
@@ -932,6 +943,12 @@
     }
   ],
   "logs": [
+    {
+      "timestamp": "2024-12-23T18:05:40.298Z",
+      "action": "Додавання",
+      "target": "Заходи",
+      "details": "Додоний захiд: New Event"
+    },
     {
       "timestamp": "2024-12-21T14:30:00Z",
       "action": "add",

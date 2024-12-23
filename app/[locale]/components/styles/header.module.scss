@@ -3,4 +3,9 @@
     background-color: #ffbe98;
     min-height: var(--size-header);
     max-height: var(--size-header);
+
+    .image {
+        height: auto;
+        width: 2.5rem;
+    }
 }

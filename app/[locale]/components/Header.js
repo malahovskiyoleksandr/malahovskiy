@@ -138,8 +138,8 @@ export default function Header() {
               // height={50}
               style={
                 {
-                  width: "50px",
-                  height: "50px",
+                  // width: "50px",
+                  // height: "50px",
                   // objectFit: "cover", // Изображение масштабируется, не обрезаясь
                   // objectFit: "contain", // Изображение масштабируется, не обрезаясь
                   // objectPosition: "top",

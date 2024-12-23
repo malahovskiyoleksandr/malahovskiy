@@ -1,6 +1,6 @@
 .type_pictures {
   display: grid;
-  height: var(--size-body);
+  height: calc(var(--size-body) - var(--size-header));
   font-size: 20px;
 
   .link {
@@ -53,7 +53,7 @@
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   width: 100%;
-  height: var(--size-body);
+  height: calc(var(--size-body) - var(--size-header));
 
   .image_Link {
     position: relative;

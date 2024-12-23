@@ -143,41 +143,80 @@ $text-color: #fff;
     }
 
     .gallery {
-      .name_events {
-      }
 
-      .description_events {
-      }
-
-      .tab_images_box {
-        margin: 5rem 0;
-
-        .imageSection {
+      .gallery_Tab {
+        .name_events {
+        }
+  
+        .description_events {
+        }
+  
+        .tab_images_box {
           display: flex;
           justify-content: space-around;
-          align-items: center;
+          gap: 2rem;
           flex-wrap: wrap;
-          background-color: #e7e7e7;
-          border-radius: 10px;
-          margin: 2rem 0;
-          height: auto;
-
-          .image_box {
+          margin: 5rem 0;
+  
+          .imageSection {
             position: relative;
-            width: 300px;
-            height: 200px;
-            .image {
-              object-fit: cover;
-            }
-          }
-          .imageSection_input_textarea__box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #e7e7e7;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 2rem 0;
+            padding: 1rem;
+            height: auto;
             width: 100%;
-            .imageSection_input {
+            max-width: 20rem;
+  
+            .image_box {
+              position: relative;
+              width: 100%;
+              height: 200px;
+              .image {
+                object-fit: cover;
+              }
             }
-            .image_imageSection_textarea {
+
+            .name_description_block {
+
+              .imageSection_input_textarea__box {
+
+
+                .imageSection_input {
+
+                }
+                .image_imageSection_textarea {
+                }
+              }
+            }
+
+            .block_actions {
+              display: flex;
+              justify-content: space-between;
+              width: 100%;
+
+              .block_actions_add_del {
+                width: 15rem;
+
+                button {
+                  width: 100%;
+                }
+              }
+              .block_actions_up_dwn {
+                width: 15rem;
+
+                button {
+                  width: 100%;
+                }
+              }
             }
           }
         }
+
       }
     }
 
@@ -188,6 +227,14 @@ $text-color: #fff;
         flex-wrap: wrap;
         gap: 1rem;
         width: 100%;
+
+        .buttonAdd {
+          display: block;
+          width: 100%;
+          max-width: 200px;
+          background-color: #7a7a7a;
+          border-radius: 5px;
+        }
 
         .events_box {
           width: 100%;
