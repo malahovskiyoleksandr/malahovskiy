@@ -3,10 +3,12 @@ import Image from "next/image";
 // import mainImage from "@/public/images/mainPhoto.jpg";
 import styles from "./home.module.scss";
 import { NextResponse } from "next/server";
+// import Link from "next/link";
+import Developer from "./developer.png";
 
 export const revalidate = 5;
 
-export async function getData() { 
+export async function getData() {
   try {
     const response = await fetch(
       `https://api.github.com/repos/malahovskiyoleksandr/malahovskiy/contents/data/database.json`,
@@ -37,21 +39,18 @@ export async function getData() {
     return NextResponse.json(
       { error: "Ошибка сервера: " + error.message },
       { status: 500 }
-    ); 
+    );
   }
 }
 
 export default async function Home({ params }) {
   const { locale } = params;
   const person = await getData();
-  // console.log(person)
 
   return (
-    <>
+    <> 
       <section className={styles.main_block}>
-        <div
-          className={styles.container_main}
-        >
+        <div className={styles.container_main}>
           <Image
             className={styles.main_image}
             // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
@@ -83,10 +82,11 @@ export default async function Home({ params }) {
               {person?.home?.name?.[locale] || ""}
             </h1>
             <p className={styles.artist_name__description}>
-            {person?.home?.description?.[locale] || ""}
+              {person?.home?.description?.[locale] || ""}
             </p>
           </div>
         </div>
+        <h3 className={styles.develop}>Розробник сайту: Максим Кругляк</h3>
       </section>
     </>
   );

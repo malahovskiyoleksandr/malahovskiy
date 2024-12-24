@@ -1,4 +1,5 @@
 .main_block {
+  position: relative;
   // display: grid;
   // grid-template-columns: repeat(1, 1fr);
   // gap: 40px;
@@ -8,19 +9,6 @@
   height: calc(var(--size-body) - var(--size-header));
   // padding: 20vh 0;
   background: url('/images/home_page/background.png')  top center / cover no-repeat;
-
-  // .backgroundImage_block {
-  //   display: block;
-  //   position: relative;
-  //   // height: 110vh;
-  //   width: 100%;
-  //   // z-index: -1;
-
-  //   .backgroundImage {
-  //     // position: absolute;
-  //     // z-index: -1;
-  //   }
-  // }
 
   .container_main {
     // position: absolute;
@@ -69,6 +57,12 @@
         }
       }
     }
+  }
+  .develop {
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    color: white;
   }
 }
 
