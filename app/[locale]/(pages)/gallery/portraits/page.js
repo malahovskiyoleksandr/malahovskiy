@@ -54,7 +54,7 @@ export default function PhotoGallery({ params }) {
             <button
               class="${styles.popupButton}
               id="info-button">
-              Info
+              ОПИС
             </button>`, // HTML кнопки
           onClick: (event, el, pswp) => {
             event.stopPropagation();
@@ -69,10 +69,12 @@ export default function PhotoGallery({ params }) {
             const popupContainer = document.createElement("div");
             popupContainer.className = styles.popupContainer;
             popupContainer.innerHTML = `
-                <h3 class="${styles.popupTitle}">Информация о фото</h3>
-                <p class="${styles.popupDescription}"><strong>Описание:</strong> ${photoData?.name[locale]}</p>
-                <p class="${styles.popupDescription}"><strong>Источник:</strong> ${photoData?.description[locale]}</p>
-                <button class="${styles.closePopupButton}" id="close-popup">Закрыть</button>
+                <p class="${styles.popupTitle}">${photoData?.name[locale]}</p>
+                <p class="${styles.popupDescription}">${photoData?.material}</p>
+                <p class="${styles.popupDescription}">${photoData?.size}</p>
+                <p class="${styles.popupDescription}">${photoData?.date}</p>
+                <p class="${styles.popupDescription}">${photoData?.description[locale]}</p>
+                <button class="${styles.closePopupButton}" id="close-popup">ЗАЧИНИТИ</button>
               `;
             document.body.appendChild(popupContainer);
 
@@ -181,9 +183,7 @@ export default function PhotoGallery({ params }) {
           />
           <div className={styles.tooltip}>
             <div className={styles.tooltip_name}>{image.name[locale]}</div>
-            <div className={styles.tooltip_description}>
-              {image.description[locale]}
-            </div>
+            <div className={styles.tooltip_description}>{image.material}, {image.date}</div>
           </div>
         </a>
       ))}

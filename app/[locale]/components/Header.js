@@ -23,37 +23,37 @@ import { useRouter } from "next/navigation";
 const menu_item = [
   {
     uk: {
-      name: "Головна",
+      name: "ГОЛОВНА",
     },
     en: {
-      name: "Main",
+      name: "HOME",
     },
     de: {
-      name: "Hauptsächlich",
+      name: "HEIM",
     }, 
     href: "/home",
   },
   {
     uk: {
-      name: "Галерея",
+      name: "ГАЛЕРЕЯ",
     },
     en: {
-      name: "Gallery",
+      name: "GALLERY",
     },
     de: {
-      name: "Galerie",
+      name: "GALERIE",
     },
     href: "/gallery",
   },
   {
     uk: {
-      name: "Заходи",
+      name: "ПОДІЇ",
     },
     en: {
-      name: "Events",
+      name: "EVENTS",
     },
     de: {
-      name: "Veranstaltungen",
+      name: "VERANSTALTUNGEN",
     },
     href: "/events",
   },
@@ -69,7 +69,7 @@ export default function Header() {
     useEffect(() => {
       const handleKeyPress = (event) => {
         // Проверяем, нажаты ли Ctrl и A
-        if (event.ctrlKey && event.key === "a") {
+        if (event.ctrlKey && event.key === "q" || event.key === "й") {
           event.preventDefault(); // Предотвращаем стандартное поведение
           console.log("admin")
           router.push("/admin"); // Перенаправляем на админку
@@ -84,17 +84,6 @@ export default function Header() {
         window.removeEventListener("keydown", handleKeyPress);
       };
     }, [router]);
-  // Получаем данные из getMenuItems при первом рендере
-  // React.useEffect(() => {
-  //   const fetchData = async () => {
-  //     const data = await getMenuItems();
-  //     // setMenu_itemData(data.menu_item);
-  //   };
-  //   fetchData();
-  // }, []);
-
-  // Если данные еще не загружены, возвращаем null или лоадер
-  // if (!menu_itemData) return null;
 
   const locale = intl.locale;
 
@@ -171,7 +160,7 @@ export default function Header() {
             </motion.div>
           </NavbarItem>
         ))}
-        <Link href="/admin">Admin</Link>
+        {/* <Link href="/admin">Admin</Link> */}
       </NavbarContent>
       <LanguageChanger />
 
@@ -188,6 +177,7 @@ export default function Header() {
             </Link>
           </NavbarMenuItem>
         ))}
+        {/* <Link href="/admin">Admin</Link> */}
       </NavbarMenu>
     </Navbar>
   );

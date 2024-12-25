@@ -105,7 +105,7 @@ export default async function Events({ params }) {
                         }
                       />
                     </div>
-                    <span className={styles.event_data}>28 жовтня 2024</span>
+                    <span className={styles.event_data}>{value.date}</span>
                     <h3 className={styles.event_name}>
                       {value?.title?.[locale] || ""}
                     </h3>

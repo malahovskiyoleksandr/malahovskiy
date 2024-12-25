@@ -86,7 +86,6 @@ export default async function Home({ params }) {
             </p>
           </div>
         </div>
-        <h3 className={styles.develop}>Розробник сайту: Максим Кругляк</h3>
       </section>
     </>
   );

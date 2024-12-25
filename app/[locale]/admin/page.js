@@ -348,7 +348,7 @@ export default function AdminPage({ params }) {
       <div className={styles.main}>
         <Tabs aria-label="Админ Панель">
           {/* Редактирование главной страницы */}
-          <Tab key="home" title="Головна">
+          <Tab key="home" title="ГОЛОВНА">
             <Card>
               <CardBody>
                 <Tabs aria-label="Виды картин">
@@ -399,7 +399,7 @@ export default function AdminPage({ params }) {
           </Tab>
 
           {/* Редактирование галереи */}
-          <Tab key="gallery" title="Галерея" className={styles.gallery}>
+          <Tab key="gallery" title="ГАЛЕРЕЯ" className={styles.gallery}>
             <Card>
               <CardBody>
                 <Tabs aria-label="Галерея">
@@ -544,13 +544,7 @@ export default function AdminPage({ params }) {
                                         Object.entries(image.name).map(
                                           ([lang, nameValue]) => (
                                             <Tab key={lang} title={lang}>
-                                              <Card
-                                                style={
-                                                  {
-                                                    // width: "18rem"
-                                                  }
-                                                }
-                                              >
+                                              <Card>
                                                 <CardBody>
                                                   <div
                                                     className={
@@ -563,15 +557,60 @@ export default function AdminPage({ params }) {
                                                         input:
                                                           "resize-y min-h-[10px]",
                                                       }}
-                                                      className={
-                                                        styles.imageSection_input
-                                                      }
+                                                      // className={
+                                                      //   styles.imageSection_input
+                                                      // }
                                                       label={`Название (${lang.toUpperCase()})`}
                                                       value={nameValue}
                                                       onChange={(e) =>
                                                         handleChange(
                                                           e,
                                                           `gallery.${key}.page.${index}.name.${lang}`
+                                                        )
+                                                      }
+                                                    />
+                                                    <Input
+                                                      classNames={{
+                                                        base: "max-w-xs",
+                                                        input:
+                                                          "resize-y min-h-[10px]",
+                                                      }}
+                                                      label={`Матерiал`}
+                                                      value={image.material}
+                                                      onChange={(e) =>
+                                                        handleChange(
+                                                          e,
+                                                          `gallery.${key}.page.${index}.material`
+                                                        )
+                                                      }
+                                                    />
+                                                    <Input
+                                                      classNames={{
+                                                        base: "max-w-xs",
+                                                        input:
+                                                          "resize-y min-h-[10px]",
+                                                      }}
+                                                      label={`Розмiр`}
+                                                      value={image.size}
+                                                      onChange={(e) =>
+                                                        handleChange(
+                                                          e,
+                                                          `gallery.${key}.page.${index}.size`
+                                                        )
+                                                      }
+                                                    />
+                                                    <Input
+                                                      classNames={{
+                                                        base: "max-w-xs",
+                                                        input:
+                                                          "resize-y min-h-[10px]",
+                                                      }}
+                                                      label={`Дата`}
+                                                      value={image.date}
+                                                      onChange={(e) =>
+                                                        handleChange(
+                                                          e,
+                                                          `gallery.${key}.page.${index}.date`
                                                         )
                                                       }
                                                     />
@@ -588,6 +627,24 @@ export default function AdminPage({ params }) {
                                                         handleChange(
                                                           e,
                                                           `gallery.${key}.page.${index}.description.${lang}`
+                                                        )
+                                                      }
+                                                    />
+                                                    <Input
+                                                      classNames={{
+                                                        base: "max-w-xs",
+                                                        input:
+                                                          "resize-y min-h-[10px]",
+                                                      }}
+                                                      // className={
+                                                      //   styles.imageSection_input
+                                                      // }
+                                                      label={`URL картинки`}
+                                                      value={image.src}
+                                                      onChange={(e) =>
+                                                        handleChange(
+                                                          e,
+                                                          `gallery.${key}.page.${index}.src`
                                                         )
                                                       }
                                                     />
@@ -668,7 +725,7 @@ export default function AdminPage({ params }) {
           </Tab>
 
           {/* События */}
-          <Tab key="events" title="Заходи" className={styles.events}>
+          <Tab key="events" title="ПОДІЇ" className={styles.events}>
             <Card>
               <CardBody>
                 <section className={styles.events_container}>
@@ -724,8 +781,37 @@ export default function AdminPage({ params }) {
                           />
                         </div>
                         <h3 className={styles.title}>{event.title[locale]}</h3>
+                        <Input
+                          classNames={{
+                            base: "max-w-xs",
+                            input: "resize-y min-h-[10px]",
+                          }}
+                          label={`URL картинки`}
+                          value={event.main_image}
+                          onChange={(e) =>
+                            handleChange(e, `events.${index}.main_image`)
+                          }
+                        />
                         <h3 className={styles.event_data}>id {event.id}</h3>
                       </Link>
+                      <Input
+                        classNames={{
+                          base: "max-w-xs",
+                          input: "resize-y min-h-[10px]",
+                        }}
+                        label={`Дата`}
+                        value={event.date}
+                        onChange={(e) =>
+                          handleChange(e, `events.${index}.date`)
+                        }
+                      />
+                      <Button
+                        color="success"
+                        onClick={handleSubmit}
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? "Збереження..." : "Зберегти зміни"}
+                      </Button>
                       <Button
                         color="danger"
                         className={styles.delete_button}
@@ -740,31 +826,31 @@ export default function AdminPage({ params }) {
             </Card>
           </Tab>
 
-          <Tab key="logs" title="История действий">
+          <Tab key="logs" title="Iсторiя дiй">
             <Card>
               <CardBody>
-                <h2>История действий</h2>
+                <h2>Iстория дiй</h2>
                 <div className={styles.logs}>
                   {database.logs && database.logs.length > 0 ? (
                     database.logs.map((log, index) => (
                       <div key={index} className={styles.logItem}>
                         <p>
-                          <strong>Время:</strong>{" "}
+                          <strong>Час:</strong>{" "}
                           {new Date(log.timestamp).toLocaleString()}
                         </p>
                         <p>
-                          <strong>Действие:</strong> {log.action}
+                          <strong>Дiя:</strong> {log.action}
                         </p>
                         <p>
-                          <strong>Цель:</strong> {log.target}
+                          <strong>Цiль:</strong> {log.target}
                         </p>
                         <p>
-                          <strong>Подробности:</strong> {log.details}
+                          <strong>Подробицi:</strong> {log.details}
                         </p>
                       </div>
                     ))
                   ) : (
-                    <p>Логи отсутствуют.</p>
+                    <p>Логи вiдсутнi.</p>
                   )}
                 </div>
               </CardBody>

@@ -41,9 +41,9 @@ export default function LanguageChanger() {
       value={currentLocale}
       className={styles.language_selector}
     >
-      <option value="uk">Українська</option>
-      <option value="en">Англійська</option>
-      <option value="de">Німецька</option>
+      <option value="uk">УКР</option>
+      <option value="en">ENG</option>
+      <option value="de">DE</option>
     </select>
   );
 }

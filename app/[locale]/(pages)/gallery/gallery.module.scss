@@ -65,6 +65,8 @@
     .image {
       height: 30rem;
       object-fit: cover;
+      border-radius: 5px;
+      overflow: hidden;
     }
     .tooltip {
       position: absolute;
@@ -82,11 +84,14 @@
 
       .tooltip_name {
         font-weight: bold;
+        font-family: 'Mariupol-Bold';
+        // font-family: 'Extatica-Medium';
         font-size: 1rem;
       }
 
       .tooltip_description {
         font-size: 0.9rem;
+        font-family: 'Mariupol-Regular';
         margin-top: 5px;
       }
     }
@@ -116,8 +121,10 @@
   background-color: #ffbe98;
   color: black;
   border: none;
-  padding: 10px;
+  padding: 5px;
+  width: 50px;
   border-radius: 5px;
+  font-family: 'Extatica-Medium';
   cursor: pointer;
 }
 
@@ -139,10 +146,12 @@
   .popupTitle {
     font-size: 1.5rem;
     margin-bottom: 10px;
+    font-family: 'Extatica-Medium';
   }
 
   .popupDescription {
     font-size: 1rem;
+    font-family: 'Extatica-Medium';
   }
 
   .closePopupButton {
@@ -151,6 +160,8 @@
     border: none;
     background-color: #ffbe98;
     border-radius: 4px;
+    font-family: 'Extatica-Medium';
+    color: black;
     cursor: pointer;
 
     &:hover {

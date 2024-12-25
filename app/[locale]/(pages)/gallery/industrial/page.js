@@ -53,7 +53,7 @@ export default function PhotoGallery({ params }) {
             <button
               class="${styles.popupButton}
               id="info-button">
-              Info
+              ОПИС
             </button>`, // HTML кнопки
           onClick: (event, el, pswp) => {
             event.stopPropagation();
@@ -69,8 +69,11 @@ export default function PhotoGallery({ params }) {
             popupContainer.className = styles.popupContainer;
             popupContainer.innerHTML = `
                 <p class="${styles.popupTitle}">${photoData?.name[locale]}</p>
+                <p class="${styles.popupDescription}">${photoData?.material}</p>
+                <p class="${styles.popupDescription}">${photoData?.size}</p>
+                <p class="${styles.popupDescription}">${photoData?.date}</p>
                 <p class="${styles.popupDescription}">${photoData?.description[locale]}</p>
-                <button class="${styles.closePopupButton}" id="close-popup">Закрыть</button>
+                <button class="${styles.closePopupButton}" id="close-popup">ЗАЧИНИТИ</button>
               `;
             document.body.appendChild(popupContainer);
 
@@ -176,23 +179,23 @@ export default function PhotoGallery({ params }) {
             // sizes="100vh"
             width={image.width} // задать правильное соотношение сторон адаптивного изображения
             height={image.height}
-            style={{
-              // objectPosition: line.index === 0 ? "0% 30%" : "top",
-              // objectPosition:
-              //   index === 0
-              //     ? "0% 50%"
-              //     : index === 1
-              //     ? "0% 30%"
-              //     : index === 2
-              //     ? "0% 45%"
-              //     : "center",
-            }}
+            style={
+              {
+                // objectPosition: line.index === 0 ? "0% 30%" : "top",
+                // objectPosition:
+                //   index === 0
+                //     ? "0% 50%"
+                //     : index === 1
+                //     ? "0% 30%"
+                //     : index === 2
+                //     ? "0% 45%"
+                //     : "center",
+              }
+            }
           />
           <div className={styles.tooltip}>
             <div className={styles.tooltip_name}>{image.name[locale]}</div>
-            <div className={styles.tooltip_description}>
-              {image.description[locale]}
-            </div>
+            <div className={styles.tooltip_description}>{image.material}, {image.date}</div>
           </div>
         </a>
       ))}

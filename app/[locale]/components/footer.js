@@ -10,7 +10,6 @@ export default function Footer() {
   
   return (
     <footer className={styles.footer}>
-      <h3 className={styles.name}>{"Name_Artist"}</h3>
       <div className={styles.icon_box}>
         {/* Ссылка на Facebook с иконкой */}
         <Link
@@ -30,7 +29,8 @@ export default function Footer() {
           <FontAwesomeIcon icon={faTwitter} size="2x" />
         </Link>
       </div>
-      <span className={styles.year}>© 2024.</span>
+      <span className={styles.rights}>©2024 FPL “ARS ALTERA”. All rights reserved</span>
+      <span className={styles.developer}>Розробник сайту: Максим Кругляк</span>
     </footer>
   );
 }

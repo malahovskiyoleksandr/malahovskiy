@@ -43,7 +43,7 @@ export default async function RootLayout({ children, params }) {
             </AnimatePresence> */}
             {/* <Analytics /> */}
           </main>
-          {/* <Footer /> */}
+          <Footer />
         </NextUIProvider>
         </ServerIntlProvider>
       </body>

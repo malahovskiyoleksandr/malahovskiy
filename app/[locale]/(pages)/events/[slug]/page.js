@@ -153,7 +153,7 @@ export default function EventPage({ params }) {
     <section className={styles.main_block}>
       <div className={styles.event}>
         <h1 className={styles.event_name}>{database.title[locale]}</h1>
-        <span className={styles.event_data}>28 жовтня 2024</span>
+        <span className={styles.event_data}>{database.date}</span>
         <div className={styles.event_content}>
           {database.content.map((block, index) => {
             if (block.type === "text") {
