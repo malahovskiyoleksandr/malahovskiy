@@ -8,8 +8,8 @@ export async function GET() {
         method: "GET",
         cache: "no-store",
         headers: {
-          "Cache-Control": "no-cache", // Запрещаем использование кеша
           Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+          "Cache-Control": "no-cache", // Запрещаем использование кеша
         },
       }
     );
@@ -23,6 +23,7 @@ export async function GET() {
     }
 
     const Data = await response.json();
+    // console.log(Data)
     const decodedData = JSON.parse(
       Buffer.from(Data.content, "base64").toString("utf-8")
     );

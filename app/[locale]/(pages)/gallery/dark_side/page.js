@@ -4,13 +4,48 @@ import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import styles from "../gallery.module.scss";
-import { Tooltip } from "@nextui-org/tooltip";
 import { Spinner } from "@nextui-org/react";
+import { NextResponse } from "next/server";
+
+// export async function getDataPhoto() {
+//   try {
+//     const response = await fetch(
+//       `https://api.github.com/repos/malahovskiyoleksandr/malahovskiy/contents/public/images`,
+//       {
+//         method: "GET",
+//         cache: "no-store",
+//         headers: {
+//           Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+//         },
+//       }
+//     );
+
+//     if (!response.ok) {
+//       const text = await response.text(); // Получаем тело ошибки
+//       console.error(`Ошибка запроса: ${response.status}`, text);
+//       return NextResponse.json(
+//         {
+//           error: `Ошибка при получении данных с GitHub: ${response.statusText}`,
+//         },
+//         { status: response.status }
+//       );
+//     }
+
+//     const data = await response.json();
+//     console.log(data)
+//     return data;
+//   } catch (error) {
+//     console.error("Ошибка сервера:", error);
+//     return NextResponse.json(
+//       { error: `Ошибка сервера: ${error.message}` },
+//       { status: 500 }
+//     );
+//   }
+// }
 
 export default function PhotoGallery({ params }) {
   const locale = params.locale;
   const [database, setDatabase] = useState();
-
   const image_listRef = useRef(null);
 
   useEffect(() => {
@@ -155,37 +190,40 @@ export default function PhotoGallery({ params }) {
   return (
     <div id="gallery" className={styles.image_list} ref={image_listRef}>
       {database?.gallery?.dark_side?.page.map((image, index) => (
-        <a
-          className={styles.image_Link}
-          key={index}
-          href={image.src}
-          data-pswp-width={image.width}
-          data-pswp-height={image.height}
-          data-id={image.id}
-        >
-          <Image
-            id={image.id}
-            className={styles.image}
-            // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
-            // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
-            alt={image.name}
-            src={image.src}
-            // placeholder="blur" // размытие заднего фона при загрузке картинки
-            // blurDataURL="/path-to-small-blurry-version.jpg" // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
-            quality={40}
-            priority={true} // если true - loading = 'lazy' отменяеться
-            // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
-            fill={false} //заставляет изображение заполнять родительский элемент
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
-            // sizes="100vh"
-            width={image.width} // задать правильное соотношение сторон адаптивного изображения
-            height={image.height}
-          />
-          <div className={styles.tooltip}>
-            <div className={styles.tooltip_name}>{image.name[locale]}</div>
-            <div className={styles.tooltip_description}>{image.material}, {image.date}</div>
-          </div>
-        </a>
+          <a
+            className={styles.image_Link}
+            key={image.id}
+            href={image.src}
+            data-pswp-width={image.width}
+            data-pswp-height={image.height}
+            data-id={image.id}
+          >
+            <Image
+              id={image.id}
+              className={styles.image}
+              // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
+              // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
+              alt={image.name}
+              src={image.src}
+              // placeholder="blur" // размытие заднего фона при загрузке картинки
+              // blurDataURL="/path-to-small-blurry-version.jpg" // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
+              quality={40}
+              priority={true} // если true - loading = 'lazy' отменяеться
+              // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
+              fill={false} //заставляет изображение заполнять родительский элемент
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
+              // sizes="100vh"
+              width={image.width} // задать правильное соотношение сторон адаптивного изображения
+              height={image.height}
+            />
+            {/* {console.log("image", image)} */}
+            <div className={styles.tooltip}>
+              <div className={styles.tooltip_name}>{image.name[locale]}</div>
+              <div className={styles.tooltip_description}>
+                {image.material}, {image.date}
+              </div>
+            </div>
+          </a>
       ))}
     </div>
   );

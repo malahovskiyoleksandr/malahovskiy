@@ -38,71 +38,46 @@ export async function getData() {
     );
   }
 }
+
 // export async function getDataPhoto() {
 //   try {
-//     const response = await fetch("/api/github_img-get");
+//     const response = await fetch(
+//       `https://api.github.com/repos/malahovskiyoleksandr/malahovskiy/contents/public/images`,
+//       {
+//         method: "GET",
+//         cache: "no-store",
+//         headers: {
+//           Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+//         },
+//       }
+//     );
+
 //     if (!response.ok) {
-//       throw new Error("Помилка завантаження даних");
+//       const text = await response.text(); // Получаем тело ошибки
+//       console.error(`Ошибка запроса: ${response.status}`, text);
+//       return NextResponse.json(
+//         {
+//           error: `Ошибка при получении данных с GitHub: ${response.statusText}`,
+//         },
+//         { status: response.status }
+//       );
 //     }
+
 //     const data = await response.json();
 //     console.log(data)
-//     return data
+//     return data;
 //   } catch (error) {
-//     console.error("Ошибка:", error.message);
+//     console.error("Ошибка сервера:", error);
+//     return NextResponse.json(
+//       { error: `Ошибка сервера: ${error.message}` },
+//       { status: 500 }
+//     );
 //   }
 // }
-export async function getDataPhoto() {
-  try {
-    const response = await fetch(
-      `https://api.github.com/repos/malahovskiyoleksandr/malahovskiy/contents/public`,
-      {
-        method: "GET",
-        cache: "no-store",
-        headers: {
-          Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-          Accept: "application/vnd.github.v3+json", // Указываем версию API
-        },
-      }
-    );
-
-    if (!response.ok) {
-      const text = await response.text(); // Получаем тело ошибки
-      console.error(`Ошибка запроса: ${response.status}`, text);
-      return NextResponse.json(
-        { error: `Ошибка при получении данных с GitHub: ${response.statusText}` },
-        { status: response.status }
-      );
-    }
-
-    // Логируем весь ответ
-    // console.log("Response:", response);
-
-    const data = await response.json();
-    // console.log("data", data)
-
-    return data;
-    // return NextResponse.json(data);
-  } catch (error) {
-    console.error("Ошибка сервера:", error);
-    return NextResponse.json(
-      { error: `Ошибка сервера: ${error.message}` },
-      { status: 500 }
-    );
-  }
-}
 
 export default async function Home({ params }) {
   const { locale } = params;
   const person = await getData();
-  const photos = await getDataPhoto();
-  console.log(photos)
-  photos.forEach(file => {
-    if (file.type === 'file') {
-      console.log(`File: ${file.name}, URL: ${file.download_url}`);
-    } else if (file.type === 'dir') {
-      console.log(`Directory: ${file.name}, API URL: ${file.url}`);
-    }
-  });
 
   return (
     <>
@@ -113,7 +88,7 @@ export default async function Home({ params }) {
             // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
             // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
             alt="mainImage"
-            src={person?.home?.main_image?.src || ""}
+            src={person.home.main_image.src || ""}
             // placeholder="blur" // размытие заднего фона при загрузке картинки
             // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
             quality={100}

@@ -11,7 +11,7 @@
       "de": "Die Definition unserer eigenen Realität ist eine zutiefst persönliche und subjektive Erfahrung.))))"
     },
     "main_image": {
-      "src": "/images/mainPhoto.jpg"
+      "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/mainPhoto2.jpg"
     }
   },
   "gallery": {
@@ -27,7 +27,7 @@
         "de": "Malerei von Industriestädten"
       },
       "href": "/gallery/industrial",
-      "src": "/gallery/industrial.jpg",
+      "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial.jpg",
       "page": [
         {
           "id": 1,
@@ -44,7 +44,7 @@
             "en": "AZOVSTAL, MARIUPOL, UKRAINE",
             "de": "AZOVSTAL, MARIUPOL, UKRAINE"
           },
-          "src": "/gallery/industrial/1_SCRUBBER.jpg",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial/1_SCRUBBER.jpg",
           "width": 6115,
           "height": 8160
         },
@@ -63,7 +63,7 @@
             "en": "This is my attempt to draw a combination of water and fire in one object",
             "de": "Dies ist mein Versuch, eine Kombination aus Wasser und Feuer in einem Objekt zu zeichnen."
           },
-          "src": "/gallery/industrial/2_ROLLING MILL.jpg",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial/2_ROLLING MILL.jpg",
           "width": 1920,
           "height": 1228
         },
@@ -82,7 +82,7 @@
             "en": "The light finds unusual accents, while being surrounded by buildings. AZOVSTAL I&SW, MARIUPOL, UKRAINE.",
             "de": "Das Licht findet ungewöhnliche Akzente, während es von Gebäuden umgeben ist. AZOVSTAL, MARIUPOL, UKRAINE. "
           },
-          "src": "/gallery/industrial/3_BLAST FURNACE 4 (3).jpg",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial/3_BLAST FURNACE 4 (3).jpg",
           "width": 6111,
           "height": 4981
         },
@@ -101,7 +101,7 @@
             "en": "At night the plant is filled with unusual light.",
             "de": "Nachts ist die Anlage mit ungewöhnlichem Licht erfüllt."
           },
-          "src": "/gallery/industrial/4_FEELINGS.jpg",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial/4_FEELINGS.jpg",
           "width": 6101,
           "height": 2931
         },
@@ -120,7 +120,7 @@
             "en": "This old blast furnace #3 of AZOVSTAL I&SW, MARIUPOL, UKRAINE.",
             "de": "Dieser alte Hochofen #3. AZOVSTAL, MARIUPOL, UKRAINE."
           },
-          "src": "/gallery/industrial/5_OLD BLAST FURNACE.jpg",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial/5_OLD BLAST FURNACE.jpg",
           "width": 5703,
           "height": 8160
         },
@@ -139,7 +139,7 @@
             "en": "Blast furnace #2 of AZOVSTAL I&SW, MARIUPOL, UKRAINE.",
             "de": "Hochofen #2. AZOVSTAL, MARIUPOL, UKRAINE."
           },
-          "src": "/gallery/industrial/6_BLAST FURNACE 2.jpg",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial/6_BLAST FURNACE 2.jpg",
           "width": 6107,
           "height": 4798
         },
@@ -158,7 +158,7 @@
             "en": "This is a continuation of the work on the image of the blast furnace No.4 of AZOVSTAL I&SW, MARIUPOL, UKRAINE.",
             "de": "Dies ist eine Fortsetzung der Arbeit am Bild des Hochofens #4. AZOVSTAL, MARIUPOL, UKRAINE."
           },
-          "src": "/gallery/industrial/7_BLAST FURNACE 4 (2).jpg",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial/7_BLAST FURNACE 4 (2).jpg",
           "width": 6093,
           "height": 7938
         },
@@ -177,7 +177,7 @@
             "en": "The energy supply elements of the air heater are similar to the organs of a large creature. Blast furnace No.4 of AZOVSTAL I&SW, MARIUPOL, UKRAINE.",
             "de": "Die Energieversorgungselemente des Lufterhitzers ähneln den Organen eines großen Lebewesens. Hochofen #4. AZOVSTAL, MARIUPOL, UKRAINE."
           },
-          "src": "/gallery/industrial/8_IRON HEART (2).jpg",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial/8_IRON HEART (2).jpg",
           "width": 6111,
           "height": 4690
         },
@@ -196,7 +196,7 @@
             "en": "Light and fire are indivisible in the industrial genre. Blast furnace No.4 of AZOVSTAL I&SW, MARIUPOL, UKRAINE.",
             "de": "Licht und Feuer sind im industriellen Genre untrennbar. Hochofen #4. AZOVSTAL, MARIUPOL, UKRAINE."
           },
-          "src": "/gallery/industrial/9_IRON HEART (1).jpg",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial/9_IRON HEART (1).jpg",
           "width": 6101,
           "height": 4274
         },
@@ -215,7 +215,7 @@
             "en": "This is one of my first paintings in the INDUSTRIAL genre. Written under the impression of the powerful energy of the working blast furnace No.4 of AZOVSTAL I&SW, MARIUPOL, UKRAINE.",
             "de": "Dies ist eines meiner ersten Gemälde im INDUSTRIELLEN Genre. Geschrieben unter dem Eindruck der kraftvollen Energie des in Betrieb befindlichen Hochofens #4. AZOVSTAL, MARIUPOL, UKRAINE."
           },
-          "src": "/gallery/industrial/10_BLAST FURNACE 4 (1).jpg",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial/10_BLAST FURNACE 4 (1).jpg",
           "width": 6111,
           "height": 4670
         },
@@ -234,7 +234,7 @@
             "en": "This is the first industrial art for me in a new place. New experiences and new people are always interesting.",
             "de": "Für mich ist das die erste industrielle Kunst an einem neuen Ort. Neue Erfahrungen und neue Leute sind immer interessant."
           },
-          "src": "/gallery/industrial/18_INDUSTRIAL 2023_1.jpg",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial/18_INDUSTRIAL 2023_1.jpg",
           "width": 5807,
           "height": 7916
         },
@@ -253,7 +253,7 @@
             "en": "Industrial art has a long history. But it is both the present and the future. Often it all comes together in a single object.",
             "de": "Industrielle Kunst hat eine lange Geschichte. Aber das ist die Gegenwart und die Zukunft. Oftmals kollidiert alles in einem einzigen Objekt."
           },
-          "src": "/gallery/industrial/19_INDUSTRIAL 2023_2.jpg",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial/19_INDUSTRIAL 2023_2.jpg",
           "width": 5817,
           "height": 8141
         },
@@ -272,7 +272,7 @@
             "en": "Industrial art has many shades that can be seen only under certain lighting conditions. And some of them can only be seen from inside.",
             "de": "Industriekunst hat viele Schattierungen, die nur unter bestimmten Lichtbedingungen sichtbar sind. Und einige davon sind nur von innen sichtbar."
           },
-          "src": "/gallery/industrial/21_Spectrum_2024.jpg",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial/21_Spectrum_2024.jpg",
           "width": 1993,
           "height": 1468
         },
@@ -291,7 +291,7 @@
             "en": "Industrial art often evokes complex feelings that allow us to dream and depict familiar architectural forms from a new perspective.",
             "de": "Industrielle Kunst ruft oft komplexe Gefühle hervor, die uns träumen lassen und vertraute architektonische Formen aus einer neuen Perspektive darstellen."
           },
-          "src": "/gallery/industrial/22_Emerald city_2024.jpg",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial/22_Emerald city_2024.jpg",
           "width": 6115,
           "height": 8160
         },
@@ -309,7 +309,7 @@
             "en": "The last pre-war image of industrial art is still in Mariupol.",
             "de": "Das letzte Abbild industrieller Kunst aus der Vorkriegszeit ist noch heute in Mariupol zu finden."
           },
-          "src": "/gallery/industrial/SNORT_2021.jpg",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial/SNORT_2021.jpg",
           "width": 2152,
           "height": 2971
         }
@@ -327,7 +327,7 @@
         "de": "Stilisierte Porträts von Menschen"
       },
       "href": "/gallery/portraits",
-      "src": "/gallery/portraits.jpg",
+      "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/portraits.jpg",
       "page": [
         {
           "id": 1,
@@ -341,7 +341,7 @@
             "en": "",
             "de": ""
           },
-          "src": "/gallery/portraits/11_Gloomy sky (CYBERPUNK 2022).jpg",
+          "src": "/images/gallery/portraits/11_Gloomy sky (CYBERPUNK 2022).jpg",
           "width": 1920,
           "height": 2390
         },
@@ -357,7 +357,7 @@
             "en": "This image is based on the \"dieselpunk\" theme of the movie. Of course, I took the \"Mad Max\" series and George Miller's ideas as the basis for styling. The first preparation before starting the drawing took more time than the process itself. Thanks to my art director Oleksii Chernik (artstation.com/gratshnag), it was a written description of the character, light, plot, scene, elements of clothing, pose and character of movements. The model was also chosen in such a way that its appearance coincided with the idea. Only then - several tens of sketches, and after them - the realization of the whole idea on canvas.",
             "de": "Dieses Bild basiert auf dem „Dieselpunk“-Thema des Films. Natürlich habe ich die „Mad Max“-Reihe und die Ideen von George Miller als Grundlage für das Styling genommen. Die ersten Vorbereitungen vor dem Beginn des Zeichnens nahmen mehr Zeit in Anspruch als der Prozess selbst. Dank meines Art Directors Oleksii Chernik (artstation.com/gratshnag) war es eine schriftliche Beschreibung des Charakters, des Lichts, der Handlung, der Szene, der Kleidungselemente, der Pose und des Bewegungscharakters. Das Modell wurde auch so ausgewählt, dass sein Aussehen mit der Idee übereinstimmte. Erst dann – mehrere Dutzend Skizzen und danach – die Umsetzung der gesamten Idee auf Leinwand."
           },
-          "src": "/gallery/portraits/12_Rebellion (DIESELPUNK 2023).jpg",
+          "src": "/images/gallery/portraits/12_Rebellion (DIESELPUNK 2023).jpg",
           "width": 1285,
           "height": 1600
         },
@@ -373,7 +373,7 @@
             "en": "The recipe of a real STEAMPUNK ",
             "de": "Das Rezept eines echten STEAMPUNK"
           },
-          "src": "/gallery/portraits/13_The recipe of a real STEAMPUNK.jpg",
+          "src": "/images/gallery/portraits/13_The recipe of a real STEAMPUNK.jpg",
           "width": 1920,
           "height": 2549
         },
@@ -389,7 +389,7 @@
             "en": "",
             "de": ""
           },
-          "src": "/gallery/portraits/23_Alina.jpg",
+          "src": "/images/gallery/portraits/23_Alina.jpg",
           "width": 1097,
           "height": 1351
         }
@@ -407,7 +407,7 @@
         "de": "Die andere Seite der Leinwand"
       },
       "href": "/gallery/dark_side",
-      "src": "/gallery/dark_side.jpg",
+      "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/dark_side.jpg",
       "page": [
         {
           "id": 1,
@@ -417,11 +417,11 @@
             "de": "DUNKLE SEITE 1"
           },
           "description": {
-            "uk": "",
+            "uk": "DARK SIDE 1",
             "en": "",
             "de": ""
           },
-          "src": "/gallery/dark_side/14_DARK SIDE 1.jpg",
+          "src": "/images/gallery/dark_side/14_DARK SIDE 1.jpg",
           "width": 6101,
           "height": 4808
         },
@@ -433,11 +433,11 @@
             "de": "DUNKLE SEITE 2"
           },
           "description": {
-            "uk": "",
+            "uk": "DARK SIDE 2",
             "en": "",
             "de": ""
           },
-          "src": "/gallery/dark_side/15_DARK SIDE 2.jpg",
+          "src": "/images/gallery/dark_side/15_DARK SIDE 2.jpg",
           "width": 6111,
           "height": 4472
         },
@@ -453,7 +453,7 @@
             "en": "This is traditional paint...and dark side of paintings. Dark fantasy originates in the 18th century and is associated with the flourishing of Gothic horror novels.",
             "de": "Das ist traditionelle Malerei ... und die dunkle Seite der Malerei. Dark Fantasy hat seinen Ursprung im 18. Jahrhundert und wird mit der Blüte der Gothic-Horrorromane in Verbindung gebracht."
           },
-          "src": "/gallery/dark_side/16_DARK SIDE 3.jpg",
+          "src": "/images/gallery/dark_side/16_DARK SIDE 3.jpg",
           "width": 6077,
           "height": 8160
         },
@@ -469,7 +469,7 @@
             "en": "In his books, Howard Phillips Lovecraft attracted the attention of readers with mysticism, decay and general decline. And this is an illustration of an episode of one of his works.",
             "de": "Howard Phillips Lovecraft erregte in seinen Büchern die Aufmerksamkeit der Leser mit Mystik, Verfall und allgemeinem Verfall. Und dies ist eine Illustration einer Episode eines seiner Werke."
           },
-          "src": "/gallery/dark_side/17_DARK SIDE 4.jpg",
+          "src": "/images/gallery/dark_side/17_DARK SIDE 4.jpg",
           "width": 6077,
           "height": 8160
         }

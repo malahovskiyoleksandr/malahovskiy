@@ -57,7 +57,7 @@ export async function getData() {
 export default async function Gallery({ params }) {
   const locale = params.locale;
   const collectionLines = await getData();
-  console.log(collectionLines);
+  // console.log(collectionLines);
 
   if (!collectionLines) {
     return (

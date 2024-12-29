@@ -4,7 +4,6 @@ import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import styles from "../gallery.module.scss";
-import { Tooltip } from "@nextui-org/tooltip";
 import { Spinner } from "@nextui-org/react";
 
 export default function PhotoGallery({ params }) {

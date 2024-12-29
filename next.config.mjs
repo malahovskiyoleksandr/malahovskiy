@@ -5,11 +5,12 @@ const nextConfig = {
     images: {
         remotePatterns: [
             {
-                protocol: 'https',
-                hostname: 'i.imgur.com', // Разрешаем загрузку изображений с i.imgur.com
-                pathname: '/**',        // Разрешаем все пути
+              protocol: 'https', // Протокол (обычно https)
+              hostname: 'raw.githubusercontent.com', // Домен, с которого разрешена загрузка
+              // pathname: '/path/to/images/', // (Необязательно) Путь к папке с изображениями на домене
+              // search: '?query=...', // (Необязательно) Строка запроса для фильтрации
             },
-        ],
+          ],
     },
 };
 
