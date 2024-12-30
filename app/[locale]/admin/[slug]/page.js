@@ -389,6 +389,34 @@ export default function EventPage({ params }) {
                       />
                     </a>
                   ))}
+                  <Textarea
+                    className={styles.block_type_image__textarea}
+                    label="Опис картинки (BETA)"
+                    value={block.description[locale]}
+                    onChange={(e) =>
+                      handleChange(e, `content.${index}.description.${locale}`)
+                    }
+                  />
+                  <Input
+                    className={styles.block_type_image__input}
+                    label="Розташування зображення"
+                    value={block.src}
+                    onChange={(e) => handleChange(e, `content.${index}.src`)}
+                  />
+                  <div className={styles.block_actions}>
+                    <Button onClick={() => handleMoveBlock(index, "up")}>
+                      Up
+                    </Button>
+                    <Button onClick={() => handleMoveBlock(index, "down")}>
+                      Down
+                    </Button>
+                    <Button
+                      color="danger"
+                      onClick={() => handleDeleteBlock(index)}
+                    >
+                      Delete
+                    </Button>
+                  </div>
                 </div>
               );
             }
@@ -400,11 +428,6 @@ export default function EventPage({ params }) {
     </section>
   );
 }
-
-
-
-
-
 
 // "use client";
 

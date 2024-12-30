@@ -16,6 +16,8 @@ import {
   Button,
   Spinner,
 } from "@nextui-org/react";
+import Alert from "./Alert.js";
+import UploadImage from "./UploadImage";
 
 const generateSlug = (title) => {
   return title
@@ -24,13 +26,52 @@ const generateSlug = (title) => {
     .replace(/[^\w-]+/g, "");
 };
 
-export default function AdminPage({ params }) {
+async function uploadImageToGitHub(file) {
+  const reader = new FileReader();
+
+  return new Promise((resolve, reject) => {
+    reader.onload = async (event) => {
+      try {
+        const filePath = `public/images/${file.name}`;
+        const fileContent = event.target.result.split(",")[1]; // Получаем Base64 без префикса
+        // console.log(event.target)
+        const commitMessage = `Добавлено изображение: ${file.name}`;
+
+        const response = await fetch("/api/github-upload", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ filePath, fileContent, commitMessage }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Ошибка загрузки изображения");
+        }
+
+        const data = await response.json();
+        resolve(data);
+      } catch (error) {
+        reject(error);
+      }
+    };
+
+    reader.onerror = (error) => reject(error);
+
+    // Читаем файл как Base64
+    reader.readAsDataURL(file);
+  });
+}
+
+export default function AdminPage({ params, onUpload }) {
   const locale = params.locale;
   const router = useRouter();
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [database, setDatabase] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
 
   // Проверка авторизации
   useEffect(() => {
@@ -146,35 +187,6 @@ export default function AdminPage({ params }) {
     }
   };
 
-  // const handleDeleteBlock = async (path, index) => {
-  //   //Универсальная
-  //   const confirmDelete = confirm(
-  //     "Вы уверены, что хотите удалить этот ивент? Это действие нельзя отменить."
-  //   );
-
-  //   if (confirmDelete) {
-  //     setDatabase((prev) => {
-  //       const updated = { ...prev };
-  //       const keys = path.split(".");
-  //       let target = updated;
-
-  //       // Доступ к целевому массиву
-  //       keys.forEach((key) => {
-  //         if (target[key] === undefined) {
-  //           target[key] = []; // Убедимся, что массив существует
-  //         }
-  //         target = target[key];
-  //       });
-
-  //       // Удаление элемента
-  //       target.splice(index, 1);
-
-  //       return updated;
-  //     });
-  //     await handleSubmit();
-  //   }
-  // };
-
   const handleDeleteBlock = async (path, index) => {
     const confirmDelete = confirm(
       "Вы уверены, что хотите удалить этот элемент? Это действие нельзя отменить."
@@ -280,6 +292,7 @@ export default function AdminPage({ params }) {
       }
 
       const result = await response.json();
+
       console.log("Изменения успешно сохранены:", result);
     } catch (error) {
       console.error("Ошибка сохранения:", error.message);
@@ -305,6 +318,29 @@ export default function AdminPage({ params }) {
 
       return updated;
     });
+  };
+
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
+
+  const handleUpload = async () => {
+    if (!selectedFile) {
+      alert("Выберите файл!");
+      return;
+    }
+    // console.log(selectedFile)
+    setIsUploading(true);
+    try {
+      const result = await uploadImageToGitHub(selectedFile);
+      console.log("Успешно загружено:", result);
+      alert("Файл успешно загружен!");
+    } catch (error) {
+      console.error("Ошибка загрузки:", error.message);
+      alert("Ошибка загрузки файла");
+    } finally {
+      setIsUploading(false);
+    }
   };
 
   if (isLoading) {
@@ -381,6 +417,12 @@ export default function AdminPage({ params }) {
                   width={300}
                   height={200}
                 />
+                <div>
+                  <input type="file" onChange={handleFileChange} />
+                  <button onClick={handleUpload} disabled={isUploading}>
+                    {isUploading ? "Загрузка..." : "Загрузить файл"}
+                  </button>
+                </div>
                 <Input
                   className={styles.block_type_image__input}
                   label="Розташування зображення"
@@ -826,7 +868,7 @@ export default function AdminPage({ params }) {
             </Card>
           </Tab>
 
-          <Tab key="logs" title="Iсторiя дiй">
+          <Tab key="logs" title="IСТОРIЯ ДIЙ">
             <Card>
               <CardBody>
                 <h2>Iстория дiй</h2>

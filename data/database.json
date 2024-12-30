@@ -341,7 +341,7 @@
             "en": "",
             "de": ""
           },
-          "src": "/images/gallery/portraits/11_Gloomy sky (CYBERPUNK 2022).jpg",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/portraits/11_Gloomy sky (CYBERPUNK 2022).jpg",
           "width": 1920,
           "height": 2390
         },
@@ -357,7 +357,7 @@
             "en": "This image is based on the \"dieselpunk\" theme of the movie. Of course, I took the \"Mad Max\" series and George Miller's ideas as the basis for styling. The first preparation before starting the drawing took more time than the process itself. Thanks to my art director Oleksii Chernik (artstation.com/gratshnag), it was a written description of the character, light, plot, scene, elements of clothing, pose and character of movements. The model was also chosen in such a way that its appearance coincided with the idea. Only then - several tens of sketches, and after them - the realization of the whole idea on canvas.",
             "de": "Dieses Bild basiert auf dem „Dieselpunk“-Thema des Films. Natürlich habe ich die „Mad Max“-Reihe und die Ideen von George Miller als Grundlage für das Styling genommen. Die ersten Vorbereitungen vor dem Beginn des Zeichnens nahmen mehr Zeit in Anspruch als der Prozess selbst. Dank meines Art Directors Oleksii Chernik (artstation.com/gratshnag) war es eine schriftliche Beschreibung des Charakters, des Lichts, der Handlung, der Szene, der Kleidungselemente, der Pose und des Bewegungscharakters. Das Modell wurde auch so ausgewählt, dass sein Aussehen mit der Idee übereinstimmte. Erst dann – mehrere Dutzend Skizzen und danach – die Umsetzung der gesamten Idee auf Leinwand."
           },
-          "src": "/images/gallery/portraits/12_Rebellion (DIESELPUNK 2023).jpg",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/portraits/12_Rebellion (DIESELPUNK 2023).jpg",
           "width": 1285,
           "height": 1600
         },
@@ -373,7 +373,7 @@
             "en": "The recipe of a real STEAMPUNK ",
             "de": "Das Rezept eines echten STEAMPUNK"
           },
-          "src": "/images/gallery/portraits/13_The recipe of a real STEAMPUNK.jpg",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/portraits/13_The recipe of a real STEAMPUNK.jpg",
           "width": 1920,
           "height": 2549
         },
@@ -389,7 +389,7 @@
             "en": "",
             "de": ""
           },
-          "src": "/images/gallery/portraits/23_Alina.jpg",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/portraits/23_Alina.jpg",
           "width": 1097,
           "height": 1351
         }
@@ -421,7 +421,7 @@
             "en": "",
             "de": ""
           },
-          "src": "/images/gallery/dark_side/14_DARK SIDE 1.jpg",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/dark_side/14_DARK SIDE 1.jpg",
           "width": 6101,
           "height": 4808
         },
@@ -437,7 +437,7 @@
             "en": "",
             "de": ""
           },
-          "src": "/images/gallery/dark_side/15_DARK SIDE 2.jpg",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/dark_side/15_DARK SIDE 2.jpg",
           "width": 6111,
           "height": 4472
         },
@@ -453,7 +453,7 @@
             "en": "This is traditional paint...and dark side of paintings. Dark fantasy originates in the 18th century and is associated with the flourishing of Gothic horror novels.",
             "de": "Das ist traditionelle Malerei ... und die dunkle Seite der Malerei. Dark Fantasy hat seinen Ursprung im 18. Jahrhundert und wird mit der Blüte der Gothic-Horrorromane in Verbindung gebracht."
           },
-          "src": "/images/gallery/dark_side/16_DARK SIDE 3.jpg",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/dark_side/16_DARK SIDE 3.jpg",
           "width": 6077,
           "height": 8160
         },
@@ -469,7 +469,7 @@
             "en": "In his books, Howard Phillips Lovecraft attracted the attention of readers with mysticism, decay and general decline. And this is an illustration of an episode of one of his works.",
             "de": "Howard Phillips Lovecraft erregte in seinen Büchern die Aufmerksamkeit der Leser mit Mystik, Verfall und allgemeinem Verfall. Und dies ist eine Illustration einer Episode eines seiner Werke."
           },
-          "src": "/images/gallery/dark_side/17_DARK SIDE 4.jpg",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/dark_side/17_DARK SIDE 4.jpg",
           "width": 6077,
           "height": 8160
         }
@@ -478,17 +478,6 @@
   },
   "events": [
     {
-      "id": 5,
-      "title": {
-        "uk": "Новий івент",
-        "en": "New Event",
-        "de": "Neues Ereignis"
-      },
-      "date": "2024-01-01",
-      "main_image": "/images/events/id1/post_most_reconnect.jpg",
-      "content": []
-    },
-    {
       "id": 1,
       "title": {
         "uk": "Художники з українського міста Маріуполь виставляють у Дортмунді",
@@ -496,7 +485,7 @@
         "de": "Künstler aus der ukrainischen Stadt Mariupol stellen in Dortmund aus"
       },
       "date": "12.12.2024",
-      "main_image": "/images/events/id1/post_most_reconnect.jpg",
+      "main_image": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id1/post_most_reconnect.jpg",
       "content": [
         {
           "type": "text",
@@ -508,7 +497,7 @@
         },
         {
           "type": "image",
-          "src": "/images/events/id1/POST_MOST_6_Reconnect.jpg",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id1/POST_MOST_6_Reconnect.jpg",
           "description": {
             "uk": "Назва картини",
             "en": "Назва картини",
@@ -521,40 +510,6 @@
             "uk": "У музеї Hoesch у Дортмунді з неділі демонструється виставка робіт художників з українського металургічного міста Маріуполь. Картини, графіка та фотографії у виставці «PostMost» присвячені війні та частково зруйнованій батьківщині митців, як оголосило місто Дортмунд. Вони відображали страхи, але й надії на краще майбутнє. Проект «PostMost» стартував у 2019 році. Маріупольські митці хотіли показати нові погляди на структурні зміни у своєму місті та заохотити співгромадян до участі та заняття культурою. Війна, яка почалася майже два роки тому, змінила мистецьку перспективу – багато учасників після втечі жили в Німеччині. На виставці, серед інших, представлені художниці Анна Сердюк, яка живе у Філлінген-Швеннінгені, Людмила Сімонова з Реклінгхаузена та Олена Українцева із Зігена. Деякі з представлених робіт були створені тут, у регіоні. Назва «PostMost» у перекладі з німецької мови означає «після мосту», йдеться у повідомленні, йдеться про міст через річку Кальміус, який розділяє житлову та промислову частини міста Маріуполь. До початку війни 24 лютого 2022 року Маріуполь був одним із найважливіших промислових центрів України з міжнародним морським портом і металургійним комбінатом. Під час наступної облоги російськими військами місто зазнало масових руйнувань. За українською інформацією, загинули десятки тисяч мирних жителів. Маріуполь перебуває під контролем російсько-окупаційних військ із травня 2022 року.",
             "en": "The Hoesch Museum in Dortmund has been showing an exhibition of works by artists from the Ukrainian steel city of Mariupol since Sunday. The paintings, graphics and photographs in the “PostMost” show deal with the war and the artists’ partially destroyed homeland, as the city of Dortmund announced. They reflected fears, but also hopes for a better future. The “PostMost” project began in 2019. The artists from Mariupol wanted to show new perspectives on the structural change in their city and encourage their fellow citizens to participate and engage in culture, it was said. The outbreak of war almost two years ago changed the artistic perspective - many of those involved now lived in Germany after their escape. Represented in the exhibition are, among others, the artists Anna Serdyuk, who lives in Villingen-Schwenningen, Lyudmila Simonova from Recklinghausen and Elena Ukraintseva from Siegen. Some of the works shown were created here in the region. The name “PostMost” means “after the bridge” in German. According to the statement, this refers to the bridge over the Kalmius River, which separates the residential and industrial parts of the city in Mariupol. Until the outbreak of war on February 24, 2022, Mariupol was one of Ukraine's most important industrial centers with its international seaport and iron and steel works. During the subsequent siege by Russian troops, the city experienced massive destruction. According to Ukrainian information, tens of thousands of civilians died. Mariupol has been under the control of the Russian occupying forces since May 2022.",
             "de": "Das Hoesch-Museum in Dortmund zeigt seit Sonntag eine Ausstellung mit Werken von Künstlerinnen und Künstlern aus der ukrainischen Stahl-Stadt Mariupol. Die Gemälde, Grafiken und Fotografien der Schau „PostMost“ setzten sich mit dem Krieg und der zum Teil zerstörten Heimat der Künstler auseinander, wie die Stadt Dortmund mitteilte. Sie spiegelten die Ängste wider, aber auch die Hoffnungen auf eine bessere Zukunft. Das Projekt „PostMost“ begann den Angaben bereits 2019. Die Kunstschaffenden aus Mariupol wollten damit neue Perspektiven auf den Strukturwandel in ihrer Stadt zeigen und ihre Mitbürger zur Teilhabe und zu kulturellem Engagement auffordern, hieß es. Der Kriegsausbruch vor fast zwei Jahren habe den künstlerischen Blick verändert – viele der Beteiligten wohnten nach ihrer Flucht jetzt in Deutschland. Vertreten sind in der Ausstellung unter anderem die Künstlerinnen Anna Serdyuk, die in Villingen-Schwenningen lebt, Lyudmila Simonova aus Recklinghausen und Elena Ukraintseva aus Siegen. Die gezeigten Werke sind zum Teil hier in der Region entstanden. Der Name „PostMost“ bedeutet auf Deutsch „nach der Brücke“ Gemeint ist laut der Mitteilung die Brücke über den Fluss Kalmius, der in Mariupol den Wohn- und Industrieteil der Stadt trennt. Mariupol war bis zum Kriegsausbruch am 24. Februar 2022 mit seinem internationalen Seehafen und seinen Eisen- und Stahlwerken eines der bedeutendsten Industriezentren der Ukraine. Während der folgenden Belagerung durch russische Truppen erlebte die Stadt massive Zerstörungen. Nach ukrainischen Angaben starben Zehntausende Zivilisten. Seit Mai 2022 ist Mariupol unter Kontrolle der russischen Besatzungsmacht."
-          }
-        },
-        {
-          "type": "imageS",
-          "src": [
-            {
-              "href": "/images/events/id1/2.jpg",
-              "width": 1200,
-              "height": 800
-            },
-            {
-              "href": "/images/events/id1/1.jpg",
-              "width": 1200,
-              "height": 800
-            },
-            {
-              "href": "/images/events/id1/3.jpg",
-              "width": 1200,
-              "height": 800
-            }
-          ],
-          "description": {
-            "uk": "Назва картини",
-            "en": "Назва картини",
-            "de": "Назва картини"
-          }
-        },
-        {
-          "type": "video",
-          "src": "/images/events/POST_MOST_6_Reconnect.jpg",
-          "description": {
-            "uk": "Назва видео",
-            "en": "Назва видео",
-            "de": "Назва видео"
           }
         },
         {
@@ -570,12 +525,12 @@
     {
       "id": 2,
       "title": {
-        "uk": "Маріупольський художній проєкт POST MOST у Дортмунді",
-        "en": "Mariupol art project POST MOST in the Hoesch Museum",
-        "de": "Kunstschaffende aus Mariupol zeigen in »PostMost« ihre Werke"
+        "uk": "Виставка проекту POST MOST у музеї Hoesch у Дортмунді",
+        "en": "Exhibition of the POST MOST project at the Hoesch Museum in Dortmund",
+        "de": "Ausstellung des POST MOST-Projekts im Hoesch-Museum in Dortmund"
       },
-      "date": "21 січня 2024",
-      "main_image": "/images/events/id2/Z2_HOESHE museum_1.png",
+      "date": " 21. Januar 2024",
+      "main_image": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id2/Z2_HOESHE museum_1.png",
       "content": [
         {
           "type": "text",
@@ -587,7 +542,7 @@
         },
         {
           "type": "image",
-          "src": "/images/events/id2/Z2_HOESHE museum_1.png",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id2/Z2_HOESHE museum_1.png",
           "description": {
             "uk": "Назва картини",
             "en": "Назва картини",
@@ -614,7 +569,7 @@
         },
         {
           "type": "image",
-          "src": "/images/events/id2/Z2_HOESHE museum_2.png",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id2/Z2_HOESHE museum_2.png",
           "description": {
             "uk": "Назва картини",
             "en": "Назва картини",
@@ -641,7 +596,7 @@
         },
         {
           "type": "image",
-          "src": "/images/events/id2/Z2_HOESHE museum_3.png",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id2/Z2_HOESHE museum_3.png",
           "description": {
             "uk": "Назва картини",
             "en": "Назва картини",
@@ -668,7 +623,7 @@
         },
         {
           "type": "image",
-          "src": "/images/events/id2/Z2_HOESHE museum_4.png",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id2/Z2_HOESHE museum_4.PNG",
           "description": {
             "uk": "Назва картини",
             "en": "Назва картини",
@@ -710,7 +665,7 @@
         "de": ""
       },
       "date": "2 грудня 2023",
-      "main_image": "/images/events/id3/ZAHID_3 KAMIANSKE_1.png",
+      "main_image": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id3/ZAHID_3 KAMIANSKE_1.png",
       "content": [
         {
           "type": "text",
@@ -722,7 +677,7 @@
         },
         {
           "type": "image",
-          "src": "/images/events/id3/ZAHID_3 KAMIANSKE_1.png",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id3/ZAHID_3 KAMIANSKE_1.png",
           "description": {
             "uk": "Назва картини",
             "en": "Назва картини",
@@ -739,7 +694,7 @@
         },
         {
           "type": "image",
-          "src": "/images/events/id3/ZAHID_3 KAMIANSKE_2.jpg",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id3/ZAHID_3 KAMIANSKE_2.jpg",
           "description": {
             "uk": "Назва картини",
             "en": "Назва картини",
@@ -756,7 +711,7 @@
         },
         {
           "type": "image",
-          "src": "/images/events/id3/ZAHID_3 KAMIANSKE_3.jpg",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id3/ZAHID_3 KAMIANSKE_3.jpg",
           "description": {
             "uk": "Назва картини",
             "en": "Назва картини",
@@ -773,7 +728,7 @@
         },
         {
           "type": "image",
-          "src": "/images/events/id3/ZAHID_3 KAMIANSKE_4.jpg",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id3/ZAHID_3 KAMIANSKE_4.jpg",
           "description": {
             "uk": "Назва картини",
             "en": "Назва картини",
@@ -790,7 +745,7 @@
         },
         {
           "type": "image",
-          "src": "/images/events/id3/ZAHID_3 KAMIANSKE_5.jpg",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id3/ZAHID_3 KAMIANSKE_5.JPG",
           "description": {
             "uk": "Назва картини",
             "en": "Назва картини",
@@ -866,24 +821,24 @@
     {
       "id": 4,
       "title": {
-        "uk": "Маріупольський художній проєкт «Post Most» у Дортмунді",
-        "en": "Mariupol art project &quot;Post Most&quot; in Dortmund",
-        "de": "Mariupol-Kunstprojekt „Post Most“ in Dortmund"
+        "uk": "Маріупольський художній проєкт POST MOST у Дортмунді",
+        "en": "Mariupol art project POST MOST in Dortmund",
+        "de": "Mariupol-Kunstprojekt POST MOST in Dortmund"
       },
-      "date": "28 жовтня 2022",
-      "main_image": "/images/events/id4/Z1_Zehe Zollern_1.png",
+      "date": "                                                   28 жовтня 2022 р.",
+      "main_image": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id4/Z1_Zehe Zollern_1.png",
       "content": [
         {
           "type": "text",
           "value": {
-            "uk": "Експозиція художніх творів «Post Most» показує роботи групи художників зі східноукраїнського міста Маріуполь у музеї шахти Zeche Zollern.",
-            "en": "“Post Most” (October 28, 2022 – March 24, 2023) shows works by a group of artists from the eastern Ukrainian city of Mariupol at the Zeche Zollern mine.",
-            "de": "„Post Most“ (28.10.22–24.3.23) zeigt auf der Zeche Zollern Werke einer Gruppe von Künstler:innen der ostukrainischen Stadt Mariupol."
+            "uk": "Експозиція художніх творів POST MOST показує роботи групи художників зі східноукраїнського міста Маріуполь у музеї шахти Zeche Zollern.",
+            "en": "POST MOST (October 28, 2022 – March 24, 2023) shows works by a group of artists from the eastern Ukrainian city of Mariupol at the Zeche Zollern mine.",
+            "de": "POST MOST (28.10.22–24.3.23) zeigt auf der Zeche Zollern Werke einer Gruppe von Künstler:innen der ostukrainischen Stadt Mariupol."
           }
         },
         {
           "type": "image",
-          "src": "/images/events/id4/Z1_Zehe Zollern_1.png",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id4/Z1_Zehe Zollern_1.png",
           "description": {
             "uk": "Назва картини",
             "en": "Назва картини",
@@ -893,14 +848,14 @@
         {
           "type": "text",
           "value": {
-            "uk": "Однойменний мистецький проект був розпочатий за три роки до російського вторгнення у 2022 році з наміром надати нову перспективу художньому середовищу індустріального міста Маріуполь та мотивувати його громадян брати участь у культурному житті. Проект ріс разом із культурною сферою Маріуполя – поки цей розвиток не зупинила війна. Митці стали біженцями. Незважаючи на зміну життєвого простору, вони продовжили митецьку діяльність та проект «PostMost».",
-            "en": "The art project of the same name was developed three years before the Russian invasion in 2022 with the intention of providing a new perspective to the industrial city of Mariupol and to motivate its citizens to participate and engage in culture. The project grew along with Mariupol&#39;s cultural sphere - until this development was stopped by the war. The artists became refugees. Despite the personal suffering, they want to continue the project «PostMost».",
-            "de": "The art project of the same name was developed three years before the Russian invasion in 2022 with the Das gleichnamige Kunstprojekt entwickelte sich drei Jahre vor der russischen Invasion 2022 mit der Intention, eine neue Perspektive auf die Industriestadt Mariupol zu schaffen und ihre Bürger:innen zur Partizipation und kulturellem Engagement zu motivieren. Das Projekt wuchs zusammen mit der Kultursphäre Mariupols – bis diese Entwicklung durch den Krieg gestoppt wurde. Die Künstler:innen wurden zu Geflüchteten. Trotz des persönlichen Leids möchten sie das Projekt fortführen.The artists became refugees."
+            "uk": "Однойменний мистецький проект був розпочатий за три роки до російського вторгнення у 2022 році з наміром надати нову перспективу художньому середовищу індустріального міста Маріуполь та мотивувати його громадян брати участь у культурному житті. Проект ріс разом із культурною сферою Маріуполя – поки цей розвиток не зупинила війна. Митці стали біженцями. Незважаючи на зміну життєвого простору, вони продовжили митецьку діяльність та проєкт POST MOST.",
+            "en": "The art project of the same name was developed three years before the Russian invasion in 2022 with the intention of providing a new perspective to the industrial city of Mariupol and to motivate its citizens to participate and engage in culture. The project grew along with Mariupol's cultural sphere - until this development was stopped by the war. The artists became refugees. Despite the personal suffering, they want to continue the project POST MOST.",
+            "de": "Das gleichnamige Kunstprojekt entwickelte sich drei Jahre vor der russischen Invasion 2022 mit der Intention, eine neue Perspektive auf die Industriestadt Mariupol zu schaffen und ihre Bürger:innen zur Partizipation und kulturellem Engagement zu motivieren. Das Projekt wuchs zusammen mit der Kultursphäre Mariupols – bis diese Entwicklung durch den Krieg gestoppt wurde. Die Künstler:innen wurden zu Geflüchteten. Trotz des persönlichen Leids möchten sie das Projekt fortführen."
           }
         },
         {
           "type": "image",
-          "src": "/images/events/id4/Z1_Zehe Zollern_2.png",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id4/Z1_Zehe Zollern_2.png",
           "description": {
             "uk": "Назва картини",
             "en": "Назва картини",
@@ -912,12 +867,12 @@
           "value": {
             "uk": "У спільній резиденції в Бедбург-Хау були створені нові твори мистецтва, які передусім присвячені війні та їхньому місту, якого вже не існує.",
             "en": "New works of art were created at a shared residence in Bedburg-Hau, which primarily deal with the war and their city, which no longer exists.",
-            "de": "New works of art were created at a shared residence in Bedburg-Hau, which primarily deal with the war and their city, which no longer exists."
+            "de": "In einer Wohngemeinschaft in Bedburg-Hau entstanden neue Kunstwerke, die sich vor allem mit dem Krieg und ihrer nicht mehr existierenden Stadt auseinandersetzen."
           }
         },
         {
           "type": "image",
-          "src": "/images/events/id4/Z1_Zehe Zollern_3.png",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id4/Z1_Zehe Zollern_3.png",
           "description": {
             "uk": "Назва картини",
             "en": "Назва картини",
@@ -929,12 +884,12 @@
           "value": {
             "uk": "Їх роботи можна побачити в підвалі машинного цеху у музеї шахти Zeche Zollern у Дортмунді. Більшість робіт створено за підтримки e.V. ArToll Kunstlabor, цей заклад був заснований в 1994 році на місці клінік LVR в Бедбург-Хау з метою створити місце для художників та їх творчіх експериментів.",
             "en": "The majority of the works were created with the support of the ArToll Kunstlabor e.V. The ArToll was founded in 1994 on the site of the LVR clinics in Bedburg-Hau founded with the aim of being a place for artists where experimental, сross-disciplinary work and artistic exchange are possible.",
-            "de": "Der Großteil der Werke entstand mit der Unterstützung des ArToll Kunstlabor e.V. Das ArToll wurde 1994 auf dem Gelände der LVR-Kliniken in Bedburg-Hau mit dem Ziel gegründet, Künstler:innen ein Ort zu sein, an dem in einer nicht alltäglichen Ateliersituation experimentelles, disziplinübergreifendes Arbeiten und künstlerischer Austausch möglich sind."
+            "de": "Die Arbeiten sind im Keller der Maschinenhalle der Zeche Zollern zu sehen.\nDer Großteil der Werke entstand mit Unterstützung des ArToll Kunstlabor e.V. Das ArToll wurde 1994 auf dem Gelände der LVR-Kliniken in Bedburg-Hau mit dem Ziel gegründet, ein Ort für Künstler zu sein, an dem experimentelles, interdisziplinäres Arbeiten und künstlerischer Austausch möglich sind."
           }
         },
         {
           "type": "image",
-          "src": "/images/events/id4/Z1_Zehe Zollern_4.png",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id4/Z1_Zehe Zollern_4.png",
           "description": {
             "uk": "Назва картини",
             "en": "Назва картини",
@@ -945,13 +900,13 @@
           "type": "text",
           "value": {
             "uk": "Декілька робіт були представлені як принти живописних робіт, що були зроблені ще у Маріуполі.",
-            "en": "Hoesch Museum Dortmund The exhibition “PostMost” in Dortmund’s Hoesch Museum shows paintings and graphics by artists from the eastern Ukrainian steel city of Mariupol. Many of them still live in the region today. The exhibition shows how the war changed life there. Mariupol in eastern Ukraine, with its international seaport and iron and steel works, was one of Ukraine's important industrial centers until the outbreak of war. Artists there began their “PostMost” project five years ago to show from an artistic perspective how the steel city of Mariupol is changing. The outbreak of war almost two years ago changed artistic perspectives. The works shown in the exhibition, including paintings, graphics, photographs and collages, deal with the war and the partially destroyed homeland. The works reflect fears, but also show hope for a better future. For example, the works of Lyudmila Simonova. The 38-year-old artist had lived in Mariupol since 2014 and fled to Recklinghausen when the war began. She experienced war and flight twice and lost her home. Today she helps other Ukrainian women through art therapy. “PostMost” literally means “after the bridge”. This refers to the bridge over the Kalmius River, which separates the residential and industrial parts of the city in Mariupol. Post Most. An exhibition with artists from Mariupol.",
-            "de": "Hoesch-Museum Dortmund Die Ausstellung „PostMost“ im Dortmunder Hoesch-Museum zeigt Gemälde und Grafiken von Künstlerinnen und Künstlern aus der ostukrainischen Stahl-Stadt Mariupol. Viele von ihnen leben noch heute in der Region. Die Ausstellung zeigt, wie der Krieg das Leben dort verändert hat. Mariupol in der Ostukraine war mit seinem internationalen Seehafen und seinen Eisen- und Stahlwerken bis zum Kriegsausbruch eines der bedeutenden Industriezentren der Ukraine. Schon vor fünf Jahren begannen Künstlerinnen und Künstler dort mit ihrem Projekt „PostMost“, um aus künstlerischer Perspektive zu zeigen, wie sich die Stahlstadt Mariupol wandelt. Der Kriegsausbruch vor fast zwei Jahren veränderte den künstlerischen Blick. Die in der Ausstellung gezeigten Werke, darunter Gemälde, Grafiken, Fotografien und Collagen setzen sich mit dem Krieg und der zum Teil zerstörten Heimat auseinander. Die Werke spiegeln so die Ängste wider, aber zeigen auch die Hoffnung auf eine bessere Zukunft. Zum Beispiel die Werke von Lyudmila Simonova. Die 38-jährige Künstlerin lebte seit 2014 in Mariupol und flüchtete mit Kriegsbeginn nach Recklinghausen. Zweimal erlebte sie Krieg und Flucht, verlor ihr Zuhause. Heute hilft sie anderen ukrainischen Frauen mittels Kunsttherapie. „PostMost“ heißt wörtlich übersetzt „nach der Brücke“. Gemeint ist die Brücke über den Fluss Kalmius, der in Mariupol den Wohn- und Industrieteil der Stadt trennt. Post Most. Eine Ausstellung mit Kunstschaffenden aus Mariupol."
+            "en": "Several works were presented as prints of paintings that had been done earlier in Mariupol.",
+            "de": "Mehrere Werke wurden als Drucke von Gemälden präsentiert, die zuvor in Mariupol entstanden waren."
           }
         },
         {
           "type": "image",
-          "src": "/images/events/id4/Z1_Zehe Zollern_5.png",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id4/Z1_Zehe Zollern_5.png",
           "description": {
             "uk": "Назва картини",
             "en": "Назва картини",
@@ -968,7 +923,7 @@
         },
         {
           "type": "image",
-          "src": "/images/events/id4/Z1_Zehe Zollern_6.png",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id4/Z1_Zehe Zollern_6.png",
           "description": {
             "uk": "Назва картини",
             "en": "Назва картини",
@@ -987,6 +942,12 @@
     }
   ],
   "logs": [
+    {
+      "timestamp": "2024-12-30T22:03:37.500Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 5, данные: {\"id\":5,\"title\":{\"uk\":\"Новий івент\",\"en\":\"New Event\",\"de\":\"Neues Ereignis\"},\"date\":\"2024-01-01\",\"main_image\":\"https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id1/post_most_reconnect.jpg\",\"content\":[]}"
+    },
     {
       "timestamp": "2024-12-25T05:45:27.273Z",
       "action": "Удаление",
