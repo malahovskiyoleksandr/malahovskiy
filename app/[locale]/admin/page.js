@@ -334,7 +334,7 @@ export default function AdminPage({ params, onUpload }) {
     try {
       // console.log(selectedFile.name)
       const result = await uploadImageToGitHub(path, selectedFile);
-      console.log("Успешно загружено:", result);
+      console.log("Успішно завантажено:", result);
       alert("Файл успешно загружен!");
     } catch (error) {
       console.error("Ошибка загрузки:", error.message);
