@@ -17,7 +17,7 @@ import {
   Spinner,
 } from "@nextui-org/react";
 import Alert from "./Alert.js";
-import UploadImage from "./UploadImage";
+import UploadImage from "./UploadImage.js";
 
 const generateSlug = (title) => {
   return title
@@ -26,13 +26,13 @@ const generateSlug = (title) => {
     .replace(/[^\w-]+/g, "");
 };
 
-async function uploadImageToGitHub(file) {
+async function uploadImageToGitHub(path, file) {
   const reader = new FileReader();
 
   return new Promise((resolve, reject) => {
     reader.onload = async (event) => {
       try {
-        const filePath = `public/images/${file.name}`;
+        const filePath = `public/images/${path}/${file.name}`;
         const fileContent = event.target.result.split(",")[1]; // Получаем Base64 без префикса
         // console.log(event.target)
         const commitMessage = `Добавлено изображение: ${file.name}`;
@@ -324,7 +324,7 @@ export default function AdminPage({ params, onUpload }) {
     setSelectedFile(event.target.files[0]);
   };
 
-  const handleUpload = async () => {
+  const handleUpload = async (path) => {
     if (!selectedFile) {
       alert("Выберите файл!");
       return;
@@ -332,7 +332,8 @@ export default function AdminPage({ params, onUpload }) {
     // console.log(selectedFile)
     setIsUploading(true);
     try {
-      const result = await uploadImageToGitHub(selectedFile);
+      // console.log(selectedFile.name)
+      const result = await uploadImageToGitHub(path, selectedFile);
       console.log("Успешно загружено:", result);
       alert("Файл успешно загружен!");
     } catch (error) {
@@ -419,7 +420,10 @@ export default function AdminPage({ params, onUpload }) {
                 />
                 <div>
                   <input type="file" onChange={handleFileChange} />
-                  <button onClick={handleUpload} disabled={isUploading}>
+                  <button
+                    onClick={(e) => handleUpload("gallery")}
+                    disabled={isUploading}
+                  >
                     {isUploading ? "Загрузка..." : "Загрузить файл"}
                   </button>
                 </div>
@@ -574,6 +578,22 @@ export default function AdminPage({ params, onUpload }) {
                                           }
                                         }
                                       />
+                                    </div>
+                                    <div>
+                                      <input
+                                        type="file"
+                                        onChange={handleFileChange}
+                                      />
+                                      <button
+                                        onClick={(e) =>
+                                          handleUpload(`gallery/${key}`)
+                                        }
+                                        disabled={isUploading}
+                                      >
+                                        {isUploading
+                                          ? "Загрузка..."
+                                          : "Загрузить файл"}
+                                      </button>
                                     </div>
                                     <Tabs //name, description
                                       size="md"
@@ -836,6 +856,15 @@ export default function AdminPage({ params, onUpload }) {
                         />
                         <h3 className={styles.event_data}>id {event.id}</h3>
                       </Link>
+                      <div>
+                          <input type="file" onChange={handleFileChange} />
+                          <button
+                            onClick={(e) => handleUpload(`events/id${event.id}`)}
+                            disabled={isUploading}
+                          >
+                            {isUploading ? "Загрузка..." : "Загрузить файл"}
+                          </button>
+                        </div>
                       <Input
                         classNames={{
                           base: "max-w-xs",
