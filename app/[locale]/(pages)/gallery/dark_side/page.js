@@ -7,42 +7,6 @@ import styles from "../gallery.module.scss";
 import { Spinner } from "@nextui-org/react";
 import { NextResponse } from "next/server";
 
-// export async function getDataPhoto() {
-//   try {
-//     const response = await fetch(
-//       `https://api.github.com/repos/malahovskiyoleksandr/malahovskiy/contents/public/images`,
-//       {
-//         method: "GET",
-//         cache: "no-store",
-//         headers: {
-//           Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-//         },
-//       }
-//     );
-
-//     if (!response.ok) {
-//       const text = await response.text(); // Получаем тело ошибки
-//       console.error(`Ошибка запроса: ${response.status}`, text);
-//       return NextResponse.json(
-//         {
-//           error: `Ошибка при получении данных с GitHub: ${response.statusText}`,
-//         },
-//         { status: response.status }
-//       );
-//     }
-
-//     const data = await response.json();
-//     console.log(data)
-//     return data;
-//   } catch (error) {
-//     console.error("Ошибка сервера:", error);
-//     return NextResponse.json(
-//       { error: `Ошибка сервера: ${error.message}` },
-//       { status: 500 }
-//     );
-//   }
-// }
-
 export default function PhotoGallery({ params }) {
   const locale = params.locale;
   const [database, setDatabase] = useState();
@@ -67,7 +31,7 @@ export default function PhotoGallery({ params }) {
   useEffect(() => {
     let lightbox; // Инициализация Lightbox
     const image_list = image_listRef.current;
-
+    
     // Инициализация PhotoSwipe Lightbox
     if (typeof window !== "undefined") {
       lightbox = new PhotoSwipeLightbox({
@@ -76,7 +40,7 @@ export default function PhotoGallery({ params }) {
         pswpModule: () => import("photoswipe"),
         wheelToZoom: true,
       });
-
+    
       // Добавляем кастомную кнопку
       lightbox.on("uiRegister", () => {
         // Регистрация кастомной кнопки
@@ -87,22 +51,29 @@ export default function PhotoGallery({ params }) {
           isButton: true,
           html: `
             <button
-              class="${styles.popupButton}
+              class="${styles.popupButton}"
               id="info-button">
               ОПИС
             </button>`, // HTML кнопки
           onClick: (event, el, pswp) => {
             event.stopPropagation();
+    
+            // Проверяем, существует ли уже попап
+            if (document.getElementById("popup-container")) {
+              return; // Если попап уже открыт, ничего не делаем
+            }
+    
             const currentSlide = pswp.currSlide;
             const photoId =
               currentSlide?.data?.element?.getAttribute("data-id");
-
+    
             const photoData = database?.gallery?.dark_side?.page.find(
               (img) => img.id === Number(photoId)
             );
-
+    
             const popupContainer = document.createElement("div");
             popupContainer.className = styles.popupContainer;
+            popupContainer.id = "popup-container"; // Уникальный ID для попапа
             popupContainer.innerHTML = `
                 <p class="${styles.popupTitle}">${photoData?.name[locale]}</p>
                 <p class="${styles.popupDescription}">${photoData?.material}</p>
@@ -112,7 +83,7 @@ export default function PhotoGallery({ params }) {
                 <button class="${styles.closePopupButton}" id="close-popup">ЗАЧИНИТИ</button>
               `;
             document.body.appendChild(popupContainer);
-
+    
             document
               .getElementById("close-popup")
               .addEventListener("click", () => {
@@ -121,8 +92,25 @@ export default function PhotoGallery({ params }) {
           },
         });
       });
+    
+      // Удаляем попап при закрытии PhotoSwipe
+      lightbox.on("close", () => {
+        const popupContainer = document.getElementById("popup-container");
+        if (popupContainer) {
+          popupContainer.remove();
+        }
+      });
+    
+      // Удаляем попап при смене изображения
+      lightbox.on("change", () => {
+        const popupContainer = document.getElementById("popup-container");
+        if (popupContainer) {
+          popupContainer.remove();
+        }
+      });
+    
       lightbox.init();
-    }
+    }    
 
     const addScrollListeners = () => {
       if (image_list) {
@@ -190,40 +178,40 @@ export default function PhotoGallery({ params }) {
   return (
     <div id="gallery" className={styles.image_list} ref={image_listRef}>
       {database?.gallery?.dark_side?.page.map((image, index) => (
-          <a
-            className={styles.image_Link}
-            key={image.id}
-            href={image.src}
-            data-pswp-width={image.width}
-            data-pswp-height={image.height}
-            data-id={image.id}
-          >
-            <Image
-              id={image.id}
-              className={styles.image}
-              // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
-              // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
-              alt={image.name}
-              src={image.src}
-              // placeholder="blur" // размытие заднего фона при загрузке картинки
-              // blurDataURL="/path-to-small-blurry-version.jpg" // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
-              quality={40}
-              priority={true} // если true - loading = 'lazy' отменяеться
-              // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
-              fill={false} //заставляет изображение заполнять родительский элемент
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
-              // sizes="100vh"
-              width={image.width} // задать правильное соотношение сторон адаптивного изображения
-              height={image.height}
-            />
-            {/* {console.log("image", image)} */}
-            <div className={styles.tooltip}>
-              <div className={styles.tooltip_name}>{image.name[locale]}</div>
-              <div className={styles.tooltip_description}>
-                {image.material}, {image.date}
-              </div>
+        <a
+          className={styles.image_Link}
+          key={image.id}
+          href={image.src}
+          data-pswp-width={image.width}
+          data-pswp-height={image.height}
+          data-id={image.id}
+        >
+          <Image
+            id={image.id}
+            className={styles.image}
+            // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
+            // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
+            alt={image.name}
+            src={image.src}
+            // placeholder="blur" // размытие заднего фона при загрузке картинки
+            // blurDataURL="/path-to-small-blurry-version.jpg" // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
+            quality={40}
+            priority={true} // если true - loading = 'lazy' отменяеться
+            // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
+            fill={false} //заставляет изображение заполнять родительский элемент
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
+            // sizes="100vh"
+            width={image.width} // задать правильное соотношение сторон адаптивного изображения
+            height={image.height}
+          />
+          {/* {console.log("image", image)} */}
+          <div className={styles.tooltip}>
+            <div className={styles.tooltip_name}>{image.name[locale]}</div>
+            <div className={styles.tooltip_description}>
+              {image.material}, {image.date}
             </div>
-          </a>
+          </div>
+        </a>
       ))}
     </div>
   );

@@ -8,6 +8,43 @@ import PhotoSwipeLightbox from "photoswipe/lightbox";
 import { Textarea, Button, Spinner } from "@nextui-org/react";
 import { Tabs, Tab, Card, CardBody, Input } from "@nextui-org/react";
 
+async function uploadImageToGitHub(path, file) {
+  const reader = new FileReader();
+
+  return new Promise((resolve, reject) => {
+    reader.onload = async (event) => {
+      try {
+        const filePath = `public/images/${path}/${file.name}`;
+        const fileContent = event.target.result.split(",")[1]; // Получаем Base64 без префикса
+        // console.log(event.target)
+        const commitMessage = `Добавлено изображение: ${file.name}`;
+
+        const response = await fetch("/api/github-upload", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ filePath, fileContent, commitMessage }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Ошибка загрузки изображения");
+        }
+
+        const data = await response.json();
+        resolve(data);
+      } catch (error) {
+        reject(error);
+      }
+    };
+
+    reader.onerror = (error) => reject(error);
+
+    // Читаем файл как Base64
+    reader.readAsDataURL(file);
+  });
+}
+
 export default function EventPage({ params }) {
   const { slug, locale } = params;
   const [database, setDatabase] = useState();
@@ -15,6 +52,8 @@ export default function EventPage({ params }) {
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [eventIndex, setEventIndex] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
 
   function generateSlug(title) {
     return title
@@ -93,37 +132,39 @@ export default function EventPage({ params }) {
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
-
+  
     try {
+      // Обновляем только изменённое событие в fullDatabase
       const updatedFullDatabase = { ...fullDatabase };
       updatedFullDatabase.events[eventIndex] = database;
-
+  
       const payload = {
         filePath: "data/database.json",
         fileContent: JSON.stringify(updatedFullDatabase, null, 2),
-        commitMessage: "Updated event via admin panel",
+        commitMessage: `Updated event ${database.title.en} via admin panel`,
       };
-
+  
       const response = await fetch("/api/github-post", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-
+  
       if (!response.ok) {
         throw new Error("Failed to update data");
       }
-
+  
       const result = await response.json();
       console.log("Changes saved successfully:", result);
+      alert("Успішне збереження!");
     } catch (error) {
       console.error("Error saving:", error.message);
       alert("Помилка! Невдале збереження");
     } finally {
       setIsSubmitting(false);
-      alert("Успішне збереження");
     }
   };
+  
 
   const handleDeleteBlock = (index) => {
     setDatabase((prev) => ({
@@ -175,6 +216,57 @@ export default function EventPage({ params }) {
         },
       ],
     }));
+  };
+
+  const handleFileChange = (event) => {
+    // console.log(event.target.files[0].name);
+    setSelectedFile(event.target.files[0]);
+  };
+
+  const handleUploadAndUpdateDB = async (pathImg, pathDB, index) => {
+    if (!selectedFile) {
+      alert("Выберите файл!");
+      return;
+    }
+
+    setIsUploading(true);
+    try {
+      // Загружаем изображение на GitHub
+      const uploadResult = await uploadImageToGitHub(pathImg, selectedFile);
+
+      // Генерируем новый путь для изображения
+      const newImagePath = `https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/${pathImg}/${selectedFile.name}`;
+
+      // Обновляем только изменённый путь в базе данных
+      setDatabase((prev) => {
+        const updated = { ...prev };
+        const keys = pathDB.split(".");
+        let target = updated;
+
+        // Доступ к целевому объекту
+        keys.slice(0, -1).forEach((key) => {
+          if (!target[key]) target[key] = {};
+          target = target[key];
+        });
+
+        // Устанавливаем новый путь
+        target[keys[keys.length - 1]] = newImagePath;
+
+        // Обновляем fullDatabase только для текущего события
+        const updatedFullDatabase = { ...fullDatabase };
+        updatedFullDatabase.events[eventIndex] = { ...updated };
+
+        setFullDatabase(updatedFullDatabase);
+        return updated;
+      });
+
+      alert("Файл успешно загружен и база обновлена!");
+    } catch (error) {
+      console.error("Ошибка загрузки или обновления базы:", error.message);
+      alert("Ошибка загрузки файла или обновления базы данных");
+    } finally {
+      setIsUploading(false);
+    }
   };
 
   if (isLoading) {
@@ -312,6 +404,28 @@ export default function EventPage({ params }) {
                       }
                     }
                   />
+                  <div>
+                    <Input
+                      className={styles.input_downloadFile}
+                      type="file"
+                      onChange={handleFileChange}
+                      // label=""
+                    />
+                    <Button
+                      className={styles.button_downloadFile}
+                      color="success"
+                      onClick={() =>
+                        handleUploadAndUpdateDB(
+                          `events/id${database.id}`,
+                          `content.${index}.src`,
+                          index
+                        )
+                      }
+                      disabled={isUploading}
+                    >
+                      {isUploading ? "Загрузка..." : "Загрузить файл"}
+                    </Button>
+                  </div>
                   <Textarea
                     className={styles.block_type_image__textarea}
                     label="Опис картинки (BETA)"
@@ -428,326 +542,3 @@ export default function EventPage({ params }) {
     </section>
   );
 }
-
-// "use client";
-
-// import React from "react";
-// import Image from "next/image";
-// import styles from "./event.module.scss";
-// import { useEffect, useState } from "react";
-// import PhotoSwipeLightbox from "photoswipe/lightbox";
-// import { Textarea, Button, Input, Spinner } from "@nextui-org/react";
-
-// export default function EventPage({ params }) {
-//   const { slug, locale } = params;
-//   const [database, setDatabase] = useState();
-//   const [fullDatabase, setFullDatabase] = useState();
-//   const [isLoading, setIsLoading] = useState(true);
-//   const [isSubmitting, setIsSubmitting] = useState(false);
-//   const [eventIndex, setEventIndex] = useState(null);
-
-//   function generateSlug(title) {
-//     return title
-//       .toLowerCase()
-//       .replace(/ /g, "-")
-//       .replace(/[^\w-]+/g, "");
-//   }
-
-//   useEffect(() => {
-//     if (!slug) return;
-
-//     const loadData = async () => {
-//       setIsLoading(true);
-//       try {
-//         const response = await fetch("/api/github-get");
-//         if (!response.ok) {
-//           throw new Error("Failed to fetch data");
-//         }
-//         const data = await response.json();
-
-//         const index = data.events.findIndex(
-//           (event) => generateSlug(event.title["en"]) === slug
-//         );
-
-//         if (index === -1) {
-//           throw new Error("Event not found");
-//         }
-
-//         setFullDatabase(data);
-//         setDatabase(data.events[index]);
-//         setEventIndex(index);
-//       } catch (error) {
-//         console.error("Error: fetch(github-get)", error);
-//       } finally {
-//         setIsLoading(false);
-//       }
-//     };
-
-//     loadData();
-//   }, [slug]);
-
-//   useEffect(() => {
-//     let lightbox;
-
-//     if (typeof window !== "undefined") {
-//       lightbox = new PhotoSwipeLightbox({
-//         gallery: "#gallery",
-//         children: "a",
-//         pswpModule: () => import("photoswipe"),
-//         wheelToZoom: true,
-//       });
-//       lightbox.init();
-//     }
-
-//     return () => {
-//       if (lightbox) lightbox.destroy();
-//     };
-//   }, [database]);
-
-//   const handleChange = (e, path) => {
-//     const { value } = e.target;
-
-//     setDatabase((prev) => {
-//       const updated = { ...prev };
-//       const keys = path.split(".");
-//       let target = updated;
-
-//       keys.slice(0, -1).forEach((key) => {
-//         target = target[key];
-//       });
-
-//       target[keys[keys.length - 1]] = value;
-//       return updated;
-//     });
-//   };
-
-//   const handleAddTextBlock = () => {
-//     setDatabase((prev) => ({
-//       ...prev,
-//       content: [
-//         ...prev.content,
-//         {
-//           type: "text",
-//           value: { uk: "", en: "", de: "" },
-//         },
-//       ],
-//     }));
-//   };
-
-//   const handleAddImageBlock = () => {
-//     setDatabase((prev) => ({
-//       ...prev,
-//       content: [
-//         ...prev.content,
-//         {
-//           type: "image",
-//           src: "",
-//           description: { uk: "", en: "", de: "" },
-//         },
-//       ],
-//     }));
-//   };
-
-//   const handleDeleteBlock = (index) => {
-//     setDatabase((prev) => ({
-//       ...prev,
-//       content: prev.content.filter((_, i) => i !== index),
-//     }));
-//   };
-
-//   const handleMoveBlock = (index, direction) => {
-//     setDatabase((prev) => {
-//       const newContent = [...prev.content];
-//       const targetIndex = direction === "up" ? index - 1 : index + 1;
-
-//       if (targetIndex < 0 || targetIndex >= newContent.length) {
-//         return prev;
-//       }
-
-//       // Перемещение блоков
-//       const temp = newContent[index];
-//       newContent[index] = newContent[targetIndex];
-//       newContent[targetIndex] = temp;
-
-//       return { ...prev, content: newContent };
-//     });
-//   };
-
-//   const handleSubmit = async () => {
-//     setIsSubmitting(true);
-
-//     try {
-//       const updatedFullDatabase = { ...fullDatabase };
-//       updatedFullDatabase.events[eventIndex] = database;
-
-//       const payload = {
-//         filePath: "data/database.json",
-//         fileContent: JSON.stringify(updatedFullDatabase, null, 2),
-//         commitMessage: "Updated event via admin panel",
-//       };
-
-//       const response = await fetch("/api/github-post", {
-//         method: "POST",
-//         headers: { "Content-Type": "application/json" },
-//         body: JSON.stringify(payload),
-//       });
-
-//       if (!response.ok) {
-//         throw new Error("Failed to update data");
-//       }
-
-//       const result = await response.json();
-//       console.log("Changes saved successfully:", result);
-//     } catch (error) {
-//       console.error("Error saving:", error.message);
-//     } finally {
-//       setIsSubmitting(false);
-//     }
-//   };
-
-//   if (isLoading) {
-//     return (
-//       <div className="flex items-center justify-center h-[95vh]">
-//         <Spinner color="warning" label="Loading" labelColor="warning" />
-//       </div>
-//     );
-//   }
-
-//   if (!database) {
-//     return (
-//       <div className="flex items-center justify-center h-[95vh]">
-//         <p>Event not found</p>
-//       </div>
-//     );
-//   }
-
-//   return (
-//     <section className={styles.main_block}>
-//       <div className={styles.event}>
-//         {database.title &&
-//           Object.entries(database.title).map(([key, value], index) => (
-//             <div
-//               key={key}
-//               className={styles.block}
-//               style={{
-//                 margin: "2rem 0",
-//               }}
-//             >
-//               <Input
-//                 // key={key + index}
-//                 label={`Text Block (${key.toUpperCase()})`}
-//                 value={value}
-//                 onChange={(e) => handleChange(e, `title.${key}`)}
-//               />
-//               <div className={styles.block_actions}>
-//                 <Button onClick={() => handleMoveBlock(index, "up")}>
-//                   Move Up
-//                 </Button>
-//                 <Button onClick={() => handleMoveBlock(index, "down")}>
-//                   Move Down
-//                 </Button>
-//                 <Button color="danger" onClick={() => handleDeleteBlock(index)}>
-//                   Delete
-//                 </Button>
-//               </div>
-//             </div>
-//           ))}
-//         <div className={styles.event_content}>
-//           {database.content.map((block, index) => {
-//             if (block.type === "text") {
-//               return (
-//                 <div
-//                   key={block.id}
-//                   className={styles.block}
-//                   style={{
-//                     margin: "2rem 0",
-//                   }}
-//                 >
-//                   <Textarea
-//                     label={`Text Block (${locale.toUpperCase()})`}
-//                     value={block.value[locale]}
-//                     onChange={(e) =>
-//                       handleChange(e, `content.${index}.value.${locale}`)
-//                     }
-//                   />
-//                   <div className={styles.block_actions}>
-//                     <Button onClick={() => handleMoveBlock(index, "up")}>
-//                       Move Up
-//                     </Button>
-//                     <Button onClick={() => handleMoveBlock(index, "down")}>
-//                       Move Down
-//                     </Button>
-//                     <Button
-//                       color="danger"
-//                       onClick={() => handleDeleteBlock(index)}
-//                     >
-//                       Delete
-//                     </Button>
-//                   </div>
-//                 </div>
-//               );
-//             }
-
-//             if (block.type === "image") {
-//               return (
-//                 <div key={block.id} className={styles.block}>
-//                   <Image
-//                     src={block.src}
-//                     alt={block.description[locale] || "Image"}
-//                     width={300}
-//                     height={200}
-//                   />
-//                   <Input
-//                     label="Image URL"
-//                     value={block.src}
-//                     onChange={(e) => handleChange(e, `content.${index}.src`)}
-//                   />
-//                   <Textarea
-//                     label={`Image Description (${locale.toUpperCase()})`}
-//                     value={block.description[locale]}
-//                     onChange={(e) =>
-//                       handleChange(e, `content.${index}.description.${locale}`)
-//                     }
-//                   />
-//                   <div
-//                     className={styles.block_actions}
-//                     style={{
-//                       margin: "2rem 0",
-//                     }}
-//                   >
-//                     <Button onClick={() => handleMoveBlock(index, "up")}>
-//                       Move Up
-//                     </Button>
-//                     <Button onClick={() => handleMoveBlock(index, "down")}>
-//                       Move Down
-//                     </Button>
-//                     <Button
-//                       color="danger"
-//                       onClick={() => handleDeleteBlock(index)}
-//                     >
-//                       Delete
-//                     </Button>
-//                   </div>
-//                 </div>
-//               );
-//             }
-//             return null;
-//           })}
-//         </div>
-
-//         <div className={styles.buttons}>
-//           <Button onClick={handleAddTextBlock} color="primary">
-//             Add Text Block
-//           </Button>
-//           <Button onClick={handleAddImageBlock} color="secondary">
-//             Add Image Block
-//           </Button>
-//         </div>
-
-//         <Button color="success" onClick={handleSubmit} disabled={isSubmitting}>
-//           {isSubmitting ? "Saving..." : "Save Changes"}
-//         </Button>
-//       </div>
-//     </section>
-//   );
-// }

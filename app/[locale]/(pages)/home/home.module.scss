@@ -7,7 +7,7 @@
   width: 100%;
   height: calc(var(--size-body) - var(--size-header));
   // padding: 20vh 0;
-  background: url('/images/home_page/background.png')  top center / cover no-repeat;
+  background: url('https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/home_page/background.png')  top center / cover no-repeat;
 
   .container_main {
     // position: absolute;
@@ -67,7 +67,7 @@
 
 @media (max-width: 668px) {
   .main_block {
-    background: url('/images/home_page/background2.png')  top center / cover no-repeat;
+    background: url('https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/home_page/background2.png')  top center / cover no-repeat;
     .container_main {
       flex-wrap: wrap;
       height: 600px;

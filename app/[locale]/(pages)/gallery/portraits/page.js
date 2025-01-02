@@ -31,7 +31,7 @@ export default function PhotoGallery({ params }) {
   useEffect(() => {
     let lightbox; // Инициализация Lightbox
     const image_list = image_listRef.current;
-
+    
     // Инициализация PhotoSwipe Lightbox
     if (typeof window !== "undefined") {
       lightbox = new PhotoSwipeLightbox({
@@ -40,7 +40,7 @@ export default function PhotoGallery({ params }) {
         pswpModule: () => import("photoswipe"),
         wheelToZoom: true,
       });
-
+    
       // Добавляем кастомную кнопку
       lightbox.on("uiRegister", () => {
         // Регистрация кастомной кнопки
@@ -51,22 +51,29 @@ export default function PhotoGallery({ params }) {
           isButton: true,
           html: `
             <button
-              class="${styles.popupButton}
+              class="${styles.popupButton}"
               id="info-button">
               ОПИС
             </button>`, // HTML кнопки
           onClick: (event, el, pswp) => {
             event.stopPropagation();
+    
+            // Проверяем, существует ли уже попап
+            if (document.getElementById("popup-container")) {
+              return; // Если попап уже открыт, ничего не делаем
+            }
+    
             const currentSlide = pswp.currSlide;
             const photoId =
               currentSlide?.data?.element?.getAttribute("data-id");
-
+    
             const photoData = database?.gallery?.portraits?.page.find(
               (img) => img.id === Number(photoId)
             );
-
+    
             const popupContainer = document.createElement("div");
             popupContainer.className = styles.popupContainer;
+            popupContainer.id = "popup-container"; // Уникальный ID для попапа
             popupContainer.innerHTML = `
                 <p class="${styles.popupTitle}">${photoData?.name[locale]}</p>
                 <p class="${styles.popupDescription}">${photoData?.material}</p>
@@ -76,7 +83,7 @@ export default function PhotoGallery({ params }) {
                 <button class="${styles.closePopupButton}" id="close-popup">ЗАЧИНИТИ</button>
               `;
             document.body.appendChild(popupContainer);
-
+    
             document
               .getElementById("close-popup")
               .addEventListener("click", () => {
@@ -85,8 +92,25 @@ export default function PhotoGallery({ params }) {
           },
         });
       });
+    
+      // Удаляем попап при закрытии PhotoSwipe
+      lightbox.on("close", () => {
+        const popupContainer = document.getElementById("popup-container");
+        if (popupContainer) {
+          popupContainer.remove();
+        }
+      });
+    
+      // Удаляем попап при смене изображения
+      lightbox.on("change", () => {
+        const popupContainer = document.getElementById("popup-container");
+        if (popupContainer) {
+          popupContainer.remove();
+        }
+      });
+    
       lightbox.init();
-    }
+    }    
 
     const addScrollListeners = () => {
       if (image_list) {

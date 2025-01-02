@@ -17,7 +17,6 @@ import {
   Spinner,
 } from "@nextui-org/react";
 import Alert from "./Alert.js";
-import UploadImage from "./UploadImage.js";
 
 const generateSlug = (title) => {
   return title
@@ -118,6 +117,7 @@ export default function AdminPage({ params, onUpload }) {
   }, []);
 
   const handleChange = async (e, path) => {
+    console.log("event", e, "path", path);
     const { value } = e.target;
     setDatabase((prev) => {
       const updated = { ...prev };
@@ -321,24 +321,44 @@ export default function AdminPage({ params, onUpload }) {
   };
 
   const handleFileChange = (event) => {
+    // console.log(event.target.files[0].name);
     setSelectedFile(event.target.files[0]);
   };
 
-  const handleUpload = async (path) => {
+  const handleUploadAndUpdateDB = async (pathImg, pathDB) => {
     if (!selectedFile) {
       alert("Выберите файл!");
       return;
     }
-    // console.log(selectedFile)
+
     setIsUploading(true);
     try {
-      // console.log(selectedFile.name)
-      const result = await uploadImageToGitHub(path, selectedFile);
-      console.log("Успішно завантажено:", result);
-      alert("Файл успешно загружен!");
+      // Загрузка изображения на GitHub
+      const uploadResult = await uploadImageToGitHub(pathImg, selectedFile);
+
+      // Формирование нового пути к изображению
+      const newImagePath = `https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/${pathImg}/${selectedFile.name}`;
+
+      // Обновление базы данных
+      setDatabase((prev) => {
+        const updated = { ...prev };
+        const keys = pathDB.split(".");
+        let target = updated;
+
+        // Доступ к целевому объекту
+        keys.slice(0, -1).forEach((key) => {
+          if (!target[key]) target[key] = {};
+          target = target[key];
+        });
+
+        target[keys[keys.length - 1]] = newImagePath; // Устанавливаем новый путь
+        return updated;
+      });
+      handleSubmit();
+      alert("Файл успешно загружен и база обновлена!");
     } catch (error) {
-      console.error("Ошибка загрузки:", error.message);
-      alert("Ошибка загрузки файла");
+      console.error("Ошибка загрузки или обновления базы:", error.message);
+      alert("Ошибка загрузки файла или обновления базы данных");
     } finally {
       setIsUploading(false);
     }
@@ -385,10 +405,10 @@ export default function AdminPage({ params, onUpload }) {
       <div className={styles.main}>
         <Tabs aria-label="Админ Панель">
           {/* Редактирование главной страницы */}
-          <Tab key="home" title="ГОЛОВНА">
+          <Tab key="home" className={styles.home_page} title="ГОЛОВНА">
             <Card>
               <CardBody>
-                <Tabs aria-label="Виды картин">
+                <Tabs aria-label="industrial,portraits,darkside">
                   {["uk", "en", "de"].map((lang) => (
                     <Tab key={lang} title={lang.toUpperCase()}>
                       <Card>
@@ -412,27 +432,6 @@ export default function AdminPage({ params, onUpload }) {
                     </Tab>
                   ))}
                 </Tabs>
-                <Image
-                  src={database.home.main_image.src}
-                  alt="Main Image"
-                  width={300}
-                  height={200}
-                />
-                <div>
-                  <input type="file" onChange={handleFileChange} />
-                  <button
-                    onClick={(e) => handleUpload("gallery")}
-                    disabled={isUploading}
-                  >
-                    {isUploading ? "Загрузка..." : "Загрузить файл"}
-                  </button>
-                </div>
-                <Input
-                  className={styles.block_type_image__input}
-                  label="Розташування зображення"
-                  value={database.home.main_image.src}
-                  onChange={(e) => handleChange(e, `home.main_image.src`)}
-                />
                 <Button
                   color="success"
                   onClick={handleSubmit}
@@ -440,6 +439,72 @@ export default function AdminPage({ params, onUpload }) {
                 >
                   {isSubmitting ? "Сохранение..." : "Сохранить изменения"}
                 </Button>
+                <div className={styles.images_box}>
+                  <div className={styles.mainPhoto_home}>
+                    <Image
+                      src={database.home.main_image.src}
+                      alt="Main Image"
+                      width={300}
+                      height={200}
+                    />
+                    <div>
+                      <Input
+                        className={styles.input_downloadFile}
+                        type="file"
+                        onChange={handleFileChange}
+                        // label=""
+                      />
+                      <Button
+                        className={styles.button_downloadFile}
+                        color="success"
+                        onClick={() =>
+                          handleUploadAndUpdateDB(
+                            "home_page",
+                            "home.main_image.src"
+                          )
+                        }
+                        disabled={isUploading}
+                      >
+                        {isUploading ? "Загрузка..." : "Загрузить файл"}
+                      </Button>
+                    </div>
+                  </div>
+                  <div className={styles.backround_home}>
+                    <Image
+                      src={database.home.background_image.src}
+                      alt="background_image"
+                      width={300}
+                      height={200}
+                    />
+                    <div>
+                      <Input
+                        className={styles.input_downloadFile}
+                        type="file"
+                        onChange={handleFileChange}
+                        // label=""
+                      />
+                      <Button
+                        className={styles.button_downloadFile}
+                        color="success"
+                        onClick={() =>
+                          handleUploadAndUpdateDB(
+                            "home_page",
+                            `home.background_image.src`
+                          )
+                        }
+                        disabled={isUploading}
+                      >
+                        {isUploading ? "Загрузка..." : "Загрузить файл"}
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+                {/* <Input
+                  className={styles.block_type_image__input}
+                  label="Розташування зображення"
+                  value={database.home.main_image.src}
+                  onChange={(e) => handleChange(e, `home.main_image.src`)}
+                /> */}
               </CardBody>
             </Card>
           </Tab>
@@ -520,6 +585,80 @@ export default function AdminPage({ params, onUpload }) {
                                     )
                                   )}
                               </Tabs>
+                              <Button
+                                color="success"
+                                onClick={handleSubmit}
+                                disabled={isSubmitting}
+                              >
+                                {isSubmitting
+                                  ? "Збереження..."
+                                  : "Зберегти зміни"}
+                              </Button>
+
+                              <div className={styles.mainPhoto_gallery}>
+                                <div className={styles.mainPhoto_box}>
+                                  <Image
+                                    className={styles.image}
+                                    // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
+                                    // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
+                                    alt={value.name.en}
+                                    src={value.src}
+                                    // placeholder="blur" // размытие заднего фона при загрузке картинки
+                                    // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
+                                    quality={10} //качество картнки в %
+                                    priority={true} // если true - loading = 'lazy' отменяеться
+                                    // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
+                                    fill={false} //заставляет изображение заполнять родительский элемент
+                                    // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
+                                    sizes="100%"
+                                    width={300} // задать правильное соотношение сторон адаптивного изображения
+                                    height={200}
+                                    style={
+                                      {
+                                        // width: "200px",
+                                        // height: "200px",
+                                        // objectFit: "cover", // Изображение масштабируется, обрезая края
+                                        // objectFit: "contain", // Изображение масштабируется, не обрезаясь
+                                        // objectPosition: "top",
+                                        // margin: "0 0 1rem 0",
+                                      }
+                                    }
+                                  />
+                                </div>
+                                <div className={styles.downloadImage_block}>
+                                  <Input
+                                    className={styles.input_downloadFile}
+                                    type="file"
+                                    onChange={handleFileChange}
+                                    // label=""
+                                  />
+                                  <Button
+                                    className={styles.button_downloadFile}
+                                    color="success"
+                                    onClick={() =>
+                                      handleUploadAndUpdateDB(
+                                        `gallery`,
+                                        `gallery.${key}.src`
+                                      )
+                                    }
+                                    disabled={isUploading}
+                                  >
+                                    {isUploading
+                                      ? "Загрузка..."
+                                      : "Загрузить файл"}
+                                  </Button>
+                                </div>
+                                {/* <div className={styles.Imagelocation_block}>
+                                  <Input
+                                    className={styles.block_type_image__input}
+                                    label="Розташування зображення"
+                                    value={database.gallery[key].src}
+                                    onChange={(e) =>
+                                      handleChange(e, `gallery.${[key]}.src`)
+                                    }
+                                  />
+                                </div> */}
+                              </div>
 
                               {/* Редактирование изображений */}
                               <div className={styles.tab_images_box}>
@@ -529,15 +668,15 @@ export default function AdminPage({ params, onUpload }) {
                                     handleAddEvent(`gallery.${key}.page`, {
                                       name: {
                                         uk: "Новий",
-                                        en: "New",
-                                        de: "Neu",
+                                        en: "",
+                                        de: "",
                                       },
                                       description: {
-                                        uk: "Опис",
-                                        en: "Description",
-                                        de: "Beschreibung",
+                                        uk: "",
+                                        en: "",
+                                        de: "",
                                       },
-                                      src: "/gallery/industrial/1_SCRUBBER.jpg",
+                                      src: "",
                                       width: 1000,
                                       height: 1000,
                                     })
@@ -580,20 +719,27 @@ export default function AdminPage({ params, onUpload }) {
                                       />
                                     </div>
                                     <div>
-                                      <input
+                                      <Input
+                                        className={styles.input_downloadFile}
                                         type="file"
                                         onChange={handleFileChange}
+                                        // label=""
                                       />
-                                      <button
-                                        onClick={(e) =>
-                                          handleUpload(`gallery/${key}`)
+                                      <Button
+                                        className={styles.button_downloadFile}
+                                        color="success"
+                                        onClick={() =>
+                                          handleUploadAndUpdateDB(
+                                            `gallery/${key}`,
+                                            `gallery.${key}.page.${index}.src`
+                                          )
                                         }
                                         disabled={isUploading}
                                       >
                                         {isUploading
                                           ? "Загрузка..."
                                           : "Загрузить файл"}
-                                      </button>
+                                      </Button>
                                     </div>
                                     <Tabs //name, description
                                       size="md"
@@ -857,13 +1003,25 @@ export default function AdminPage({ params, onUpload }) {
                         <h3 className={styles.event_data}>id {event.id}</h3>
                       </Link>
                       <div>
-                          <input type="file" onChange={handleFileChange} />
-                          <button
-                            onClick={(e) => handleUpload(`events/id${event.id}`)}
+                          <Input
+                            className={styles.input_downloadFile}
+                            type="file"
+                            onChange={handleFileChange}
+                            // label=""
+                          />
+                          <Button
+                            className={styles.button_downloadFile}
+                            color="success"
+                            onClick={() =>
+                              handleUploadAndUpdateDB(
+                                `events/id${index+1}`,
+                                `events.${index}.main_image`
+                              )
+                            }
                             disabled={isUploading}
                           >
                             {isUploading ? "Загрузка..." : "Загрузить файл"}
-                          </button>
+                          </Button>
                         </div>
                       <Input
                         classNames={{

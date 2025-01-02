@@ -73,91 +73,110 @@ $text-color: #fff;
     display: flex;
     flex-direction: column;
 
-    .home {
-      .form {
+    .home_page {
+      .images_box {
         display: flex;
-        flex-direction: column;
-        gap: 2rem;
+        justify-content: space-around;
+        margin: 2rem 0;
+      }
 
-        .industrial_box {
-          .inputList_Industrial {
-            .inputItem {
-            }
+      .industrial_box {
+        .inputList_Industrial {
+          .inputItem {
           }
-          .textareaList_Industrial {
-            .textareaItem {
+        }
+        .textareaList_Industrial {
+          .textareaItem {
+          }
+        }
+      }
+
+      .industrial_box__images {
+        // display: flex;
+        // flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        // width: 100%;
+
+        .industrial_box__image_item {
+          padding: 1rem;
+          background-color: #c7c7c7;
+          border-radius: 0.5rem;
+
+          .image {
+            margin: 0 auto;
+            height: 10rem;
+            width: auto;
+            object-fit: cover;
+          }
+
+          .industrial_box__image_item_nameDescription {
+            .inputItem {
+              margin: 0.5rem 0;
             }
           }
         }
+      }
 
-        .industrial_box__images {
-          // display: flex;
-          // flex-wrap: wrap;
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 1rem;
-          // width: 100%;
-
-          .industrial_box__image_item {
-            padding: 1rem;
-            background-color: #c7c7c7;
-            border-radius: 0.5rem;
-
-            .image {
-              margin: 0 auto;
-              height: 10rem;
-              width: auto;
-              object-fit: cover;
-            }
-
-            .industrial_box__image_item_nameDescription {
-              .inputItem {
-                margin: 0.5rem 0;
-              }
-            }
+      .portraits_box {
+        .inputList_Portraits {
+          .inputItem {
           }
         }
-
-        .portraits_box {
-          .inputList_Portraits {
-            .inputItem {
-            }
-          }
-          .textareaList_Portraits {
-            .textareaItem {
-            }
+        .textareaList_Portraits {
+          .textareaItem {
           }
         }
+      }
 
-        .darkSide_box {
-          .inputList_DarkSide {
-            .inputItem {
-            }
+      .darkSide_box {
+        .inputList_DarkSide {
+          .inputItem {
           }
-          .textareaList_DarkSide {
-            .textareaItem {
-            }
+        }
+        .textareaList_DarkSide {
+          .textareaItem {
           }
         }
       }
     }
 
     .gallery {
-
       .gallery_Tab {
         .name_events {
         }
-  
+
         .description_events {
         }
-  
+
+        .mainPhoto_gallery {
+          margin: 2rem 0;
+          padding: 1rem;
+          border-radius: 10px;
+          background-color: #e7e7e7;
+
+          .mainPhoto_box {
+            position: relative;
+            height: 200px;
+            margin-bottom: 1rem;
+
+            .image {
+              width: auto;
+              height: 100%;
+              object-fit: cover;
+              margin: 0 0 1rem 0;
+            }
+          }
+        }
+
         .tab_images_box {
           display: flex;
           justify-content: space-around;
           gap: 2rem;
           flex-wrap: wrap;
           margin: 5rem 0;
-  
+
           .imageSection {
             position: relative;
             display: flex;
@@ -171,7 +190,7 @@ $text-color: #fff;
             height: auto;
             width: 100%;
             max-width: 20rem;
-  
+
             .image_box {
               position: relative;
               width: 100%;
@@ -182,12 +201,8 @@ $text-color: #fff;
             }
 
             .name_description_block {
-
               .imageSection_input_textarea__box {
-
-
                 .imageSection_input {
-
                 }
                 .image_imageSection_textarea {
                 }
@@ -216,7 +231,6 @@ $text-color: #fff;
             }
           }
         }
-
       }
     }
 

@@ -57,7 +57,6 @@ export async function POST(request) {
     }
 
     const result = await putResponse.json();
-    console.log(result)
     return NextResponse.json({ success: true, result });
   } catch (error) {
     console.error("Ошибка API:", error.message);
