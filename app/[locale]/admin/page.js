@@ -364,6 +364,56 @@ export default function AdminPage({ params, onUpload }) {
     }
   };
 
+  const deleteImage = async (filePath, dbPath) => {
+    try {
+      // Удаляем файл из GitHub
+      const response = await fetch("/api/github-delete", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          filePath,
+          commitMessage: `Удален файл: ${filePath}`,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Ошибка удаления файла");
+      }
+
+      console.log("Файл успешно удален из репозитория:", result);
+
+      // Удаляем запись из базы данных
+      setDatabase((prev) => {
+        const updated = { ...prev };
+        const keys = dbPath.split(".");
+        let target = updated;
+
+        // Доступ к целевому объекту
+        keys.slice(0, -1).forEach((key) => {
+          if (!target[key]) target[key] = {};
+          target = target[key];
+        });
+
+        // Удаляем элемент
+        const lastKey = keys[keys.length - 1];
+        if (Array.isArray(target)) {
+          target.splice(Number(lastKey), 1); // Если это массив
+        } else {
+          delete target[lastKey]; // Если это объект
+        }
+
+        return updated;
+      });
+
+      alert("Файл и запись успешно удалены");
+    } catch (error) {
+      console.error("Ошибка удаления файла или записи:", error.message);
+      alert("Ошибка удаления файла или записи из базы");
+    }
+  };
+
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-[95vh]">
@@ -468,6 +518,17 @@ export default function AdminPage({ params, onUpload }) {
                         {isUploading ? "Загрузка..." : "Загрузить файл"}
                       </Button>
                     </div>
+                    <Button
+                      color="danger"
+                      onClick={() =>
+                        deleteImage(
+                          `public/images/home_page/${key}/${selectedFile.name}`, // Путь к файлу в репозитории
+                          `home.main_image.src` // Путь к записи в базе данных
+                        )
+                      }
+                    >
+                      Удалить
+                    </Button>
                   </div>
                   <div className={styles.backround_home}>
                     <Image
@@ -1003,26 +1064,26 @@ export default function AdminPage({ params, onUpload }) {
                         <h3 className={styles.event_data}>id {event.id}</h3>
                       </Link>
                       <div>
-                          <Input
-                            className={styles.input_downloadFile}
-                            type="file"
-                            onChange={handleFileChange}
-                            // label=""
-                          />
-                          <Button
-                            className={styles.button_downloadFile}
-                            color="success"
-                            onClick={() =>
-                              handleUploadAndUpdateDB(
-                                `events/id${index+1}`,
-                                `events.${index}.main_image`
-                              )
-                            }
-                            disabled={isUploading}
-                          >
-                            {isUploading ? "Загрузка..." : "Загрузить файл"}
-                          </Button>
-                        </div>
+                        <Input
+                          className={styles.input_downloadFile}
+                          type="file"
+                          onChange={handleFileChange}
+                          // label=""
+                        />
+                        <Button
+                          className={styles.button_downloadFile}
+                          color="success"
+                          onClick={() =>
+                            handleUploadAndUpdateDB(
+                              `events/id${index + 1}`,
+                              `events.${index}.main_image`
+                            )
+                          }
+                          disabled={isUploading}
+                        >
+                          {isUploading ? "Загрузка..." : "Загрузить файл"}
+                        </Button>
+                      </div>
                       <Input
                         classNames={{
                           base: "max-w-xs",
