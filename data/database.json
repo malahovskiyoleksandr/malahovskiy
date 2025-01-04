@@ -1,0 +1,1674 @@
+{
+  "home": {
+    "name": {
+      "uk": "Олександр Малаховський",
+      "en": "Oleksandr Malakhovsky",
+      "de": "Oleksandr Malakhovskyi"
+    },
+    "description": {
+      "uk": "Галерея мого живопису, де є тільки справжні полотно/олія, INDUSTRIAL art та реальні люди у вигаданих стилізаціях та ще трішки темної сторони.\nБез використання ШІ, котиків та гумору про дівчат.",
+      "en": "A gallery of my painting, where there is only real oil on canvas, INDUSTRIAL art and real people\nin fictional stylizations and a little bit of the dark side. No AI, no FUN, no cats.",
+      "de": "Eine Galerie meiner Malerei, in der es nur echte Öl auf Leinwand, INDUSTRIELLE Kunst und echte Menschen in fiktiven Stilisierungen und ein wenig von der dunklen Seite gibt.\nOhne den Einsatz von KI, Katzen und Humor über Mädchen."
+    },
+    "main_image": {
+      "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/home_page/mainPhoto.jpg"
+    },
+    "background_image": {
+      "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/home_page/background.png"
+    }
+  },
+  "gallery": {
+    "industrial": {
+      "name": {
+        "uk": "Industrial art",
+        "en": "Industrial art",
+        "de": "Industrielle Kunst"
+      },
+      "description": {
+        "uk": "Живопис індустріальних міст",
+        "en": "Painting of industrial cities",
+        "de": "Malerei von Industriestädten"
+      },
+      "href": "/gallery/industrial",
+      "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial.jpg",
+      "page": [
+        {
+          "id": 1,
+          "name": {
+            "uk": "СКРУБЕР",
+            "en": "SCRUBBER",
+            "de": "WÄSCHER"
+          },
+          "material": "полотно/олія",
+          "size": "100x80 см",
+          "date": "2019",
+          "description": {
+            "uk": "«АЗОВСТАЛЬ», МАРІУПОЛЬ, УКРАЇНА",
+            "en": "AZOVSTAL, MARIUPOL, UKRAINE",
+            "de": "AZOVSTAL, MARIUPOL, UKRAINE"
+          },
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial/1_SCRUBBER.jpg",
+          "width": 6115,
+          "height": 8160
+        },
+        {
+          "id": 2,
+          "name": {
+            "uk": "ПРОКАТНИЙ СТАН",
+            "en": "ROLLING MILL",
+            "de": "WALZWERK"
+          },
+          "material": "полотно/олія",
+          "size": "100x150 cm",
+          "date": "2020",
+          "description": {
+            "uk": "Спроба намалювати поєднання води і вогню в одному об'єкті.",
+            "en": "This is my attempt to draw a combination of water and fire in one object",
+            "de": "Dies ist mein Versuch, eine Kombination aus Wasser und Feuer in einem Objekt zu zeichnen."
+          },
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial/2_ROLLING MILL.jpg",
+          "width": 1920,
+          "height": 1228
+        },
+        {
+          "id": 3,
+          "name": {
+            "uk": "Домена піч №4 (3)",
+            "en": "BLAST FURNACE #4 (3)",
+            "de": "HOCHOFEN #4 (3)."
+          },
+          "material": "полотно/олія",
+          "size": "100x150 cm",
+          "date": "2020",
+          "description": {
+            "uk": " Світло знаходить незвичайні акценти в оточенні промислових будівель.\n«АЗОВСТАЛЬ», МАРІУПОЛЬ, УКРАЇНА.",
+            "en": "The light finds unusual accents, while being surrounded by buildings. AZOVSTAL I&SW, MARIUPOL, UKRAINE.",
+            "de": "Das Licht findet ungewöhnliche Akzente, während es von Gebäuden umgeben ist.\nAZOVSTAL, MARIUPOL, UKRAINE. "
+          },
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial/3_BLAST FURNACE 4 (3).jpg",
+          "width": 6111,
+          "height": 4981
+        },
+        {
+          "id": 4,
+          "name": {
+            "uk": "ПОЧУТТЯ",
+            "en": "FEELINGS",
+            "de": "GEFÜHLE"
+          },
+          "material": "полотно/олія",
+          "size": "50x80 cm",
+          "date": "2019",
+          "description": {
+            "uk": "Вночі завод наповнюється незвичайним світлом.",
+            "en": "At night the plant is filled with unusual light.",
+            "de": "Nachts ist die Anlage mit ungewöhnlichem Licht erfüllt."
+          },
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial/4_FEELINGS.jpg",
+          "width": 6101,
+          "height": 2931
+        },
+        {
+          "id": 5,
+          "name": {
+            "uk": "СТАРА ДОМНА",
+            "en": "OLD BLAST FURNACE",
+            "de": "ALTER HOCHOFEN"
+          },
+          "material": "полотно/олія",
+          "size": "80x60 cm",
+          "date": "2018",
+          "description": {
+            "uk": "Стара доменна піч №3. «АЗОВСТАЛЬ», МАРІУПОЛЬ, УКРАЇНА.",
+            "en": "This old blast furnace #3 of AZOVSTAL I&SW, MARIUPOL, UKRAINE.",
+            "de": "Dieser alte Hochofen #3. AZOVSTAL, MARIUPOL, UKRAINE."
+          },
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial/5_OLD BLAST FURNACE.jpg",
+          "width": 5703,
+          "height": 8160
+        },
+        {
+          "id": 6,
+          "name": {
+            "uk": "ДОМЕННА ПІЧ №2",
+            "en": "BLAST FURNACE #2",
+            "de": "HOCHOFEN #2"
+          },
+          "material": "полотно/олія",
+          "size": "80x110 cm",
+          "date": "2018",
+          "description": {
+            "uk": "Доменна піч №2,.«АЗОВСТАЛЬ», МАРІУПОЛЬ, УКРАЇНА.",
+            "en": "Blast furnace #2 of AZOVSTAL I&SW, MARIUPOL, UKRAINE.",
+            "de": "Hochofen #2. AZOVSTAL, MARIUPOL, UKRAINE."
+          },
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial/6_BLAST FURNACE 2.jpg",
+          "width": 6107,
+          "height": 4798
+        },
+        {
+          "id": 7,
+          "name": {
+            "uk": "ДОМЕННА ПІЧ №4 (2)",
+            "en": "BLAST FURNACE #4 (2)",
+            "de": "HOCHOFEN #4 (2)"
+          },
+          "material": "полотно/олія",
+          "size": "80x60 cm",
+          "date": "2019",
+          "description": {
+            "uk": "Це продовження роботи над зображенням доменної печі №4.\n«АЗОВСТАЛЬ», МАРІУПОЛЬ, УКРАЇНА.",
+            "en": "This is a continuation of the work on the image of the blast furnace No.4 of AZOVSTAL I&SW, MARIUPOL, UKRAINE.",
+            "de": "Dies ist eine Fortsetzung der Arbeit am Bild des Hochofens #4. AZOVSTAL, MARIUPOL, UKRAINE."
+          },
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial/7_BLAST FURNACE 4 (2).jpg",
+          "width": 6093,
+          "height": 7938
+        },
+        {
+          "id": 8,
+          "name": {
+            "uk": "ЗАЛІЗНЕ СЕРЦЕ (2)",
+            "en": "IRON HEART (2)",
+            "de": "EISERNES HERZ (2)"
+          },
+          "material": "полотно/олія",
+          "size": "80x100 cm",
+          "date": "2019",
+          "description": {
+            "uk": "Елементи енергопостачання повітронагрівача схожі на органи великої істоти. Домна №4.\n«АЗОВСТАЛЬ», МАРІУПОЛЬ, УКРАЇНА.",
+            "en": "The energy supply elements of the air heater are similar to the organs of a large creature. Blast furnace No.4 of AZOVSTAL I&SW, MARIUPOL, UKRAINE.",
+            "de": "Die Energieversorgungselemente des Lufterhitzers ähneln den Organen eines großen Lebewesens. Hochofen #4. AZOVSTAL, MARIUPOL, UKRAINE."
+          },
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial/8_IRON HEART (2).jpg",
+          "width": 6111,
+          "height": 4690
+        },
+        {
+          "id": 9,
+          "name": {
+            "uk": "ЗАЛІЗНЕ СЕРЦЕ (1)",
+            "en": "IRON HEART (1)",
+            "de": "EISERNES HERZ (1)"
+          },
+          "material": "полотно/олія",
+          "size": "50x75 cm",
+          "date": "2019",
+          "description": {
+            "uk": "У в жанрі індастріал світло і вогонь неподільні. Домна №4.\n«АЗОВСТАЛЬ», МАРІУПОЛЬ, УКРАЇНА.",
+            "en": "Light and fire are indivisible in the industrial genre. Blast furnace No.4 of AZOVSTAL I&SW, MARIUPOL, UKRAINE.",
+            "de": "Licht und Feuer sind im industriellen Genre untrennbar. Hochofen #4. AZOVSTAL, MARIUPOL, UKRAINE."
+          },
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial/9_IRON HEART (1).jpg",
+          "width": 6101,
+          "height": 4274
+        },
+        {
+          "id": 10,
+          "name": {
+            "uk": "ДОМЕННА ПІЧ №4 (1).",
+            "en": "BLAST FURNACE #4 (1)",
+            "de": "HOCHOFEN #4 (1)"
+          },
+          "material": "полотно/олія",
+          "size": "60x80 cm",
+          "date": "2019",
+          "description": {
+            "uk": "Це одна з моїх перших картин в жанрі INDUSTRIAL. Написано під враженням від потужної енергетики діючої доменної печі №4. «АЗОВСТАЛЬ», МАРІУПОЛЬ, УКРАЇНА.",
+            "en": "This is one of my first paintings in the INDUSTRIAL genre. Written under the impression of the powerful energy of the working blast furnace No.4 of AZOVSTAL I&SW, MARIUPOL, UKRAINE.",
+            "de": "Dies ist eines meiner ersten Gemälde im INDUSTRIELLEN Genre. Geschrieben unter dem Eindruck der kraftvollen Energie des in Betrieb befindlichen Hochofens #4. AZOVSTAL, MARIUPOL, UKRAINE."
+          },
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial/10_BLAST FURNACE 4 (1).jpg",
+          "width": 6111,
+          "height": 4670
+        },
+        {
+          "id": 11,
+          "name": {
+            "uk": "INDUSTRIAL 2023_1",
+            "en": "INDUSTRIAL 2023_1",
+            "de": "INDUSTRIAL 2023_1"
+          },
+          "material": "полотно/олія",
+          "size": "80x60 cm",
+          "date": "2023",
+          "description": {
+            "uk": "Це перший індустріальний арт для мене у новому місці. Нові враження та нові люди - це завжди цікаво.",
+            "en": "This is the first industrial art for me in a new place. New experiences and new people are always interesting.",
+            "de": "Für mich ist das die erste industrielle Kunst an einem neuen Ort. Neue Erfahrungen und neue Leute sind immer interessant."
+          },
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial/18_INDUSTRIAL 2023_1.jpg",
+          "width": 5807,
+          "height": 7916
+        },
+        {
+          "id": 12,
+          "name": {
+            "uk": "INDUSTRIAL 2023_2",
+            "en": "INDUSTRIAL 2023_2",
+            "de": "INDUSTRIAL 2023_2"
+          },
+          "material": "полотно/олія",
+          "size": "80x60 cm",
+          "date": "2023",
+          "description": {
+            "uk": "Індустріальний арт має давню історію. Але це і сьогодення і майбутнє. Часто це все стикається у єдиному об'єкті.",
+            "en": "Industrial art has a long history. But it is both the present and the future. Often it all comes together in a single object.",
+            "de": "Industrielle Kunst hat eine lange Geschichte. Aber das ist die Gegenwart und die Zukunft. Oftmals kollidiert alles in einem einzigen Objekt."
+          },
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial/19_INDUSTRIAL 2023_2.jpg",
+          "width": 5817,
+          "height": 8141
+        },
+        {
+          "id": 13,
+          "name": {
+            "uk": "Спектр",
+            "en": "Spectrum",
+            "de": " Spektrum"
+          },
+          "material": "полотно/олія",
+          "size": "80x60 cm",
+          "date": "2024",
+          "description": {
+            "uk": "Індустріальне мистецтво має багато відтінків, які можна побачити лише за певних умов освітлення. А деякі з них можна побачити лише зсередини.",
+            "en": "Industrial art has many shades that can be seen only under certain lighting conditions. And some of them can only be seen from inside.",
+            "de": "Industriekunst hat viele Schattierungen, die nur unter bestimmten Lichtbedingungen sichtbar sind. Und einige davon sind nur von innen sichtbar."
+          },
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial/21_Spectrum_2024.jpg",
+          "width": 1993,
+          "height": 1468
+        },
+        {
+          "id": 14,
+          "name": {
+            "uk": "Смарагдове місто",
+            "en": "Emerald city",
+            "de": " Smaragdstadt"
+          },
+          "material": "полотно/олія",
+          "size": "60x80 cm",
+          "date": "2024",
+          "description": {
+            "uk": "Часто Industrial art викликає складні почуття, які дозволяють мріяти та зображати знайомі архітектурні форми у новому ракурсі.",
+            "en": "Industrial art often evokes complex feelings that allow us to dream and depict familiar architectural forms from a new perspective.",
+            "de": "Industrielle Kunst ruft oft komplexe Gefühle hervor, die uns träumen lassen und vertraute architektonische Formen aus einer neuen Perspektive darstellen."
+          },
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial/22_Emerald city_2024.jpg",
+          "width": 6115,
+          "height": 8160
+        },
+        {
+          "id": 15,
+          "name": {
+            "uk": "SNORT_2021",
+            "en": "SNORT_2021",
+            "de": " SNORT_2021"
+          },
+          "date": "2021",
+          "size": "100x80 cm",
+          "description": {
+            "uk": "Останнє передвоєнне зображення industrial art ще у Маріуполі.",
+            "en": "The last pre-war image of industrial art is still in Mariupol.",
+            "de": "Das letzte Abbild industrieller Kunst aus der Vorkriegszeit ist noch heute in Mariupol zu finden."
+          },
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial/SNORT_2021.jpg",
+          "width": 2152,
+          "height": 2971,
+          "material": "полотно/олія"
+        }
+      ]
+    },
+    "portraits": {
+      "name": {
+        "uk": "ПОРТРЕТИ",
+        "en": "PORTRAITS",
+        "de": "PORTRÄTS"
+      },
+      "description": {
+        "uk": "Стилізація образів",
+        "en": "Stylized images of people",
+        "de": "Stilisierte Porträts von Menschen"
+      },
+      "href": "/gallery/portraits",
+      "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/portraits.jpg",
+      "page": [
+        {
+          "id": 2,
+          "name": {
+            "uk": "Rebellion (DIESELPUNK 2023)",
+            "en": "Rebellion (DIESELPUNK 2023)",
+            "de": "Rebellion (DIESELPUNK 2023)"
+          },
+          "description": {
+            "uk": "Цей образ заснован на тематиці \"dieselpunk\" у кіно. Звісно, за основу стилізації я взяв серію \"Mad Max\" та ідеї Джорджа Міллера. Уперше підготовка перед початком малювання зайняла більше часу, ніж сам процес. Завдяки моєму арт-директору Oleksii Chernik (artstation.com/gratshnag) було прописано у текстовому вигляді опис персонажу, світло, сюжет, сцена, елементи одежи, поза та характер рухів. Модель також була обрана таким чином, щоб її зовнішність співпадала з задумкою. Тількі потім - декілька десятків ескізів, а вже після них - реалізація всього задуму на холсті.",
+            "en": "This image is based on the \"dieselpunk\" theme of the movie. Of course, I took the \"Mad Max\" series and George Miller's ideas as the basis for styling. The first preparation before starting the drawing took more time than the process itself. Thanks to my art director Oleksii Chernik (artstation.com/gratshnag), it was a written description of the character, light, plot, scene, elements of clothing, pose and character of movements. The model was also chosen in such a way that its appearance coincided with the idea. Only then - several tens of sketches, and after them - the realization of the whole idea on canvas.",
+            "de": "Dieses Bild basiert auf dem „Dieselpunk“-Thema des Films. Natürlich habe ich die „Mad Max“-Reihe und die Ideen von George Miller als Grundlage für das Styling genommen. Die ersten Vorbereitungen vor dem Beginn des Zeichnens nahmen mehr Zeit in Anspruch als der Prozess selbst. Dank meines Art Directors Oleksii Chernik (artstation.com/gratshnag) war es eine schriftliche Beschreibung des Charakters, des Lichts, der Handlung, der Szene, der Kleidungselemente, der Pose und des Bewegungscharakters. Das Modell wurde auch so ausgewählt, dass sein Aussehen mit der Idee übereinstimmte. Erst dann – mehrere Dutzend Skizzen und danach – die Umsetzung der gesamten Idee auf Leinwand."
+          },
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/portraits/12_Rebellion (DIESELPUNK 2023).jpg",
+          "width": 1285,
+          "height": 1600,
+          "material": "полотно/олія",
+          "size": "100x80 cm",
+          "date": "2023"
+        },
+        {
+          "id": 3,
+          "name": {
+            "uk": "The recipe of a real STEAMPUNK",
+            "en": "The recipe of a real STEAMPUNK",
+            "de": "Das Rezept eines echten STEAMPUNK"
+          },
+          "description": {
+            "uk": "Рецепт справжнього СТІМПАНКУ",
+            "en": "The recipe of a real STEAMPUNK ",
+            "de": "Das Rezept eines echten STEAMPUNK"
+          },
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/portraits/13_The recipe of a real STEAMPUNK.jpg",
+          "width": 1920,
+          "height": 2549,
+          "material": "полотно/олія",
+          "size": "100x80 cm",
+          "date": "2021"
+        },
+        {
+          "id": 4,
+          "name": {
+            "uk": "Alina",
+            "en": "Alina",
+            "de": "Alina"
+          },
+          "description": {
+            "uk": "Ідея написати портрет, стилізований під манеру Вільяма-Адольфа Бугро, виникла взимку минулого року в Маріуполі. Але через війну і мій переїзд до Кривого Рогу тільки тут вдалося це реалізувати. Бажання зрозуміти стиль Бугро і вивчення його техніки переконали мене, що мені подобається його небажання піддаватися новомодним течіям у мистецтві. За його життя, у 19 столітті, у Франції відбулося близько 10 локальних, європейських і колоніальних війн, змінилося багато правителів, змінилася політична система, зазнали краху основи моралі та етики. Але Бугро був понад усім цим хаосом, він ніколи не піддавався моді. Він не сприймав популярних у масах живописних течій, а тому залишався вірним собі й засновником «романтичного реалізму».\nМені пощастило знайти модель Аліну в Кривому Розі, яка зовні дуже схожа на тип жіночих портретів Бугро. Завдяки цьому, гадаю, вдалося розкрити деякі особливості його художнього методу.",
+            "en": "I got an idea to paint a portrait stylized in the manner of William-Adolphe Bouguereau last winter, in Mariupol. However, due to the war and my move to Krivoy Rog, only here it was possible to realize this. The desire to understand Bouguereau's style and the study of his technique convinced me that I liked his unwillingness to succumb to newfangled trends in art. During his life, in the 19th century, there were about 10 local, European and colonial wars in France, many rulers changed, the political system changed, the foundations of morality and ethics collapsed. But Bouguereau was above all this chaos, he did never gave in to fashion. He did not perceive the currents of painting popular among the masses, and therefore remained true to himself and the founder of \"romantic realism\".\nI was lucky to find model Alina in Krivoy Rog, who looks very similar to the type of female portraits of Bouguereau. Thanks to this, I think I was able to reveal some of the features of his artistic method.",
+            "de": "Letzten Winter kam mir in Mariupol die Idee, ein Porträt im Stil von William-Adolphe Bouguereau zu malen. Aufgrund des Krieges und meines Umzugs nach Krivoy Rog war dies jedoch nur hier möglich. Der Wunsch, Bouguereaus Stil zu verstehen und seine Technik zu studieren, überzeugte mich davon, dass mir seine Abneigung gefiel, neuen Trends in der Kunst nachzugeben. Zu seinen Lebzeiten, im 19. Jahrhundert, gab es in Frankreich etwa zehn lokale, europäische und Kolonialkriege, viele Herrscher wechselten, das politische System veränderte sich, die Grundlagen von Moral und Ethik brachen zusammen. Aber Bouguereau stand über all dem Chaos, er gab der Mode nie nach. Er nahm die Strömungen der Massenmalerei nicht wahr und blieb sich selbst und dem Begründer des „romantischen Realismus“ treu.\nIch hatte das Glück, in Krivoy Rog das Model Alina zu finden, das dem Typus der Frauenporträts von Bouguereau sehr ähnlich sieht. Ich denke, dass ich dadurch einige Merkmale seiner künstlerischen Methode offenbaren konnte."
+          },
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/portraits/23_Alina.jpg",
+          "width": 1097,
+          "height": 1351,
+          "material": "полотно/олія",
+          "size": "50x40 cm",
+          "date": "2022"
+        }
+      ]
+    },
+    "dark_side": {
+      "name": {
+        "uk": "DARK SIDE",
+        "en": "DARK SIDE",
+        "de": "Dunkle Seite"
+      },
+      "description": {
+        "uk": "Потойбічна сторона полотна",
+        "en": "The other side of the canvas",
+        "de": "Die andere Seite der Leinwand"
+      },
+      "href": "/gallery/dark_side",
+      "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/dark_side.jpg",
+      "page": [
+        {
+          "name": {
+            "uk": "Нове зображення",
+            "en": "",
+            "de": ""
+          },
+          "description": {
+            "uk": "",
+            "en": "",
+            "de": ""
+          },
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/dark_side/MainAfter.jpg",
+          "width": 1000,
+          "height": 1000,
+          "id": 5
+        },
+        {
+          "id": 1,
+          "name": {
+            "uk": "DARK SIDE 1",
+            "en": "DARK SIDE 1",
+            "de": "DUNKLE SEITE 1"
+          },
+          "description": {
+            "uk": "DARK SIDE 1",
+            "en": "",
+            "de": ""
+          },
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/dark_side/14_DARK SIDE 1.jpg",
+          "width": 6101,
+          "height": 4808,
+          "material": "полотно/олія",
+          "size": "40x60 cm",
+          "date": "2015"
+        },
+        {
+          "id": 2,
+          "name": {
+            "uk": "DARK SIDE 2",
+            "en": "DARK SIDE 2",
+            "de": "DUNKLE SEITE 2"
+          },
+          "description": {
+            "uk": "DARK SIDE 2",
+            "en": "",
+            "de": ""
+          },
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/dark_side/15_DARK SIDE 2.jpg",
+          "width": 6111,
+          "height": 4472,
+          "material": "полотно/олія",
+          "size": "60x80 cm",
+          "date": "2013"
+        },
+        {
+          "id": 3,
+          "name": {
+            "uk": "DARK SIDE 3",
+            "en": "DARK SIDE 3",
+            "de": "DUNKLE SEITE 3"
+          },
+          "description": {
+            "uk": "Темне фэнтези бере свій початок у XVIII сторіччі та пов'язано з розквітом готичних романів жахів. ",
+            "en": "This is traditional paint...and dark side of paintings. Dark fantasy originates in the 18th century and is associated with the flourishing of Gothic horror novels.",
+            "de": "Das ist traditionelle Malerei ... und die dunkle Seite der Malerei. Dark Fantasy hat seinen Ursprung im 18. Jahrhundert und wird mit der Blüte der Gothic-Horrorromane in Verbindung gebracht."
+          },
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/dark_side/16_DARK SIDE 3.jpg",
+          "width": 6077,
+          "height": 8160,
+          "material": "полотно/олія",
+          "size": "40x60 cm",
+          "date": "2016"
+        },
+        {
+          "id": 4,
+          "name": {
+            "uk": "DARK SIDE 4",
+            "en": "DARK SIDE 4",
+            "de": "DUNKLE SEITE 4"
+          },
+          "description": {
+            "uk": "У своїх книгах Говард Філіпс Лавкрафт привертає увагу читачів містикою, розпадом і загальним занепадом. І це ілюстрація до епізоду одного з його творів.",
+            "en": "In his books, Howard Phillips Lovecraft attracted the attention of readers with mysticism, decay and general decline. And this is an illustration of an episode of one of his works.",
+            "de": "Howard Phillips Lovecraft erregte in seinen Büchern die Aufmerksamkeit der Leser mit Mystik, Verfall und allgemeinem Verfall. Und dies ist eine Illustration einer Episode eines seiner Werke."
+          },
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/dark_side/17_DARK SIDE 4.jpg",
+          "width": 6077,
+          "height": 8160,
+          "material": "полотно/олія",
+          "size": "40x60 cm",
+          "date": "2017"
+        }
+      ]
+    }
+  },
+  "events": [
+    {
+      "title": {
+        "uk": "Новий",
+        "en": "new2",
+        "de": ""
+      },
+      "date": "",
+      "main_image": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id2/background.png",
+      "content": [],
+      "id": 5
+    },
+    {
+      "id": 4,
+      "title": {
+        "uk": "Маріупольський художній проєкт POST MOST 6. Reconnect у Музеї історії міста Кам’янське",
+        "en": "",
+        "de": ""
+      },
+      "date": "12.12.2024",
+      "main_image": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id1/post_most_reconnect.jpg",
+      "content": [
+        {
+          "id": 4,
+          "type": "text",
+          "value": {
+            "uk": "19 жовтня у Музеї історії Кам’янського презентували художню виставку \"POST MOST 6. Reconnect\".",
+            "en": "On October 19, the Kamiansky Museum of History presented the art exhibition \"POST MOST 6. Reconnect\".",
+            "de": "Am 19. Oktober präsentierte das Kamiansky Museum of History die Kunstausstellung \"POST MOST 6. Reconnect\"."
+          }
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id1/ZAHID_4 KAMIANSKE_1.jpg",
+          "description": {
+            "uk": "",
+            "en": "",
+            "de": ""
+          }
+        },
+        {
+          "id": 3,
+          "type": "text",
+          "value": {
+            "uk": "Виставку створили учасники маріупольської громадської организації \"Ліга вільних художників \"ARS ALTERA\" та художники з Кам’янського. Цього разу тематика виставки не не обмежувалася суто індустріальним пейзажем, а була присвячена сьогоденню почуттів кожного художника та їх творчому сприйняттю себе у сучасному світі.",
+            "en": "The exhibition was created by the members of the Mariupol public organization \"The League of Free Artists \"ARS ALTERA\" and artists from Kamiansk. This time the theme of the exhibition was not limited to the purely industrial landscape, but was dedicated to the present feelings of each artist and their creative perception of themselves in the modern world.",
+            "de": "Die Ausstellung wurde von Mitgliedern der Mariupoler öffentlichen Organisation \"Liga freier Künstler \"ARS ALTERA\" und Künstlern aus Kamjanske ins Leben gerufen. Diesmal beschränkte sich das Thema der Ausstellung nicht nur auf die rein industrielle Landschaft, sondern war den gegenwärtigen Gefühlen gewidmet über jeden Künstler und seine kreative Wahrnehmung seiner selbst in der modernen Welt."
+          }
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id1/ZAHID_4 KAMIANSKE_2.jpg",
+          "description": {
+            "uk": "",
+            "en": "",
+            "de": ""
+          }
+        },
+        {
+          "id": 4,
+          "type": "text",
+          "value": {
+            "uk": "На виставці в Музеї історії до художників з Маріуполя, Одеси, Києва, Дніпра, Зігена та Брегенса приєдналися художники з Кам’янського. На виставку завітав заступник міського голови Маріуполя Сергій Орлов.",
+            "en": "At the exhibition in the Museum of History, artists from Mariupol, Odessa, Kyiv, Dnipro, Siegen and Bregenz were joined by artists from Kamiansk. Deputy Mayor of Mariupol Serhii Orlov visited the exhibition.",
+            "de": "Bei der Ausstellung im Historischen Museum kamen neben Künstlern aus Mariupol, Odessa, Kiew, Dnipro, Siegen und Bregenz auch Künstler aus Kamjansk hinzu. Der stellvertretende Bürgermeister von Mariupol Serhii Orlov besuchte die Ausstellung."
+          }
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id1/ZAHID_4 KAMIANSKE_3.jpg",
+          "description": {
+            "uk": "",
+            "en": "",
+            "de": ""
+          }
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "Цьогорічна виставка набула потужності та яскравості, оскільки до нього знову приєдналися постійні учасники з новими ідеями та наративами.",
+            "en": "This year's exhibition gained strength and vibrancy as regular participants rejoined it with new ideas and narratives.",
+            "de": "Die diesjährige Ausstellung gewann an Stärke und Lebendigkeit, da die regelmäßigen Teilnehmer mit neuen Ideen und Erzählungen zurückkehrten"
+          }
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id1/ZAHID_4 KAMIANSKE_4.jpg",
+          "description": {
+            "uk": "",
+            "en": "",
+            "de": ""
+          }
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id1/ZAHID_4 KAMIANSKE_5.jpg",
+          "description": {
+            "uk": "",
+            "en": "",
+            "de": ""
+          }
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "На виставці свої роботи представили: \nОлександр Малаховський, Олена Украінцева, Анастасія Шишкіна, Олена Ліберті, Ганна Торкаєнко, Наталя Констанська, Валерія Самусєнко, Алла Михальчук, Сергій Бабич, Зугайрат Новикова, Іван Харітонов, Алла Кучма, Володимир Сорочан, Віта Косова.\n",
+            "en": "The following presented their works at the exhibition: \nOleksandr Malakhovskyi, Olena Ukraintseva, Anastasia Shishkina, Olena Liberty, Hanna Torkayenko, Natalya Konstanska, Valeriya Samusyenko, Alla Mikhalchuk, Serhii Babich, Zugairat Novikova, Ivan Kharitonov, Alla Kuchma, Volodymyr Sorochan, Vita Kosova.",
+            "de": "Ihre Werke präsentierten in der Ausstellung: \nOleksandr Malakhovskyi, Olena Ukraintseva, Anastasia Shishkina, Olena Liberty, Hanna Torkayenko, Natalya Konstanska, Valeriya Samusyenko, Alla Mikhalchuk, Serhii Babich, Zugairat Novikova, Ivan Kharitonov, Alla Kuchma, Volodymyr Sorochan, Vita Kosova."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": {
+        "uk": "Виставка проекту POST MOST у музеї Hoesch у Дортмунді",
+        "en": "Exhibition of the POST MOST project at the Hoesch Museum in Dortmund",
+        "de": "Ausstellung des POST MOST-Projekts\nim Hoesch-Museum in Dortmund"
+      },
+      "date": " 21.01.2024",
+      "main_image": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id2/Z2_HOESHE museum_1.png",
+      "content": [
+        {
+          "type": "text",
+          "value": {
+            "uk": "У музеї Hoesch у Дортмунді з 21 січня демонструється виставка робіт художників з українського металургічного міста Маріуполь.",
+            "en": "An exhibition of works by artists from the Ukrainian metallurgical city of Mariupol has been on display at the Hoesch Museum in Dortmund since January 21.",
+            "de": "Seit dem 21. Januar ist im Hoesch-Museum in Dortmund eine Ausstellung mit Werken von Künstlern aus der ukrainischen Hüttenstadt Mariupol zu sehen."
+          }
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id2/Z2_HOESHE museum_1.png",
+          "description": {
+            "uk": "Назва картини",
+            "en": "Назва картини",
+            "de": "Назва картини"
+          },
+          "width": 6115,
+          "height": 8160
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "Картини, графіка та фотографії у виставці POST MOST присвячені війні та частково зруйнованій батьківщині митців. Вони відображають не тільки страхи, але й надію на краще майбутнє.",
+            "en": "The paintings, graphics and photographs in the POST MOST exhibition are dedicated to the war and the partially destroyed homeland of the artists. They reflect not only fears, but also hope for a better future.",
+            "de": "Die Gemälde, Grafiken und Fotografien der Ausstellung POST MOST sind dem Krieg und der teilweise zerstörten Heimat der Künstler gewidmet. Sie spiegeln nicht nur Ängste wider, sondern auch die Hoffnung auf eine bessere Zukunft."
+          }
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "Проект POST MOST стартував у 2019 році. Маріупольські митці показали нові погляди на структурні зміни у своєму місті та заохотити співгромадян до участі та заняття культурою. Війна, яка почалася майже два роки тому, змінила їх життя – багато учасників після втечі живуть в Німеччині.",
+            "en": "The POST MOST project started in 2019. Mariupol artists have shown new views on structural changes in their city and encourage fellow citizens to participate and engage in culture. The war, which began almost two years ago, changed their lives - many participants live in Germany after escaping.",
+            "de": "Das POST MOST-Projekt startete im Jahr 2019. Mariupol-Künstler haben neue Sichtweisen auf strukturelle Veränderungen in ihrer Stadt gezeigt und ermutigen ihre Mitbürger, sich an der Kultur zu beteiligen und sich zu engagieren. Der Krieg, der vor fast zwei Jahren begann, veränderte ihr Leben – viele Teilnehmer leben nach der Flucht in Deutschland."
+          }
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id2/Z2_HOESHE museum_2.png",
+          "description": {
+            "uk": "Назва картини",
+            "en": "Назва картини",
+            "de": "Назва картини"
+          },
+          "width": 6115,
+          "height": 8160
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "До початку війни 24 лютого 2022 року Маріуполь був одним із найважливіших промислових центрів України з міжнародним морським портом і металургійними комбінатами. Під час повної облоги російськими військами місто зазнало масових руйнувань. За українською інформацією, загинули десятки тисяч мирних жителів. Маріуполь перебуває під контролем російсько-окупаційних військ із травня 2022 року.",
+            "en": "Before the start of the war on February 24, 2022, Mariupol was one of the most important industrial centers of Ukraine with an international seaport and metallurgical plants. During the complete siege by Russian troops, the city suffered massive destruction. According to Ukrainian information, tens of thousands of civilians were killed. Mariupol has been under the control of the russian occupation forces since May 2022.",
+            "de": "Vor Kriegsbeginn am 24. Februar 2022 war Mariupol eines der wichtigsten Industriezentren der Ukraine mit einem internationalen Seehafen und Hüttenwerken. Während der vollständigen Belagerung durch russische Truppen erlitt die Stadt massive Zerstörungen. Nach ukrainischen Angaben kamen dabei Zehntausende Zivilisten ums Leben. Mariupol steht seit Mai 2022 unter der Kontrolle der russischen Besatzungstruppen."
+          }
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id2/Z2_HOESHE museum_3.png",
+          "description": {
+            "uk": "Назва картини",
+            "en": "Назва картини",
+            "de": "Назва картини"
+          },
+          "width": 6115,
+          "height": 8160
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "Місто з давньою історією Дортмунд має не лише багату історію, а й є найбільшим промисловим центром регіону Північний Рейн-Вестфалія та й Німеччини загалом. Не дивно, що на виставці мистецького проекту POST MOST у музеі Hoesch зустрілися аналогії у вигляді картини німецького художника Herman Heijenbrock, написаної у 1908 році, та моїми новими двома картинами 2023 року. Долі індустріальних регіонів Рурського басейну та Дортмунда, як і Донбасу та Маріуполя, безсумнівно, носять спільні риси. Сподіваюся, що незважаючи на війну індустріальний напрямок живопису і в майбутньому буде прикладом осмислення майбутнього та збереження досягнень минулих років.",
+            "en": "The storied city of Dortmund not only has a rich history, but is also the largest industrial center of the North Rhine-Westphalia region and Germany as a whole. It is not surprising that at the exhibition of the art project POST MOST at the Hoesch Museum analogies met in the form of a painting by the German artist Herman Heijenbrock, painted in 1908, and my two new paintings from 2023. The destinies of the industrial regions of the Ruhr Basin and Dortmund, as well as Donbas and Mariupol, undoubtedly have common features. I hope that despite the war, the industrial direction of painting will continue to be an example of understanding the future and preserving the achievements of past years.",
+            "de": "Die geschichtsträchtige Stadt Dortmund hat nicht nur eine reiche Geschichte, sondern ist auch das größte Industriezentrum der Region Nordrhein-Westfalen und Deutschlands. Es ist nicht verwunderlich, dass bei der Ausstellung des Kunstprojekts POST MOST im Hoesch Museum Analogien in Form eines Gemäldes des deutschen Künstlers Herman Heijenbrock aus dem Jahr 1908 und meiner beiden neuen Gemälde aus dem Jahr 2023 aufeinandertrafen. Die Schicksale der Industrieregionen Ruhrgebiet und Dortmund sowie Donbas und Mariupol weisen zweifellos Gemeinsamkeiten auf. Ich hoffe, dass die industrielle Richtung der Malerei trotz des Krieges weiterhin ein Beispiel dafür sein wird, die Zukunft zu verstehen und die Errungenschaften der vergangenen Jahre zu bewahren."
+          }
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "З 21 січня до 28 квітня у музеі Hoesch експонують свої роботи сім художників: Олександр Малаховський, Олена Украинцева, Анастасія Шишкіна, Ганна Сердюк, Інна Абрамова, Людмила Симонова, Антоніна Дурнєва, Ivetta Becker, Марина Черепченко.",
+            "en": "From January 21 to April 28, seven artists will exhibit their works at the Hoesch Museum: Oleksandr Malakhovsky, Olena Ukraintseva, Anastasia Shishkina, Hanna Serdyuk, Inna Abramova, Lyudmila Simonova, Antonina Durneva, Ivetta Becker, Maryna Cherepchenko.",
+            "de": "Vom 21. Januar bis 28. April stellen sieben Künstler ihre Werke im Hoesch-Museum aus: Oleksandr Malakhovsky, Olena Ukraintseva, Anastasia Shishkina, Hanna Serdyuk, Inna Abramova, Lyudmila Simonova, Antonina Durneva, Ivetta Becker, Maryna Cherepchenko."
+          }
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id2/Z2_HOESHE museum_4.PNG",
+          "description": {
+            "uk": "Назва картини",
+            "en": "Назва картини",
+            "de": "Назва картини"
+          },
+          "width": 6115,
+          "height": 8160
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "https://www.nordstadtblogger.de/bewegende-bilder-aus-mariupol-zeigen-strukturwandel-und-den-krieg-in-der-ukraine/?fbclid=IwZXh0bgNhZW0CMTEAAR23TXoT0k937hiBRCJqeE0f-1KUwDXrnm1KfskPq6WOhrxJqoUDqYYoUfE_aem_ECoOTJhOtkn4lgGBwznkyA\n\nhttps://www.evangelische-zeitung.de/kuenstler-aus-der-ukrainischen-stadt-mariupol-stellen-in-dortmund-aus?fbclid=IwZXh0bgNhZW0CMTAAAR1YUn1DsaO82HEYVpk1gA-910HXALC_Aj5hm7BqDuK2semOIXrSpE-fOoM_aem_EfQ3ZRg-37GUVlkr_df_5w\n\nhttps://kunstraum-muenster.de/2024/01/16/postmost-kunstschaffende-aus-mariupol-zeigen-ihre-werke/?fbclid=IwZXh0bgNhZW0CMTAAAR2T3V5tnd-Z0QRVMVJjNPGtYHjCxnyblfdumTzABHEA3nQFpY4BsOJCuqg_aem_U9qbqhidFXkSjNd9mgfxsg",
+            "en": "https://www.nordstadtblogger.de/bewegende-bilder-aus-mariupol-zeigen-strukturwandel-und-den-krieg-in-der-ukraine/?fbclid=IwZXh0bgNhZW0CMTEAAR23TXoT0k937hiBRCJqeE0f-1KUwDXrnm1KfskPq6WOhrxJqoUDqYYoUfE_aem_ECoOTJhOtkn4lgGBwznkyA\n\nhttps://www.evangelische-zeitung.de/kuenstler-aus-der-ukrainischen-stadt-mariupol-stellen-in-dortmund-aus?fbclid=IwZXh0bgNhZW0CMTAAAR1YUn1DsaO82HEYVpk1gA-910HXALC_Aj5hm7BqDuK2semOIXrSpE-fOoM_aem_EfQ3ZRg-37GUVlkr_df_5w\n\nhttps://kunstraum-muenster.de/2024/01/16/postmost-kunstschaffende-aus-mariupol-zeigen-ihre-werke/?fbclid=IwZXh0bgNhZW0CMTAAAR2T3V5tnd-Z0QRVMVJjNPGtYHjCxnyblfdumTzABHEA3nQFpY4BsOJCuqg_aem_U9qbqhidFXkSjNd9mgfxsg",
+            "de": "https://www.nordstadtblogger.de/bewegende-bilder-aus-mariupol-zeigen-strukturwandel-und-den-krieg-in-der-ukraine/?fbclid=IwZXh0bgNhZW0CMTEAAR23TXoT0k937hiBRCJqeE0f-1KUwDXrnm1KfskPq6WOhrxJqoUDqYYoUfE_aem_ECoOTJhOtkn4lgGBwznkyA\n\nhttps://www.evangelische-zeitung.de/kuenstler-aus-der-ukrainischen-stadt-mariupol-stellen-in-dortmund-aus?fbclid=IwZXh0bgNhZW0CMTAAAR1YUn1DsaO82HEYVpk1gA-910HXALC_Aj5hm7BqDuK2semOIXrSpE-fOoM_aem_EfQ3ZRg-37GUVlkr_df_5w\n\nhttps://kunstraum-muenster.de/2024/01/16/postmost-kunstschaffende-aus-mariupol-zeigen-ihre-werke/?fbclid=IwZXh0bgNhZW0CMTAAAR2T3V5tnd-Z0QRVMVJjNPGtYHjCxnyblfdumTzABHEA3nQFpY4BsOJCuqg_aem_U9qbqhidFXkSjNd9mgfxsg"
+          }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": {
+        "uk": "Маріупольський художній проєкт POST MOST у Кам’янському",
+        "en": "Mariupol art project POST MOST in Kamianske",
+        "de": "Mariupol-Kunstprojekt POST MOST in Kamianske"
+      },
+      "date": "2.12.2023",
+      "main_image": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id3/ZAHID_3 KAMIANSKE_1.png",
+      "content": [
+        {
+          "type": "text",
+          "value": {
+            "uk": "2 грудня у Музеї історії Кам’янського презентували виставку \"POST MOST 5. Живопис індустріальних міст\".",
+            "en": "On December 2, the Kamiansky Museum of History presented the exhibition \"POST MOST 5. Painting of industrial cities\".",
+            "de": "Am 2. Dezember präsentierte das Kamiansky Museum of History die Ausstellung \"POST MOST 5. Malerei von Industriestädten\"."
+          }
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id3/ZAHID_3 KAMIANSKE_1.png",
+          "description": {
+            "uk": "Назва картини",
+            "en": "Назва картини",
+            "de": "Назва картини"
+          }
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "Унікальність експозиції полягає в тому, що там роботи художників не лише з Кам`янського, а й з Кривого Рогу, Запоріжжя, Дніпра і Маріуполя. Виставку створили учасники ГО \"Ліга вільних художників \"ARS ALTERA\" у межах мистецького проєкту \"POST MOST 5\", який саме у Маріуполі виник й раніше експонувався. Роботи присвячені самобутній специфіці промислових міст. В них митці міркують про взаємодію людини з індустріальним середовищем, чи впливають вони одне на одного чи, навпаки, відторгають.",
+            "en": "The uniqueness of the exposition lies in the fact that there are works by artists not only from Kamyansk, but also from Kryvyi Rih, Zaporizhzhia, Dnipro and Mariupol. The exhibition was created by members of the NGO \"League of Free Artists \"ARS ALTERA\" within the framework of the artistic project \"POST MOST 5\", which originated in Mariupol and was previously exhibited.\nThe works are devoted to the unique characteristics of industrial cities. In them, the artists think about the interaction of man with the industrial environment, whether they influence each other or, on the contrary, repel each other.",
+            "de": "Die Einzigartigkeit der Ausstellung liegt darin, dass es Werke von Künstlern nicht nur aus Kamjansk, sondern auch aus Krywyj Rih, Saporischschja, Dnipro und Mariupol gibt. Die Ausstellung wurde von Mitgliedern der NGO \"League of Free Artists \"ARS ALTERA\" im Rahmen des künstlerischen Projekts \"POST MOST 5\" erstellt, das in Mariupol entstand und zuvor ausgestellt wurde.\nDie Arbeiten widmen sich den Besonderheiten von Industriestädten. In ihnen denken die Künstler über die Interaktion des Menschen mit der industriellen Umwelt nach, ob sie sich gegenseitig beeinflussen oder im Gegenteil abstoßen."
+          }
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id3/ZAHID_3 KAMIANSKE_2.jpg",
+          "description": {
+            "uk": "Назва картини",
+            "en": "Назва картини",
+            "de": "Назва картини"
+          }
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "Відрізнити один металургійний завод від іншого можуть інженери. Інші люди бачать циклопічні конструкції та розуміють, що всередині величезних ємностей знаходяться небезпечні для людини речовини та механізми. А митці дивляться ще глибше. І бачать в індустріальних пейзажах протиборство живої людської суті та ворожого середовища, створеного самою людиною. Цей проєкт ще до війни поєднував художників Маріуполя. Сьогодні вони розлетілись по різних містах та країнах. Приїхати на виставку до Кам’янського змогли не всі. За допомогою Інтернету вдалося протягнути міст до Німеччини та Австрії. Полотна з краєвидами «Азовсталі» сьогодні набули історичної цінності. Одного дня війна скінчиться, але зруйноване місто Марії (так перекладається з грецької Маріуполь) вже ніколи не буде таким, як раніше. На виставці в Музеї історії до колег з Маріуполя, Кривого Рогу, Одеси, Києва, Дніпра, Мерзебурга, Зігена та Брегенса приєдналися художники з Кам’янського. Усього 13 авторів, більшість із яких були присутні на презентації. А з рештою, наприклад, з Оленою Українцевою, можна було поспілкуватися в онлайн режимі – під час телемосту.",
+            "en": "Engineers can distinguish one metallurgical plant from another. Other people see cyclopean constructions and understand that substances and mechanisms dangerous to humans are inside the huge containers. And artists look even deeper. And they see in industrial landscapes a struggle between the living human essence and the hostile environment created by man himself.\nEven before the war, this project brought together the artists of Mariupol. Today they have spread to different cities and countries. Not everyone was able to come to the exhibition in Kamianskyi. With the help of the Internet, it was possible to extend the bridge to Germany and Austria.\nCanvases with landscapes of \"Azovstal\" have acquired historical value today. One day the war will end, but the ruined city of Mary (so translated from the Greek Mariupol) will never be the same again. At the exhibition in the Museum of History, artists from Kamiansk joined their colleagues from Mariupol, Kryvyi Rih, Odesa, Kyiv, Dnipro, Merseburg, Siegen and Bregenz. A total of 13 authors, most of whom were present at the presentation. And with the rest, for example, with Olena Ukraintseva, it was possible to communicate online - during the telebridge.\nThe main subjects of the paintings were industrial landscapes, portraits of factory workers. On them were both views of our steel mill, which was organized for the exhibition participants, and of the not yet destroyed \"Azovstal\". There were also anti-war paintings dedicated to the destruction of the latter.",
+            "de": "Ingenieure können eine metallurgische Anlage von einer anderen unterscheiden. Andere Menschen sehen zyklopische Konstruktionen und verstehen, dass sich in den riesigen Behältern für den Menschen gefährliche Substanzen und Mechanismen befinden. Und Künstler blicken noch tiefer. Und sie sehen in Industrielandschaften einen Kampf zwischen dem lebendigen menschlichen Wesen und der feindlichen Umwelt, die der Mensch selbst geschaffen hat.\nSchon vor dem Krieg brachte dieses Projekt die Künstler Mariupols zusammen. Heute haben sie sich in verschiedenen Städten und Ländern verbreitet. Nicht jeder konnte zur Ausstellung in Kamianskyi kommen. Mit Hilfe des Internets gelang es, die Brücke nach Deutschland und Österreich zu erweitern.\nLeinwände mit Landschaften des \"Asowstals\" haben heute historischen Wert erlangt. Eines Tages wird der Krieg enden, aber die zerstörte Stadt Mariens (so übersetzt aus dem Griechischen Mariupol) wird nie wieder dieselbe sein. Bei der Ausstellung im Geschichtsmuseum trafen sich Künstler aus Kamjansk mit Kollegen aus Mariupol, Krywyj Rih, Odessa, Kiew, Dnipro, Merseburg, Siegen und Bregenz. Insgesamt 13 Autoren, von denen die meisten bei der Präsentation anwesend waren. Und mit dem Rest, zum Beispiel mit Olena Ukraintseva, war es möglich, online zu kommunizieren – während der Telebridge.\nDie Hauptthemen der Gemälde waren Industrielandschaften und Porträts von Fabrikarbeitern. Darauf waren sowohl Ansichten unseres für die Ausstellungsteilnehmer organisierten Stahlwerks als auch des noch nicht zerstörten \"Asowstals\" zu sehen. Es gab auch Antikriegsgemälde, die der Zerstörung des letzteren gewidmet waren."
+          }
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id3/ZAHID_3 KAMIANSKE_3.jpg",
+          "description": {
+            "uk": "Назва картини",
+            "en": "Назва картини",
+            "de": "Назва картини"
+          }
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "Основною тематикою картин були індустріальні пейзажі, портрети роботників заводу. На них були як види нашого меткомбінату, екскурсію яким організували для учасників виставки, так і ще не зруйнованої «Азовсталі». Були й антивоєннікартини, присвячені руйнації останньої. Велику роботу з організації виставки було проведено членом НСХУ Олександром Малаховським, котрий перехопив естафету в реалізації проєкту від Олени Українцевої, яка нині перебуває в Німеччині.",
+            "en": "A great deal of work on the organization of the exhibition was carried out by Oleksandr Malakhovskyi, who took over the baton in the implementation of the project from Olena Ukraintseva, who is currently in Germany.",
+            "de": "Ein großer Teil der Arbeit an der Organisation der Ausstellung wurde von Oleksandr Malakhovskyi geleistet, der den Staffelstab bei der Umsetzung des Projekts von Olena Ukraintseva, die sich derzeit in Deutschland aufhält, übernommen hat."
+          }
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id3/ZAHID_3 KAMIANSKE_4.jpg",
+          "description": {
+            "uk": "Назва картини",
+            "en": "Назва картини",
+            "de": "Назва картини"
+          }
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "Вернісаж відвідав заступник міського голови Маріуполя Сергій Орлов, а також маріупольські художники, що наразі мешкають у різних містах. Метою проєкту \"POST MOST 5. Живопис індустріальних міст\" є дослідження художніми методами проблематики адаптації людини в індустріальному та постіндустріальному просторах та пошук загальних тенденцій розвитку мистецтва даного напряму в Україні та Європі у найбільш індустріально розвинених регіонах.",
+            "en": "The opening was attended by Deputy Mayor of Mariupol Serhiy Orlov, as well as Mariupol artists currently living in different cities. The purpose of the project \"POST MOST 5. Painting of industrial cities\" is to study the problems of human adaptation in industrial and post-industrial spaces using artistic methods and to find general trends in the development of art of this direction in Ukraine and Europe in the most industrially developed regions.",
+            "de": "An der Eröffnung nahmen der stellvertretende Bürgermeister von Mariupol Serhiy Orlov sowie Mariupol-Künstler teil, die derzeit in verschiedenen Städten leben. Ziel des Projekts \"POST MOST 5. Malerei von Industriestädten\" ist es, die Probleme der menschlichen Anpassung in industriellen und postindustriellen Räumen mit künstlerischen Methoden zu untersuchen und allgemeine Trends in der Entwicklung der Kunst dieser Richtung in der Ukraine und Europa zu finden in den industriell am stärksten entwickelten Regionen."
+          }
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id3/ZAHID_3 KAMIANSKE_5.JPG",
+          "description": {
+            "uk": "Назва картини",
+            "en": "Назва картини",
+            "de": "Назва картини"
+          }
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "На виставці свої роботи представили: \nОлександр Малаховський, Олена Украінцева, Ганна Торкаєнко, Наталя Констанська, Валерія Самусєнко, Алла Михальчук, Сергій Бабич, Марина Черепченко, Зугайрат Новикова, Іван Харітонов, Алла Кучма, Володимир Чернявський, Олена Телятник.\n",
+            "en": "The following presented their works at the exhibition: \nOleksandr Malakhovskyi, Olena Ukraintseva, Hanna Torkayenko, Natalya Konstanska, Valeriya Samusyenko, Alla Mikhalchuk, Serhiy Babich, Marina Cherepchenko, Zugairat Novikova, Ivan Kharitonov, Alla Kuchma, Volodymyr Chernyavskyi, Olena Telyatnik.\n",
+            "de": "Ihre Werke präsentierten in der Ausstellung: \nOleksandr Malakhovskyi, Olena Ukraintseva, Hanna Torkayenko, Natalya Konstanska, Valeriya Samusyenko, Alla Mikhalchuk, Serhiy Babich, Marina Cherepchenko, Zugairat Novikova, Ivan Kharitonov, Alla Kuchma, Volodymyr Chernyavskyi, Olena Telyatnik.\n"
+          }
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "https://nashreporter.com/suspilstvo/muzej-istoriyi-kamyanskogo-zaproshuye-na-vystavku-118604\nhttps://lcity.dp.ua/154554-u-kam-ianskomu-vidkrylasia-nova-vystavka-kartyn-foto/\nhttps://lcity.dp.ua/153711-u-muzei-kam-ianskoho-hotuiut-vystavku-industrialnykh-pejzazhiv/\nhttps://sobitie.com.ua/kultura/hudozhnij-proyekt-narodzhenyj-u-mariupoli-prezentuvaly-v-kamyanskomu-302225/\nhttps://www.ukr.net/news/details/dnipro/101337839.html\nhttps://ua-news.in.ua/y-kam-ianskomy-vidkrilasia-nova-vistavka-kartin-foto/\nhttps://nashreporter.com/suspilstvo/v-muzeyi-istoriyi-kamyanskogo-buv-vernisazh-119730\nhttps://mis.dp.ua/news-ua/zhyvopys-industrialnyh-mist-predstavyly-u-kamyanskomu?fbclid=IwAR37ky4-aV0LBa6BCG1IY9UIQy2Jmg75kKomyZqmsAJ-VoNC7T5TPAWf1kY",
+            "en": "https://nashreporter.com/suspilstvo/muzej-istoriyi-kamyanskogo-zaproshuye-na-vystavku-118604\nhttps://lcity.dp.ua/154554-u-kam-ianskomu-vidkrylasia-nova-vystavka-kartyn-foto/\nhttps://lcity.dp.ua/153711-u-muzei-kam-ianskoho-hotuiut-vystavku-industrialnykh-pejzazhiv/\nhttps://sobitie.com.ua/kultura/hudozhnij-proyekt-narodzhenyj-u-mariupoli-prezentuvaly-v-kamyanskomu-302225/\nhttps://www.ukr.net/news/details/dnipro/101337839.html\nhttps://ua-news.in.ua/y-kam-ianskomy-vidkrilasia-nova-vistavka-kartin-foto/\nhttps://nashreporter.com/suspilstvo/v-muzeyi-istoriyi-kamyanskogo-buv-vernisazh-119730\nhttps://mis.dp.ua/news-ua/zhyvopys-industrialnyh-mist-predstavyly-u-kamyanskomu?fbclid=IwAR37ky4-aV0LBa6BCG1IY9UIQy2Jmg75kKomyZqmsAJ-VoNC7T5TPAWf1kY",
+            "de": "https://nashreporter.com/suspilstvo/muzej-istoriyi-kamyanskogo-zaproshuye-na-vystavku-118604\nhttps://lcity.dp.ua/154554-u-kam-ianskomu-vidkrylasia-nova-vystavka-kartyn-foto/\nhttps://lcity.dp.ua/153711-u-muzei-kam-ianskoho-hotuiut-vystavku-industrialnykh-pejzazhiv/\nhttps://sobitie.com.ua/kultura/hudozhnij-proyekt-narodzhenyj-u-mariupoli-prezentuvaly-v-kamyanskomu-302225/\nhttps://www.ukr.net/news/details/dnipro/101337839.html\nhttps://ua-news.in.ua/y-kam-ianskomy-vidkrilasia-nova-vistavka-kartin-foto/\nhttps://nashreporter.com/suspilstvo/v-muzeyi-istoriyi-kamyanskogo-buv-vernisazh-119730\nhttps://mis.dp.ua/news-ua/zhyvopys-industrialnyh-mist-predstavyly-u-kamyanskomu?fbclid=IwAR37ky4-aV0LBa6BCG1IY9UIQy2Jmg75kKomyZqmsAJ-VoNC7T5TPAWf1kY"
+          }
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "title": {
+        "uk": "Маріупольський художній проєкт POST MOST у Дортмунді",
+        "en": "Mariupol art project POST MOST in Dortmund",
+        "de": "Mariupol-Kunstprojekt POST MOST in Dortmund"
+      },
+      "date": "                                                   28.10.2022",
+      "main_image": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id4/Z1_Zehe Zollern_1.png",
+      "content": [
+        {
+          "type": "text",
+          "value": {
+            "uk": "Експозиція художніх творів POST MOST показує роботи групи художників зі східноукраїнського міста Маріуполь у музеї шахти Zeche Zollern.",
+            "en": "POST MOST (October 28, 2022 – March 24, 2023) shows works by a group of artists from the eastern Ukrainian city of Mariupol at the Zeche Zollern mine.",
+            "de": "POST MOST (28.10.22–24.3.23) zeigt auf der Zeche Zollern Werke einer Gruppe von Künstler:innen der ostukrainischen Stadt Mariupol."
+          }
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id4/Z1_Zehe Zollern_1.png",
+          "description": {
+            "uk": "Назва картини",
+            "en": "Назва картини",
+            "de": "Назва картини"
+          }
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "Однойменний мистецький проект був розпочатий за три роки до російського вторгнення у 2022 році з наміром надати нову перспективу художньому середовищу індустріального міста Маріуполь та мотивувати його громадян брати участь у культурному житті. Проект ріс разом із культурною сферою Маріуполя – поки цей розвиток не зупинила війна. Митці стали біженцями. Незважаючи на зміну життєвого простору, вони продовжили митецьку діяльність та проєкт POST MOST.",
+            "en": "The art project of the same name was developed three years before the Russian invasion in 2022 with the intention of providing a new perspective to the industrial city of Mariupol and to motivate its citizens to participate and engage in culture. The project grew along with Mariupol's cultural sphere - until this development was stopped by the war. The artists became refugees. Despite the personal suffering, they want to continue the project POST MOST.",
+            "de": "Das gleichnamige Kunstprojekt entwickelte sich drei Jahre vor der russischen Invasion 2022 mit der Intention, eine neue Perspektive auf die Industriestadt Mariupol zu schaffen und ihre Bürger:innen zur Partizipation und kulturellem Engagement zu motivieren. Das Projekt wuchs zusammen mit der Kultursphäre Mariupols – bis diese Entwicklung durch den Krieg gestoppt wurde. Die Künstler:innen wurden zu Geflüchteten. Trotz des persönlichen Leids möchten sie das Projekt fortführen."
+          }
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id4/Z1_Zehe Zollern_2.png",
+          "description": {
+            "uk": "Назва картини",
+            "en": "Назва картини",
+            "de": "Назва картини"
+          }
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "У спільній резиденції в Бедбург-Хау були створені нові твори мистецтва, які передусім присвячені війні та їхньому місту, якого вже не існує.",
+            "en": "New works of art were created at a shared residence in Bedburg-Hau, which primarily deal with the war and their city, which no longer exists.",
+            "de": "In einer Wohngemeinschaft in Bedburg-Hau entstanden neue Kunstwerke, die sich vor allem mit dem Krieg und ihrer nicht mehr existierenden Stadt auseinandersetzen."
+          }
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id4/Z1_Zehe Zollern_3.png",
+          "description": {
+            "uk": "Назва картини",
+            "en": "Назва картини",
+            "de": "Назва картини"
+          }
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "Їх роботи можна побачити в підвалі машинного цеху у музеї шахти Zeche Zollern у Дортмунді. Більшість робіт створено за підтримки e.V. ArToll Kunstlabor, цей заклад був заснований в 1994 році на місці клінік LVR в Бедбург-Хау з метою створити місце для художників та їх творчіх експериментів.",
+            "en": "The work can be seen in the cellar of the machine hall at the Zollern colliery.\nThe majority of the works were created with the support of the ArToll Kunstlabor e.V. The ArToll was founded in 1994 on the site of the LVR clinics in Bedburg-Hau founded with the aim of being a place for artists where experimental, сross-disciplinary work and artistic exchange are possible.",
+            "de": "Die Arbeiten sind im Keller der Maschinenhalle der Zeche Zollern zu sehen.\nDer Großteil der Werke entstand mit Unterstützung des ArToll Kunstlabor e.V. Das ArToll wurde 1994 auf dem Gelände der LVR-Kliniken in Bedburg-Hau mit dem Ziel gegründet, ein Ort für Künstler zu sein, an dem experimentelles, interdisziplinäres Arbeiten und künstlerischer Austausch möglich sind."
+          }
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id4/Z1_Zehe Zollern_4.png",
+          "description": {
+            "uk": "Назва картини",
+            "en": "Назва картини",
+            "de": "Назва картини"
+          }
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "Декілька робіт були представлені як принти живописних робіт, що були зроблені ще у Маріуполі.",
+            "en": "Several works were presented as prints of paintings that had been done earlier in Mariupol.",
+            "de": "Mehrere Werke wurden als Drucke von Gemälden präsentiert, die zuvor in Mariupol entstanden waren."
+          }
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id4/Z1_Zehe Zollern_5.png",
+          "description": {
+            "uk": "Назва картини",
+            "en": "Назва картини",
+            "de": "Назва картини"
+          }
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "Художники: Олександр Малаховський, Інна Абрамова, Іветта Беккер, Марина Черепченко, Simona, Антоніна Дурнєва, Hilmenna, Анастасія Шишкіна та Олена Українцева.",
+            "en": "Artists: Inna Abramova, Ivetta Becker, Marina Cherepchenko, Antonina Durnieva, Hilmenna, Oleksandr Malakhovskyi, Simona, Anastasia Shyshkina, Olena Ukraintseva.",
+            "de": "Künstler:innen: Inna Abramova, Ivetta Becker, Marina Cherepchenko, Antonina Durnieva, Hilmenna, Oleksandr Malakhovskyi, Simona, Anastasia Shyshkina, Olena Ukraintseva."
+          }
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id4/Z1_Zehe Zollern_6.png",
+          "description": {
+            "uk": "Назва картини",
+            "en": "Назва картини",
+            "de": "Назва картини"
+          }
+        },
+        {
+          "type": "text",
+          "value": {
+            "uk": "https://donbas24.news/news/mariupolski-xudoznici-predstavili-novu-vistavku-v-dortmundi https://www.youtube.com/watch?v=nIy9u4JPjkw",
+            "en": "https://donbas24.news/news/mariupolski-xudoznici-predstavili-novu-vistavku-v-dortmundi https://www.youtube.com/watch?v=nIy9u4JPjkw",
+            "de": "https://donbas24.news/news/mariupolski-xudoznici-predstavili-novu-vistavku-v-dortmundi https://www.youtube.com/watch?v=nIy9u4JPjkw"
+          }
+        }
+      ]
+    }
+  ],
+  "logs": [
+    {
+      "timestamp": "2025-01-04T00:10:13.656Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 6, данные: {\"title\":{\"uk\":\"Новий\",\"en\":\"new1\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id1/MainAfter.jpg\",\"content\":[],\"id\":6}"
+    },
+    {
+      "timestamp": "2025-01-03T23:59:40.538Z",
+      "action": "Добавление",
+      "target": "events",
+      "details": "Доданий новий елемент: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":6}"
+    },
+    {
+      "timestamp": "2025-01-03T23:59:37.018Z",
+      "action": "Добавление",
+      "target": "events",
+      "details": "Доданий новий елемент: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":5}"
+    },
+    {
+      "timestamp": "2025-01-03T23:58:27.082Z",
+      "action": "Удаление",
+      "target": "gallery.dark_side.page",
+      "details": "Удалён элемент с id 6, данные: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"material\":\"\",\"size\":\"\",\"date\":\"\",\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/dark_side/background.png\",\"width\":1000,\"height\":1000,\"id\":6}"
+    },
+    {
+      "timestamp": "2025-01-03T23:57:18.354Z",
+      "action": "Добавление",
+      "target": "gallery.dark_side.page",
+      "details": "Доданий новий елемент: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"material\":\"\",\"size\":\"\",\"date\":\"\",\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":6}"
+    },
+    {
+      "timestamp": "2025-01-03T23:56:28.490Z",
+      "action": "Удаление",
+      "target": "gallery.dark_side.page",
+      "details": "Удалён элемент с id 6, данные: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"material\":\"\",\"size\":\"\",\"date\":\"\",\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/dark_side/background.png\",\"width\":1000,\"height\":1000,\"id\":6}"
+    },
+    {
+      "timestamp": "2025-01-03T23:55:02.362Z",
+      "action": "Добавление",
+      "target": "gallery.dark_side.page",
+      "details": "Доданий новий елемент: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"material\":\"\",\"size\":\"\",\"date\":\"\",\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":6}"
+    },
+    {
+      "timestamp": "2025-01-03T23:49:36.858Z",
+      "action": "Удаление",
+      "target": "gallery.dark_side.page",
+      "details": "Удалён элемент с id 6, данные: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/dark_side/MainAfter.jpg\",\"width\":1000,\"height\":1000,\"id\":6}"
+    },
+    {
+      "timestamp": "2025-01-03T23:48:25.002Z",
+      "action": "Удаление",
+      "target": "gallery.portraits.page",
+      "details": "Удалён элемент с id 1, данные: {\"id\":1,\"name\":{\"uk\":\"Похмуре небо (CYBERPUNK 2022)\",\"en\":\"Gloomy sky (CYBERPUNK 2022)\",\"de\":\"Düsterer Himmel (CYBERPUNK 2022)\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":null,\"width\":1920,\"height\":2390,\"material\":\"полотно/олія\",\"date\":\"2022\",\"size\":\"100x80 cm\"}"
+    },
+    {
+      "timestamp": "2025-01-03T23:38:59.683Z",
+      "action": "Добавление",
+      "target": "gallery.dark_side.page",
+      "details": "Доданий новий елемент: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":6}"
+    },
+    {
+      "timestamp": "2025-01-03T23:38:57.643Z",
+      "action": "Добавление",
+      "target": "gallery.dark_side.page",
+      "details": "Доданий новий елемент: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":5}"
+    },
+    {
+      "timestamp": "2025-01-03T23:36:06.299Z",
+      "action": "Удаление",
+      "target": "gallery.dark_side.page",
+      "details": "Удалён элемент с id 5, данные: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/dark_side/MainAfter.jpg\",\"width\":1000,\"height\":1000,\"id\":5}"
+    },
+    {
+      "timestamp": "2025-01-03T23:35:35.883Z",
+      "action": "Добавление",
+      "target": "gallery.dark_side.page",
+      "details": "Доданий новий елемент: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":5}"
+    },
+    {
+      "timestamp": "2025-01-03T23:35:12.779Z",
+      "action": "Удаление",
+      "target": "gallery.industrial.page",
+      "details": "Удалён элемент с id 16, данные: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":16}"
+    },
+    {
+      "timestamp": "2025-01-03T23:34:39.832Z",
+      "action": "Добавление",
+      "target": "gallery.industrial.page",
+      "details": "Доданий новий елемент: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":16}"
+    },
+    {
+      "timestamp": "2025-01-03T23:34:15.139Z",
+      "action": "Удаление",
+      "target": "gallery.industrial.page",
+      "details": "Удалён элемент с id 16, данные: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":16}"
+    },
+    {
+      "timestamp": "2025-01-03T23:33:49.419Z",
+      "action": "Добавление",
+      "target": "gallery.industrial.page",
+      "details": "Доданий новий елемент: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":16}"
+    },
+    {
+      "timestamp": "2025-01-03T23:28:46.283Z",
+      "action": "Удаление",
+      "target": "gallery.industrial.page",
+      "details": "Удалён элемент с id 16, данные: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":16}"
+    },
+    {
+      "timestamp": "2025-01-03T23:28:45.315Z",
+      "action": "Удаление",
+      "target": "gallery.industrial.page",
+      "details": "Удалён элемент с id 17, данные: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":17}"
+    },
+    {
+      "timestamp": "2025-01-03T23:28:43.491Z",
+      "action": "Добавление",
+      "target": "gallery.industrial.page",
+      "details": "Доданий новий елемент: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":17}"
+    },
+    {
+      "timestamp": "2025-01-03T23:28:38.323Z",
+      "action": "Удаление",
+      "target": "gallery.industrial.page",
+      "details": "Удалён элемент с id 17, данные: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":17}"
+    },
+    {
+      "timestamp": "2025-01-03T23:28:22.035Z",
+      "action": "Удаление",
+      "target": "gallery.industrial.page",
+      "details": "Удалён элемент с id 18, данные: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":18}"
+    },
+    {
+      "timestamp": "2025-01-03T23:28:20.987Z",
+      "action": "Добавление",
+      "target": "gallery.industrial.page",
+      "details": "Доданий новий елемент: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":18}"
+    },
+    {
+      "timestamp": "2025-01-03T23:28:17.946Z",
+      "action": "Добавление",
+      "target": "gallery.industrial.page",
+      "details": "Доданий новий елемент: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":17}"
+    },
+    {
+      "timestamp": "2025-01-03T23:28:16.779Z",
+      "action": "Добавление",
+      "target": "gallery.industrial.page",
+      "details": "Доданий новий елемент: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":16}"
+    },
+    {
+      "timestamp": "2025-01-03T23:27:51.867Z",
+      "action": "Удаление",
+      "target": "gallery.industrial.page",
+      "details": "Удалён элемент с id 1, данные: {\"id\":1,\"name\":{\"uk\":\"СКРУБЕР\",\"en\":\"SCRUBBER\",\"de\":\"WÄSCHER\"},\"material\":\"полотно/олія\",\"size\":\"100x80 см\",\"date\":\"2019\",\"description\":{\"uk\":\"«АЗОВСТАЛЬ», МАРІУПОЛЬ, УКРАЇНА\",\"en\":\"AZOVSTAL, MARIUPOL, UKRAINE\",\"de\":\"AZOVSTAL, MARIUPOL, UKRAINE\"},\"src\":\"https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial/1_SCRUBBER.jpg\",\"width\":6115,\"height\":8160}"
+    },
+    {
+      "timestamp": "2025-01-03T23:27:51.091Z",
+      "action": "Удаление",
+      "target": "gallery.industrial.page",
+      "details": "Удалён элемент с id 16, данные: {\"name\":{\"uk\":\"Нове зображення11\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/gallery/industrial/mainPhoto.jpg\",\"width\":1000,\"height\":1000,\"id\":16}"
+    },
+    {
+      "timestamp": "2025-01-03T23:27:50.148Z",
+      "action": "Удаление",
+      "target": "gallery.industrial.page",
+      "details": "Удалён элемент с id 17, данные: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":17}"
+    },
+    {
+      "timestamp": "2025-01-03T23:27:49.203Z",
+      "action": "Удаление",
+      "target": "gallery.industrial.page",
+      "details": "Удалён элемент с id 18, данные: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":18}"
+    },
+    {
+      "timestamp": "2025-01-03T23:27:48.123Z",
+      "action": "Удаление",
+      "target": "gallery.industrial.page",
+      "details": "Удалён элемент с id 19, данные: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":19}"
+    },
+    {
+      "timestamp": "2025-01-03T23:27:46.915Z",
+      "action": "Удаление",
+      "target": "gallery.industrial.page",
+      "details": "Удалён элемент с id 20, данные: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":20}"
+    },
+    {
+      "timestamp": "2025-01-03T23:27:45.723Z",
+      "action": "Удаление",
+      "target": "gallery.industrial.page",
+      "details": "Удалён элемент с id 21, данные: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":21}"
+    },
+    {
+      "timestamp": "2025-01-03T23:27:44.571Z",
+      "action": "Удаление",
+      "target": "gallery.industrial.page",
+      "details": "Удалён элемент с id 22, данные: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":22}"
+    },
+    {
+      "timestamp": "2025-01-03T23:27:28.651Z",
+      "action": "Удаление",
+      "target": "gallery.industrial.page",
+      "details": "Удалён элемент с id 23, данные: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":23}"
+    },
+    {
+      "timestamp": "2025-01-03T23:26:39.419Z",
+      "action": "Добавление",
+      "target": "gallery.industrial.page",
+      "details": "Доданий новий елемент: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":23}"
+    },
+    {
+      "timestamp": "2025-01-03T23:26:37.585Z",
+      "action": "Добавление",
+      "target": "gallery.industrial.page",
+      "details": "Доданий новий елемент: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":22}"
+    },
+    {
+      "timestamp": "2025-01-03T23:26:37.067Z",
+      "action": "Добавление",
+      "target": "gallery.industrial.page",
+      "details": "Доданий новий елемент: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":21}"
+    },
+    {
+      "timestamp": "2025-01-03T23:26:36.555Z",
+      "action": "Добавление",
+      "target": "gallery.industrial.page",
+      "details": "Доданий новий елемент: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":20}"
+    },
+    {
+      "timestamp": "2025-01-03T23:26:35.940Z",
+      "action": "Добавление",
+      "target": "gallery.industrial.page",
+      "details": "Доданий новий елемент: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":19}"
+    },
+    {
+      "timestamp": "2025-01-03T23:26:35.443Z",
+      "action": "Добавление",
+      "target": "gallery.industrial.page",
+      "details": "Доданий новий елемент: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":18}"
+    },
+    {
+      "timestamp": "2025-01-03T23:26:20.576Z",
+      "action": "Добавление",
+      "target": "gallery.industrial.page",
+      "details": "Доданий новий елемент: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":17}"
+    },
+    {
+      "timestamp": "2025-01-03T23:26:01.107Z",
+      "action": "Удаление",
+      "target": "gallery.industrial.page",
+      "details": "Удалён элемент с id 17, данные: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":17}"
+    },
+    {
+      "timestamp": "2025-01-03T23:25:28.971Z",
+      "action": "Удаление",
+      "target": "gallery.industrial.page",
+      "details": "Удалён элемент с id 18, данные: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":18}"
+    },
+    {
+      "timestamp": "2025-01-03T23:21:22.779Z",
+      "action": "Добавление",
+      "target": "gallery.industrial.page",
+      "details": "Доданий новий елемент: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":18}"
+    },
+    {
+      "timestamp": "2025-01-03T23:21:20.587Z",
+      "action": "Добавление",
+      "target": "gallery.industrial.page",
+      "details": "Доданий новий елемент: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":17}"
+    },
+    {
+      "timestamp": "2025-01-03T23:16:52.507Z",
+      "action": "Добавление",
+      "target": "gallery.industrial.page",
+      "details": "Доданий новий елемент: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":16}"
+    },
+    {
+      "timestamp": "2025-01-03T23:09:36.715Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 5, данные: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":5}"
+    },
+    {
+      "timestamp": "2025-01-03T23:09:33.387Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 6, данные: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":6}"
+    },
+    {
+      "timestamp": "2025-01-03T23:09:28.244Z",
+      "action": "Добавление",
+      "target": "events",
+      "details": "Доданий новий елемент: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":6}"
+    },
+    {
+      "timestamp": "2025-01-03T23:09:09.116Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 6, данные: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":6}"
+    },
+    {
+      "timestamp": "2025-01-03T23:08:50.364Z",
+      "action": "Добавление",
+      "target": "events",
+      "details": "Доданий новий елемент: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":6}"
+    },
+    {
+      "timestamp": "2025-01-03T22:57:56.548Z",
+      "action": "Добавление",
+      "target": "events",
+      "details": "Доданий новий елемент: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":5}"
+    },
+    {
+      "timestamp": "2025-01-03T22:57:16.260Z",
+      "action": "Удаление",
+      "target": "gallery.industrial.page",
+      "details": "Удалён элемент с id 16, данные: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":16}"
+    },
+    {
+      "timestamp": "2025-01-03T22:57:00.732Z",
+      "action": "Добавление",
+      "target": "gallery.industrial.page",
+      "details": "Доданий новий елемент: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":16}"
+    },
+    {
+      "timestamp": "2025-01-03T22:56:42.132Z",
+      "action": "Удаление",
+      "target": "gallery.industrial.page",
+      "details": "Удалён элемент с id 16, данные: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":16}"
+    },
+    {
+      "timestamp": "2025-01-03T22:56:25.356Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 5, данные: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":5}"
+    },
+    {
+      "timestamp": "2025-01-03T22:56:22.306Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 6, данные: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":6}"
+    },
+    {
+      "timestamp": "2025-01-03T22:56:19.420Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 7, данные: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":7}"
+    },
+    {
+      "timestamp": "2025-01-03T22:56:16.371Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 8, данные: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":8}"
+    },
+    {
+      "timestamp": "2025-01-03T22:56:13.092Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 9, данные: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":9}"
+    },
+    {
+      "timestamp": "2025-01-03T22:55:58.340Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 10, данные: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":10}"
+    },
+    {
+      "timestamp": "2025-01-03T22:55:54.900Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 11, данные: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":11}"
+    },
+    {
+      "timestamp": "2025-01-03T22:55:40.572Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 12, данные: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":12}"
+    },
+    {
+      "timestamp": "2025-01-03T22:55:27.204Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 13, данные: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":13}"
+    },
+    {
+      "timestamp": "2025-01-03T22:54:34.556Z",
+      "action": "Добавление",
+      "target": "events",
+      "details": "Доданий новий елемент: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":13}"
+    },
+    {
+      "timestamp": "2025-01-03T22:54:20.076Z",
+      "action": "Добавление",
+      "target": "events",
+      "details": "Доданий новий елемент: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":12}"
+    },
+    {
+      "timestamp": "2025-01-03T22:52:38.780Z",
+      "action": "Добавление",
+      "target": "events",
+      "details": "Доданий новий елемент: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":11}"
+    },
+    {
+      "timestamp": "2025-01-03T22:52:14.084Z",
+      "action": "Добавление",
+      "target": "events",
+      "details": "Доданий новий елемент: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":10}"
+    },
+    {
+      "timestamp": "2025-01-03T22:51:53.687Z",
+      "action": "Добавление",
+      "target": "events",
+      "details": "Доданий новий елемент: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":9}"
+    },
+    {
+      "timestamp": "2025-01-03T22:49:08.924Z",
+      "action": "Добавление",
+      "target": "events",
+      "details": "Доданий новий елемент: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":8}"
+    },
+    {
+      "timestamp": "2025-01-03T22:46:47.948Z",
+      "action": "Добавление",
+      "target": "events",
+      "details": "Доданий новий елемент: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":7}"
+    },
+    {
+      "timestamp": "2025-01-03T22:38:21.365Z",
+      "action": "Добавление",
+      "target": "events",
+      "details": "Доданий новий елемент: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":6}"
+    },
+    {
+      "timestamp": "2025-01-03T22:35:24.353Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 6, данные: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":6}"
+    },
+    {
+      "timestamp": "2025-01-03T22:34:40.144Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 7, данные: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":7}"
+    },
+    {
+      "timestamp": "2025-01-03T22:34:25.829Z",
+      "action": "Добавление",
+      "target": "events",
+      "details": "Доданий новий елемент: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":7}"
+    },
+    {
+      "timestamp": "2025-01-03T22:33:56.741Z",
+      "action": "Добавление",
+      "target": "events",
+      "details": "Доданий новий елемент: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":6}"
+    },
+    {
+      "timestamp": "2025-01-03T22:29:06.605Z",
+      "action": "Добавление",
+      "target": "gallery.industrial.page",
+      "details": "Доданий новий елемент: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":16}"
+    },
+    {
+      "timestamp": "2025-01-03T22:11:59.553Z",
+      "action": "Удаление",
+      "target": "gallery.industrial.page",
+      "details": "Удалён элемент с id 17, данные: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":17}"
+    },
+    {
+      "timestamp": "2025-01-03T22:11:43.517Z",
+      "action": "Добавление",
+      "target": "gallery.industrial.page",
+      "details": "Доданий новий елемент: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":17}"
+    },
+    {
+      "timestamp": "2025-01-03T22:04:07.774Z",
+      "action": "Добавление",
+      "target": "events",
+      "details": "Доданий новий елемент: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":5}"
+    },
+    {
+      "timestamp": "2025-01-03T22:03:25.838Z",
+      "action": "Добавление",
+      "target": "gallery.industrial.page",
+      "details": "Доданий новий елемент: {\"name\":{\"uk\":\"Нове зображення\",\"en\":\"\",\"de\":\"\"},\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"},\"src\":\"\",\"width\":1000,\"height\":1000,\"id\":16}"
+    },
+    {
+      "timestamp": "2025-01-03T21:48:40.282Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 5, данные: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":5}"
+    },
+    {
+      "timestamp": "2025-01-03T21:42:08.946Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 6, данные: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":6}"
+    },
+    {
+      "timestamp": "2025-01-03T20:41:58.600Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 7, данные: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":7}"
+    },
+    {
+      "timestamp": "2025-01-03T20:41:54.463Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 8, данные: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":8}"
+    },
+    {
+      "timestamp": "2025-01-03T20:41:48.417Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 9, данные: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":9}"
+    },
+    {
+      "timestamp": "2025-01-03T20:25:50.141Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 10, данные: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":10}"
+    },
+    {
+      "timestamp": "2025-01-03T20:25:44.293Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 11, данные: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":11}"
+    },
+    {
+      "timestamp": "2025-01-03T20:25:38.741Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 12, данные: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":12}"
+    },
+    {
+      "timestamp": "2025-01-03T20:25:35.005Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 13, данные: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":13}"
+    },
+    {
+      "timestamp": "2025-01-03T20:25:23.741Z",
+      "action": "Добавление",
+      "target": "events",
+      "details": "Доданий новий елемент: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":13}"
+    },
+    {
+      "timestamp": "2025-01-03T20:25:23.077Z",
+      "action": "Добавление",
+      "target": "events",
+      "details": "Доданий новий елемент: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":12}"
+    },
+    {
+      "timestamp": "2025-01-03T20:25:22.429Z",
+      "action": "Добавление",
+      "target": "events",
+      "details": "Доданий новий елемент: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":11}"
+    },
+    {
+      "timestamp": "2025-01-03T20:25:17.741Z",
+      "action": "Добавление",
+      "target": "events",
+      "details": "Доданий новий елемент: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":10}"
+    },
+    {
+      "timestamp": "2025-01-03T20:25:16.685Z",
+      "action": "Добавление",
+      "target": "events",
+      "details": "Доданий новий елемент: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":9}"
+    },
+    {
+      "timestamp": "2025-01-03T20:25:08.925Z",
+      "action": "Добавление",
+      "target": "events",
+      "details": "Доданий новий елемент: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":8}"
+    },
+    {
+      "timestamp": "2025-01-03T20:25:07.493Z",
+      "action": "Добавление",
+      "target": "events",
+      "details": "Доданий новий елемент: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":7}"
+    },
+    {
+      "timestamp": "2025-01-03T20:25:00.053Z",
+      "action": "Добавление",
+      "target": "events",
+      "details": "Доданий новий елемент: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":6}"
+    },
+    {
+      "timestamp": "2025-01-03T20:24:47.749Z",
+      "action": "Добавление",
+      "target": "events",
+      "details": "Доданий новий елемент: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":5}"
+    },
+    {
+      "timestamp": "2025-01-03T20:17:02.309Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 5, данные: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":5}"
+    },
+    {
+      "timestamp": "2025-01-03T20:16:48.630Z",
+      "action": "Добавление",
+      "target": "events",
+      "details": "Доданий новий елемент: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":5}"
+    },
+    {
+      "timestamp": "2025-01-03T20:13:25.470Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 5, данные: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":5}"
+    },
+    {
+      "timestamp": "2025-01-03T20:10:23.806Z",
+      "action": "Добавление",
+      "target": "events",
+      "details": "Доданий новий елемент: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":5}"
+    },
+    {
+      "timestamp": "2025-01-03T20:10:10.902Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 5, данные: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":5}"
+    },
+    {
+      "timestamp": "2025-01-03T20:07:27.197Z",
+      "action": "Добавление",
+      "target": "events",
+      "details": "Доданий новий елемент: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":5}"
+    },
+    {
+      "timestamp": "2025-01-03T20:06:01.350Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 5, данные: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"\",\"content\":[],\"id\":5}"
+    },
+    {
+      "timestamp": "2025-01-03T19:56:17.830Z",
+      "action": "Добавление",
+      "target": "events",
+      "details": "Доданий новий елемент: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":\"\",\"main_image\":\"Зображення вiдсютне\",\"content\":[],\"id\":5}"
+    },
+    {
+      "timestamp": "2025-01-03T19:56:02.118Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 5, данные: {\"title\":{\"uk\":\"Маріупольський художній проєкт POST MOST 6. Reconnect\\ny Музеї історії міста Кам’янське\",\"en\":\"Mariupol artistic project POST MOST 6. Reconnect in the Kamianske History Museum\",\"de\":\"Mariupol-Kunstprojekt POST MOST 6. Reconnect im Kamianske History Museum\"},\"date\":\"19.10.2024\",\"main_image\":\"https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id1/ZAHID_4 KAMIANSKE_1.jpg\",\"content\":[{\"type\":\"text\",\"value\":{\"uk\":\"19 жовтня у Музеї історії Кам’янського презентували художню виставку \\\"POST MOST 6. Reconnect\\\".\",\"en\":\"On October 19, the Kamiansky Museum of History presented the art exhibition \\\"POST MOST 6. Reconnect\\\".\",\"de\":\"Am 19. Oktober präsentierte das Kamiansky Museum of History die Kunstausstellung \\\"POST MOST 6. Reconnect\\\".\"}},{\"type\":\"image\",\"src\":\"https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id1/ZAHID_4 KAMIANSKE_1.jpg\",\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"}},{\"type\":\"text\",\"value\":{\"uk\":\"Виставку створили учасники маріупольської громадської организації \\\"Ліга вільних художників \\\"ARS ALTERA\\\" та художники з Кам’янського. Цього разу тематика виставки не не обмежувалася суто індустріальним пейзажем, а була присвячена сьогоденню почуттів кожного художника та їх творчому сприйняттю себе у сучасному світі.\",\"en\":\"The exhibition was created by the members of the Mariupol public organization \\\"The League of Free Artists \\\"ARS ALTERA\\\" and artists from Kamiansk. This time the theme of the exhibition was not limited to the purely industrial landscape, but was dedicated to the present feelings of each artist and their creative perception of themselves in the modern world.\",\"de\":\"Die Ausstellung wurde von Mitgliedern der Mariupoler öffentlichen Organisation \\\"Liga freier Künstler \\\"ARS ALTERA\\\" und Künstlern aus Kamjanske ins Leben gerufen. Diesmal beschränkte sich das Thema der Ausstellung nicht nur auf die rein industrielle Landschaft, sondern war den gegenwärtigen Gefühlen gewidmet über jeden Künstler und seine kreative Wahrnehmung seiner selbst in der modernen Welt.\"}},{\"type\":\"image\",\"src\":\"https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id1/ZAHID_4 KAMIANSKE_2.jpg\",\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"}},{\"type\":\"text\",\"value\":{\"uk\":\"На виставці в Музеї історії до художників з Маріуполя, Одеси, Києва, Дніпра, Зігена та Брегенса приєдналися художники з Кам’янського. На виставку завітав заступник міського голови Маріуполя Сергій Орлов.\",\"en\":\"At the exhibition in the Museum of History, artists from Mariupol, Odessa, Kyiv, Dnipro, Siegen and Bregenz were joined by artists from Kamiansk. Deputy Mayor of Mariupol Serhii Orlov visited the exhibition.\",\"de\":\"Bei der Ausstellung im Historischen Museum kamen neben Künstlern aus Mariupol, Odessa, Kiew, Dnipro, Siegen und Bregenz auch Künstler aus Kamjansk hinzu. Der stellvertretende Bürgermeister von Mariupol Serhii Orlov besuchte die Ausstellung.\"}},{\"type\":\"image\",\"src\":\"https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id1/ZAHID_4 KAMIANSKE_3.jpg\",\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"}},{\"type\":\"text\",\"value\":{\"uk\":\"Цьогорічна виставка набула потужності та яскравості, оскільки до нього знову приєдналися постійні учасники з новими ідеями та наративами.\",\"en\":\"This year's exhibition gained strength and vibrancy as regular participants rejoined it with new ideas and narratives.\",\"de\":\"Die diesjährige Ausstellung gewann an Stärke und Lebendigkeit, da die regelmäßigen Teilnehmer mit neuen Ideen und Erzählungen zurückkehrten\"}},{\"type\":\"image\",\"src\":\"https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id1/ZAHID_4 KAMIANSKE_4.jpg\",\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"}},{\"type\":\"image\",\"src\":\"https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id1/ZAHID_4 KAMIANSKE_5.jpg\",\"description\":{\"uk\":\"\",\"en\":\"\",\"de\":\"\"}},{\"type\":\"text\",\"value\":{\"uk\":\"На виставці свої роботи представили: \\nОлександр Малаховський, Олена Украінцева, Анастасія Шишкіна, Олена Ліберті, Ганна Торкаєнко, Наталя Констанська, Валерія Самусєнко, Алла Михальчук, Сергій Бабич, Зугайрат Новикова, Іван Харітонов, Алла Кучма, Володимир Сорочан, Віта Косова.\\n\",\"en\":\"The following presented their works at the exhibition: \\nOleksandr Malakhovskyi, Olena Ukraintseva, Anastasia Shishkina, Olena Liberty, Hanna Torkayenko, Natalya Konstanska, Valeriya Samusyenko, Alla Mikhalchuk, Serhii Babich, Zugairat Novikova, Ivan Kharitonov, Alla Kuchma, Volodymyr Sorochan, Vita Kosova.\",\"de\":\"Ihre Werke präsentierten in der Ausstellung: \\nOleksandr Malakhovskyi, Olena Ukraintseva, Anastasia Shishkina, Olena Liberty, Hanna Torkayenko, Natalya Konstanska, Valeriya Samusyenko, Alla Mikhalchuk, Serhii Babich, Zugairat Novikova, Ivan Kharitonov, Alla Kuchma, Volodymyr Sorochan, Vita Kosova.\"}}],\"id\":5}"
+    },
+    {
+      "timestamp": "2025-01-03T19:55:20.886Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 6, данные: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":1735933717713,\"main_image\":\"https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id1/ZAHID_4 KAMIANSKE_1.jpg\",\"content\":[],\"id\":6}"
+    },
+    {
+      "timestamp": "2025-01-03T19:48:38.710Z",
+      "action": "Добавление",
+      "target": "events",
+      "details": "Доданий новий елемент: {\"title\":{\"uk\":\"Новий\",\"en\":\"\",\"de\":\"\"},\"date\":1735933717713,\"main_image\":null,\"content\":[],\"id\":6}"
+    },
+    {
+      "timestamp": "2025-01-03T10:34:26.067Z",
+      "action": "Добавление",
+      "target": "events",
+      "details": "Доданий новий елемент: {\"title\":{\"uk\":\"Новий\",\"en\":\"New\",\"de\":\"Neu\"},\"date\":1735900464225,\"main_image\":\"/gallery/industrial/1_SCRUBBER.jpg\",\"content\":[],\"id\":5}"
+    },
+    {
+      "timestamp": "2024-12-30T22:03:37.500Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 5, данные: {\"id\":5,\"title\":{\"uk\":\"Новий івент\",\"en\":\"New Event\",\"de\":\"Neues Ereignis\"},\"date\":\"2024-01-01\",\"main_image\":\"https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/events/id1/post_most_reconnect.jpg\",\"content\":[]}"
+    },
+    {
+      "timestamp": "2024-12-25T05:45:27.273Z",
+      "action": "Удаление",
+      "target": "gallery.industrial.page",
+      "details": "Удалён элемент с id 16, данные: {\"name\":{\"uk\":\"Новий\",\"en\":\"New\",\"de\":\"Neu\"},\"description\":{\"uk\":\"Опис\",\"en\":\"Description\",\"de\":\"Beschreibung\"},\"src\":\"/gallery/industrial/1_SCRUBBER.jpg\",\"width\":1000,\"height\":1000,\"id\":16}"
+    },
+    {
+      "timestamp": "2024-12-25T05:45:18.471Z",
+      "action": "Добавление",
+      "target": "gallery.industrial.page",
+      "details": "Доданий новий елемент: {\"name\":{\"uk\":\"Новий\",\"en\":\"New\",\"de\":\"Neu\"},\"description\":{\"uk\":\"Опис\",\"en\":\"Description\",\"de\":\"Beschreibung\"},\"src\":\"/gallery/industrial/1_SCRUBBER.jpg\",\"width\":1000,\"height\":1000,\"id\":16}"
+    },
+    {
+      "timestamp": "2024-12-25T05:44:21.178Z",
+      "action": "Удаление",
+      "target": "events",
+      "details": "Удалён элемент с id 6, данные: {\"title\":{\"uk\":\"Новий\",\"en\":\"New\",\"de\":\"Neu\"},\"date\":1735105447927,\"main_image\":\"/gallery/industrial/1_SCRUBBER.jpg\",\"content\":[],\"id\":6}"
+    },
+    {
+      "timestamp": "2024-12-25T05:44:12.171Z",
+      "action": "Добавление",
+      "target": "events",
+      "details": "Доданий новий елемент: {\"title\":{\"uk\":\"Новий\",\"en\":\"New\",\"de\":\"Neu\"},\"date\":1735105447927,\"main_image\":\"/gallery/industrial/1_SCRUBBER.jpg\",\"content\":[],\"id\":6}"
+    },
+    {
+      "timestamp": "2024-12-23T18:05:40.298Z",
+      "action": "Додавання",
+      "target": "Заходи",
+      "details": "Додоний захiд: New Event"
+    },
+    {
+      "timestamp": "2024-12-21T14:30:00Z",
+      "action": "add",
+      "target": "events",
+      "details": "Added new event 'New Year Celebration'"
+    }
+  ]
+}
