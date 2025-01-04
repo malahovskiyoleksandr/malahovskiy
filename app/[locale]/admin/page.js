@@ -68,8 +68,8 @@ export default function AdminPage({ params, onUpload }) {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [database, setDatabase] = useState(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
 
   // Проверка авторизации
@@ -117,7 +117,6 @@ export default function AdminPage({ params, onUpload }) {
   }, []);
 
   const handleChange = async (e, path) => {
-    console.log("event", e, "path", path);
     const { value } = e.target;
     setDatabase((prev) => {
       const updated = { ...prev };
@@ -137,107 +136,124 @@ export default function AdminPage({ params, onUpload }) {
     });
   };
 
-  const handleAddEvent = async (path, newItem) => {
-    const confirmAdd = confirm("Добавити картину?");
+  const handleAddEvent = async (path, newItem, item) => {
+    const confirmAdd = confirm(`Додати ${item}?`);
 
     if (confirmAdd) {
-      setDatabase((prev) => {
-        const updated = { ...prev };
-        const keys = path.split(".");
-        let target = updated;
+      // setIsUploading(true)
+      try {
+        setDatabase((prev) => {
+          const updated = { ...prev };
+          const keys = path.split(".");
+          let target = updated;
 
-        keys.slice(0, -1).forEach((key) => {
-          if (!target[key]) {
-            target[key] = {};
+          keys.slice(0, -1).forEach((key) => {
+            if (!target[key]) {
+              target[key] = {};
+            }
+            target = target[key];
+          });
+
+          const arrayKey = keys[keys.length - 1];
+          if (!Array.isArray(target[arrayKey])) {
+            target[arrayKey] = [];
           }
-          target = target[key];
+
+          // Вычисляем максимальный id
+          const currentIds = target[arrayKey].map((item) => item.id || 0);
+          const maxId = currentIds.length > 0 ? Math.max(...currentIds) : 0;
+
+          // Присваиваем новый порядковый id
+          newItem.id = maxId + 1;
+
+          // Добавляем новый элемент в начало массива
+          target[arrayKey].unshift(newItem);
+
+          // Логируем действие
+          if (!updated.logs) {
+            updated.logs = []; // Создаем массив логов, если его нет
+          }
+
+          // Добавляем новый лог в начало массива
+          updated.logs.unshift({
+            timestamp: new Date().toISOString(),
+            action: "Добавление",
+            target: path,
+            details: `Доданий новий елемент: ${JSON.stringify(newItem)}`,
+          });
+
+          return updated;
         });
-
-        const arrayKey = keys[keys.length - 1];
-        if (!Array.isArray(target[arrayKey])) {
-          target[arrayKey] = [];
-        }
-
-        // Вычисляем максимальный id
-        const currentIds = target[arrayKey].map((item) => item.id || 0);
-        const maxId = currentIds.length > 0 ? Math.max(...currentIds) : 0;
-
-        // Присваиваем новый порядковый id
-        newItem.id = maxId + 1;
-
-        // Добавляем новый элемент в начало массива
-        target[arrayKey].unshift(newItem);
-
-        // Логируем действие
-        if (!updated.logs) {
-          updated.logs = []; // Создаем массив логов, если его нет
-        }
-
-        // Добавляем новый лог в начало массива
-        updated.logs.unshift({
-          timestamp: new Date().toISOString(),
-          action: "Добавление",
-          target: path,
-          details: `Доданий новий елемент: ${JSON.stringify(newItem)}`,
-        });
-
-        return updated;
-      });
-      await handleSubmit();
+        await handleSubmit();
+      } catch (error) {
+        console.error("Помилка при додаваннi:", error);
+        alert("Помилка видалення!");
+      } finally {
+        // setIsUploading(false); // Снимаем состояние ожидания
+      }
     }
   };
 
   const handleDeleteBlock = async (path, index) => {
     const confirmDelete = confirm(
-      "Вы уверены, что хотите удалить этот элемент? Это действие нельзя отменить."
+      "Ви впевнені, що хочете видалити цей елемент? Цю дію не можна скасувати."
     );
 
     if (confirmDelete) {
-      setDatabase((prev) => {
-        const updated = { ...prev };
-        const keys = path.split(".");
-        let target = updated;
+      // setIsRemoving(true); // Включаем состояние ожидания
 
-        // Доступ к целевому массиву
-        keys.slice(0, -1).forEach((key) => {
-          if (target[key] === undefined) {
-            target[key] = []; // Убедимся, что массив существует
+      try {
+        // Обновляем состояние базы данных
+        setDatabase((prev) => {
+          const updated = { ...prev };
+          const keys = path.split(".");
+          let target = updated;
+
+          keys.slice(0, -1).forEach((key) => {
+            if (target[key] === undefined) {
+              target[key] = []; // Убедимся, что массив существует
+            }
+            target = target[key];
+          });
+
+          const arrayKey = keys[keys.length - 1];
+
+          if (!Array.isArray(target[arrayKey])) {
+            console.error(`Target at path "${path}" is not an array.`);
+            return prev;
           }
-          target = target[key];
+
+          // Сохраняем элемент перед удалением для лога
+          const deletedItem = target[arrayKey][index];
+
+          // Удаление элемента
+          target[arrayKey].splice(index, 1);
+
+          // Логируем удаление
+          if (!updated.logs) {
+            updated.logs = []; // Создаем массив логов, если его нет
+          }
+
+          updated.logs.unshift({
+            timestamp: new Date().toISOString(),
+            action: "Удаление",
+            target: path,
+            details: `Удалён элемент с id ${
+              deletedItem.id
+            }, данные: ${JSON.stringify(deletedItem)}`,
+          });
+
+          return updated;
         });
 
-        const arrayKey = keys[keys.length - 1];
-
-        if (!Array.isArray(target[arrayKey])) {
-          console.error(`Target at path "${path}" is not an array.`);
-          return prev;
-        }
-
-        // Сохраняем элемент перед удалением для лога
-        const deletedItem = target[arrayKey][index];
-
-        // Удаление элемента
-        target[arrayKey].splice(index, 1);
-
-        // Логируем удаление
-        if (!updated.logs) {
-          updated.logs = []; // Создаем массив логов, если его нет
-        }
-
-        updated.logs.unshift({
-          timestamp: new Date().toISOString(),
-          action: "Удаление",
-          target: path,
-          details: `Удалён элемент с id ${
-            deletedItem.id
-          }, данные: ${JSON.stringify(deletedItem)}`,
-        });
-
-        return updated;
-      });
-
-      // Отправляем обновленные данные
-      await handleSubmit();
+        // Автоматически сохраняем изменения
+        await handleSubmit();
+      } catch (error) {
+        console.error("Помилка при видаленнi:", error);
+        alert("Помилка видалення!");
+      } finally {
+        // setIsRemoving(false); // Снимаем состояние ожидания
+      }
     }
   };
 
@@ -330,7 +346,6 @@ export default function AdminPage({ params, onUpload }) {
       alert("Выберите файл!");
       return;
     }
-
     setIsUploading(true);
     try {
       // Загрузка изображения на GitHub
@@ -364,53 +379,48 @@ export default function AdminPage({ params, onUpload }) {
     }
   };
 
-  const deleteImage = async (filePath, dbPath) => {
-    try {
-      // Удаляем файл из GitHub
-      const response = await fetch("/api/github-delete", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          filePath,
-          commitMessage: `Удален файл: ${filePath}`,
-        }),
-      });
+  const deleteImageFromGitHubAndDB = async (imagePath, dbPath) => {
+    const confirmDelete = confirm("Видалити фото?");
 
-      const result = await response.json();
+    if (confirmDelete) {
+      try {
+        const filePath = imagePath.replace(
+          "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/",
+          ""
+        );
 
-      if (!response.ok) {
-        throw new Error(result.error || "Ошибка удаления файла");
-      }
-
-      console.log("Файл успешно удален из репозитория:", result);
-
-      // Удаляем запись из базы данных
-      setDatabase((prev) => {
-        const updated = { ...prev };
-        const keys = dbPath.split(".");
-        let target = updated;
-
-        // Доступ к целевому объекту
-        keys.slice(0, -1).forEach((key) => {
-          if (!target[key]) target[key] = {};
-          target = target[key];
+        // Удаление файла из GitHub
+        const response = await fetch("/api/github-delete", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ filePath }),
         });
 
-        // Удаляем элемент
-        const lastKey = keys[keys.length - 1];
-        if (Array.isArray(target)) {
-          target.splice(Number(lastKey), 1); // Если это массив
-        } else {
-          delete target[lastKey]; // Если это объект
+        if (!response.ok) {
+          throw new Error("Ошибка удаления файла из репозитория");
         }
 
-        return updated;
-      });
+        // Удаление ссылки из базы данных
+        setDatabase((prev) => {
+          const updated = { ...prev };
+          const keys = dbPath.split(".");
+          let target = updated;
 
-      alert("Файл и запись успешно удалены");
-    } catch (error) {
-      console.error("Ошибка удаления файла или записи:", error.message);
-      alert("Ошибка удаления файла или записи из базы");
+          keys.slice(0, -1).forEach((key) => {
+            if (!target[key]) target[key] = {};
+            target = target[key];
+          });
+
+          target[keys[keys.length - 1]] = ""; // Очищаем значение
+          return updated;
+        });
+
+        await handleSubmit(); // Сохранение изменений в базе данных
+        alert("Файл успешно удален!");
+      } catch (error) {
+        console.error("Ошибка удаления файла:", error.message);
+        alert("Ошибка удаления файла или обновления базы данных");
+      }
     }
   };
 
@@ -485,19 +495,35 @@ export default function AdminPage({ params, onUpload }) {
                 <Button
                   color="success"
                   onClick={handleSubmit}
-                  disabled={isSubmitting}
+                  isDisabled={isSubmitting}
                 >
                   {isSubmitting ? "Сохранение..." : "Сохранить изменения"}
                 </Button>
                 <div className={styles.images_box}>
                   <div className={styles.mainPhoto_home}>
-                    <Image
-                      src={database.home.main_image.src}
-                      alt="Main Image"
-                      width={300}
-                      height={200}
-                    />
+                    {database.home.main_image.src ? ( // Проверяем, есть ли ссылка на изображение
+                      <Image
+                        src={database.home.main_image.src}
+                        alt="Main Image"
+                        width={300}
+                        height={200}
+                      />
+                    ) : (
+                      <p>Изображение отсутствует</p> // Альтернативный контент
+                    )}
                     <div>
+                      <Button
+                        color="danger"
+                        onClick={() =>
+                          deleteImageFromGitHubAndDB(
+                            database.home.main_image.src, // Путь к изображению
+                            "home.main_image.src" // Путь в базе данных
+                          )
+                        }
+                        isDisabled={!database.home.main_image.src}
+                      >
+                        Видалити
+                      </Button>
                       <Input
                         className={styles.input_downloadFile}
                         type="file"
@@ -513,22 +539,11 @@ export default function AdminPage({ params, onUpload }) {
                             "home.main_image.src"
                           )
                         }
-                        disabled={isUploading}
+                        isDisabled={isUploading}
                       >
                         {isUploading ? "Загрузка..." : "Загрузить файл"}
                       </Button>
                     </div>
-                    <Button
-                      color="danger"
-                      onClick={() =>
-                        deleteImage(
-                          `public/images/home_page/${key}/${selectedFile.name}`, // Путь к файлу в репозитории
-                          `home.main_image.src` // Путь к записи в базе данных
-                        )
-                      }
-                    >
-                      Удалить
-                    </Button>
                   </div>
                   <div className={styles.backround_home}>
                     <Image
@@ -553,7 +568,7 @@ export default function AdminPage({ params, onUpload }) {
                             `home.background_image.src`
                           )
                         }
-                        disabled={isUploading}
+                        isDisabled={isUploading}
                       >
                         {isUploading ? "Загрузка..." : "Загрузить файл"}
                       </Button>
@@ -649,7 +664,7 @@ export default function AdminPage({ params, onUpload }) {
                               <Button
                                 color="success"
                                 onClick={handleSubmit}
-                                disabled={isSubmitting}
+                                isDisabled={isSubmitting}
                               >
                                 {isSubmitting
                                   ? "Збереження..."
@@ -658,34 +673,50 @@ export default function AdminPage({ params, onUpload }) {
 
                               <div className={styles.mainPhoto_gallery}>
                                 <div className={styles.mainPhoto_box}>
-                                  <Image
-                                    className={styles.image}
-                                    // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
-                                    // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
-                                    alt={value.name.en}
-                                    src={value.src}
-                                    // placeholder="blur" // размытие заднего фона при загрузке картинки
-                                    // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
-                                    quality={10} //качество картнки в %
-                                    priority={true} // если true - loading = 'lazy' отменяеться
-                                    // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
-                                    fill={false} //заставляет изображение заполнять родительский элемент
-                                    // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
-                                    sizes="100%"
-                                    width={300} // задать правильное соотношение сторон адаптивного изображения
-                                    height={200}
-                                    style={
-                                      {
-                                        // width: "200px",
-                                        // height: "200px",
-                                        // objectFit: "cover", // Изображение масштабируется, обрезая края
-                                        // objectFit: "contain", // Изображение масштабируется, не обрезаясь
-                                        // objectPosition: "top",
-                                        // margin: "0 0 1rem 0",
+                                  {value.src ? (
+                                    <Image
+                                      className={styles.image}
+                                      // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
+                                      // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
+                                      alt={value.name.en}
+                                      src={value.src}
+                                      // placeholder="blur" // размытие заднего фона при загрузке картинки
+                                      // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
+                                      quality={10} //качество картнки в %
+                                      priority={true} // если true - loading = 'lazy' отменяеться
+                                      // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
+                                      fill={false} //заставляет изображение заполнять родительский элемент
+                                      // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
+                                      sizes="100%"
+                                      width={300} // задать правильное соотношение сторон адаптивного изображения
+                                      height={200}
+                                      style={
+                                        {
+                                          // width: "200px",
+                                          // height: "200px",
+                                          // objectFit: "cover", // Изображение масштабируется, обрезая края
+                                          // objectFit: "contain", // Изображение масштабируется, не обрезаясь
+                                          // objectPosition: "top",
+                                          // margin: "0 0 1rem 0",
+                                        }
                                       }
-                                    }
-                                  />
+                                    />
+                                  ) : (
+                                    <p>Изображение отсутствует</p> // Альтернативный контент
+                                  )}
                                 </div>
+                                <Button
+                                  color="danger"
+                                  onClick={() =>
+                                    deleteImageFromGitHubAndDB(
+                                      value.src, // Путь к изображению
+                                      `gallery.${key}.src` // Путь в базе данных
+                                    )
+                                  }
+                                  isDisabled={!value.src || isSubmitting}
+                                >
+                                  Видалити
+                                </Button>
                                 <div className={styles.downloadImage_block}>
                                   <Input
                                     className={styles.input_downloadFile}
@@ -702,13 +733,14 @@ export default function AdminPage({ params, onUpload }) {
                                         `gallery.${key}.src`
                                       )
                                     }
-                                    disabled={isUploading}
+                                    isDisabled={isUploading}
                                   >
                                     {isUploading
                                       ? "Загрузка..."
                                       : "Загрузить файл"}
                                   </Button>
                                 </div>
+
                                 {/* <div className={styles.Imagelocation_block}>
                                   <Input
                                     className={styles.block_type_image__input}
@@ -726,21 +758,28 @@ export default function AdminPage({ params, onUpload }) {
                                 <Button
                                   className={styles.imageSection}
                                   onClick={() =>
-                                    handleAddEvent(`gallery.${key}.page`, {
-                                      name: {
-                                        uk: "Новий",
-                                        en: "",
-                                        de: "",
+                                    handleAddEvent(
+                                      `gallery.${key}.page`,
+                                      {
+                                        name: {
+                                          uk: "Нове зображення",
+                                          en: "",
+                                          de: "",
+                                        },
+                                        material: "",
+                                        size: "",
+                                        date: "",
+                                        description: {
+                                          uk: "",
+                                          en: "",
+                                          de: "",
+                                        },
+                                        src: "",
+                                        width: 1000,
+                                        height: 1000,
                                       },
-                                      description: {
-                                        uk: "",
-                                        en: "",
-                                        de: "",
-                                      },
-                                      src: "",
-                                      width: 1000,
-                                      height: 1000,
-                                    })
+                                      "нове зображення"
+                                    )
                                   }
                                 >
                                   Додати нове зображення
@@ -751,34 +790,50 @@ export default function AdminPage({ params, onUpload }) {
                                     className={styles.imageSection}
                                   >
                                     <div className={styles.image_box}>
-                                      <Image
-                                        className={styles.image}
-                                        // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
-                                        // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
-                                        alt={image.name.en}
-                                        src={image.src}
-                                        // placeholder="blur" // размытие заднего фона при загрузке картинки
-                                        // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
-                                        quality={10} //качество картнки в %
-                                        priority={true} // если true - loading = 'lazy' отменяеться
-                                        // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
-                                        fill={true} //заставляет изображение заполнять родительский элемент
-                                        // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
-                                        sizes="100%"
-                                        // width={100} // задать правильное соотношение сторон адаптивного изображения
-                                        // height={100}
-                                        style={
-                                          {
-                                            // width: "200px",
-                                            // height: "200px",
-                                            // objectFit: "cover", // Изображение масштабируется, обрезая края
-                                            // objectFit: "contain", // Изображение масштабируется, не обрезаясь
-                                            // objectPosition: "top",
-                                            // margin: "0 0 1rem 0",
+                                      {image.src ? (
+                                        <Image
+                                          className={styles.image}
+                                          // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
+                                          // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
+                                          alt={image.name.en}
+                                          src={image.src}
+                                          // placeholder="blur" // размытие заднего фона при загрузке картинки
+                                          // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
+                                          quality={10} //качество картнки в %
+                                          priority={true} // если true - loading = 'lazy' отменяеться
+                                          // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
+                                          fill={true} //заставляет изображение заполнять родительский элемент
+                                          // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
+                                          sizes="100%"
+                                          // width={100} // задать правильное соотношение сторон адаптивного изображения
+                                          // height={100}
+                                          style={
+                                            {
+                                              // width: "200px",
+                                              // height: "200px",
+                                              // objectFit: "cover", // Изображение масштабируется, обрезая края
+                                              // objectFit: "contain", // Изображение масштабируется, не обрезаясь
+                                              // objectPosition: "top",
+                                              // margin: "0 0 1rem 0",
+                                            }
                                           }
-                                        }
-                                      />
+                                        />
+                                      ) : (
+                                        <p>Изображение отсутствует</p> // Альтернативный контент
+                                      )}
                                     </div>
+                                    <Button
+                                      color="danger"
+                                      onClick={() =>
+                                        deleteImageFromGitHubAndDB(
+                                          image.src, // Путь к изображению
+                                          `gallery.${key}.page.${index}.src` // Путь в базе данных
+                                        )
+                                      }
+                                      isDisabled={!image.src || isSubmitting}
+                                    >
+                                      Видалити фото
+                                    </Button>
                                     <div>
                                       <Input
                                         className={styles.input_downloadFile}
@@ -795,7 +850,7 @@ export default function AdminPage({ params, onUpload }) {
                                             `gallery.${key}.page.${index}.src`
                                           )
                                         }
-                                        disabled={isUploading}
+                                        isDisabled={isUploading || isSubmitting}
                                       >
                                         {isUploading
                                           ? "Загрузка..."
@@ -829,7 +884,7 @@ export default function AdminPage({ params, onUpload }) {
                                                       // className={
                                                       //   styles.imageSection_input
                                                       // }
-                                                      label={`Название (${lang.toUpperCase()})`}
+                                                      label={`Назва (${lang.toUpperCase()})`}
                                                       value={nameValue}
                                                       onChange={(e) =>
                                                         handleChange(
@@ -888,7 +943,7 @@ export default function AdminPage({ params, onUpload }) {
                                                       // className={
                                                       //   styles.image_imageSection_textarea
                                                       // }
-                                                      label={`Описание (${lang.toUpperCase()})`}
+                                                      label={`Опис (${lang.toUpperCase()})`}
                                                       value={
                                                         image.description[lang]
                                                       }
@@ -899,7 +954,7 @@ export default function AdminPage({ params, onUpload }) {
                                                         )
                                                       }
                                                     />
-                                                    <Input
+                                                    {/* <Input
                                                       classNames={{
                                                         base: "max-w-xs",
                                                         input:
@@ -909,14 +964,14 @@ export default function AdminPage({ params, onUpload }) {
                                                       //   styles.imageSection_input
                                                       // }
                                                       label={`URL картинки`}
-                                                      value={image.src}
+                                                      value={image.src || ""}
                                                       onChange={(e) =>
                                                         handleChange(
                                                           e,
                                                           `gallery.${key}.page.${index}.src`
                                                         )
                                                       }
-                                                    />
+                                                    /> */}
                                                   </div>
                                                 </CardBody>
                                               </Card>
@@ -932,7 +987,7 @@ export default function AdminPage({ params, onUpload }) {
                                         <Button
                                           color="success"
                                           onClick={handleSubmit}
-                                          disabled={isSubmitting}
+                                          isDisabled={isSubmitting}
                                         >
                                           {isSubmitting
                                             ? "Збереження..."
@@ -940,17 +995,19 @@ export default function AdminPage({ params, onUpload }) {
                                         </Button>
                                         <Button
                                           color="danger"
-                                          onClick={() =>
+                                          onClick={() => {
+                                            deleteImageFromGitHubAndDB(
+                                              image.src, // Путь к изображению
+                                              `gallery.${key}.page.${index}.src` // Путь в базе данных
+                                            );
                                             handleDeleteBlock(
                                               `gallery.${key}.page`,
                                               index
-                                            )
-                                          }
-                                          // style={{
-                                          //   width: "100%"
-                                          // }}
+                                            );
+                                          }}
+                                          // isDisabled={isSubmitting}
                                         >
-                                          Delete
+                                          Видалити зображення
                                         </Button>
                                       </div>
                                       <div
@@ -999,21 +1056,28 @@ export default function AdminPage({ params, onUpload }) {
               <CardBody>
                 <section className={styles.events_container}>
                   <Button
+                    color="success"
                     className={styles.buttonAdd}
                     onClick={() =>
-                      handleAddEvent(`events`, {
-                        title: {
-                          uk: "Новий",
-                          en: "New",
-                          de: "Neu",
+                      handleAddEvent(
+                        `events`,
+                        {
+                          // id: ,
+                          title: {
+                            uk: "Новий",
+                            en: "new",
+                            de: "",
+                          },
+                          date: "",
+                          main_image: "",
+                          content: [],
                         },
-                        date: Date.now(),
-                        main_image: "/gallery/industrial/1_SCRUBBER.jpg",
-                        content: [],
-                      })
+                        "новий захiд"
+                      )
                     }
+                    isDisabled={isSubmitting}
                   >
-                    Додати новий івент
+                    Додати новий захід
                   </Button>
                   {database.events.map((event, index) => (
                     <div key={index} className={styles.events_box}>
@@ -1022,47 +1086,53 @@ export default function AdminPage({ params, onUpload }) {
                         href={`/admin/${generateSlug(event.title.en)}`}
                       >
                         <div className={styles.image_box}>
-                          <Image
-                            className={styles.image}
-                            // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
-                            // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
-                            alt={event.title[locale]}
-                            src={event.main_image}
-                            // placeholder="blur" // размытие заднего фона при загрузке картинки
-                            // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
-                            quality={100} //качество картнки в %
-                            priority={true} // если true - loading = 'lazy' отменяеться
-                            // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
-                            fill={true} //заставляет изображение заполнять родительский элемент
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            // width={300} // задать правильное соотношение сторон адаптивного изображения
-                            // height={200}
-                            style={
-                              {
-                                // width: "200px",
-                                // height: "200px",
-                                // objectFit: "cover", // Изображение масштабируется, обрезая края
-                                // objectFit: "contain", // Изображение масштабируется, не обрезаясь
-                                // objectPosition: "top",
-                                // margin: "0 0 1rem 0",
+                          {event.main_image ? (
+                            <Image
+                              className={styles.image}
+                              // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
+                              // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
+                              alt={event.title[locale]}
+                              src={event.main_image}
+                              // placeholder="blur" // размытие заднего фона при загрузке картинки
+                              // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
+                              quality={100} //качество картнки в %
+                              priority={true} // если true - loading = 'lazy' отменяеться
+                              // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
+                              fill={true} //заставляет изображение заполнять родительский элемент
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                              // width={300} // задать правильное соотношение сторон адаптивного изображения
+                              // height={200}
+                              style={
+                                {
+                                  // width: "200px",
+                                  // height: "200px",
+                                  // objectFit: "cover", // Изображение масштабируется, обрезая края
+                                  // objectFit: "contain", // Изображение масштабируется, не обрезаясь
+                                  // objectPosition: "top",
+                                  // margin: "0 0 1rem 0",
+                                }
                               }
-                            }
-                          />
+                            />
+                          ) : (
+                            <p>Изображение отсутствует</p> // Альтернативный контент
+                          )}
                         </div>
                         <h3 className={styles.title}>{event.title[locale]}</h3>
-                        <Input
-                          classNames={{
-                            base: "max-w-xs",
-                            input: "resize-y min-h-[10px]",
-                          }}
-                          label={`URL картинки`}
-                          value={event.main_image}
-                          onChange={(e) =>
-                            handleChange(e, `events.${index}.main_image`)
-                          }
-                        />
-                        <h3 className={styles.event_data}>id {event.id}</h3>
                       </Link>
+                      <h3 className={styles.event_data}>id {event.id}</h3>
+                      <Button
+                        color="danger"
+                        onClick={() =>
+                          deleteImageFromGitHubAndDB(
+                            event.main_image, // Путь к изображению
+                            `events.${event}.main_image` // Путь в базе данных
+                          )
+                        }
+                        isDisabled={!event.main_image || isSubmitting}
+                        // isDisabled={!event.main_image}
+                      >
+                        Видалити картинку
+                      </Button>
                       <div>
                         <Input
                           className={styles.input_downloadFile}
@@ -1079,9 +1149,11 @@ export default function AdminPage({ params, onUpload }) {
                               `events.${index}.main_image`
                             )
                           }
-                          disabled={isUploading}
+                          isDisabled={isSubmitting}
                         >
-                          {isUploading ? "Загрузка..." : "Загрузить файл"}
+                          {isUploading
+                            ? "Завантаження..."
+                            : "Завантажити картинку"}
                         </Button>
                       </div>
                       <Input
@@ -1098,16 +1170,24 @@ export default function AdminPage({ params, onUpload }) {
                       <Button
                         color="success"
                         onClick={handleSubmit}
-                        disabled={isSubmitting}
+                        isDisabled={isSubmitting}
                       >
                         {isSubmitting ? "Збереження..." : "Зберегти зміни"}
                       </Button>
                       <Button
                         color="danger"
                         className={styles.delete_button}
-                        onClick={() => handleDeleteBlock(`events`, index)}
+                        onClick={() => {
+                          deleteImageFromGitHubAndDB(
+                            event.main_image, // Путь к изображению
+                            `events.${event}.main_image` // Путь в базе данных
+                          );
+                          handleDeleteBlock(`events`, index);
+                        }}
+                        // onClick={() => handleDeleteBlock(`events`, index)}
+                        isDisabled={isSubmitting}
                       >
-                        Видалити
+                        Видалити захiд
                       </Button>
                     </div>
                   ))}
