@@ -1,9 +1,12 @@
 import { NextResponse } from "next/server";
 
+const GITHUB_REPO = "malahovskiyoleksandr/malahovskiy"; // Основной репозиторий
+// const GITHUB_REPO = "malahovskiyoleksandr/DataBase"; // Основной репозиторий
+
 export async function GET() {
   try {
     const response = await fetch(
-      `https://api.github.com/repos/malahovskiyoleksandr/malahovskiy/contents/data/database.json`,
+      `https://api.github.com/repos/${GITHUB_REPO}/contents/data/database.json`,
       {
         method: "GET",
         cache: "no-store",

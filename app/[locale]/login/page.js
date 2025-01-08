@@ -27,41 +27,43 @@ export default function LoginPage() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Вход</h1>
-      <form onSubmit={handleLogin} className={styles.form}>
-        <div className={styles.inputGroup}>
-          <label htmlFor="email" className={styles.label}>
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            placeholder="Введіть email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className={styles.input}
-          />
-        </div>
-        <div className={styles.inputGroup}>
-          <label htmlFor="password" className={styles.label}>
-            Пароль
-          </label>
-          <input
-            type="password"
-            id="password"
-            placeholder="Введіть пароль"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className={styles.input}
-          />
-        </div>
-        <button type="submit" className={styles.button}>
-          Войти
-        </button>
-      </form>
-      <a href="/forgot-password" className={styles.link}>
-        Забыли пароль?
-      </a>
+      <div className={styles.login_box}>
+        <h1 className={styles.title}>Вход</h1>
+        <form onSubmit={handleLogin} className={styles.form}>
+          <div className={styles.inputGroup}>
+            <label htmlFor="email" className={styles.label}>
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Введіть email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className={styles.input}
+            />
+          </div>
+          <div className={styles.inputGroup}>
+            <label htmlFor="password" className={styles.label}>
+              Пароль
+            </label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Введіть пароль"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className={styles.input}
+            />
+          </div>
+          <button type="submit" className={styles.button}>
+            Войти
+          </button>
+        </form>
+        <a href="/forgot-password" className={styles.link}>
+          Забыли пароль?
+        </a>
+      </div>
     </div>
   );
 }

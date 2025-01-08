@@ -153,14 +153,12 @@ export default function AdminPage({ params, onUpload }) {
   const showAlert = (message) => {
     setAlertMessage(message);
     setAlertVisible(true);
-    setTimeout(() => setAlertVisible(false), 3000); // Скрыть алерт через 3 секунды
+    setTimeout(() => setAlertVisible(false), 3000);
   };
 
   const handleSomeAction = async (message) => {
     try {
-      // Ваш код действия, например, загрузка файла
-      // ...
-      showAlert(message); // Показываем алерт
+      showAlert(message);
     } catch (error) {
       console.error("Ошибка:", error.message);
       showAlert("Ошибка при выполнении действия.");
@@ -518,14 +516,6 @@ export default function AdminPage({ params, onUpload }) {
       return updated;
     });
   };
-
-  // if (isLoading) {
-  //   return (
-  //     <div className="flex items-center justify-center h-[95vh]">
-  //       <Spinner color="warning" label="Loading" labelColor="warning" />
-  //     </div>
-  //   );
-  // }
 
   if (!database) {
     return (
