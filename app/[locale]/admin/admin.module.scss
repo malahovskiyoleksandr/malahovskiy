@@ -21,9 +21,10 @@ $text-color: #fff;
 
 // Main container
 .adminPanel {
+  position: relative;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: calc(var(--size-body) - var(--size-header));
 
   .header {
     display: flex;
@@ -67,6 +68,14 @@ $text-color: #fff;
         background: darken($accent-color, 10%);
       }
     }
+  }
+
+  .alert {
+    position: fixed;
+    top: 50px;
+    left: calc(50% - 150px);
+    z-index: 1000;
+    width: 300px;
   }
 
   .main {
@@ -159,12 +168,13 @@ $text-color: #fff;
           .mainPhoto_box {
             position: relative;
             height: 200px;
+            max-width: 600px;
             margin-bottom: 1rem;
 
             .image {
               width: auto;
               height: 100%;
-              object-fit: cover;
+              object-fit: contain;
               margin: 0 0 1rem 0;
             }
           }

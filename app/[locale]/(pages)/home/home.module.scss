@@ -3,6 +3,7 @@
   // grid-template-columns: repeat(1, 1fr);
   // gap: 40px;
   display: flex;
+  // align-items: flex-end;
   align-items: center;
   width: 100%;
   height: calc(var(--size-body) - var(--size-header));
@@ -10,39 +11,36 @@
   background: url('https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/home_page/background.png')  top center / cover no-repeat;
 
   .container_main {
-    // position: absolute;
-    // top: 250px;
-    // z-index: 1;
-    // grid-template-columns: repeat(2, 1fr);
-    // margin: 0 auto;
-    // padding: 0 10%;
     display: flex;  
     justify-content: space-around;
-    align-items: center;
+    align-items: flex-end;
     height: 400px;
     width: 100%;
     padding: 0 10%;
     background-color: #fec09980;
 
     .main_image {
-      width: 300px;
-      // margin: 0 auto;
+      // position: relative;
+      // bottom: 70px;
+      width: 400px;
+      // margin: 0 0 50px 0;
     }
 
     .main_block_description {
-      display: block;
-      // flex-basis: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       min-width: 200px;
+      max-width: 650px;
+      height: 100%;
       font-family: "Mariupol-Regular";
-      max-width: 600px;
-      // margin: 0 auto;
-      padding: 40px;
+      padding: 2.5rem;
       border-radius: 5px;
       color: #FFE9DC;
 
       .artist_name {
-        font-size: 2.5rem;
-        text-align: center;
+        font-size: 3rem;
+        text-align: left;
         margin-bottom: 30px;
         font-family: "Extatica-Medium";
       }

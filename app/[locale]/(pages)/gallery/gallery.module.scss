@@ -58,6 +58,7 @@
   .image_Link {
     position: relative;
     flex: 0 0 600px;
+    border-radius: 5px;
     scroll-snap-align: center;
     overflow: hidden;   ////////////////////////////
     box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.5);
@@ -65,7 +66,6 @@
     .image {
       height: 30rem;
       object-fit: cover;
-      border-radius: 5px;
       overflow: hidden;
     }
     .tooltip {

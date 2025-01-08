@@ -18,6 +18,16 @@
     }
   }
 
+  .alert {
+    position: fixed;
+    top: 50px;
+    left: calc(50% - 150px);
+    z-index: 1000;
+    width: 300px;
+    transition: 2s;
+    transform: translateY(50px);
+  }
+
   .event {
     max-width: 800px;
     margin: 0 auto;
@@ -27,6 +37,8 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     font-family: "Mariupol-Bold", sans-serif;
+    width: 100%;
+    min-height: calc(var(--size-body) - var(--size-header));
 
     .name_events {
       .name_events_textarea {

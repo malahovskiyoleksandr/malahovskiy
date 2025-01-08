@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import { Textarea, Button, Spinner } from "@nextui-org/react";
-import { Tabs, Tab, Card, CardBody, Input } from "@nextui-org/react";
+import { Tabs, Tab, Card, CardBody, Input, Alert } from "@nextui-org/react";
 
 async function uploadImageToGitHub(path, file) {
   const reader = new FileReader();
@@ -54,6 +54,9 @@ export default function EventPage({ params }) {
   const [eventIndex, setEventIndex] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
+
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
   function generateSlug(title) {
     return title
@@ -113,6 +116,23 @@ export default function EventPage({ params }) {
     };
   }, [database]);
 
+  const showAlert = (message) => {
+    setAlertMessage(message);
+    setAlertVisible(true);
+    setTimeout(() => setAlertVisible(false), 3000); // Скрыть алерт через 3 секунды
+  };
+
+  const handleSomeAction = async (message) => {
+    try {
+      // Ваш код действия, например, загрузка файла
+      // ...
+      showAlert(message); // Показываем алерт
+    } catch (error) {
+      console.error("Ошибка:", error.message);
+      showAlert("Ошибка при выполнении действия.");
+    }
+  };
+
   const handleChange = (e, path) => {
     const { value } = e.target;
 
@@ -132,39 +152,37 @@ export default function EventPage({ params }) {
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
-  
+
     try {
       // Обновляем только изменённое событие в fullDatabase
       const updatedFullDatabase = { ...fullDatabase };
       updatedFullDatabase.events[eventIndex] = database;
-  
+
       const payload = {
         filePath: "data/database.json",
         fileContent: JSON.stringify(updatedFullDatabase, null, 2),
         commitMessage: `Updated event ${database.title.en} via admin panel`,
       };
-  
+
       const response = await fetch("/api/github-post", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-  
+
       if (!response.ok) {
         throw new Error("Failed to update data");
       }
-  
+
       const result = await response.json();
-      console.log("Changes saved successfully:", result);
-      alert("Успішне збереження!");
     } catch (error) {
       console.error("Error saving:", error.message);
       alert("Помилка! Невдале збереження");
     } finally {
       setIsSubmitting(false);
+      handleSomeAction("Успішне збереження!");
     }
   };
-  
 
   const handleDeleteBlock = (index) => {
     setDatabase((prev) => ({
@@ -259,23 +277,22 @@ export default function EventPage({ params }) {
         setFullDatabase(updatedFullDatabase);
         return updated;
       });
-
-      alert("Файл успешно загружен и база обновлена!");
     } catch (error) {
       console.error("Ошибка загрузки или обновления базы:", error.message);
       alert("Ошибка загрузки файла или обновления базы данных");
     } finally {
+      handleSomeAction("Успішне додавання фото!");
       setIsUploading(false);
     }
   };
 
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center h-[95vh]">
-        <Spinner color="warning" label="Loading" labelColor="warning" />
-      </div>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <div className="flex items-center justify-center h-[95vh]">
+  //       <Spinner color="warning" label="Loading" labelColor="warning" />
+  //     </div>
+  //   );
+  // }
 
   if (!database) {
     return (
@@ -305,6 +322,16 @@ export default function EventPage({ params }) {
         </Button>
         {/* </div> */}
       </header>
+      <div className={styles.alert}>
+        {alertVisible && (
+          <Alert
+            color="success"
+            variant="faded"
+            description={alertMessage}
+            title="Повідомлення"
+          />
+        )}
+      </div>
       <div className={styles.event}>
         <Tabs aria-label="Localized Titles" className={styles.name_events}>
           {["uk", "en", "de"].map((lang, index) => (
@@ -377,33 +404,63 @@ export default function EventPage({ params }) {
             if (block.type === "image") {
               return (
                 <div key={index} className={styles.block_type_image}>
-                  <Image
-                    className={styles.block_type_image__image}
-                    // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
-                    // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
-                    alt={block.description[locale]}
-                    src={block.src}
-                    // placeholder="blur" // размытие заднего фона при загрузке картинки
-                    // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
-                    quality={100} //качество картнки в %
-                    priority={true} // если true - loading = 'lazy' отменяеться
-                    // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
-                    fill={false} //заставляет изображение заполнять родительский элемент
-                    // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
-                    sizes="100%"
-                    width={300} // задать правильное соотношение сторон адаптивного изображения
-                    height={200}
-                    style={
-                      {
-                        // width: "200px",
-                        // height: "200px",
-                        // objectFit: "cover", // Изображение масштабируется, обрезая края
-                        // objectFit: "contain", // Изображение масштабируется, не обрезаясь
-                        // objectPosition: "top",
-                        // margin: "0 0 1rem 0",
+                  {block.src ? (
+                    <Image
+                      className={styles.block_type_image__image}
+                      // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
+                      // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
+                      alt={block.description[locale]}
+                      src={block.src}
+                      // placeholder="blur" // размытие заднего фона при загрузке картинки
+                      // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
+                      quality={100} //качество картнки в %
+                      priority={true} // если true - loading = 'lazy' отменяеться
+                      // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
+                      fill={false} //заставляет изображение заполнять родительский элемент
+                      // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
+                      sizes="100%"
+                      width={300} // задать правильное соотношение сторон адаптивного изображения
+                      height={200}
+                      style={
+                        {
+                          // width: "200px",
+                          // height: "200px",
+                          // objectFit: "cover", // Изображение масштабируется, обрезая края
+                          // objectFit: "contain", // Изображение масштабируется, не обрезаясь
+                          // objectPosition: "top",
+                          // margin: "0 0 1rem 0",
+                        }
                       }
-                    }
-                  />
+                    />
+                  ) : (
+                    <Image
+                      className={styles.block_type_image__image}
+                      // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
+                      // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
+                      alt={block.description[locale]}
+                      src="https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/default_img.jpg"
+                      // placeholder="blur" // размытие заднего фона при загрузке картинки
+                      // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
+                      quality={100} //качество картнки в %
+                      priority={true} // если true - loading = 'lazy' отменяеться
+                      // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
+                      fill={false} //заставляет изображение заполнять родительский элемент
+                      // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
+                      sizes="100%"
+                      width={300} // задать правильное соотношение сторон адаптивного изображения
+                      height={200}
+                      style={
+                        {
+                          // width: "200px",
+                          // height: "200px",
+                          // objectFit: "cover", // Изображение масштабируется, обрезая края
+                          // objectFit: "contain", // Изображение масштабируется, не обрезаясь
+                          // objectPosition: "top",
+                          // margin: "0 0 1rem 0",
+                        }
+                      }
+                    />
+                  )}
                   <div>
                     <Input
                       className={styles.input_downloadFile}
