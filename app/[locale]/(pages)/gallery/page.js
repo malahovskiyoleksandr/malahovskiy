@@ -22,7 +22,7 @@ export const revalidate = 5;
 export async function getData() {
   try {
     const response = await fetch(
-      `https://api.github.com/repos/malahovskiyoleksandr/malahovskiy/contents/data/database.json`,
+      `https://api.github.com/repos/malahovskiyoleksandr/DataBase/contents/data/database.json`,
       {
         method: "GET",
         cache: "no-store",

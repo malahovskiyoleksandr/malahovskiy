@@ -258,7 +258,7 @@ export default function AdminPage({ params, onUpload }) {
       const uploadResult = await uploadImageToGitHub(pathImg, selectedFile);
 
       // Формирование нового пути к изображению
-      const newImagePath = `https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/${pathImg}/${selectedFile.name}`;
+      const newImagePath = `https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/${pathImg}/${selectedFile.name}`;
 
       // Обновление базы данных
       setDatabase((prev) => {
@@ -450,7 +450,7 @@ export default function AdminPage({ params, onUpload }) {
       try {
         if (imagePath) {
           const filePath = imagePath.replace(
-            "https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/",
+            "https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/",
             ""
           );
           const response = await fetch("/api/github-delete", {
@@ -628,7 +628,7 @@ export default function AdminPage({ params, onUpload }) {
                         // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
                         // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
                         alt="Main Image"
-                        src="https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/default_img.jpg"
+                        src="https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/default_img.jpg"
                         // placeholder="blur" // размытие заднего фона при загрузке картинки
                         // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
                         quality={100} //качество картнки в %
@@ -846,7 +846,7 @@ export default function AdminPage({ params, onUpload }) {
                                       // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
                                       // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
                                       alt={value.name.en}
-                                      src="https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/default_img.jpg"
+                                      src="https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/default_img.jpg"
                                       // placeholder="blur" // размытие заднего фона при загрузке картинки
                                       // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
                                       quality={100} //качество картнки в %
@@ -983,7 +983,7 @@ export default function AdminPage({ params, onUpload }) {
                                           // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
                                           // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
                                           alt={image.name[locale]}
-                                          src="https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/default_img.jpg"
+                                          src="https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/default_img.jpg"
                                           // placeholder="blur" // размытие заднего фона при загрузке картинки
                                           // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
                                           quality={100} //качество картнки в %
@@ -1291,7 +1291,7 @@ export default function AdminPage({ params, onUpload }) {
                               // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
                               // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
                               alt={event.title[locale]}
-                              src="https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/default_img.jpg"
+                              src="https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/default_img.jpg"
                               // placeholder="blur" // размытие заднего фона при загрузке картинки
                               // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
                               quality={100} //качество картнки в %

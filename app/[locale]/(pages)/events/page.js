@@ -7,7 +7,7 @@ import { NextResponse } from "next/server";
 export async function getData() {
   try {
     const response = await fetch(
-      `https://api.github.com/repos/malahovskiyoleksandr/malahovskiy/contents/data/database.json`,
+      `https://api.github.com/repos/malahovskiyoleksandr/DataBase/contents/data/database.json`,
       {
         method: "GET",
         cache: "no-store",

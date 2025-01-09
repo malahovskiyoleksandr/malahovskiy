@@ -253,7 +253,7 @@ export default function EventPage({ params }) {
       const uploadResult = await uploadImageToGitHub(pathImg, selectedFile);
 
       // Генерируем новый путь для изображения
-      const newImagePath = `https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/${pathImg}/${selectedFile.name}`;
+      const newImagePath = `https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/${pathImg}/${selectedFile.name}`;
 
       // Обновляем только изменённый путь в базе данных
       setDatabase((prev) => {
@@ -438,7 +438,7 @@ export default function EventPage({ params }) {
                       // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
                       // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
                       alt={block.description[locale]}
-                      src="https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/default_img.jpg"
+                      src="https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/default_img.jpg"
                       // placeholder="blur" // размытие заднего фона при загрузке картинки
                       // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
                       quality={100} //качество картнки в %

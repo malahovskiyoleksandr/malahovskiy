@@ -16,7 +16,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import LanguageChanger from "../components/LanguageChanger";
 import { useIntl } from "react-intl";
 import Image from "next/image";
-import Logo from "@/public/images/logo.png";
+// import Logo from "@/public/images/logo.png";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -109,7 +109,7 @@ export default function Header() {
             color="foreground"
             className="font-bold text-inherit"
           >
-            <Image
+            {/* <Image
               className={styles.image}
               // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
               // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
@@ -134,7 +134,7 @@ export default function Header() {
                   // objectPosition: "top",
                 }
               }
-            />
+            /> */}
           </Link>
         </NavbarBrand>
       </NavbarContent>
