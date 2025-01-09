@@ -66,17 +66,14 @@ export default async function Events({ params }) {
           className={`${styles.event_list} grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-6`}
         >
           {database?.events &&
-            Object.entries(database.events).map(
-              ([key, value], index) => (
-                <div
-                  key={index}
-                  className={styles.event}
+            Object.entries(database.events).map(([key, value], index) => (
+              <div key={index} className={styles.event}>
+                <Link
+                  href={`/events/${generateSlug(value.title.en)}`}
+                  className={styles.link}
                 >
-                  <Link
-                    href={`/events/${generateSlug(value.title.en)}`}
-                    className={styles.link}
-                  >
-                    <div className={styles.image_box}>
+                  <div className={styles.image_box}>
+                    {value.main_image ? (
                       <Image
                         className={styles.image}
                         // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
@@ -104,15 +101,42 @@ export default async function Events({ params }) {
                           }
                         }
                       />
-                    </div>
-                    <span className={styles.event_data}>{value.date}</span>
-                    <h3 className={styles.event_name}>
-                      {value?.title?.[locale] || ""}
-                    </h3>
-                  </Link>
-                </div>
-              )
-            )}
+                    ) : (
+                      <Image
+                        className={styles.image}
+                        // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
+                        // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
+                        alt="Main Image"
+                        src="https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/default_img.jpg"
+                        // placeholder="blur" // размытие заднего фона при загрузке картинки
+                        // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
+                        quality={10} //качество картнки в %
+                        priority={true} // если true - loading = 'lazy' отменяеться
+                        // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
+                        fill={true} //заставляет изображение заполнять родительский элемент
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        // width={300} // задать правильное соотношение сторон адаптивного изображения
+                        // height={200}
+                        style={
+                          {
+                            // width: "200px",
+                            // height: "200px",
+                            // objectFit: "cover", // Изображение масштабируется, обрезая края
+                            // objectFit: "contain", // Изображение масштабируется, не обрезаясь
+                            // objectPosition: "top",
+                            // margin: "0 0 1rem 0",
+                          }
+                        }
+                      />
+                    )}
+                  </div>
+                  <span className={styles.event_data}>{value.date}</span>
+                  <h3 className={styles.event_name}>
+                    {value?.title?.[locale] || ""}
+                  </h3>
+                </Link>
+              </div>
+            ))}
         </div>
       </section>
     </>

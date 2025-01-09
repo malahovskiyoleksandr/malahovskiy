@@ -8,10 +8,11 @@
   width: 100%;
   height: calc(var(--size-body) - var(--size-header));
   // padding: 20vh 0;
-  background: url('https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/home_page/background.png')  top center / cover no-repeat;
+  background: url("https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/home_page/background.png")
+    top center / cover no-repeat;
 
   .container_main {
-    display: flex;  
+    display: flex;
     justify-content: space-around;
     align-items: flex-end;
     height: 400px;
@@ -20,23 +21,22 @@
     background-color: #fec09980;
 
     .main_image {
-      // position: relative;
-      // bottom: 70px;
-      width: 400px;
-      // margin: 0 0 50px 0;
+      max-width: 400px;
+      object-fit: contain;
+      
     }
 
     .main_block_description {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      min-width: 200px;
       max-width: 650px;
       height: 100%;
       font-family: "Mariupol-Regular";
       padding: 2.5rem;
       border-radius: 5px;
-      color: #FFE9DC;
+      color: #ffe9dc;
+      background-color: aqua;
 
       .artist_name {
         font-size: 3rem;
@@ -46,6 +46,7 @@
       }
       .artist_name__description {
         font-size: 1.3rem;
+        min-width: 320px;
 
         .icon_wrapper {
           display: inline-block;
@@ -65,14 +66,37 @@
 
 @media (max-width: 668px) {
   .main_block {
-    background: url('https://raw.githubusercontent.com/malahovskiyoleksandr/malahovskiy/main/public/images/home_page/background2.png')  top center / cover no-repeat;
+    height: auto;
+    background: url("https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/home_page/background2.png")
+      top center / cover no-repeat;
+
     .container_main {
       flex-wrap: wrap;
       height: 600px;
       padding: 5%;
 
+      .main_image {
+        // width: 200px;
+      }
+
       .main_block_description {
         // padding: 20px 0;
+
+        .artist_name {
+          font-size: 3rem;
+          text-align: left;
+          margin-bottom: 30px;
+          font-family: "Extatica-Medium";
+        }
+        .artist_name__description {
+          font-size: 1.3rem;
+
+          .icon_wrapper {
+            display: inline-block;
+            margin-left: 10px; /* Чтобы иконка не прилипала к тексту */
+            vertical-align: bottom; /* Выравнивание по нижнему краю текста */
+          }
+        }
       }
     }
   }

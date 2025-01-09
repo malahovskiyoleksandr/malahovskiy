@@ -186,24 +186,53 @@ export default function PhotoGallery({ params }) {
           data-pswp-height={image.height}
           data-id={image.id}
         >
-          <Image
-            id={image.id}
-            className={styles.image}
-            // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
-            // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
-            alt={image.name}
-            src={image.src}
-            // placeholder="blur" // размытие заднего фона при загрузке картинки
-            // blurDataURL="/path-to-small-blurry-version.jpg" // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
-            quality={40}
-            priority={true} // если true - loading = 'lazy' отменяеться
-            // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
-            fill={false} //заставляет изображение заполнять родительский элемент
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
-            // sizes="100vh"
-            width={image.width} // задать правильное соотношение сторон адаптивного изображения
-            height={image.height}
-          />
+          {image.src ? (
+            <Image
+              id={image.id}
+              className={styles.image}
+              // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
+              // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
+              alt={image.name}
+              src={image.src}
+              // placeholder="blur" // размытие заднего фона при загрузке картинки
+              // blurDataURL="/path-to-small-blurry-version.jpg" // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
+              quality={80}
+              priority={true} // если true - loading = 'lazy' отменяеться
+              // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
+              fill={false} //заставляет изображение заполнять родительский элемент
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
+              // sizes="100vh"
+              width={image.width} // задать правильное соотношение сторон адаптивного изображения
+              height={image.height}
+            />
+          ) : (
+            <Image
+              className={styles.image}
+              // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
+              // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
+              alt="Main Image"
+              src="https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/default_img.jpg"
+              // placeholder="blur" // размытие заднего фона при загрузке картинки
+              // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
+              quality={80} //качество картнки в %
+              priority={true} // если true - loading = 'lazy' отменяеться
+              // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
+              fill={false} //заставляет изображение заполнять родительский элемент
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              width={300} // задать правильное соотношение сторон адаптивного изображения
+              height={200}
+              style={
+                {
+                  // width: "200px",
+                  // height: "200px",
+                  // objectFit: "cover", // Изображение масштабируется, обрезая края
+                  // objectFit: "contain", // Изображение масштабируется, не обрезаясь
+                  // objectPosition: "top",
+                  // margin: "0 0 1rem 0",
+                }
+              }
+            />
+          )}
           <div className={styles.tooltip}>
             <div className={styles.tooltip_name}>{image.name[locale]}</div>
             <div className={styles.tooltip_description}>
