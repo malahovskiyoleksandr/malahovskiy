@@ -54,7 +54,7 @@ export default async function Home({ params }) {
     <>
       <section className={styles.main_block}>
         <div className={styles.container_main}>
-          {database.home.main_image.src ? (
+          {database?.home?.main_image?.src ? (
             <Image
               className={styles.main_image}
               // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
