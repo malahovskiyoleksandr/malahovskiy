@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
 
+// const GITHUB_REPO = "malahovskiyoleksandr/malahovskiy";
+const GITHUB_REPO = "malahovskiyoleksandr/DataBase"; // Основной репозиторий
+
 export async function POST(request) {
   try {
     // Получаем данные запроса
@@ -12,7 +15,7 @@ export async function POST(request) {
       );
     }
 
-    const url = `https://api.github.com/repos/malahovskiyoleksandr/malahovskiy/contents/${filePath}`;
+    const url = `https://api.github.com/repos/${GITHUB_REPO}/contents/${filePath}`;
     let fileSHA = null;
 
     // Проверяем, существует ли файл

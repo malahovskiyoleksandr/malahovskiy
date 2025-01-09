@@ -444,7 +444,6 @@ export default function AdminPage({ params, onUpload }) {
       }
     }
   };
-  
   const deleteImage__gallery = async (imagePath, path, index) => {
     const confirmDelete = confirm("Видалити фото?");
     if (confirmDelete) {
@@ -497,7 +496,6 @@ export default function AdminPage({ params, onUpload }) {
       }
     }
   };
-
   const addLog = (action, target, details) => {
     setDatabase((prev) => {
       const updated = { ...prev };
