@@ -1,23 +1,10 @@
 import Link from "next/link";
-// import { motion } from "framer-motion"; // Импортируем framer-motion
 import styles from "./gallery.module.scss";
 import Image from "next/image";
 import { NextResponse } from "next/server";
 import { Spinner } from "@nextui-org/react";
 
 export const revalidate = 5;
-// import dark_side from "@/public/gallery/dark_side.jpg";
-// import industrial from "@/public/gallery/industrial.jpg";
-// import portraits from "@/public/gallery/portraits.jpg";
-// import getIntl from "@/app/intl";
-
-// Анимации для каждого изображения
-// const imageVariants = {
-//   hiddenLeft: { opacity: 0, x: -200 }, // Появление слева
-//   hiddenRight: { opacity: 0, x: 200 }, // Появление справа
-//   hiddenTop: { opacity: 0, y: -200 }, // Появление сверху
-//   visible: { opacity: 1, x: 0, y: 0 }, // Конечное состояние
-// };
 
 export async function getData() {
   try {
@@ -57,7 +44,6 @@ export async function getData() {
 export default async function Gallery({ params }) {
   const locale = params.locale;
   const collectionLines = await getData();
-  // console.log(collectionLines);
 
   if (!collectionLines) {
     return (

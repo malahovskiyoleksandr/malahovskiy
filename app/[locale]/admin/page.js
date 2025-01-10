@@ -106,7 +106,6 @@ export default function AdminPage({ params, onUpload }) {
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
 
-  // Проверка авторизации
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -131,7 +130,6 @@ export default function AdminPage({ params, onUpload }) {
       });
   }, [router]);
 
-  // Загрузка данных из GitHub
   useEffect(() => {
     const loadData = async () => {
       try {
@@ -149,13 +147,11 @@ export default function AdminPage({ params, onUpload }) {
 
     loadData();
   }, []);
-
   const showAlert = (message) => {
     setAlertMessage(message);
     setAlertVisible(true);
     setTimeout(() => setAlertVisible(false), 3000);
   };
-
   const handleSomeAction = async (message) => {
     try {
       showAlert(message);
@@ -164,7 +160,6 @@ export default function AdminPage({ params, onUpload }) {
       showAlert("Ошибка при выполнении действия.");
     }
   };
-
   const handleChange = async (e, path) => {
     const { value } = e.target;
     setDatabase((prev) => {
@@ -184,7 +179,6 @@ export default function AdminPage({ params, onUpload }) {
       return updated;
     });
   };
-
   const handleMoveBlock = (path, index, direction) => {
     //Универсальная
     setDatabase((prev) => {
@@ -413,29 +407,31 @@ export default function AdminPage({ params, onUpload }) {
               isDirectory: true,
             }),
           });
-          console.log(checkResponse.status)
+          console.log(checkResponse.status);
           if (checkResponse.status === 404) {
-            console.warn("Директория не найдена, пропускаем удаление директории.");
+            console.warn(
+              "Директория не найдена, пропускаем удаление директории."
+            );
           } else if (!checkResponse.ok) {
             throw new Error("Ошибка удаления директории");
           }
         }
-  
+
         // Удаление из базы данных и обновление
         setDatabase((prev) => {
           const updated = { ...prev };
           const keys = path.split(".");
           let target = updated;
-  
+
           keys.slice(0, -1).forEach((key) => {
             if (!target[key]) target[key] = [];
             target = target[key];
           });
-  
+
           target[keys[keys.length - 1]].splice(index, 1);
           return updated;
         });
-  
+
         await handleSubmit();
         handleSomeAction("Захід успішно видалено!");
       } catch (error) {
@@ -926,8 +922,15 @@ export default function AdminPage({ params, onUpload }) {
                                       `gallery.${key}.page`,
                                       {
                                         id: null,
+                                        src: "",
+                                        linkVideo: "",
                                         name: {
                                           uk: "Нове зображення",
+                                          en: "",
+                                          de: "",
+                                        },
+                                        description: {
+                                          uk: "",
                                           en: "",
                                           de: "",
                                         },
@@ -938,12 +941,6 @@ export default function AdminPage({ params, onUpload }) {
                                         },
                                         size: "",
                                         date: "",
-                                        description: {
-                                          uk: "",
-                                          en: "",
-                                          de: "",
-                                        },
-                                        src: "",
                                         width: 1000,
                                         height: 1000,
                                       },
@@ -1060,13 +1057,26 @@ export default function AdminPage({ params, onUpload }) {
                                                     )
                                                   }
                                                 />
+                                                <Textarea
+                                                  className="max-w-xs"
+                                                  label={`Опис (${lang.toUpperCase()})`}
+                                                  value={
+                                                    image.description[lang]
+                                                  }
+                                                  onChange={(e) =>
+                                                    handleChange(
+                                                      e,
+                                                      `gallery.${key}.page.${index}.description.${lang}`
+                                                    )
+                                                  }
+                                                />
                                                 <Input
                                                   classNames={{
                                                     base: "max-w-xs",
                                                     input:
                                                       "resize-y min-h-[10px]",
                                                   }}
-                                                  label={`Матерiал`}
+                                                  label={`Матерiал (${lang.toUpperCase()})`}
                                                   value={image.material[lang]}
                                                   onChange={(e) =>
                                                     handleChange(
@@ -1135,16 +1145,18 @@ export default function AdminPage({ params, onUpload }) {
                                                     )
                                                   }
                                                 />
-                                                <Textarea
-                                                  className="max-w-xs"
-                                                  label={`Опис (${lang.toUpperCase()})`}
-                                                  value={
-                                                    image.description[lang]
-                                                  }
+                                                <Input
+                                                  classNames={{
+                                                    base: "max-w-xs",
+                                                    input:
+                                                      "resize-y min-h-[10px]",
+                                                  }}
+                                                  label={`Cилка на відео`}
+                                                  value={image.linkVideo}
                                                   onChange={(e) =>
                                                     handleChange(
                                                       e,
-                                                      `gallery.${key}.page.${index}.description.${lang}`
+                                                      `gallery.${key}.page.${index}.linkVideo`
                                                     )
                                                   }
                                                 />

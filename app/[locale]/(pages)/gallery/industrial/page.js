@@ -4,7 +4,11 @@ import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import styles from "../gallery.module.scss";
-import { Spinner } from "@nextui-org/react";
+import { Button, Spinner } from "@nextui-org/react";
+import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Импортируем компонент для иконок
+import { faYoutube } from "@fortawesome/free-brands-svg-icons"; // Импортируем нужные иконки
+import { createRoot } from "react-dom/client";
 
 export default function PhotoGallery({ params }) {
   const locale = params.locale;
@@ -70,7 +74,6 @@ export default function PhotoGallery({ params }) {
             const photoData = database?.gallery?.industrial?.page.find(
               (img) => img.id === Number(photoId)
             );
-
             const popupContainer = document.createElement("div");
             popupContainer.className = styles.popupContainer;
             popupContainer.id = "popup-container"; // Уникальный ID для попапа
@@ -80,15 +83,43 @@ export default function PhotoGallery({ params }) {
                 <p class="${styles.popupDescription}">${photoData?.size}</p>
                 <p class="${styles.popupDescription}">${photoData?.date}</p>
                 <p class="${styles.popupDescription}">${photoData?.description[locale]}</p>
-                <button class="${styles.closePopupButton}" id="close-popup">${database.gallery.industrial.close[locale]}</button>
+                <div id="button_container" class="${styles.button_container}"></div>
               `;
             document.body.appendChild(popupContainer);
 
-            document
-              .getElementById("close-popup")
-              .addEventListener("click", () => {
-                popupContainer.remove();
-              });
+            const videoLinkContainer =
+              document.getElementById("button_container");
+
+            // Создаём root и рендерим компонент
+            const root = createRoot(videoLinkContainer);
+            root.render(
+              <>
+                <Button
+                  color="danger"
+                  className={styles.closePopupButton}
+                  onClick={() => {
+                    const popupContainer =
+                      document.getElementById("popup-container");
+                    if (popupContainer) {
+                      popupContainer.remove();
+                    }
+                  }}
+                >
+                  {database?.gallery?.industrial?.close?.[locale] || "Закрыть"}
+                </Button>
+
+                {photoData?.linkVideo && (
+                  <Link
+                    href={photoData.linkVideo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.linkButton}
+                  >
+                    <FontAwesomeIcon icon={faYoutube} size="2x" />
+                  </Link>
+                )}
+              </>
+            );
           },
         });
       });

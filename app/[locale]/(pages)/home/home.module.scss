@@ -1,33 +1,43 @@
 .main_block {
-  // display: grid;
-  // grid-template-columns: repeat(1, 1fr);
-  // gap: 40px;
   display: flex;
-  // align-items: flex-end;
   align-items: center;
   width: 100%;
-  height: calc(var(--size-body) - var(--size-header));
-  // padding: 20vh 0;
-  background: url("https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/home_page/background.png")
-    top center / cover no-repeat;
+  min-height: calc(var(--size-body) - var(--size-header));
+  // background: url("https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/home_page/background.png")
+  // top center / cover no-repeat;
+
+  .background_image {
+    position: absolute;
+    top: calc(0 + var(--size-header));
+    min-height: calc(var(--size-body) - var(--size-header));
+    object-fit: cover;
+    width: 100%;
+    // object-position: bottom;
+    z-index: -1;
+  }
 
   .container_main {
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
-    height: 400px;
     width: 100%;
-    padding: 0 10%;
+    // padding: 0 10%;
     background-color: #fec09980;
 
     .main_image {
       max-width: 400px;
       object-fit: contain;
-      
+      flex: 1;
+      flex-shrink: 1;
+      flex-basis: 0;
     }
 
     .main_block_description {
       display: flex;
+      flex: 1;
+      flex-shrink: 1;
+      flex-basis: 0;
+      align-items: center;
       flex-direction: column;
       justify-content: center;
       max-width: 650px;
@@ -36,7 +46,7 @@
       padding: 2.5rem;
       border-radius: 5px;
       color: #ffe9dc;
-      background-color: aqua;
+      // background-color: aqua;
 
       .artist_name {
         font-size: 3rem;
@@ -66,14 +76,15 @@
 
 @media (max-width: 668px) {
   .main_block {
-    height: auto;
-    background: url("https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/home_page/background2.png")
-      top center / cover no-repeat;
+    // height: auto;
+    // background: url("https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/home_page/background2.png")
+      // top center / cover no-repeat;
 
     .container_main {
       flex-wrap: wrap;
-      height: 600px;
-      padding: 5%;
+      // height: 600px;
+      width: 80%;
+      margin: 0 auto;
 
       .main_image {
         // width: 200px;

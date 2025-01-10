@@ -4,29 +4,34 @@
   align-items: center;
   width: 100%;
   min-height: 5vh;
+  padding: 2rem 0;
   color: black;
   background-color: #ffbe98;
+  font-family: "Mariupol-Regular";
 
   >*{
     margin: 0.2rem 0;
   }
 
-  .name {
-  }
-
-  .icon_box {
-    > * {
-      margin: 0.5rem;
+  .main {
+    display: block;
+    .icon_box {
+      display: block;
+      > * {
+        margin: 0.5rem;
+      }
+    }
+    .email {
+      display: block;
+      margin-top: 0.5rem;
     }
   }
 
   .rights {
     font-size: 0.8rem;
-    font-family: "Mariupol-Regular";
   }
 
   .developer {
-    font-family: "Mariupol-Regular";
   }
 }
 

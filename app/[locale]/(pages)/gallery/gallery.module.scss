@@ -60,7 +60,7 @@
     flex: 0 0 600px;
     border-radius: 5px;
     scroll-snap-align: center;
-    overflow: hidden;   ////////////////////////////
+    overflow: hidden; 
     box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.5);
 
     .image {
@@ -154,18 +154,30 @@
     font-family: 'Extatica-Medium';
   }
 
-  .closePopupButton {
+  .button_container {
+    display: flex;
+    align-items: center;
+    // justify-content: space-between;
     margin-top: 20px;
-    padding: 10px 20px;
-    border: none;
-    background-color: #ffbe98;
-    border-radius: 4px;
-    font-family: 'Extatica-Medium';
-    color: black;
-    cursor: pointer;
+    
+    .closePopupButton {
+      // padding: 10px 20px;
+      // border: none;
+      background-color: #ffbe98;
+      // border-radius: 4px;
+      // font-family: 'Extatica-Medium';
+      // color: black;
+      // cursor: pointer;
+  
+      &:hover {
+        background-color: #ff975c;
+      }
+    }
 
-    &:hover {
-      background-color: #ff975c;
+    .linkButton {
+      margin: 0 2rem;
+      // padding: 0.2rem;
+      // background-color: #ffbe98;
     }
   }
 }

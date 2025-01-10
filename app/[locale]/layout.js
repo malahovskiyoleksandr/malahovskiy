@@ -2,11 +2,9 @@ import "./globals.scss";
 import { NextUIProvider } from "@nextui-org/react";
 import Header from "./components/Header";
 import Footer from "./components/footer";
-// import { Analytics } from "@vercel/analytics/react";
-// import { motion, AnimatePresence } from "framer-motion";
 import i18nConfig from "@/i18nConfig";
-import getIntl from '../../app/intl';
-import ServerIntlProvider from './components/ServerIntlProvider';
+import getIntl from "../../app/intl";
+import ServerIntlProvider from "./components/ServerIntlProvider";
 
 export const metadata = {
   title: "Alexander",
@@ -24,27 +22,11 @@ export default async function RootLayout({ children, params }) {
     <html lang={locale}>
       <body>
         <ServerIntlProvider messages={intl.messages} locale={intl.locale}>
-        <NextUIProvider>
-          <Header />
-          <main
-          // className="dark text-foreground bg-background"
-          >
-            {/* <AnimatePresence>
-              <motion.div
-                key={pathname}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, x: 0 }}
-                exist={{ opacity: 0, y: 15 }}
-                transition={{ duration: 1 }}
-              > */}
-            {/* <I18nextProvider i18n={i18n}>{children}</I18nextProvider> */}
-            {children}
-            {/* </motion.div>
-            </AnimatePresence> */}
-            {/* <Analytics /> */}
-          </main>
-          <Footer />
-        </NextUIProvider>
+          <NextUIProvider>
+            <Header />
+            <main>{children}</main>
+            <Footer params={{ locale }}/>
+          </NextUIProvider>
         </ServerIntlProvider>
       </body>
     </html>
