@@ -53,7 +53,6 @@ export default async function Home({ params }) {
       </div>
     );
   }
-
   return (
     <>
       <section className={styles.main_block}>
@@ -133,8 +132,8 @@ export default async function Home({ params }) {
           </div>
         </div>
       </section>
-      {/* <Gallery params={{ locale }} />
-      <Events params={{ locale }} /> */}
+      <Gallery params={{ locale }} />
+      <Events params={{ locale }} />
     </>
   );
 }
