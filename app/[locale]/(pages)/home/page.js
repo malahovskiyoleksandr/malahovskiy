@@ -61,7 +61,7 @@ export default async function Home({ params }) {
           // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
           // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
           alt="mainImage"
-          src={database.home.background_image.src}
+          src={database?.home?.background_image?.src}
           // placeholder="blur" // размытие заднего фона при загрузке картинки
           // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
           quality={100}
