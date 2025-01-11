@@ -124,10 +124,10 @@ export default async function Home({ params }) {
           )}
           <div className={styles.main_block_description}>
             <h1 className={styles.artist_name}>
-              {database?.home?.name?.[locale] || ""}
+              {database?.home?.name?.[locale] || "Lorem ipsum dolor sit amet consectetur"}
             </h1>
             <p className={styles.artist_name__description}>
-              {database?.home?.description?.[locale] || ""}
+              {database?.home?.description?.[locale] || "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi blanditiis sapiente reprehenderit, atque unde, at laboriosam nisi similique explicabo reiciendis facere exercitationem voluptatum obcaecati tenetur inventore recusandae fugit incidunt vel."}
             </p>
           </div>
         </div>

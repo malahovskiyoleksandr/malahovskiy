@@ -2,6 +2,7 @@
   display: grid;
   height: calc(var(--size-body) - var(--size-header));
   font-size: 20px;
+  background-color: #555;
 
   .link {
     position: relative;
@@ -161,13 +162,13 @@
     margin-top: 20px;
     
     .closePopupButton {
-      // padding: 10px 20px;
-      // border: none;
+      padding: 10px 20px;
+      border: none;
       background-color: #ffbe98;
-      // border-radius: 4px;
-      // font-family: 'Extatica-Medium';
-      // color: black;
-      // cursor: pointer;
+      border-radius: 4px;
+      font-family: 'Extatica-Medium';
+      color: black;
+      cursor: pointer;
   
       &:hover {
         background-color: #ff975c;

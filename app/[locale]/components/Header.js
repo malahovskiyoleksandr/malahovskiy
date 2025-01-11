@@ -30,7 +30,7 @@ const menu_item = [
     },
     de: {
       name: "HEIM",
-    }, 
+    },
     href: "/home",
   },
   {
@@ -65,25 +65,25 @@ export default function Header() {
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-    // Функция для обработки нажатия клавиш
-    useEffect(() => {
-      const handleKeyPress = (event) => {
-        // Проверяем, нажаты ли Ctrl и A
-        if (event.ctrlKey && event.key === "q" || event.key === "й") {
-          event.preventDefault(); // Предотвращаем стандартное поведение
-          console.log("admin")
-          router.push("/admin"); // Перенаправляем на админку
-        }
-      };
-  
-      // Добавляем обработчик события нажатия клавиш
-      window.addEventListener("keydown", handleKeyPress);
-  
-      // Очистка при размонтировании компонента
-      return () => {
-        window.removeEventListener("keydown", handleKeyPress);
-      };
-    }, [router]);
+  // Функция для обработки нажатия клавиш
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      // Проверяем, нажаты ли Ctrl и A
+      if ((event.ctrlKey && event.key === "q") || event.key === "й") {
+        event.preventDefault(); // Предотвращаем стандартное поведение
+        console.log("admin");
+        router.push("/admin"); // Перенаправляем на админку
+      }
+    };
+
+    // Добавляем обработчик события нажатия клавиш
+    window.addEventListener("keydown", handleKeyPress);
+
+    // Очистка при размонтировании компонента
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [router]);
 
   const locale = intl.locale;
 
@@ -160,13 +160,12 @@ export default function Header() {
             </motion.div>
           </NavbarItem>
         ))}
-        {/* <Link href="/admin">Admin</Link> */}
       </NavbarContent>
       <LanguageChanger />
 
       <NavbarMenu className={styles.items_list}>
         {menu_item.map((item, index) => (
-          <NavbarMenuItem key={index}>
+          <NavbarMenuItem key={index} className={styles.item}>
             <Link
               color="foreground"
               // className="w-full"
@@ -177,7 +176,9 @@ export default function Header() {
             </Link>
           </NavbarMenuItem>
         ))}
-        {/* <Link href="/admin">Admin</Link> */}
+        <Link href="/admin" onClick={handleMenuItemClick}>
+          Admin
+        </Link>
       </NavbarMenu>
     </Navbar>
   );
