@@ -238,7 +238,6 @@ export default function AdminPage({ params, onUpload }) {
     }
   };
   const handleFileChange = (event) => {
-    // console.log(event.target.files[0].name);
     setSelectedFile(event.target.files[0]);
   };
   const handleUploadAndUpdateDB = async (pathImg, pathDB) => {
@@ -483,8 +482,7 @@ export default function AdminPage({ params, onUpload }) {
 
           return updated;
         });
-
-        await handleSubmit();
+        // await handleSubmit();
         handleSomeAction("Фото успішно видалено!");
       } catch (error) {
         console.error("Ошибка удаления файла:", error.message);
@@ -510,6 +508,10 @@ export default function AdminPage({ params, onUpload }) {
       return updated;
     });
   };
+  const UploadPhotoEvent = async (delPasImg, delPasBD, addPasImg, addPasBD) => {
+    await deleteImage__gallery(delPasImg, delPasBD);
+    await handleUploadAndUpdateDB(addPasImg, addPasBD)
+  }
 
   if (!database) {
     return (
@@ -532,7 +534,7 @@ export default function AdminPage({ params, onUpload }) {
         )}
         <Button
           color="danger"
-          onClick={() => {
+          onPress={() => {
             localStorage.removeItem("token");
             router.push("/login");
           }}
@@ -584,7 +586,7 @@ export default function AdminPage({ params, onUpload }) {
                 </Tabs>
                 <Button
                   color="success"
-                  onClick={handleSubmit}
+                  onPress={handleSubmit}
                   isDisabled={isSubmitting}
                 >
                   {isSubmitting ? "Сохранение..." : "Сохранить изменения"}
@@ -649,7 +651,7 @@ export default function AdminPage({ params, onUpload }) {
                     <div>
                       <Button
                         color="danger"
-                        onClick={() =>
+                        onPress={() =>
                           deleteImage__gallery(
                             database.home.main_image.src, // Путь к изображению
                             `home.main_image.src` // Путь в базе данных
@@ -668,7 +670,7 @@ export default function AdminPage({ params, onUpload }) {
                       <Button
                         className={styles.button_downloadFile}
                         color="success"
-                        onClick={() =>
+                        onPress={() =>
                           handleUploadAndUpdateDB(
                             "home_page",
                             "home.main_image.src"
@@ -697,7 +699,7 @@ export default function AdminPage({ params, onUpload }) {
                       <Button
                         className={styles.button_downloadFile}
                         color="success"
-                        onClick={() =>
+                        onPress={() =>
                           handleUploadAndUpdateDB(
                             "home_page",
                             `home.background_image.src`
@@ -798,7 +800,7 @@ export default function AdminPage({ params, onUpload }) {
                               </Tabs>
                               <Button
                                 color="success"
-                                onClick={handleSubmit}
+                                onPress={handleSubmit}
                                 isDisabled={isSubmitting}
                               >
                                 {isSubmitting
@@ -867,7 +869,7 @@ export default function AdminPage({ params, onUpload }) {
                                 </div>
                                 <Button
                                   color="danger"
-                                  onClick={() =>
+                                  onPress={() =>
                                     deleteImage__gallery(
                                       value.src, // Путь к изображению
                                       `gallery.${key}.src` // Путь в базе данных
@@ -887,7 +889,7 @@ export default function AdminPage({ params, onUpload }) {
                                   <Button
                                     className={styles.button_downloadFile}
                                     color="success"
-                                    onClick={() =>
+                                    onPress={() =>
                                       handleUploadAndUpdateDB(
                                         `gallery`,
                                         `gallery.${key}.src`
@@ -917,7 +919,7 @@ export default function AdminPage({ params, onUpload }) {
                               <div className={styles.tab_images_box}>
                                 <Button
                                   className={styles.imageSection}
-                                  onClick={() =>
+                                  onPress={() =>
                                     addImage__gallery(
                                       `gallery.${key}.page`,
                                       {
@@ -1013,7 +1015,7 @@ export default function AdminPage({ params, onUpload }) {
                                       <Button
                                         className={styles.button_downloadFile}
                                         color="success"
-                                        onClick={() =>
+                                        onPress={() =>
                                           handleUploadAndUpdateDB(
                                             `gallery/${key}`,
                                             `gallery.${key}.page.${index}.src`
@@ -1173,7 +1175,7 @@ export default function AdminPage({ params, onUpload }) {
                                       >
                                         <Button
                                           color="success"
-                                          onClick={handleSubmit}
+                                          onPress={handleSubmit}
                                           isDisabled={isSubmitting}
                                         >
                                           {isSubmitting
@@ -1182,7 +1184,7 @@ export default function AdminPage({ params, onUpload }) {
                                         </Button>
                                         <Button
                                           color="danger"
-                                          onClick={() => {
+                                          onPress={() => {
                                             deleteImage__gallery(
                                               image.src, // Путь к изображению
                                               `gallery.${key}.page`,
@@ -1198,7 +1200,7 @@ export default function AdminPage({ params, onUpload }) {
                                         className={styles.block_actions_up_dwn}
                                       >
                                         <Button
-                                          onClick={() =>
+                                          onPress={() =>
                                             handleMoveBlock(
                                               `gallery.${key}.page`,
                                               index,
@@ -1209,7 +1211,7 @@ export default function AdminPage({ params, onUpload }) {
                                           Up
                                         </Button>
                                         <Button
-                                          onClick={() =>
+                                          onPress={() =>
                                             handleMoveBlock(
                                               `gallery.${key}.page`,
                                               index,
@@ -1242,7 +1244,7 @@ export default function AdminPage({ params, onUpload }) {
                   <Button
                     color="success"
                     className={styles.buttonAdd}
-                    onClick={() =>
+                    onPress={() =>
                       addEvent__events(
                         `events`,
                         {
@@ -1331,7 +1333,7 @@ export default function AdminPage({ params, onUpload }) {
                       <h3 className={styles.event_data}>id {event.id}</h3>
                       {/* <Button
                         color="danger"
-                        onClick={() =>
+                        onPress={() =>
                           deleteImage__gallery(
                             event.main_image, // Путь к изображению
                             `events.${event}.main_image` // Путь в базе данных
@@ -1352,12 +1354,17 @@ export default function AdminPage({ params, onUpload }) {
                         <Button
                           className={styles.button_downloadFile}
                           color="success"
-                          onClick={() =>
-                            handleUploadAndUpdateDB(
-                              `events/id${event.id}`,
-                              `events.${index}.main_image`
-                            )
-                          }
+                          onPress={() => {
+                            UploadPhotoEvent(event.main_image, `events.${event}.main_image`, `events/id${event.id}`, `events.${index}.main_image`)
+                            // deleteImage__gallery(
+                            //   event.main_image, // Путь к изображению
+                            //   `events.${event}.main_image` // Путь в базе данных
+                            // );
+                            // handleUploadAndUpdateDB(
+                            //   `events/id${event.id}`,
+                            //   `events.${index}.main_image`
+                            // );
+                          }}
                           isDisabled={isSubmitting}
                         >
                           {isUploading
@@ -1378,7 +1385,7 @@ export default function AdminPage({ params, onUpload }) {
                       /> */}
                       {/* <Button
                         color="success"
-                        onClick={handleSubmit}
+                        onPress={handleSubmit}
                         isDisabled={isSubmitting}
                       >
                         {isSubmitting ? "Збереження..." : "Зберегти зміни"}
@@ -1387,7 +1394,7 @@ export default function AdminPage({ params, onUpload }) {
                       <Button
                         color="danger"
                         className={styles.delete_button}
-                        onClick={() =>
+                        onPress={() =>
                           deleteEvent__events(
                             `public/images/events/id${event.id}`, // Путь к директории на GitHub
                             `events`, // Путь в базе данных
