@@ -127,7 +127,7 @@ export default async function Home({ params }) {
               {database?.home?.name?.[locale] || "Lorem ipsum dolor sit amet consectetur"}
             </h1>
             <p className={styles.artist_name__description}>
-              {database?.home?.description?.[locale] || "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi blanditiis sapiente reprehenderit, atque unde, at laboriosam nisi similique explicabo reiciendis facere exercitationem voluptatum obcaecati tenetur inventore recusandae fugit incidunt vel."}
+              {database?.home?.description?.[locale] || "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi blanditiis sapiente reprehenderit, atque unde, at laboriosam nisi similique explicabo reiciendis facere"}
             </p>
           </div>
         </div>
