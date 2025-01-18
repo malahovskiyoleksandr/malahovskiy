@@ -162,6 +162,7 @@ $text-color: #fff;
         .mainPhoto_gallery {
           margin: 2rem 0;
           padding: 1rem;
+          max-width: 30rem;
           border-radius: 10px;
           background-color: #e7e7e7;
 
@@ -177,6 +178,10 @@ $text-color: #fff;
               object-fit: contain;
               margin: 0 0 1rem 0;
             }
+          }
+
+          .downloadImage_block {
+            display: flex;
           }
         }
 
@@ -208,6 +213,11 @@ $text-color: #fff;
               .image {
                 object-fit: cover;
               }
+            }
+
+            .download_images {
+              display: flex;
+              margin: 1rem 0;
             }
 
             .name_description_block {

@@ -267,7 +267,7 @@ export default function PhotoGallery({ params }) {
               height={200}
               style={
                 {
-                  // width: "200px",
+                  width: "100%",
                   // height: "200px",
                   // objectFit: "cover", // Изображение масштабируется, обрезая края
                   // objectFit: "contain", // Изображение масштабируется, не обрезаясь

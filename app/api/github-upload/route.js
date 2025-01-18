@@ -33,14 +33,6 @@ export async function POST(request) {
       throw new Error("Ошибка проверки файла на GitHub");
     }
 
-    // Кодируем содержимое файла в Base64
-    // const encodedContent = Buffer.from(fileContent).toString("base64");
-    // console.log(encodedContent)
-    // const decodedData = JSON.parse(
-    //   Buffer.from(encodedContent, "base64").toString("utf-8")
-    // );
-    // console.log(decodedData)
-
     // Отправляем запрос на обновление или создание файла
     const putResponse = await fetch(url, {
       method: "PUT",

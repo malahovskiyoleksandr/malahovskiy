@@ -25,16 +25,16 @@ const generateSlug = (title) => {
     .replace(/[^\w-]+/g, "");
 };
 
-async function uploadImageToGitHub(path, file) {
+async function uploadImageToGitHub(path, selectedFile) {
   const reader = new FileReader();
 
   return new Promise((resolve, reject) => {
     reader.onload = async (event) => {
       try {
-        const filePath = `public/images/${path}/${file.name}`;
+        const filePath = `public/images/${path}/${selectedFile.name}`;
         const fileContent = event.target.result.split(",")[1]; // Получаем Base64 без префикса
         // console.log(event.target)
-        const commitMessage = `Добавлено изображение: ${file.name}`;
+        const commitMessage = `Добавлено изображение: ${selectedFile.name}`;
 
         const response = await fetch("/api/github-upload", {
           method: "POST",
@@ -58,46 +58,34 @@ async function uploadImageToGitHub(path, file) {
     reader.onerror = (error) => reject(error);
 
     // Читаем файл как Base64
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(selectedFile);
   });
 }
 
-async function createEventFolderOnGitHub(eventId) {
-  const placeholderContent = "This is a placeholder file to create the folder.";
-  const filePath = `public/events/id${eventId}/placeholder.txt`;
-  const commitMessage = `Create folder for event id${eventId}`;
+async function checkIfFileExists(path, fileName) {
+  const filePath = `public/images/${path}/${fileName}`;
+  const url = `/api/github-check-file`;
 
-  try {
-    const response = await fetch("/api/github-upload", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        filePath,
-        fileContent: Buffer.from(placeholderContent).toString("base64"),
-        commitMessage,
-      }),
-    });
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ filePath }),
+  });
 
-    if (!response.ok) {
-      throw new Error("Ошибка при создании папки на GitHub");
-    }
-
-    const data = await response.json();
-    console.log("Папка успешно создана:", data);
-    return data;
-  } catch (error) {
-    console.error("Ошибка при создании папки:", error.message);
-    throw error;
+  if (!response.ok) {
+    throw new Error("Ошибка проверки файла");
   }
+
+  const data = await response.json();
+  return data.exists; // Возвращает true, если файл существует, и false, если нет
 }
 
 export default function AdminPage({ params, onUpload }) {
   const locale = params.locale;
   const router = useRouter();
   const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
   const [database, setDatabase] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -122,7 +110,6 @@ export default function AdminPage({ params, onUpload }) {
       })
       .then((data) => {
         setUser(data.user);
-        setIsLoading(false);
       })
       .catch(() => {
         localStorage.removeItem("token");
@@ -139,7 +126,6 @@ export default function AdminPage({ params, onUpload }) {
         }
         const data = await response.json();
         setDatabase(data);
-        setIsLoading(false);
       } catch (error) {
         console.error("Ошибка:", error.message);
       }
@@ -208,7 +194,7 @@ export default function AdminPage({ params, onUpload }) {
       return updated;
     });
   };
-  const handleSubmit = async () => {
+  const updateDB = async () => {
     setIsSubmitting(true);
 
     const payload = {
@@ -239,43 +225,6 @@ export default function AdminPage({ params, onUpload }) {
   };
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
-  };
-  const handleUploadAndUpdateDB = async (pathImg, pathDB) => {
-    if (!selectedFile) {
-      alert("Выберите файл!");
-      return;
-    }
-    setIsUploading(true);
-    try {
-      // Загрузка изображения на GitHub
-      const uploadResult = await uploadImageToGitHub(pathImg, selectedFile);
-
-      // Формирование нового пути к изображению
-      const newImagePath = `https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/${pathImg}/${selectedFile.name}`;
-
-      // Обновление базы данных
-      setDatabase((prev) => {
-        const updated = { ...prev };
-        const keys = pathDB.split(".");
-        let target = updated;
-
-        // Доступ к целевому объекту
-        keys.slice(0, -1).forEach((key) => {
-          if (!target[key]) target[key] = {};
-          target = target[key];
-        });
-
-        target[keys[keys.length - 1]] = newImagePath; // Устанавливаем новый путь
-        return updated;
-      });
-      await handleSubmit();
-    } catch (error) {
-      console.error("Ошибка загрузки или обновления базы:", error.message);
-      alert("Ошибка загрузки файла или обновления базы данных");
-    } finally {
-      handleSomeAction("Фото успішно завантажено!");
-      setIsUploading(false);
-    }
   };
   const addImage__gallery = async (path, newItem, item) => {
     const confirmAdd = confirm(`Додати ${item}?`);
@@ -325,7 +274,7 @@ export default function AdminPage({ params, onUpload }) {
 
           return updated;
         });
-        await handleSubmit();
+        await updateDB();
       } catch (error) {
         console.error("Помилка при додаваннi:", error);
         alert("Помилка видалення!");
@@ -382,7 +331,7 @@ export default function AdminPage({ params, onUpload }) {
           // });
           return updated;
         });
-        await handleSubmit();
+        await updateDB();
       } catch (error) {
         console.error("Помилка при додаваннi:", error);
         alert("Помилка видалення!");
@@ -406,7 +355,6 @@ export default function AdminPage({ params, onUpload }) {
               isDirectory: true,
             }),
           });
-          console.log(checkResponse.status);
           if (checkResponse.status === 404) {
             console.warn(
               "Директория не найдена, пропускаем удаление директории."
@@ -431,7 +379,7 @@ export default function AdminPage({ params, onUpload }) {
           return updated;
         });
 
-        await handleSubmit();
+        await updateDB();
         handleSomeAction("Захід успішно видалено!");
       } catch (error) {
         console.error("Ошибка удаления директории:", error.message);
@@ -439,57 +387,106 @@ export default function AdminPage({ params, onUpload }) {
       }
     }
   };
-  const deleteImage__gallery = async (imagePath, path, index) => {
-    const confirmDelete = confirm("Видалити фото?");
-    if (confirmDelete) {
-      try {
-        if (imagePath) {
-          const filePath = imagePath.replace(
-            "https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/",
-            ""
-          );
-          const response = await fetch("/api/github-delete", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ filePath, isDirectory: false }),
-          });
+  const handleUploadAndUpdateDB = async (pathImg, pathDB) => {
+    if (!selectedFile) {
+      alert("Выберите файл!");
+      return;
+    }
 
-          if (!response.ok) {
-            throw new Error("Ошибка удаления файла из репозитория");
-          }
-        }
+    setIsUploading(true);
+    try {
+      // Загрузка изображения на GitHub
+      const uploadResult = await uploadImageToGitHub(pathImg, selectedFile);
 
-        // Удаление из базы данных и обновление
-        setDatabase((prev) => {
-          const updated = { ...prev };
-          const keys = path.split(".");
-          let target = updated;
+      // Формирование нового пути к изображению
+      const newImagePath = `https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/${pathImg}/${selectedFile.name}`;
 
-          keys.slice(0, -1).forEach((key) => {
-            if (!target[key]) target[key] = {};
-            target = target[key];
-          });
+      // Обновление базы данных
+      setDatabase((prev) => {
+        const updated = { ...prev };
+        const keys = pathDB.split(".");
+        let target = updated;
 
-          const lastKey = keys[keys.length - 1];
-
-          if (index !== undefined && Array.isArray(target[lastKey])) {
-            // Удаление элемента из массива
-            target[lastKey].splice(index, 1);
-          } else {
-            // Удаление одиночного элемента
-            target[lastKey] = "";
-          }
-
-          return updated;
+        // Доступ к целевому объекту
+        keys.slice(0, -1).forEach((key) => {
+          if (!target[key]) target[key] = {};
+          target = target[key];
         });
-        // await handleSubmit();
-        handleSomeAction("Фото успішно видалено!");
-      } catch (error) {
-        console.error("Ошибка удаления файла:", error.message);
-        alert("Ошибка удаления файла или обновления базы данных");
-      }
+
+        target[keys[keys.length - 1]] = newImagePath; // Устанавливаем новый путь
+        return updated;
+      });
+    } catch (error) {
+      console.error("Ошибка загрузки или обновления базы:", error.message);
+      alert("Ошибка загрузки файла или обновления базы данных");
+    } finally {
+      handleSomeAction("Фото успішно завантажено!");
+      setIsUploading(false);
     }
   };
+  const UploadPhoto = async (delPathImg, PathDB, addPathImg, index) => {
+    if (!delPathImg == "") {
+      const fileExists = await checkIfFileExists(addPathImg, selectedFile.name);
+      if (fileExists) {
+        alert("Файл с таким именем уже существует!");
+        return;
+      }
+      await deleteImgFromGitgub(delPathImg);
+      await deleteImgFromDB(PathDB, index);
+    }
+    await handleUploadAndUpdateDB(addPathImg, PathDB);
+    await updateDB();
+  };
+  const deleteImageBlock__gallery = async (imagePath, path, index) => {
+    const confirmDelete = confirm("Видалити фото?");
+    if (confirmDelete) {
+      if (!imagePath == "") {
+        await deleteImgFromGitgub(imagePath);
+      }
+      await deleteImgFromDB(path, index);
+      await updateDB();
+    }
+  };
+  const deleteImgFromDB = async (path, index) => {
+    setDatabase((prev) => {
+      const updated = { ...prev };
+      const keys = path.split(".");
+      let target = updated;
+
+      keys.slice(0, -1).forEach((key) => {
+        if (!target[key]) target[key] = {};
+        target = target[key];
+      });
+
+      const lastKey = keys[keys.length - 1];
+
+      if (index !== undefined && Array.isArray(target[lastKey])) {
+        // Удаление элемента из массива
+        target[lastKey].splice(index, 1);
+      } else {
+        // Удаление одиночного элемента
+        target[lastKey] = "";
+      }
+
+      return updated;
+    });
+  };
+  const deleteImgFromGitgub = async (delPathImg) => {
+    const filePath = delPathImg.replace(
+      "https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/",
+      ""
+    );
+    const response = await fetch("/api/github-delete", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ filePath, isDirectory: false }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Ошибка удаления файла из репозитория");
+    }
+  };
+
   const addLog = (action, target, details) => {
     setDatabase((prev) => {
       const updated = { ...prev };
@@ -508,10 +505,6 @@ export default function AdminPage({ params, onUpload }) {
       return updated;
     });
   };
-  const UploadPhotoEvent = async (delPasImg, delPasBD, addPasImg, addPasBD) => {
-    await deleteImage__gallery(delPasImg, delPasBD);
-    await handleUploadAndUpdateDB(addPasImg, addPasBD)
-  }
 
   if (!database) {
     return (
@@ -556,7 +549,6 @@ export default function AdminPage({ params, onUpload }) {
 
       <div className={styles.main}>
         <Tabs aria-label="Админ Панель">
-          {/* Редактирование главной страницы */}
           <Tab key="home" title="ГОЛОВНА" className={styles.home_page}>
             <Card>
               <CardBody>
@@ -586,7 +578,7 @@ export default function AdminPage({ params, onUpload }) {
                 </Tabs>
                 <Button
                   color="success"
-                  onPress={handleSubmit}
+                  onPress={updateDB}
                   isDisabled={isSubmitting}
                 >
                   {isSubmitting ? "Сохранение..." : "Сохранить изменения"}
@@ -600,25 +592,12 @@ export default function AdminPage({ params, onUpload }) {
                         // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
                         alt="Main Image"
                         src={database.home.main_image.src}
-                        // placeholder="blur" // размытие заднего фона при загрузке картинки
-                        // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
                         quality={100} //качество картнки в %
                         priority={true} // если true - loading = 'lazy' отменяеться
-                        // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
                         fill={false} //заставляет изображение заполнять родительский элемент
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         width={300} // задать правильное соотношение сторон адаптивного изображения
                         height={200}
-                        style={
-                          {
-                            // width: "200px",
-                            // height: "200px",
-                            // objectFit: "cover", // Изображение масштабируется, обрезая края
-                            // objectFit: "contain", // Изображение масштабируется, не обрезаясь
-                            // objectPosition: "top",
-                            // margin: "0 0 1rem 0",
-                          }
-                        }
                       />
                     ) : (
                       <Image
@@ -627,40 +606,15 @@ export default function AdminPage({ params, onUpload }) {
                         // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
                         alt="Main Image"
                         src="https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/default_img.jpg"
-                        // placeholder="blur" // размытие заднего фона при загрузке картинки
-                        // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
-                        quality={100} //качество картнки в %
+                        quality={30} //качество картнки в %
                         priority={true} // если true - loading = 'lazy' отменяеться
-                        // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
                         fill={false} //заставляет изображение заполнять родительский элемент
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         width={300} // задать правильное соотношение сторон адаптивного изображения
                         height={200}
-                        style={
-                          {
-                            // width: "200px",
-                            // height: "200px",
-                            // objectFit: "cover", // Изображение масштабируется, обрезая края
-                            // objectFit: "contain", // Изображение масштабируется, не обрезаясь
-                            // objectPosition: "top",
-                            // margin: "0 0 1rem 0",
-                          }
-                        }
                       />
                     )}
                     <div>
-                      <Button
-                        color="danger"
-                        onPress={() =>
-                          deleteImage__gallery(
-                            database.home.main_image.src, // Путь к изображению
-                            `home.main_image.src` // Путь в базе данных
-                          )
-                        }
-                        isDisabled={!database.home.main_image.src}
-                      >
-                        Видалити зображення
-                      </Button>
                       <Input
                         className={styles.input_downloadFile}
                         type="file"
@@ -671,9 +625,10 @@ export default function AdminPage({ params, onUpload }) {
                         className={styles.button_downloadFile}
                         color="success"
                         onPress={() =>
-                          handleUploadAndUpdateDB(
-                            "home_page",
-                            "home.main_image.src"
+                          UploadPhoto(
+                            database.home.main_image.src,
+                            `home.main_image.src`,
+                            "home_page"
                           )
                         }
                         isDisabled={isUploading}
@@ -683,26 +638,46 @@ export default function AdminPage({ params, onUpload }) {
                     </div>
                   </div>
                   <div className={styles.backround_home}>
-                    <Image
-                      src={database.home.background_image.src}
-                      alt="background_image"
-                      width={300}
-                      height={200}
-                    />
+                    {database.home.background_image.src ? (
+                      <Image
+                        src={database.home.background_image.src}
+                        alt="background_image"
+                        quality={30} //качество картнки в %
+                        priority={true} // если true - loading = 'lazy' отменяеться
+                        fill={false} //заставляет изображение заполнять родительский элемент
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        width={300} // задать правильное соотношение сторон адаптивного изображения
+                        height={200}
+                      />
+                    ) : (
+                      <Image
+                        className={styles.image}
+                        // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
+                        // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
+                        alt="Main Image"
+                        src="https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/default_img.jpg"
+                        quality={30} //качество картнки в %
+                        priority={true} // если true - loading = 'lazy' отменяеться
+                        fill={false} //заставляет изображение заполнять родительский элемент
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        width={300} // задать правильное соотношение сторон адаптивного изображения
+                        height={200}
+                      />
+                    )}
                     <div>
                       <Input
                         className={styles.input_downloadFile}
                         type="file"
                         onChange={handleFileChange}
-                        // label=""
                       />
                       <Button
                         className={styles.button_downloadFile}
                         color="success"
                         onPress={() =>
-                          handleUploadAndUpdateDB(
-                            "home_page",
-                            `home.background_image.src`
+                          UploadPhoto(
+                            database.home.background_image.src,
+                            `home.background_image.src`,
+                            "home_page"
                           )
                         }
                         isDisabled={isUploading}
@@ -712,17 +687,10 @@ export default function AdminPage({ params, onUpload }) {
                     </div>
                   </div>
                 </div>
-                {/* <Input
-                  className={styles.block_type_image__input}
-                  label="Розташування зображення"
-                  value={database.home.main_image.src}
-                  onChange={(e) => handleChange(e, `home.main_image.src`)}
-                /> */}
               </CardBody>
             </Card>
           </Tab>
 
-          {/* Редактирование галереи */}
           <Tab key="gallery" title="ГАЛЕРЕЯ" className={styles.gallery}>
             <Card>
               <CardBody>
@@ -800,7 +768,7 @@ export default function AdminPage({ params, onUpload }) {
                               </Tabs>
                               <Button
                                 color="success"
-                                onPress={handleSubmit}
+                                onPress={updateDB}
                                 isDisabled={isSubmitting}
                               >
                                 {isSubmitting
@@ -817,26 +785,12 @@ export default function AdminPage({ params, onUpload }) {
                                       // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
                                       alt={value.name.en}
                                       src={value.src}
-                                      // placeholder="blur" // размытие заднего фона при загрузке картинки
-                                      // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
                                       quality={10} //качество картнки в %
                                       priority={true} // если true - loading = 'lazy' отменяеться
-                                      // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
                                       fill={false} //заставляет изображение заполнять родительский элемент
-                                      // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
                                       sizes="100%"
                                       width={300} // задать правильное соотношение сторон адаптивного изображения
                                       height={200}
-                                      style={
-                                        {
-                                          // width: "200px",
-                                          // height: "200px",
-                                          // objectFit: "cover", // Изображение масштабируется, обрезая края
-                                          // objectFit: "contain", // Изображение масштабируется, не обрезаясь
-                                          // objectPosition: "top",
-                                          // margin: "0 0 1rem 0",
-                                        }
-                                      }
                                     />
                                   ) : (
                                     <Image
@@ -845,54 +799,27 @@ export default function AdminPage({ params, onUpload }) {
                                       // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
                                       alt={value.name.en}
                                       src="https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/default_img.jpg"
-                                      // placeholder="blur" // размытие заднего фона при загрузке картинки
-                                      // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
                                       quality={100} //качество картнки в %
                                       priority={true} // если true - loading = 'lazy' отменяеться
-                                      // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
                                       fill={true} //заставляет изображение заполнять родительский элемент
                                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                      // width={300} // задать правильное соотношение сторон адаптивного изображения
-                                      // height={200}
-                                      style={
-                                        {
-                                          // width: "200px",
-                                          // height: "200px",
-                                          // objectFit: "cover", // Изображение масштабируется, обрезая края
-                                          // objectFit: "contain", // Изображение масштабируется, не обрезаясь
-                                          // objectPosition: "top",
-                                          // margin: "0 0 1rem 0",
-                                        }
-                                      }
                                     />
                                   )}
                                 </div>
-                                <Button
-                                  color="danger"
-                                  onPress={() =>
-                                    deleteImage__gallery(
-                                      value.src, // Путь к изображению
-                                      `gallery.${key}.src` // Путь в базе данных
-                                    )
-                                  }
-                                  isDisabled={!value.src || isSubmitting}
-                                >
-                                  Видалити зображення
-                                </Button>
                                 <div className={styles.downloadImage_block}>
                                   <Input
                                     className={styles.input_downloadFile}
                                     type="file"
                                     onChange={handleFileChange}
-                                    // label=""
                                   />
                                   <Button
                                     className={styles.button_downloadFile}
                                     color="success"
                                     onPress={() =>
-                                      handleUploadAndUpdateDB(
-                                        `gallery`,
-                                        `gallery.${key}.src`
+                                      UploadPhoto(
+                                        value.src,
+                                        `gallery.${key}.src`,
+                                        `gallery`
                                       )
                                     }
                                     isDisabled={isUploading}
@@ -902,17 +829,6 @@ export default function AdminPage({ params, onUpload }) {
                                       : "Загрузить файл"}
                                   </Button>
                                 </div>
-
-                                {/* <div className={styles.Imagelocation_block}>
-                                  <Input
-                                    className={styles.block_type_image__input}
-                                    label="Розташування зображення"
-                                    value={database.gallery[key].src}
-                                    onChange={(e) =>
-                                      handleChange(e, `gallery.${[key]}.src`)
-                                    }
-                                  />
-                                </div> */}
                               </div>
 
                               {/* Редактирование изображений */}
@@ -965,16 +881,10 @@ export default function AdminPage({ params, onUpload }) {
                                           // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
                                           alt={image.name.en}
                                           src={image.src}
-                                          // placeholder="blur" // размытие заднего фона при загрузке картинки
-                                          // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
                                           quality={10} //качество картнки в %
                                           priority={true} // если true - loading = 'lazy' отменяеться
-                                          // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
                                           fill={true} //заставляет изображение заполнять родительский элемент
-                                          // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
                                           sizes="100%"
-                                          // width={image.width} // задать правильное соотношение сторон адаптивного изображения
-                                          // height={image.height}
                                         />
                                       ) : (
                                         <Image
@@ -983,29 +893,14 @@ export default function AdminPage({ params, onUpload }) {
                                           // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
                                           alt={image.name[locale]}
                                           src="https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/default_img.jpg"
-                                          // placeholder="blur" // размытие заднего фона при загрузке картинки
-                                          // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
                                           quality={100} //качество картнки в %
                                           priority={true} // если true - loading = 'lazy' отменяеться
-                                          // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
                                           fill={true} //заставляет изображение заполнять родительский элемент
                                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                          // width={300} // задать правильное соотношение сторон адаптивного изображения
-                                          // height={200}
-                                          style={
-                                            {
-                                              // width: "200px",
-                                              // height: "200px",
-                                              // objectFit: "cover", // Изображение масштабируется, обрезая края
-                                              // objectFit: "contain", // Изображение масштабируется, не обрезаясь
-                                              // objectPosition: "top",
-                                              // margin: "0 0 1rem 0",
-                                            }
-                                          }
                                         />
                                       )}
                                     </div>
-                                    <div>
+                                    <div className={styles.download_images}>
                                       <Input
                                         className={styles.input_downloadFile}
                                         type="file"
@@ -1016,9 +911,11 @@ export default function AdminPage({ params, onUpload }) {
                                         className={styles.button_downloadFile}
                                         color="success"
                                         onPress={() =>
-                                          handleUploadAndUpdateDB(
+                                          UploadPhoto(
+                                            image.src,
+                                            `gallery.${key}.page.${index}.src`,
                                             `gallery/${key}`,
-                                            `gallery.${key}.page.${index}.src`
+                                            index
                                           )
                                         }
                                         isDisabled={isUploading || isSubmitting}
@@ -1175,7 +1072,7 @@ export default function AdminPage({ params, onUpload }) {
                                       >
                                         <Button
                                           color="success"
-                                          onPress={handleSubmit}
+                                          onPress={updateDB}
                                           isDisabled={isSubmitting}
                                         >
                                           {isSubmitting
@@ -1185,7 +1082,7 @@ export default function AdminPage({ params, onUpload }) {
                                         <Button
                                           color="danger"
                                           onPress={() => {
-                                            deleteImage__gallery(
+                                            deleteImageBlock__gallery(
                                               image.src, // Путь к изображению
                                               `gallery.${key}.page`,
                                               index
@@ -1236,7 +1133,6 @@ export default function AdminPage({ params, onUpload }) {
             </Card>
           </Tab>
 
-          {/* События */}
           <Tab key="events" title="ПОДІЇ" className={styles.events}>
             <Card>
               <CardBody>
@@ -1279,25 +1175,10 @@ export default function AdminPage({ params, onUpload }) {
                               // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
                               alt={event.title[locale]}
                               src={event.main_image}
-                              // placeholder="blur" // размытие заднего фона при загрузке картинки
-                              // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
                               quality={100} //качество картнки в %
                               priority={true} // если true - loading = 'lazy' отменяеться
-                              // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
                               fill={true} //заставляет изображение заполнять родительский элемент
                               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                              // width={300} // задать правильное соотношение сторон адаптивного изображения
-                              // height={200}
-                              style={
-                                {
-                                  // width: "200px",
-                                  // height: "200px",
-                                  // objectFit: "cover", // Изображение масштабируется, обрезая края
-                                  // objectFit: "contain", // Изображение масштабируется, не обрезаясь
-                                  // objectPosition: "top",
-                                  // margin: "0 0 1rem 0",
-                                }
-                              }
                             />
                           ) : (
                             <Image
@@ -1306,44 +1187,16 @@ export default function AdminPage({ params, onUpload }) {
                               // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
                               alt={event.title[locale]}
                               src="https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/default_img.jpg"
-                              // placeholder="blur" // размытие заднего фона при загрузке картинки
-                              // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
                               quality={100} //качество картнки в %
                               priority={true} // если true - loading = 'lazy' отменяеться
-                              // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
                               fill={true} //заставляет изображение заполнять родительский элемент
                               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                              // width={300} // задать правильное соотношение сторон адаптивного изображения
-                              // height={200}
-                              style={
-                                {
-                                  // width: "200px",
-                                  // height: "200px",
-                                  // objectFit: "cover", // Изображение масштабируется, обрезая края
-                                  // objectFit: "contain", // Изображение масштабируется, не обрезаясь
-                                  // objectPosition: "top",
-                                  // margin: "0 0 1rem 0",
-                                }
-                              }
                             />
                           )}
                         </div>
                         <h3 className={styles.title}>{event.title[locale]}</h3>
                       </Link>
                       <h3 className={styles.event_data}>id {event.id}</h3>
-                      {/* <Button
-                        color="danger"
-                        onPress={() =>
-                          deleteImage__gallery(
-                            event.main_image, // Путь к изображению
-                            `events.${event}.main_image` // Путь в базе данных
-                          )
-                        }
-                        isDisabled={!event.main_image || isSubmitting}
-                        // isDisabled={!event.main_image}
-                      >
-                        Видалити картинку
-                      </Button> */}
                       <div>
                         <Input
                           className={styles.input_downloadFile}
@@ -1355,15 +1208,12 @@ export default function AdminPage({ params, onUpload }) {
                           className={styles.button_downloadFile}
                           color="success"
                           onPress={() => {
-                            UploadPhotoEvent(event.main_image, `events.${event}.main_image`, `events/id${event.id}`, `events.${index}.main_image`)
-                            // deleteImage__gallery(
-                            //   event.main_image, // Путь к изображению
-                            //   `events.${event}.main_image` // Путь в базе данных
-                            // );
-                            // handleUploadAndUpdateDB(
-                            //   `events/id${event.id}`,
-                            //   `events.${index}.main_image`
-                            // );
+                            UploadPhoto(
+                              event.main_image,
+                              `events.${index}.main_image`,
+                              `events/id${event.id}`,
+                              index
+                            );
                           }}
                           isDisabled={isSubmitting}
                         >
@@ -1385,7 +1235,7 @@ export default function AdminPage({ params, onUpload }) {
                       /> */}
                       {/* <Button
                         color="success"
-                        onPress={handleSubmit}
+                        onPress={updateDB}
                         isDisabled={isSubmitting}
                       >
                         {isSubmitting ? "Збереження..." : "Зберегти зміни"}
