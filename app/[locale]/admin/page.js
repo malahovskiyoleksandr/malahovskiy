@@ -33,7 +33,6 @@ async function uploadImageToGitHub(path, selectedFile) {
       try {
         const filePath = `public/images/${path}/${selectedFile.name}`;
         const fileContent = event.target.result.split(",")[1]; // Получаем Base64 без префикса
-        // console.log(event.target)
         const commitMessage = `Добавлено изображение: ${selectedFile.name}`;
 
         const response = await fetch("/api/github-upload", {

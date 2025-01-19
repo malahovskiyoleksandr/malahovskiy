@@ -92,8 +92,7 @@ export default function PhotoGallery({ params }) {
             const root = createRoot(videoLinkContainer);
             root.render(
               <>
-                <Button
-                  color="danger"
+                <button
                   className={styles.closePopupButton}
                   onClick={() => {
                     const popupContainer = document.getElementById("popup-container");
@@ -103,7 +102,7 @@ export default function PhotoGallery({ params }) {
                   }}
                 >
                   {database?.gallery?.industrial?.close?.[locale] || 'Закрыть'}
-                </Button>
+                </button>
             
                 {photoData?.linkVideo && (
                   <Link

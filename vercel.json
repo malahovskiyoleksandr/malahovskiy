@@ -1,0 +1,9 @@
+{
+    "functions": {
+      "api/github-upload": {
+        "maxDuration": 10, 
+        "maxBodySize": "10mb"
+      }
+    }
+  }
+  
