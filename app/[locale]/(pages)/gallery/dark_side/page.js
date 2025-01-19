@@ -56,7 +56,7 @@ export default function PhotoGallery({ params }) {
             <button
               class="${styles.popupButton}"
               id="info-button">
-              ОПИС
+              ${database.gallery.industrial.info[locale]}
             </button>`, // HTML кнопки
           onClick: (event, el, pswp) => {
             event.stopPropagation();
