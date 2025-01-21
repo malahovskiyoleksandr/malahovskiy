@@ -17,9 +17,6 @@ import {
   Spinner,
   Alert,
 } from "@nextui-org/react";
-// import { NextResponse } from "next/server";
-
-const GITHUB_REPO = "malahovskiyoleksandr/DataBase"; // Основной репозиторий
 
 const generateSlug = (title) => {
   return title
@@ -31,62 +28,33 @@ const generateSlug = (title) => {
 async function uploadImageToGitHub(path, selectedFile) {
   const reader = new FileReader();
 
-  return new Promise((resolve, reject) => {
-    reader.onload = async (event) => {
-      try {
-        const filePath = `public/images/${path}/${selectedFile.name}`;
-        const fileContent = event.target.result.split(",")[1]; // Получаем Base64 без префикса
-        const commitMessage = `Добавлено изображение: ${selectedFile.name}`;
+  reader.onload = async (event) => {
+    try {
+      const fileContent = event.target.result.split(",")[1]; // Получаем Base64 без префикса
+      const fileName = `public/images/${path}/${selectedFile.name}`;
 
-        const url = `https://api.github.com/repos/${GITHUB_REPO}/contents/${filePath}`;
-        let fileSHA = null;
+      const response = await fetch("/api/github-upload", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ fileName, fileContent }),
+      });
 
-        // Проверяем, существует ли файл
-        const getResponse = await fetch(url, {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer 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`,
-          },
-        });
-
-        if (getResponse.ok) {
-          const fileData = await getResponse.json();
-          fileSHA = fileData.sha; // Получаем SHA существующего файла
-        } else if (getResponse.status !== 404) {
-          throw new Error("Ошибка проверки файла на GitHub");
-        }
-
-        const response = await fetch(url, {
-          method: "PUT",
-          headers: {
-            Authorization: `Bearer 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`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            message: commitMessage,
-            content: fileContent,
-            sha: fileSHA || undefined, // Добавляем SHA, если файл обновляется
-          }),
-        });
-
-        if (!response.ok) {
-          throw new Error("Ошибка загрузки изображения");
-        }
-
-        const data = await response.json();
-        resolve(data);
-        // return NextResponse.json({ success: true, data });
-      } catch (error) {
-        reject(error);
-        // return NextResponse.json({ error: error.message }, { status: 500 });
+      if (!response.ok) {
+        throw new Error("Ошибка загрузки файла");
       }
-    };
 
-    reader.onerror = (error) => reject(error);
+      const result = await response.json();
+      console.log("Файл успешно загружен:", result);
+    } catch (error) {
+      console.error("Ошибка загрузки файла:", error.message);
+    }
+  };
 
-    // Читаем файл как Base64
-    reader.readAsDataURL(selectedFile);
-  });
+  reader.onerror = (error) => {
+    console.error("Ошибка чтения файла:", error);
+  };
+
+  reader.readAsDataURL(selectedFile);
 }
 
 async function checkIfFileExists(path, fileName) {
