@@ -17,6 +17,9 @@ import {
   Spinner,
   Alert,
 } from "@nextui-org/react";
+// import { NextResponse } from "next/server";
+
+const GITHUB_REPO = "malahovskiyoleksandr/DataBase"; // Основной репозиторий
 
 const generateSlug = (title) => {
   return title
@@ -35,12 +38,35 @@ async function uploadImageToGitHub(path, selectedFile) {
         const fileContent = event.target.result.split(",")[1]; // Получаем Base64 без префикса
         const commitMessage = `Добавлено изображение: ${selectedFile.name}`;
 
-        const response = await fetch("/api/github-upload", {
-          method: "POST",
+        const url = `https://api.github.com/repos/${GITHUB_REPO}/contents/${filePath}`;
+        let fileSHA = null;
+
+        // Проверяем, существует ли файл
+        const getResponse = await fetch(url, {
+          method: "GET",
           headers: {
+            Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+          },
+        });
+
+        if (getResponse.ok) {
+          const fileData = await getResponse.json();
+          fileSHA = fileData.sha; // Получаем SHA существующего файла
+        } else if (getResponse.status !== 404) {
+          throw new Error("Ошибка проверки файла на GitHub");
+        }
+
+        const response = await fetch(url, {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ filePath, fileContent, commitMessage }),
+          body: JSON.stringify({
+            message: commitMessage,
+            content: fileContent,
+            sha: fileSHA || undefined, // Добавляем SHA, если файл обновляется
+          }),
         });
 
         if (!response.ok) {
@@ -49,8 +75,10 @@ async function uploadImageToGitHub(path, selectedFile) {
 
         const data = await response.json();
         resolve(data);
+        // return NextResponse.json({ success: true, data });
       } catch (error) {
         reject(error);
+        // return NextResponse.json({ error: error.message }, { status: 500 });
       }
     };
 
