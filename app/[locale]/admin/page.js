@@ -45,7 +45,7 @@ async function uploadImageToGitHub(path, selectedFile) {
         const getResponse = await fetch(url, {
           method: "GET",
           headers: {
-            Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+            Authorization: `Bearer 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`,
           },
         });
 
@@ -59,7 +59,7 @@ async function uploadImageToGitHub(path, selectedFile) {
         const response = await fetch(url, {
           method: "PUT",
           headers: {
-            Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+            Authorization: `Bearer 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`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
