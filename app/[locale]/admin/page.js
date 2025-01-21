@@ -27,7 +27,7 @@ const generateSlug = (title) => {
 
 async function uploadImageToGitHub(path, selectedFile) {
   const reader = new FileReader();
-
+  console.log()
   reader.onload = async (event) => {
     try {
       const fileContent = event.target.result.split(",")[1]; // Получаем Base64 без префикса
