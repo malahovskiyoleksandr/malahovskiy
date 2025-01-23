@@ -1,26 +1,28 @@
 import { NextResponse } from "next/server";
 
-const GITHUB_REPO = "DataBase"; // Основной репозиторий
-const GITHUB_OWNER = "malahovskiyoleksandr"; // Ваш GitHub логин
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN; // Токен GitHub
+// const GITHUB_REPO = "malahovskiyoleksandr/malahovskiy";
+const GITHUB_REPO = "malahovskiyoleksandr/DataBase"; // Основной репозиторий
 
-export async function POST(req) {
+export async function POST(request) {
   try {
-    const { fileName, fileContent } = await req.json();
+    // Получаем данные запроса
+    const { filePath, fileContent, commitMessage } = await request.json();
 
-    if (!fileName || !fileContent) {
-      return NextResponse.json({ error: "Invalid data" }, { status: 400 });
+    if (!filePath || !fileContent || !commitMessage) {
+      return NextResponse.json(
+        { error: "Invalid request data" },
+        { status: 400 }
+      );
     }
 
-    const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${fileName}`;
-    const commitMessage = `Добавление файла: ${fileName}`;
+    const url = `https://api.github.com/repos/${GITHUB_REPO}/contents/${filePath}`;
     let fileSHA = null;
 
     // Проверяем, существует ли файл
     const getResponse = await fetch(url, {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${GITHUB_TOKEN}`,
+        Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
       },
     });
 
@@ -35,13 +37,13 @@ export async function POST(req) {
     const putResponse = await fetch(url, {
       method: "PUT",
       headers: {
-        Authorization: `Bearer ${GITHUB_TOKEN}`,
+        Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         message: commitMessage,
         content: fileContent,
-        sha: fileSHA || undefined, // SHA добавляется, если файл существует
+        sha: fileSHA || undefined, // Добавляем SHA, если файл обновляется
       }),
     });
 

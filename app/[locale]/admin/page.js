@@ -25,58 +25,6 @@ const generateSlug = (title) => {
     .replace(/[^\w-]+/g, "");
 };
 
-async function uploadImageToGitHub(path, selectedFile) {
-  const reader = new FileReader();
-  console.log()
-  reader.onload = async (event) => {
-    try {
-      const fileContent = event.target.result.split(",")[1]; // Получаем Base64 без префикса
-      const fileName = `public/images/${path}/${selectedFile.name}`;
-
-      const response = await fetch("/api/github-upload", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ fileName, fileContent }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Ошибка загрузки файла");
-      }
-
-      const result = await response.json();
-      console.log("Файл успешно загружен:", result);
-    } catch (error) {
-      console.error("Ошибка загрузки файла:", error.message);
-    }
-  };
-
-  reader.onerror = (error) => {
-    console.error("Ошибка чтения файла:", error);
-  };
-
-  reader.readAsDataURL(selectedFile);
-}
-
-async function checkIfFileExists(path, fileName) {
-  const filePath = `public/images/${path}/${fileName}`;
-  const url = `/api/github-check-file`;
-
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ filePath }),
-  });
-
-  if (!response.ok) {
-    throw new Error("Ошибка проверки файла");
-  }
-
-  const data = await response.json();
-  return data.exists; // Возвращает true, если файл существует, и false, если нет
-}
-
 export default function AdminPage({ params, onUpload }) {
   const locale = params.locale;
   const router = useRouter();
@@ -382,56 +330,135 @@ export default function AdminPage({ params, onUpload }) {
       }
     }
   };
-  const handleUploadAndUpdateDB = async (pathImg, pathDB) => {
-    if (!selectedFile) {
-      alert("Выберите файл!");
-      return;
-    }
+  // const handleUploadAndUpdateDB = async (pathImg, pathDB) => {
+    
+  //   if (!selectedFile) {
+  //     alert("Выберите файл!");
+  //     return;
+  //   }
 
-    setIsUploading(true);
+  //   setIsUploading(true);
+  //   try {
+  //     // Загрузка изображения на GitHub
+  //     const uploadResult = await addImgInGitHub(pathImg, selectedFile);
+
+  //     // Формирование нового пути к изображению
+  //     const newImagePath = `https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/${pathImg}/${selectedFile.name}`;
+
+  //     // Обновление базы данных
+  //     setDatabase((prev) => {
+  //       const updated = { ...prev };
+  //       const keys = pathDB.split(".");
+  //       let target = updated;
+
+  //       // Доступ к целевому объекту
+  //       keys.slice(0, -1).forEach((key) => {
+  //         if (!target[key]) target[key] = {};
+  //         target = target[key];
+  //       });
+
+  //       target[keys[keys.length - 1]] = newImagePath; // Устанавливаем новый путь
+  //       return updated;
+  //     });
+  //   } catch (error) {
+  //     console.error("Ошибка загрузки или обновления базы:", error.message);
+  //     alert("Ошибка загрузки файла или обновления базы данных");
+  //   } finally {
+  //     handleSomeAction("Фото успішно завантажено!");
+  //     setIsUploading(false);
+  //   }
+  // };
+  const updateImagePathInDatabase = async (pathDB, imagePath) => {
     try {
-      // Загрузка изображения на GitHub
-      const uploadResult = await uploadImageToGitHub(pathImg, selectedFile);
-
-      // Формирование нового пути к изображению
-      const newImagePath = `https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/${pathImg}/${selectedFile.name}`;
-
-      // Обновление базы данных
+      const newImagePath = `https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/${imagePath}/${selectedFile.name}`;
       setDatabase((prev) => {
         const updated = { ...prev };
         const keys = pathDB.split(".");
         let target = updated;
-
+  
         // Доступ к целевому объекту
         keys.slice(0, -1).forEach((key) => {
           if (!target[key]) target[key] = {};
           target = target[key];
         });
-
-        target[keys[keys.length - 1]] = newImagePath; // Устанавливаем новый путь
+  
+        // Обновляем путь в базе данных
+        target[keys[keys.length - 1]] = newImagePath;
+        console.log("Путь успешно добавлен в базу данных!");
         return updated;
       });
     } catch (error) {
-      console.error("Ошибка загрузки или обновления базы:", error.message);
-      alert("Ошибка загрузки файла или обновления базы данных");
-    } finally {
-      handleSomeAction("Фото успішно завантажено!");
-      setIsUploading(false);
+      console.error("Ошибка обновления базы данных:", error.message);
+      throw error; // Пробрасываем ошибку для обработки в вызывающем коде
     }
   };
-  const UploadPhoto = async (delPathImg, PathDB, addPathImg, index) => {
-    if (!delPathImg == "") {
+  
+  const uploadImageToGitHub = async (pathImg, selectedFile) => {
+    try {
+      // Формирование пути к изображению
+      const filePath = `public/images/${pathImg}/${selectedFile.name}`;
+      const fileContent = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (event) => resolve(event.target.result.split(",")[1]);
+        reader.onerror = (error) => reject(error);
+        reader.readAsDataURL(selectedFile);
+      });
+  
+      const commitMessage = `Добавлено изображение: ${selectedFile.name}`;
+  
+      // Отправляем запрос на API загрузки
+      const response = await fetch("/api/github-upload", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ filePath, fileContent, commitMessage }),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Ошибка загрузки изображения на GitHub");
+      }
+  
+      console.log("Файл успешно загружен на GitHub:", selectedFile.name);
+      return filePath; // Возвращаем путь для последующего использования
+    } catch (error) {
+      console.error("Ошибка загрузки файла на GitHub:", error.message);
+      throw error; // Пробрасываем ошибку, чтобы обработать ее в вызывающем коде
+    }
+  };
+  
+  const UploadPhoto = async (pathOldImgInGithub, PathDB, addPathImg, index) => {
+    if (!pathOldImgInGithub == "") {
       const fileExists = await checkIfFileExists(addPathImg, selectedFile.name);
       if (fileExists) {
         alert("Файл с таким именем уже существует!");
         return;
       }
-      await deleteImgFromGitgub(delPathImg);
       await deleteImgFromDB(PathDB, index);
+      await deleteImgFromGitgub(pathOldImgInGithub);
     }
-    await handleUploadAndUpdateDB(addPathImg, PathDB);
+    await updateImagePathInDatabase(PathDB, addPathImg)
+    await uploadImageToGitHub(addPathImg, selectedFile)
+    // await handleUploadAndUpdateDB(addPathImg, PathDB);
     await updateDB();
   };
+  const checkIfFileExists = async (path, fileName) => {
+    const filePath = `public/images/${path}/${fileName}`;
+    const url = `/api/github-check-file`;
+  
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ filePath }),
+    });
+  
+    if (!response.ok) {
+      throw new Error("Ошибка проверки файла");
+    }
+  
+    const data = await response.json();
+    return data.exists; // Возвращает true, если файл существует, и false, если нет
+  }
   const deleteImageBlock__gallery = async (imagePath, path, index) => {
     const confirmDelete = confirm("Видалити фото?");
     if (confirmDelete) {
@@ -442,10 +469,10 @@ export default function AdminPage({ params, onUpload }) {
       await updateDB();
     }
   };
-  const deleteImgFromDB = async (path, index) => {
+  const deleteImgFromDB = async (pathDB, index) => {
     setDatabase((prev) => {
       const updated = { ...prev };
-      const keys = path.split(".");
+      const keys = pathDB.split(".");
       let target = updated;
 
       keys.slice(0, -1).forEach((key) => {
@@ -466,8 +493,8 @@ export default function AdminPage({ params, onUpload }) {
       return updated;
     });
   };
-  const deleteImgFromGitgub = async (delPathImg) => {
-    const filePath = delPathImg.replace(
+  const deleteImgFromGitgub = async (pathOldImgInGithub) => {
+    const filePath = pathOldImgInGithub.replace(
       "https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/",
       ""
     );
