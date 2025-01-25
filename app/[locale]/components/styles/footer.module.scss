@@ -3,7 +3,7 @@
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  min-height: 5vh;
+  min-height: var(--size-footer);
   padding: 0.5rem 0;
   color: black;
   background-color: #ffbe98;
@@ -32,11 +32,30 @@
   }
 
   .developer {
+    font-size: 0.8rem;
   }
 }
 
 @media (max-width: 668px) {
     .footer {
         flex-direction: column;
+
+        .main {
+
+          .icon_box {
+
+          }
+          .email {
+            font-size: 0.8rem;
+          }
+        }
+
+        .rights {
+          font-size: 0.8rem;
+        }
+
+        .developer {
+          font-size: 0.8rem;
+        }
     }
 }

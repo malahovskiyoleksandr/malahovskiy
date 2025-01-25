@@ -6,8 +6,9 @@
 :root {
   --font-color: #000000;
   --fontform_lable-color: #624b1b;
-  --size-header: 2.5rem;
+  --size-header: 2.5rem; // Высота шапки
   --size-body: 100vh;
+  --size-footer: 5rem;
 
   --color-bg: #f9f9f9; // Фоновый цвет
   --color-primary: #3f51b5; // Основной цвет
@@ -24,7 +25,6 @@
   --font-weight-normal: 400;
   --font-weight-bold: 700;
 
-  --header-height: 3.5rem; // Высота шапки
   --container-width: 1200px; // Максимальная ширина контейнера
 
   --spacing-small: 0.5rem;
