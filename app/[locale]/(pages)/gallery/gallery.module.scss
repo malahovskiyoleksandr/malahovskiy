@@ -227,7 +227,9 @@
   .popupContainer {
     // position: fixed;
     top: 4rem;
-    right: 4rem;
+    left: 0;
+    right: 0;
+    margin: auto;
     padding: 20px;
     border-radius: 5px;
     max-width: 340px;
