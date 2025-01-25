@@ -8,43 +8,6 @@ import PhotoSwipeLightbox from "photoswipe/lightbox";
 import { Textarea, Button, Spinner } from "@nextui-org/react";
 import { Tabs, Tab, Card, CardBody, Input, Alert } from "@nextui-org/react";
 
-async function uploadImageToGitHub(path, file) {
-  const reader = new FileReader();
-
-  return new Promise((resolve, reject) => {
-    reader.onload = async (event) => {
-      try {
-        const filePath = `public/images/${path}/${file.name}`;
-        const fileContent = event.target.result.split(",")[1]; // Получаем Base64 без префикса
-        // console.log(event.target)
-        const commitMessage = `Добавлено изображение: ${file.name}`;
-
-        const response = await fetch("/api/github-upload", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ filePath, fileContent, commitMessage }),
-        });
-
-        if (!response.ok) {
-          throw new Error("Ошибка загрузки изображения");
-        }
-
-        const data = await response.json();
-        resolve(data);
-      } catch (error) {
-        reject(error);
-      }
-    };
-
-    reader.onerror = (error) => reject(error);
-
-    // Читаем файл как Base64
-    reader.readAsDataURL(file);
-  });
-}
-
 export default function EventPage({ params }) {
   const { slug, locale } = params;
   const [database, setDatabase] = useState();
@@ -149,10 +112,8 @@ export default function EventPage({ params }) {
       return updated;
     });
   };
-
-  const handleSubmit = async () => {
+  const updateDB = async () => {
     setIsSubmitting(true);
-
     try {
       // Обновляем только изменённое событие в fullDatabase
       const updatedFullDatabase = { ...fullDatabase };
@@ -170,7 +131,9 @@ export default function EventPage({ params }) {
         body: JSON.stringify(payload),
       });
 
-      if (!response.ok) {
+      if (response.ok) {
+        console.log("Успішне оновлення бази")
+      } else {
         throw new Error("Failed to update data");
       }
 
@@ -183,14 +146,6 @@ export default function EventPage({ params }) {
       handleSomeAction("Успішне збереження!");
     }
   };
-
-  const handleDeleteBlock = (index) => {
-    setDatabase((prev) => ({
-      ...prev,
-      content: prev.content.filter((_, i) => i !== index),
-    }));
-  };
-
   const handleMoveBlock = (index, direction) => {
     setDatabase((prev) => {
       const newContent = [...prev.content];
@@ -208,7 +163,6 @@ export default function EventPage({ params }) {
       return { ...prev, content: newContent };
     });
   };
-
   const handleAddTextBlock = () => {
     setDatabase((prev) => ({
       ...prev,
@@ -221,7 +175,6 @@ export default function EventPage({ params }) {
       ],
     }));
   };
-
   const handleAddImageBlock = () => {
     setDatabase((prev) => ({
       ...prev,
@@ -235,64 +188,151 @@ export default function EventPage({ params }) {
       ],
     }));
   };
-
   const handleFileChange = (event) => {
     // console.log(event.target.files[0].name);
     setSelectedFile(event.target.files[0]);
   };
 
-  const handleUploadAndUpdateDB = async (pathImg, pathDB, index) => {
+
+  const uploadImageToGitHub = (pathImg) => {
+    const reader = new FileReader();
+
+    return new Promise((resolve, reject) => {
+      reader.onload = async (event) => {
+        try {
+          const filePath = `public/images/${pathImg}/${selectedFile.name}`;
+          const fileContent = event.target.result.split(",")[1]; // Получаем Base64 без префикса
+          const commitMessage = `Добавлено изображение: ${selectedFile.name}`;
+
+          const response = await fetch("/api/github-upload", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ filePath, fileContent, commitMessage }),
+          });
+
+          if (!response.ok) {
+            throw new Error("Ошибка загрузки изображения");
+          }
+
+          const data = await response.json();
+          resolve(data);
+        } catch (error) {
+          reject(error);
+        }
+      };
+
+      reader.onerror = (error) => reject(error);
+
+      // Читаем файл как Base64
+      reader.readAsDataURL(selectedFile);
+    });
+  };
+
+  const UploadPhoto = async (DBsrcValue, pathImg, pathDB, index) => {
     if (!selectedFile) {
       alert("Выберите файл!");
       return;
     }
+    const fileExists = await checkIfFileExists(pathImg, selectedFile.name);
+    if (fileExists) {
+      alert("Файл с таким именем уже существует!");
+      return;
+    }
+    if (!DBsrcValue == "") {
+      await deleteImgFromGitgub(DBsrcValue, pathImg);
+    }
+    await uploadImageToGitHub(pathImg);
+    await updateImagePathInDatabase(pathImg, pathDB);
+    await updateDB();
+  };
 
-    setIsUploading(true);
-    try {
-      // Загружаем изображение на GitHub
-      const uploadResult = await uploadImageToGitHub(pathImg, selectedFile);
+  const updateImagePathInDatabase = async (pathImg, pathDB) => {
+    const newImagePath = `https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/${pathImg}/${selectedFile.name}`;
 
-      // Генерируем новый путь для изображения
-      const newImagePath = `https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/${pathImg}/${selectedFile.name}`;
+    // Обновляем только изменённый путь в базе данных
+    setDatabase((prev) => {
+      const updated = { ...prev };
+      const keys = pathDB.split(".");
+      let target = updated;
 
-      // Обновляем только изменённый путь в базе данных
-      setDatabase((prev) => {
-        const updated = { ...prev };
-        const keys = pathDB.split(".");
-        let target = updated;
-
-        // Доступ к целевому объекту
-        keys.slice(0, -1).forEach((key) => {
-          if (!target[key]) target[key] = {};
-          target = target[key];
-        });
-
-        // Устанавливаем новый путь
-        target[keys[keys.length - 1]] = newImagePath;
-
-        // Обновляем fullDatabase только для текущего события
-        const updatedFullDatabase = { ...fullDatabase };
-        updatedFullDatabase.events[eventIndex] = { ...updated };
-
-        setFullDatabase(updatedFullDatabase);
-        return updated;
+      // Доступ к целевому объекту
+      keys.slice(0, -1).forEach((key) => {
+        if (!target[key]) target[key] = {};
+        target = target[key];
       });
-    } catch (error) {
-      console.error("Ошибка загрузки или обновления базы:", error.message);
-      alert("Ошибка загрузки файла или обновления базы данных");
-    } finally {
-      handleSomeAction("Успішне додавання фото!");
-      setIsUploading(false);
+
+      // Устанавливаем новый путь
+      target[keys[keys.length - 1]] = newImagePath;
+
+      // Обновляем fullDatabase только для текущего события
+      const updatedFullDatabase = { ...fullDatabase };
+      updatedFullDatabase.events[eventIndex] = { ...updated };
+
+      setFullDatabase(updatedFullDatabase);
+      return updated;
+    });
+  };
+
+  const checkIfFileExists = async (path, fileName) => {
+    const filePath = `public/images/${path}/${fileName}`;
+    const url = `/api/github-check-file`;
+
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ filePath }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Ошибка проверки файла");
+    }
+
+    const data = await response.json();
+    return data.exists; // Возвращает true, если файл существует, и false, если нет
+  };
+
+  const deleteImgFromGitgub = async (pathOldImgInGithub, pathImg) => {
+    const oldPhoto = pathOldImgInGithub.replace(
+      `https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/${pathImg}/`,
+      ""
+    );
+    const fileExists = await checkIfFileExists(pathImg, oldPhoto);
+    if (!fileExists) {
+      alert("Такого файла не существует на GitHub.");
+      return;
+    }
+    const filePath = pathOldImgInGithub.replace(
+      "https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/",
+      ""
+    );
+    const response = await fetch("/api/github-delete", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ filePath, isDirectory: false }),
+    });
+
+    if (response.ok) {
+      console.log("Успішне видалення файла з github");
+    } else {
+      throw new Error("Ошибка удаления файла из репозитория");
     }
   };
 
-  // if (isLoading) {
-  //   return (
-  //     <div className="flex items-center justify-center h-[95vh]">
-  //       <Spinner color="warning" label="Loading" labelColor="warning" />
-  //     </div>
-  //   );
-  // }
+  const handleDeleteBlock = (index, photo) => {
+    console.log(photo)
+    if (photo) {
+      deleteImgFromGitgub(photo, `events/id${database.id}`);
+    }
+    setDatabase((prev) => ({
+      ...prev,
+      content: prev.content.filter((_, i) => i !== index),
+    }));
+  };
+
 
   if (!database) {
     return (
@@ -308,16 +348,16 @@ export default function EventPage({ params }) {
         <Button
           className={styles.save_button}
           color="success"
-          onClick={handleSubmit}
+          onPress={updateDB}
           disabled={isSubmitting}
         >
           {isSubmitting ? "Saving..." : "Зберегти"}
         </Button>
         {/* <div className={styles.buttons}> */}
-        <Button onClick={handleAddTextBlock} color="primary">
+        <Button onPress={handleAddTextBlock} color="primary">
           Add Text Block
         </Button>
-        <Button onClick={handleAddImageBlock} color="secondary">
+        <Button onPress={handleAddImageBlock} color="secondary">
           Add Image Block
         </Button>
         {/* </div> */}
@@ -384,15 +424,15 @@ export default function EventPage({ params }) {
                     ))}
                   </Tabs>
                   <div className={styles.block_actions}>
-                    <Button onClick={() => handleMoveBlock(index, "up")}>
+                    <Button onPress={() => handleMoveBlock(index, "up")}>
                       Up
                     </Button>
-                    <Button onClick={() => handleMoveBlock(index, "down")}>
+                    <Button onPress={() => handleMoveBlock(index, "down")}>
                       Down
                     </Button>
                     <Button
                       color="danger"
-                      onClick={() => handleDeleteBlock(index)}
+                      onPress={() => handleDeleteBlock(index)}
                     >
                       Delete
                     </Button>
@@ -471,14 +511,15 @@ export default function EventPage({ params }) {
                     <Button
                       className={styles.button_downloadFile}
                       color="success"
-                      onClick={() =>
-                        handleUploadAndUpdateDB(
+                      onPress={() =>
+                        UploadPhoto(
+                          block.src,
                           `events/id${database.id}`,
                           `content.${index}.src`,
                           index
                         )
                       }
-                      disabled={isUploading}
+                      isDisabled={isUploading}
                     >
                       {isUploading ? "Загрузка..." : "Загрузить файл"}
                     </Button>
@@ -498,15 +539,15 @@ export default function EventPage({ params }) {
                     onChange={(e) => handleChange(e, `content.${index}.src`)}
                   />
                   <div className={styles.block_actions}>
-                    <Button onClick={() => handleMoveBlock(index, "up")}>
+                    <Button onPress={() => handleMoveBlock(index, "up")}>
                       Up
                     </Button>
-                    <Button onClick={() => handleMoveBlock(index, "down")}>
+                    <Button onPress={() => handleMoveBlock(index, "down")}>
                       Down
                     </Button>
                     <Button
                       color="danger"
-                      onClick={() => handleDeleteBlock(index)}
+                      onPress={() => handleDeleteBlock(index, block.src)}
                     >
                       Delete
                     </Button>
@@ -575,15 +616,15 @@ export default function EventPage({ params }) {
                     onChange={(e) => handleChange(e, `content.${index}.src`)}
                   />
                   <div className={styles.block_actions}>
-                    <Button onClick={() => handleMoveBlock(index, "up")}>
+                    <Button onPress={() => handleMoveBlock(index, "up")}>
                       Up
                     </Button>
-                    <Button onClick={() => handleMoveBlock(index, "down")}>
+                    <Button onPress={() => handleMoveBlock(index, "down")}>
                       Down
                     </Button>
                     <Button
                       color="danger"
-                      onClick={() => handleDeleteBlock(index)}
+                      onPress={() => handleDeleteBlock(index)}
                     >
                       Delete
                     </Button>

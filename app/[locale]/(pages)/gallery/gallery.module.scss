@@ -61,7 +61,7 @@
     flex: 0 0 600px;
     border-radius: 5px;
     scroll-snap-align: center;
-    overflow: hidden; 
+    overflow: hidden;
     box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.5);
 
     .image {
@@ -85,14 +85,14 @@
 
       .tooltip_name {
         font-weight: bold;
-        font-family: 'Mariupol-Bold';
+        font-family: "Mariupol-Bold";
         // font-family: 'Extatica-Medium';
         font-size: 1rem;
       }
 
       .tooltip_description {
         font-size: 0.9rem;
-        font-family: 'Mariupol-Regular';
+        font-family: "Mariupol-Regular";
         margin-top: 5px;
       }
     }
@@ -125,7 +125,7 @@
   padding: 5px;
   width: 50px;
   border-radius: 5px;
-  font-family: 'Extatica-Medium';
+  font-family: "Extatica-Medium";
   cursor: pointer;
 }
 
@@ -138,47 +138,59 @@
   color: white;
   background-color: #ffffff70;
   padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
-  max-width: 300px;
+  max-width: 340px;
   width: 100%;
+  max-height: 35rem;
   text-align: left;
+  overflow: hidden;
 
-  .popupTitle {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    font-family: 'Extatica-Medium';
-  }
-
-  .popupDescription {
+  .popupContent {
     font-size: 1rem;
-    font-family: 'Extatica-Medium';
-  }
+    font-family: "Extatica-Medium";
 
-  .button_container {
-    display: flex;
-    align-items: center;
-    // justify-content: space-between;
-    margin-top: 20px;
-    
-    .closePopupButton {
-      padding: 10px 20px;
-      border: none;
-      background-color: #ffbe98;
-      border-radius: 4px;
-      font-family: 'Extatica-Medium';
-      color: black;
-      cursor: pointer;
-  
-      &:hover {
-        background-color: rgb(255, 210, 194)
-      }
+    .popupTitle {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      font-family: "Extatica-Medium";
     }
 
-    .linkButton {
-      margin: 0 2rem;
-      // padding: 0.2rem;
-      // background-color: #ffbe98;
+    .popupDescription {
+      overflow-y: auto;
+      max-height: 20rem;
+      margin: 0.5rem 0 0 0;
+    }
+
+    .popupDescription::-webkit-scrollbar {
+      width: 8px; /* Ширина полосы прокрутки */
+    }
+
+    .popupDescription::-webkit-scrollbar-track {
+      border-radius: 4px;
+      background: #f5f5f5; /* Цвет фона трека полосы прокрутки */
+    }
+    
+    .popupDescription::-webkit-scrollbar-thumb {
+      background: #b3b3b3; /* Цвет полосы прокрутки */
+      border-radius: 4px; /* Радиус для закругления */
+    }
+    
+    .popupDescription::-webkit-scrollbar-thumb:hover {
+      background: #999; /* Цвет полосы при наведении */
+    }
+  }
+
+  .VideoBox {
+    margin-top: 20px;
+    width: 100%;
+
+    .videoContainer {
+      width: 100%;
+    }
+
+    .videoPlayer {
+      width: 100%;
+      border-radius: 10px;
     }
   }
 }

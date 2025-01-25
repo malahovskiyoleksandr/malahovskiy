@@ -330,8 +330,18 @@ export default function AdminPage({ params, onUpload }) {
       }
     }
   };
+  const deleteImageBlock__gallery = async (imagePath, path, index) => {
+    const confirmDelete = confirm("Видалити фото?");
+    if (confirmDelete) {
+      if (!imagePath == "") {
+        await deleteImgFromGitgub(imagePath);
+      }
+      await deleteImgFromDB(path, index);
+      await updateDB();
+    }
+  };
   // const handleUploadAndUpdateDB = async (pathImg, pathDB) => {
-    
+
   //   if (!selectedFile) {
   //     alert("Выберите файл!");
   //     return;
@@ -375,13 +385,13 @@ export default function AdminPage({ params, onUpload }) {
         const updated = { ...prev };
         const keys = pathDB.split(".");
         let target = updated;
-  
+
         // Доступ к целевому объекту
         keys.slice(0, -1).forEach((key) => {
           if (!target[key]) target[key] = {};
           target = target[key];
         });
-  
+
         // Обновляем путь в базе данных
         target[keys[keys.length - 1]] = newImagePath;
         console.log("Путь успешно добавлен в базу данных!");
@@ -392,7 +402,7 @@ export default function AdminPage({ params, onUpload }) {
       throw error; // Пробрасываем ошибку для обработки в вызывающем коде
     }
   };
-  
+
   const uploadImageToGitHub = async (pathImg, selectedFile) => {
     try {
       // Формирование пути к изображению
@@ -403,29 +413,34 @@ export default function AdminPage({ params, onUpload }) {
         reader.onerror = (error) => reject(error);
         reader.readAsDataURL(selectedFile);
       });
-  
+
       const commitMessage = `Добавлено изображение: ${selectedFile.name}`;
-  
+
       // Отправляем запрос на API загрузки
       const response = await fetch("/api/github-upload", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ filePath, fileContent, commitMessage }),
       });
-  
-      if (!response.ok) {
+
+      if (response.ok) {
+        console.log("Файл успешно загружен на GitHub:", selectedFile.name);
+      } else {
         throw new Error("Ошибка загрузки изображения на GitHub");
       }
-  
-      console.log("Файл успешно загружен на GitHub:", selectedFile.name);
+
       return filePath; // Возвращаем путь для последующего использования
     } catch (error) {
       console.error("Ошибка загрузки файла на GitHub:", error.message);
       throw error; // Пробрасываем ошибку, чтобы обработать ее в вызывающем коде
     }
   };
-  
+
   const UploadPhoto = async (pathOldImgInGithub, PathDB, addPathImg, index) => {
+    if (!selectedFile) {
+      alert("Файл не вибрано");
+      return;
+    }
     if (!pathOldImgInGithub == "") {
       const fileExists = await checkIfFileExists(addPathImg, selectedFile.name);
       if (fileExists) {
@@ -435,15 +450,15 @@ export default function AdminPage({ params, onUpload }) {
       await deleteImgFromDB(PathDB, index);
       await deleteImgFromGitgub(pathOldImgInGithub);
     }
-    await updateImagePathInDatabase(PathDB, addPathImg)
-    await uploadImageToGitHub(addPathImg, selectedFile)
+    await uploadImageToGitHub(addPathImg, selectedFile);
+    await updateImagePathInDatabase(PathDB, addPathImg);
     // await handleUploadAndUpdateDB(addPathImg, PathDB);
     await updateDB();
   };
   const checkIfFileExists = async (path, fileName) => {
     const filePath = `public/images/${path}/${fileName}`;
     const url = `/api/github-check-file`;
-  
+
     const response = await fetch(url, {
       method: "POST",
       headers: {
@@ -451,23 +466,13 @@ export default function AdminPage({ params, onUpload }) {
       },
       body: JSON.stringify({ filePath }),
     });
-  
+
     if (!response.ok) {
       throw new Error("Ошибка проверки файла");
     }
-  
+
     const data = await response.json();
     return data.exists; // Возвращает true, если файл существует, и false, если нет
-  }
-  const deleteImageBlock__gallery = async (imagePath, path, index) => {
-    const confirmDelete = confirm("Видалити фото?");
-    if (confirmDelete) {
-      if (!imagePath == "") {
-        await deleteImgFromGitgub(imagePath);
-      }
-      await deleteImgFromDB(path, index);
-      await updateDB();
-    }
   };
   const deleteImgFromDB = async (pathDB, index) => {
     setDatabase((prev) => {
@@ -498,13 +503,17 @@ export default function AdminPage({ params, onUpload }) {
       "https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/",
       ""
     );
+    console.log(pathOldImgInGithub);
+    console.log(filePath);
     const response = await fetch("/api/github-delete", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ filePath, isDirectory: false }),
     });
 
-    if (!response.ok) {
+    if (response.ok) {
+      console.log("Успішне видалення файла з github");
+    } else {
       throw new Error("Ошибка удаления файла из репозитория");
     }
   };
@@ -605,38 +614,40 @@ export default function AdminPage({ params, onUpload }) {
                 >
                   {isSubmitting ? "Сохранение..." : "Сохранить изменения"}
                 </Button>
-                <div className={styles.images_box}>
+                <div className={styles.home_images}>
                   <div className={styles.mainPhoto_home}>
-                    {database.home.main_image.src ? ( // Проверяем, есть ли ссылка на изображение
-                      <Image
-                        className={styles.image}
-                        // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
-                        // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
-                        alt="Main Image"
-                        src={database.home.main_image.src}
-                        quality={100} //качество картнки в %
-                        priority={true} // если true - loading = 'lazy' отменяеться
-                        fill={false} //заставляет изображение заполнять родительский элемент
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        width={300} // задать правильное соотношение сторон адаптивного изображения
-                        height={200}
-                      />
-                    ) : (
-                      <Image
-                        className={styles.image}
-                        // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
-                        // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
-                        alt="Main Image"
-                        src="https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/default_img.jpg"
-                        quality={30} //качество картнки в %
-                        priority={true} // если true - loading = 'lazy' отменяеться
-                        fill={false} //заставляет изображение заполнять родительский элемент
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        width={300} // задать правильное соотношение сторон адаптивного изображения
-                        height={200}
-                      />
-                    )}
-                    <div>
+                    <div className={styles.image_box}>
+                      {database.home.main_image.src ? ( // Проверяем, есть ли ссылка на изображение
+                        <Image
+                          className={styles.image}
+                          // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
+                          // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
+                          alt="Main Image"
+                          src={database.home.main_image.src}
+                          quality={100} //качество картнки в %
+                          priority={true} // если true - loading = 'lazy' отменяеться
+                          fill={true} //заставляет изображение заполнять родительский элемент
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          // width={300} // задать правильное соотношение сторон адаптивного изображения
+                          // height={200}
+                        />
+                      ) : (
+                        <Image
+                          className={styles.image}
+                          // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
+                          // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
+                          alt="Main Image"
+                          src="https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/default_img.jpg"
+                          quality={30} //качество картнки в %
+                          priority={true} // если true - loading = 'lazy' отменяеться
+                          fill={false} //заставляет изображение заполнять родительский элемент
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          width={300} // задать правильное соотношение сторон адаптивного изображения
+                          height={200}
+                        />
+                      )}
+                    </div>
+                    <div className={styles.submit_img}>
                       <Input
                         className={styles.input_downloadFile}
                         type="file"
@@ -660,33 +671,36 @@ export default function AdminPage({ params, onUpload }) {
                     </div>
                   </div>
                   <div className={styles.backround_home}>
-                    {database.home.background_image.src ? (
-                      <Image
-                        src={database.home.background_image.src}
-                        alt="background_image"
-                        quality={30} //качество картнки в %
-                        priority={true} // если true - loading = 'lazy' отменяеться
-                        fill={false} //заставляет изображение заполнять родительский элемент
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        width={300} // задать правильное соотношение сторон адаптивного изображения
-                        height={200}
-                      />
-                    ) : (
-                      <Image
-                        className={styles.image}
-                        // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
-                        // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
-                        alt="Main Image"
-                        src="https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/default_img.jpg"
-                        quality={30} //качество картнки в %
-                        priority={true} // если true - loading = 'lazy' отменяеться
-                        fill={false} //заставляет изображение заполнять родительский элемент
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        width={300} // задать правильное соотношение сторон адаптивного изображения
-                        height={200}
-                      />
-                    )}
-                    <div>
+                    <div className={styles.image_box}>
+                      {database.home.background_image.src ? (
+                        <Image
+                          className={styles.image}
+                          alt="background_image"
+                          src={database.home.background_image.src}
+                          quality={30} //качество картнки в %
+                          priority={true} // если true - loading = 'lazy' отменяеться
+                          fill={true} //заставляет изображение заполнять родительский элемент
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          // width={300} // задать правильное соотношение сторон адаптивного изображения
+                          // height={200}
+                        />
+                      ) : (
+                        <Image
+                          className={styles.image}
+                          // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
+                          // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
+                          alt="Main Image"
+                          src="https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/default_img.jpg"
+                          quality={30} //качество картнки в %
+                          priority={true} // если true - loading = 'lazy' отменяеться
+                          fill={false} //заставляет изображение заполнять родительский элемент
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          width={300} // задать правильное соотношение сторон адаптивного изображения
+                          height={200}
+                        />
+                      )}
+                    </div>
+                    <div className={styles.submit_img}>
                       <Input
                         className={styles.input_downloadFile}
                         type="file"

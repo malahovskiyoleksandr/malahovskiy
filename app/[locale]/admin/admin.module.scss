@@ -83,10 +83,36 @@ $text-color: #fff;
     flex-direction: column;
 
     .home_page {
-      .images_box {
+      .home_images {
         display: flex;
         justify-content: space-around;
         margin: 2rem 0;
+
+        .mainPhoto_home {
+          .image_box {
+            position: relative;
+            // display: block;
+            width: auto;
+            height: 300px;
+          }
+
+          .submit_img {
+            display: block;
+          }
+        }
+
+        .backround_home {
+          .image_box {
+            position: relative;
+            // display: block;
+            width: auto;
+            height: 300px;
+          }
+
+          .submit_img {
+            display: block;
+          }
+        }
       }
 
       .industrial_box {

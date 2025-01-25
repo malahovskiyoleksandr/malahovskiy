@@ -56,67 +56,77 @@ export default function PhotoGallery({ params }) {
               id="info-button">
               ${database.gallery.industrial.info[locale]}
             </button>`,
-          onClick: (event, el, pswp) => {
-            event.stopPropagation();
-
-            if (document.getElementById("popup-container")) {
-              return;
-            }
-
-            const currentSlide = pswp.currSlide;
-            const photoId =
-              currentSlide?.data?.element?.getAttribute("data-id");
-
-            const photoData = database?.gallery?.portraits?.page.find(
-              (img) => img.id === Number(photoId)
-            );
-            const popupContainer = document.createElement("div");
-            popupContainer.className = styles.popupContainer;
-            popupContainer.id = "popup-container";
-
-            popupContainer.innerHTML = `
-                <p class="${styles.popupTitle}">${photoData?.name[locale]}</p>
-                <p class="${styles.popupDescription}">${photoData?.material[locale]}</p>
-                <p class="${styles.popupDescription}">${photoData?.size}</p>
-                <p class="${styles.popupDescription}">${photoData?.date}</p>
-                <p class="${styles.popupDescription}">${photoData?.description[locale]}</p>
-                <div id="button_container" class="${styles.button_container}"></div>
-              `;
-
-            document.body.appendChild(popupContainer);
-
-            const videoLinkContainer =
-              document.getElementById("button_container");
-
-            // Создаём root и рендерим компонент
-            const root = createRoot(videoLinkContainer);
-            root.render(
-              <>
-                <button
-                  className={styles.closePopupButton}
-                  onClick={() => {
-                    const popupContainer = document.getElementById("popup-container");
-                    if (popupContainer) {
-                      popupContainer.remove();
-                    }
-                  }}
-                >
-                  {database?.gallery?.industrial?.close?.[locale] || 'Закрыть'}
-                </button>
+            onClick: (event, el, pswp) => {
+              event.stopPropagation();
             
-                {photoData?.linkVideo && (
-                  <Link
-                    href={photoData.linkVideo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.linkButton}
+              const existingPopup = document.getElementById("popup-container");
+            
+              // Если попап уже открыт, закрываем его
+              if (existingPopup) {
+                existingPopup.remove();
+                return;
+              }
+            
+              // Получаем текущий слайд
+              const currentSlide = pswp.currSlide;
+              const photoId = currentSlide?.data?.element?.getAttribute("data-id");
+            
+              const photoData = database?.gallery?.portraits?.page.find(
+                (img) => img.id === Number(photoId)
+              );
+            
+              // Создаём контейнер для попапа
+              const popupContainer = document.createElement("div");
+              popupContainer.className = styles.popupContainer;
+              popupContainer.id = "popup-container";
+            
+              popupContainer.innerHTML = `
+              <div class="${styles.popupContent}">
+                <p class="${styles.popupTitle}">${photoData?.name[locale]}</p>
+                <p class="${styles.popupMaterial}">${photoData?.material[locale]}</p>
+                <p class="${styles.popupSize}">${photoData?.size}</p>
+                <p class="${styles.popupDate}">${photoData?.date}</p>
+                <p class="${styles.popupDescription}">${photoData?.description[locale]}</p>
+                <div id="VideoBox" class="${styles.VideoBox}"></div>
+              </div>
+            `;
+            
+              document.body.appendChild(popupContainer);
+            
+              // Контейнер для динамических кнопок и видео
+              const videoLinkContainer = document.getElementById("VideoBox");
+            
+              // Создаём root и рендерим компоненты в попап
+              const root = createRoot(videoLinkContainer);
+              root.render(
+                <>
+                  {/* <button
+                    className={styles.closePopupButton}
+                    onClick={() => {
+                      const popupContainer = document.getElementById("popup-container");
+                      if (popupContainer) {
+                        popupContainer.remove();
+                      }
+                    }}
                   >
-                    <FontAwesomeIcon icon={faYoutube} size="2x" />
-                  </Link>
-                )}
-              </>
-            );
-          },
+                    {database?.gallery?.industrial?.close?.[locale] || "Закрыть"}
+                  </button> */}
+                  {photoData?.linkVideo && (
+                    <div className={styles.videoContainer}>
+                      <iframe
+                        src={photoData.linkVideo.replace("watch?v=", "embed/")} // Форматируем ссылку для встраивания YouTube
+                        title="YouTube Video"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className={styles.videoPlayer}
+                      ></iframe>
+                    </div>
+                  )}
+                </>
+              );
+            }
+            
         });
       });
 
