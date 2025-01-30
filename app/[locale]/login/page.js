@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import styles from "./login.module.scss";
 
 export default function LoginPage() {
@@ -61,13 +60,9 @@ export default function LoginPage() {
             Войти
           </button>
         </form>
-        <Link
-          color="foreground"
-          href="/forgot-password"
-          className={styles.link}
-        >
+        <a href="/forgot-password" className={styles.link}>
           Забыли пароль?
-        </Link>
+        </a>
       </div>
     </div>
   );
