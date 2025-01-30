@@ -139,7 +139,8 @@
   
     .main_image {
       // align-self: flex-end; /* Устанавливаем изображение по нижнему краю */
-      max-width: 400px;
+      // max-width: 900px;
+      width: 100%;
       object-fit: contain;
       flex: 1;
       flex-shrink: 1;
@@ -153,6 +154,7 @@
       flex-shrink: 1;
       flex-basis: 0;
       flex-direction: column;
+      align-items: end;
       justify-content: center; /* Центрирование контента */
       max-width: 1050px;
       font-family: "Mariupol-Regular";
@@ -178,7 +180,6 @@
         }
       }
       .artist_name__description {
-        text-align: right;
         font-size: 1.3rem;
         min-width: 200px;
         max-width: 800px;

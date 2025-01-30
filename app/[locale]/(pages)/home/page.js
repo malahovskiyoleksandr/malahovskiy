@@ -81,7 +81,7 @@ export default async function Home({ params }) {
           }
         />
         <div className={styles.container_main}>
-          {/* {database?.home?.main_image?.src ? (
+          {database?.home?.main_image?.src ? (
             <Image
               className={styles.main_image}
               alt="mainImage"
@@ -116,11 +116,8 @@ export default async function Home({ params }) {
               width={300} // задать правильное соотношение сторон адаптивного изображения
               height={200}
             />
-          )} */}
+          )}
           <div className={styles.main_block_description}>
-            {/* <h1 className={styles.artist_name}>
-              {database?.home?.name?.[locale] || ""}
-            </h1> */}
             <h1 className={styles.artist_name}>
               <span className={styles.firstName}>
                 {database?.home?.name?.[locale]?.split(" ")[0]}
