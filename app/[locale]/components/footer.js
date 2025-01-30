@@ -17,9 +17,10 @@ export default function Footer({ params }) {
     name: {
       uk: "Розробник сайту: Максим Кругляк",
       en: "Website developer: Maksim Kruglyak",
-      de: "Webentwickler: Maksim Kruglyak"
-    }
-  }
+      de: "Webentwickler: Maksim Kruglyak",
+    },
+    email: "maksimkrygliak@gmail.com",
+  };
 
   return (
     <footer className={styles.footer}>
@@ -59,7 +60,10 @@ export default function Footer({ params }) {
       <span className={styles.rights}>
         ©2024 FPL “ARS ALTERA”. All rights reserved
       </span>
-      <span className={styles.developer}>{developer.name[locale]}</span>
+      <div className={styles.developer}>
+        <span className={styles.developer_name}>{developer.name[locale]}</span>
+        <span className={styles.developer_email}>{developer.email}</span>
+      </div>
       {/* <span className={styles.developer}>Розробник сайту: Максим Кругляк</span> */}
     </footer>
   );

@@ -58,17 +58,15 @@ export default async function Home({ params }) {
       <section className={styles.main_block}>
         <Image
           className={styles.background_image}
-          // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
-          // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
-          alt="mainImage"
-          src={database?.home?.background_image?.src}
-          // placeholder="blur" // размытие заднего фона при загрузке картинки
-          // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
+          alt="background_image"
+          src={
+            database?.home?.background_image?.src ||
+            "https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/default_img.jpg"
+          }
           quality={100}
           priority={true} // если true - loading = 'lazy' отменяеться
           loading="eager" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
           fill={false} //заставляет изображение заполнять родительский элемент
-          // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
           sizes="100%"
           width={300} // задать правильное соотношение сторон адаптивного изображения
           height={200}
@@ -83,20 +81,15 @@ export default async function Home({ params }) {
           }
         />
         <div className={styles.container_main}>
-          {database?.home?.main_image?.src ? (
+          {/* {database?.home?.main_image?.src ? (
             <Image
               className={styles.main_image}
-              // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
-              // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
               alt="mainImage"
               src={database.home.main_image.src}
-              // placeholder="blur" // размытие заднего фона при загрузке картинки
-              // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
               quality={100}
               priority={true} // если true - loading = 'lazy' отменяеться
               loading="eager" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
               fill={false} //заставляет изображение заполнять родительский элемент
-              // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
               sizes="100%"
               width={300} // задать правильное соотношение сторон адаптивного изображения
               height={200}
@@ -112,22 +105,32 @@ export default async function Home({ params }) {
             />
           ) : (
             <Image
-              className={styles.image}
+              className={styles.main_image}
               alt="Main Image"
               src="https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/images/default_img.jpg"
               quality={50} //качество картнки в %
               priority={true} // если true - loading = 'lazy' отменяеться
+              loading="eager" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
+              fill={false} //заставляет изображение заполнять родительский элемент
               sizes="100%"
               width={300} // задать правильное соотношение сторон адаптивного изображения
               height={200}
             />
-          )}
+          )} */}
           <div className={styles.main_block_description}>
+            {/* <h1 className={styles.artist_name}>
+              {database?.home?.name?.[locale] || ""}
+            </h1> */}
             <h1 className={styles.artist_name}>
-              {database?.home?.name?.[locale] || "Lorem ipsum dolor sit amet consectetur"}
+              <span className={styles.firstName}>
+                {database?.home?.name?.[locale]?.split(" ")[0]}
+              </span>{" "}
+              <span className={styles.lastName}>
+                {database?.home?.name?.[locale]?.split(" ")[1]}
+              </span>
             </h1>
             <p className={styles.artist_name__description}>
-              {database?.home?.description?.[locale] || "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi blanditiis sapiente reprehenderit, atque unde, at laboriosam nisi similique explicabo reiciendis facere"}
+              {database?.home?.description?.[locale] || ""}
             </p>
           </div>
         </div>

@@ -7,6 +7,7 @@
   --font-color: #000000;
   --fontform_lable-color: #624b1b;
   --size-header: 2.5rem; // Высота шапки
+  --size-header-mobile: 4rem; // Высота шапки
   --size-body: 100vh;
   --size-footer: 5rem;
 
@@ -39,6 +40,13 @@ body {
   color: var(--font-color);
   background-color: var(--background);
   // font-family: 'Bahnschrift', sans-serif;
+}
+
+.pswp__counter {
+  font-family: "Mariupol-Regular";
+  font-size: 1rem; /* Изменение размера шрифта */
+  font-weight: bold; /* Жирный шрифт */
+  // color: #ffbe98;
 }
 
 @media (prefers-color-scheme: dark) {

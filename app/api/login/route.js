@@ -5,7 +5,7 @@ export async function POST(req) {
     const { email, password } = await req.json();
     
     // Пример проверки данных (вы заменяете на реальную логику)
-    if (email === '123@gmail.com' && password === '123') {
+    if (email === "123@gmail.com" && password === '123') {
       const token = generateToken({ email, role: 'admin' });
       return new Response(JSON.stringify({ token }), { status: 200 });
     } else {

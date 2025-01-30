@@ -69,7 +69,7 @@ export default function Header() {
   useEffect(() => {
     const handleKeyPress = (event) => {
       // Проверяем, нажаты ли Ctrl и A
-      if ((event.ctrlKey && event.key === "q") || event.key === "й") {
+      if ((event.ctrlKey && event.key.toLowerCase() === "q") || (event.ctrlKey && event.key === "й")) {
         event.preventDefault(); // Предотвращаем стандартное поведение
         console.log("admin");
         router.push("/admin"); // Перенаправляем на админку
@@ -101,30 +101,23 @@ export default function Header() {
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="header_benu_btn sm:hidden"
+          className={`${styles.header_benu_btn} sm:hidden`}
         />
         <NavbarBrand>
           <Link
             href="/home"
             color="foreground"
-            className="font-bold text-inherit"
+            // className="font-bold text-inherit"
+            className={`${styles.link_logo} font-bold text-inherit`}
           >
             <Image
               className={styles.image}
-              // onLoad={(e) => console.log(e.target.naturalWidth)} // вызов функции после того как картинка полностью загрузится
-              // onError={(e) => console.error(e.target.id)} // Функция обратного вызова, которая вызывается, если изображение не загружается.
               alt={"logo"}
               src={Logo}
-              // placeholder="blur" // размытие заднего фона при загрузке картинки
-              // blurDataURL="/path-to-small-blurry-version.jpg"  // если включено свойство placeholder="blur" и картинка без импорта - добавляем сжатое/размытое изображение
               quality={100}
               priority={true} // если true - loading = 'lazy' отменяеться
-              // loading="lazy" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
               fill={false} //заставляет изображение заполнять родительский элемент
-              // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // предоставляет информацию о том, насколько широким будет изображение в разных контрольных точках
               sizes="100%"
-              // width={50} // задать правильное соотношение сторон адаптивного изображения
-              // height={50}
               style={
                 {
                   // width: "50px",
@@ -176,9 +169,6 @@ export default function Header() {
             </Link>
           </NavbarMenuItem>
         ))}
-        <Link href="/admin" onClick={handleMenuItemClick}>
-          Admin
-        </Link>
       </NavbarMenu>
     </Navbar>
   );
