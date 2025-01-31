@@ -116,7 +116,10 @@ export default async function Home({ params }) {
           </div>
         </div>
       </section>
+      <div className={styles.dividing_strip}>
       <Gallery params={{ locale }} />
+      </div>
+      
       <Events params={{ locale }} />
     </>
   );
