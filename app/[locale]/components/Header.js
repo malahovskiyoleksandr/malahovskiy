@@ -96,7 +96,9 @@ export default function Header() {
       position="static"
       onMenuOpenChange={setIsMenuOpen}
       isMenuOpen={isMenuOpen}
-      className={styles.header}
+      // className={styles.header}
+      className={`${styles.header} flex justify-between`}
+      // className="flex justify-between"
     >
       <NavbarContent>
         <NavbarMenuToggle

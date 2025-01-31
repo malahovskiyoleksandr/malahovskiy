@@ -42,6 +42,7 @@ export default function PhotoGallery({ params }) {
         children: "a",
         pswpModule: () => import("photoswipe"),
         wheelToZoom: true,
+        imageClickAction: "close"
       });
 
       lightbox.on("uiRegister", () => {

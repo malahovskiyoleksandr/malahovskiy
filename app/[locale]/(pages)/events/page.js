@@ -49,6 +49,11 @@ function generateSlug(title) {
 export default async function Events({ params }) {
   const { locale } = params;
   const database = await getData();
+  const events = {
+    uk: "Заходи та події",
+    en: "Events",
+    de: "Veranstaltungen"
+  }
 
   if (!database) {
     return (
@@ -61,7 +66,7 @@ export default async function Events({ params }) {
   return (
     <>
       <section className={styles.main_block}>
-        <h1 className={styles.zahodu_pidii}>Заходи та події</h1>
+        <h1 className={styles.zahodu_pidii}>{events[locale]}</h1>
         <div
           className={`${styles.event_list} grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-6`}
         >

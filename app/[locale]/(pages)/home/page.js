@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 import { Spinner } from "@nextui-org/react";
 import Gallery from "../gallery/page";
 import Events from "../events/page";
+import Logo from "@/public/icons/NO AI.PNG";
 
 export const revalidate = 5;
 
@@ -45,6 +46,16 @@ export async function getData() {
 export default async function Home({ params }) {
   const { locale } = params;
   const database = await getData();
+  const blackout = {
+    uk: "Cайт працює під час відключення електроенергії",
+    en: "The site is working during a blackout",
+    de: "Die Site funktioniert während eines Stromausfalls"
+  }
+  const no_ai = {
+    uk: "Без використання ШІ",
+    en: "HUMAN MADE. NO AI USED",
+    de: "VON MENSCHEN GEMACHT. KEINE KI VERWENDET"
+  }
 
   if (!database) {
     return (
@@ -117,9 +128,30 @@ export default async function Home({ params }) {
         </div>
       </section>
       <div className={styles.dividing_strip}>
-      <Gallery params={{ locale }} />
+        <span>{blackout[locale]}</span>
       </div>
-      
+      <Gallery params={{ locale }} />
+      <div className={styles.dividing_strip}>
+        <span>{no_ai[locale]}</span>
+        <Image
+          className={styles.image}
+          alt="logo"
+          src={Logo}
+          quality={100}
+          priority={true} // если true - loading = 'lazy' отменяеться
+          fill={false} //заставляет изображение заполнять родительский элемент
+          sizes="100%"
+          style={
+            {
+              // width: "50px",
+              // height: "50px",
+              // objectFit: "cover", // Изображение масштабируется, не обрезаясь
+              // objectFit: "contain", // Изображение масштабируется, не обрезаясь
+              // objectPosition: "top",
+            }
+          }
+        />
+      </div>
       <Events params={{ locale }} />
     </>
   );
