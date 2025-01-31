@@ -56,31 +56,32 @@ export default function PhotoGallery({ params }) {
               id="info-button">
               ${database.gallery.industrial.info[locale]}
             </button>`,
-            onClick: (event, el, pswp) => {
-              event.stopPropagation();
-            
-              const existingPopup = document.getElementById("popup-container");
-            
-              // Если попап уже открыт, закрываем его
-              if (existingPopup) {
-                existingPopup.remove();
-                return;
-              }
-            
-              // Получаем текущий слайд
-              const currentSlide = pswp.currSlide;
-              const photoId = currentSlide?.data?.element?.getAttribute("data-id");
-            
-              const photoData = database?.gallery?.industrial?.page.find(
-                (img) => img.id === Number(photoId)
-              );
-            
-              // Создаём контейнер для попапа
-              const popupContainer = document.createElement("div");
-              popupContainer.className = styles.popupContainer;
-              popupContainer.id = "popup-container";
-            
-              popupContainer.innerHTML = `
+          onClick: (event, el, pswp) => {
+            event.stopPropagation();
+
+            const existingPopup = document.getElementById("popup-container");
+
+            // Если попап уже открыт, закрываем его
+            if (existingPopup) {
+              existingPopup.remove();
+              return;
+            }
+
+            // Получаем текущий слайд
+            const currentSlide = pswp.currSlide;
+            const photoId =
+              currentSlide?.data?.element?.getAttribute("data-id");
+
+            const photoData = database?.gallery?.industrial?.page.find(
+              (img) => img.id === Number(photoId)
+            );
+
+            // Создаём контейнер для попапа
+            const popupContainer = document.createElement("div");
+            popupContainer.className = styles.popupContainer;
+            popupContainer.id = "popup-container";
+
+            popupContainer.innerHTML = `
               <div class="${styles.popupContent}">
                 <p class="${styles.popupTitle}">${photoData?.name[locale]}</p>
                 <p class="${styles.popupMaterial}">${photoData?.material[locale]}</p>
@@ -90,43 +91,43 @@ export default function PhotoGallery({ params }) {
                 <div id="VideoBox" class="${styles.VideoBox}"></div>
               </div>
             `;
-            
-              document.body.appendChild(popupContainer);
-            
-              // Контейнер для динамических кнопок и видео
-              const videoLinkContainer = document.getElementById("VideoBox");
-            
-              // Создаём root и рендерим компоненты в попап
-              const root = createRoot(videoLinkContainer);
-              root.render(
-                <>
-                  {/* <button
-                    className={styles.closePopupButton}
-                    onClick={() => {
-                      const popupContainer = document.getElementById("popup-container");
-                      if (popupContainer) {
-                        popupContainer.remove();
-                      }
-                    }}
-                  >
-                    {database?.gallery?.industrial?.close?.[locale] || "Закрыть"}
-                  </button> */}
-                  {photoData?.linkVideo && (
-                    <div className={styles.videoContainer}>
-                      <iframe
-                        src={photoData.linkVideo.replace("watch?v=", "embed/")} // Форматируем ссылку для встраивания YouTube
-                        title="YouTube Video"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                        className={styles.videoPlayer}
-                      ></iframe>
-                    </div>
-                  )}
-                </>
-              );
-            }
-            
+
+            document.body.appendChild(popupContainer);
+
+            // Контейнер для динамических кнопок и видео
+            const VideoBox = document.getElementById("VideoBox");
+
+            // Создаём root и рендерим компоненты в попап
+            const root = createRoot(VideoBox);
+            root.render(
+              <>
+                {photoData?.linkVideo && (
+                  <div className={styles.videoContainer}>
+                    <iframe
+                      src={photoData.linkVideo.replace("watch?v=", "embed/")} // Форматируем ссылку для встраивания YouTube
+                      title="YouTube Video"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className={styles.videoPlayer}
+                    ></iframe>
+                  </div>
+                )}
+                <button
+                  className={styles.closePopupButton}
+                  onClick={() => {
+                    const popupContainer =
+                      document.getElementById("popup-container");
+                    if (popupContainer) {
+                      popupContainer.remove();
+                    }
+                  }}
+                >
+                  {database?.gallery?.industrial?.close?.[locale] || "Закрыть"}
+                </button>
+              </>
+            );
+          },
         });
       });
 
@@ -267,16 +268,14 @@ export default function PhotoGallery({ params }) {
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               width={300} // задать правильное соотношение сторон адаптивного изображения
               height={200}
-              style={
-                {
-                  width: "100%",
-                  // height: "200px",
-                  // objectFit: "cover", // Изображение масштабируется, обрезая края
-                  // objectFit: "contain", // Изображение масштабируется, не обрезаясь
-                  // objectPosition: "top",
-                  // margin: "0 0 1rem 0",
-                }
-              }
+              style={{
+                width: "100%",
+                // height: "200px",
+                // objectFit: "cover", // Изображение масштабируется, обрезая края
+                // objectFit: "contain", // Изображение масштабируется, не обрезаясь
+                // objectPosition: "top",
+                // margin: "0 0 1rem 0",
+              }}
             />
           )}
           <div className={styles.tooltip}>

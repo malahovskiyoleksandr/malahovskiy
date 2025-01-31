@@ -70,22 +70,13 @@ export default async function Home({ params }) {
           sizes="100%"
           width={300} // задать правильное соотношение сторон адаптивного изображения
           height={200}
-          style={
-            {
-              // width: "100%",
-              // height: "200px",
-              // objectFit: "cover", // Изображение масштабируется, не обрезаясь
-              // objectFit: "contain", // Изображение масштабируется, не обрезаясь
-              // objectPosition: "top",
-            }
-          }
         />
         <div className={styles.container_main}>
           {database?.home?.main_image?.src ? (
             <Image
               className={styles.main_image}
               alt="mainImage"
-              src={database.home.main_image.src}
+              src={database.home.main_image.src || ""}
               quality={100}
               priority={true} // если true - loading = 'lazy' отменяеться
               loading="eager" // {lazy - загрузка картинки в области просмотра} | {eager - немедленная загрузка картинки}
@@ -93,15 +84,6 @@ export default async function Home({ params }) {
               sizes="100%"
               width={300} // задать правильное соотношение сторон адаптивного изображения
               height={200}
-              style={
-                {
-                  // width: "100%",
-                  // height: "200px",
-                  // objectFit: "cover", // Изображение масштабируется, не обрезаясь
-                  // objectFit: "contain", // Изображение масштабируется, не обрезаясь
-                  // objectPosition: "top",
-                }
-              }
             />
           ) : (
             <Image
@@ -120,14 +102,16 @@ export default async function Home({ params }) {
           <div className={styles.main_block_description}>
             <h1 className={styles.artist_name}>
               <span className={styles.firstName}>
-                {database?.home?.name?.[locale]?.split(" ")[0]}
+                {database?.home?.name?.[locale]?.split(" ")[0] || "Олександр"}
               </span>{" "}
               <span className={styles.lastName}>
-                {database?.home?.name?.[locale]?.split(" ")[1]}
+                {database?.home?.name?.[locale]?.split(" ")[1] ||
+                  "Малаховський"}
               </span>
             </h1>
             <p className={styles.artist_name__description}>
-              {database?.home?.description?.[locale] || ""}
+              {database?.home?.description?.[locale] ||
+                "Галерея мого живопису, де є тільки справжні полотно/олія, INDUSTRIAL art та реальні люди у вигаданих стилізаціях та ще трішки темної сторони. Без використання ШІ, котиків та гумору про дівчат."}
             </p>
           </div>
         </div>

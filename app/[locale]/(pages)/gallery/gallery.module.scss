@@ -169,28 +169,37 @@
       border-radius: 4px;
       background: #f5f5f5; /* Цвет фона трека полосы прокрутки */
     }
-    
+
     .popupDescription::-webkit-scrollbar-thumb {
       background: #b3b3b3; /* Цвет полосы прокрутки */
       border-radius: 4px; /* Радиус для закругления */
     }
-    
+
     .popupDescription::-webkit-scrollbar-thumb:hover {
       background: #999; /* Цвет полосы при наведении */
     }
   }
 
   .VideoBox {
-    margin-top: 20px;
+    // margin-top: 20px;
     width: 100%;
 
     .videoContainer {
       width: 100%;
+      margin-top: 10px;
     }
 
     .videoPlayer {
       width: 100%;
       border-radius: 10px;
+    }
+
+    .closePopupButton {
+      padding: 0.4rem;
+      margin-top: 10px;
+      background-color: #ffbe98;
+      color: black;
+      border-radius: 5px;
     }
   }
 }
@@ -204,7 +213,7 @@
       position: relative;
       flex: 0 0 300px;
       border-radius: 5px;
-  
+
       .image {
         height: 25rem;
         object-fit: cover;
@@ -213,11 +222,11 @@
         position: absolute;
         bottom: 0;
         padding: 1rem;
-  
+
         .tooltip_name {
           font-size: 1rem;
         }
-  
+
         .tooltip_description {
           margin-top: 5px;
         }
@@ -237,29 +246,29 @@
     max-height: 35rem;
     text-align: left;
     overflow: hidden;
-  
+
     .popupContent {
       font-size: 1rem;
-  
+
       .popupTitle {
         font-size: 1.5rem;
         margin-bottom: 10px;
       }
-  
+
       .popupDescription {
         max-height: 20rem;
         margin: 0.5rem 0 0 0;
       }
     }
-  
+
     .VideoBox {
       margin-top: 20px;
       width: 100%;
-  
+
       .videoContainer {
         width: 100%;
       }
-  
+
       .videoPlayer {
         width: 100%;
         border-radius: 10px;

@@ -95,23 +95,12 @@ export default function PhotoGallery({ params }) {
             document.body.appendChild(popupContainer);
 
             // Контейнер для динамических кнопок и видео
-            const videoLinkContainer = document.getElementById("VideoBox");
+            const VideoBox = document.getElementById("VideoBox");
 
             // Создаём root и рендерим компоненты в попап
-            const root = createRoot(videoLinkContainer);
+            const root = createRoot(VideoBox);
             root.render(
               <>
-                {/* <button
-                    className={styles.closePopupButton}
-                    onClick={() => {
-                      const popupContainer = document.getElementById("popup-container");
-                      if (popupContainer) {
-                        popupContainer.remove();
-                      }
-                    }}
-                  >
-                    {database?.gallery?.industrial?.close?.[locale] || "Закрыть"}
-                  </button> */}
                 {photoData?.linkVideo && (
                   <div className={styles.videoContainer}>
                     <iframe
@@ -124,6 +113,18 @@ export default function PhotoGallery({ params }) {
                     ></iframe>
                   </div>
                 )}
+                <button
+                  className={styles.closePopupButton}
+                  onClick={() => {
+                    const popupContainer =
+                      document.getElementById("popup-container");
+                    if (popupContainer) {
+                      popupContainer.remove();
+                    }
+                  }}
+                >
+                  {database?.gallery?.industrial?.close?.[locale] || "Закрыть"}
+                </button>
               </>
             );
           },
