@@ -97,8 +97,6 @@ export default function Header() {
       onMenuOpenChange={setIsMenuOpen}
       isMenuOpen={isMenuOpen}
       className={styles.header}
-      // className={`${styles.header} flex justify-between`}
-      // className="flex justify-between"
     >
       <NavbarContent>
         <NavbarMenuToggle
@@ -109,7 +107,6 @@ export default function Header() {
           <Link
             href="/home"
             color="foreground"
-            // className="font-bold text-inherit"
             className={`${styles.link_logo} font-bold text-inherit`}
           >
             <Image
@@ -117,18 +114,9 @@ export default function Header() {
               alt={"logo"}
               src={Logo}
               quality={100}
-              priority={true} // если true - loading = 'lazy' отменяеться
-              fill={false} //заставляет изображение заполнять родительский элемент
+              priority={true} 
+              fill={false}
               sizes="100%"
-              style={
-                {
-                  // width: "50px",
-                  // height: "50px",
-                  // objectFit: "cover", // Изображение масштабируется, не обрезаясь
-                  // objectFit: "contain", // Изображение масштабируется, не обрезаясь
-                  // objectPosition: "top",
-                }
-              }
             />
           </Link>
         </NavbarBrand>
@@ -163,9 +151,8 @@ export default function Header() {
           <NavbarMenuItem key={index} className={styles.item}>
             <Link
               color="foreground"
-              // className="w-full"
               href={item.href}
-              onClick={handleMenuItemClick} // Закрыть меню при клике на ссылку
+              onClick={handleMenuItemClick}
             >
               {item[locale].name}
             </Link>
