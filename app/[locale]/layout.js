@@ -1,4 +1,5 @@
 import "./globals.scss";
+import { Analytics } from "@vercel/analytics/react"
 import { NextUIProvider } from "@nextui-org/react";
 import Header from "./components/Header";
 import Footer from "./components/footer";
@@ -25,6 +26,7 @@ export default async function RootLayout({ children, params }) {
           <NextUIProvider>
             <Header />
             <main>{children}</main>
+            <Analytics />
             <Footer params={{ locale }}/>
           </NextUIProvider>
         </ServerIntlProvider>
