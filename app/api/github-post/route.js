@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
 
-// const GITHUB_REPO = "malahovskiyoleksandr/malahovskiy";
 const GITHUB_REPO = "malahovskiyoleksandr/DataBase"; // Основной репозиторий
-const GITHUB_REPORAR = "malahovskiyoleksandr/DB";
+const GITHUB_REPORAR = "malahovskiyoleksandr/DB-reserv";
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
 export async function POST(request) {

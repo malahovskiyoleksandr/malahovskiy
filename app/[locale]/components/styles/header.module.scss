@@ -18,18 +18,19 @@
 
 .items_list {
   margin-top: -1rem;
+  position: absolute;
+  top: 50px;
   padding: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   transition: height 0.3s ease; 
-  position: absolute;
-  top: 100%;
-  left: 0;
   width: 100%;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   font-family: "Mariupol-Regular";
+  border-top: solid 1px black;
+  border-bottom: solid 1px black;
 }
 
 .items_list * {

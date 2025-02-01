@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 
-// const GITHUB_REPO = "malahovskiyoleksandr/malahovskiy"; // Основной репозиторий
 const GITHUB_REPO = "malahovskiyoleksandr/DataBase"; // Основной репозиторий
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN; // Ваш токен
 
