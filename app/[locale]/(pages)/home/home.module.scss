@@ -3,12 +3,12 @@
   display: flex;
   align-items: center;
   width: 100%;
-  min-height: calc(var(--size-body) - var(--size-header));
+  min-height: calc(var(--size-body) - var(--header-height));
 
   .background_image {
     position: absolute;
     top: 0;
-    min-height: calc(var(--size-body) - var(--size-header));
+    min-height: calc(var(--size-body) - var(--header-height));
     object-fit: cover;
     width: 100%;
     z-index: -1;
@@ -18,7 +18,7 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    height: calc(var(--size-body) - var(--size-header));
+    height: calc(var(--size-body) - var(--header-height));
     // background-color: #fec09980;
 
     .main_image {

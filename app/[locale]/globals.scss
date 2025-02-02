@@ -4,14 +4,19 @@
 @tailwind utilities;
 
 :root {
-  --navbar-height: 3rem
-  --font-color: #000000;
-  --fontform_lable-color: #624b1b;
-  --size-header: 2.5rem; // Высота шапки
-  --size-header-mobile: 3rem; // Высота шапки
+  --header-height: 2.5rem;
+  --header-background-color: #ffbe98;
+  --header-padding: 0 10vw;
+  --header-font-size: 2rem;
+  --header-font-family: "Mariupol-Regular";
+
+  --text-color: #ffbe98;
+
   --size-body: 100vh;
   --size-footer: 5rem;
 
+  --font-color: #000000;
+  --fontform_lable-color: #624b1b;
   --color-bg: #f9f9f9; // Фоновый цвет
   --color-primary: #3f51b5; // Основной цвет
   --color-primary-hover: #303f9f; // Основной цвет при наведении

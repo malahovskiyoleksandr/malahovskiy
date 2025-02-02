@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { useCurrentLocale } from "next-i18n-router/client";
 import i18nConfig from "@/i18nConfig";
-import styles from "./styles/language.module.scss";
+import styles from "./Header/header.module.scss";
 
 export default function LanguageChanger() {
   const router = useRouter();

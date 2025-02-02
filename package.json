@@ -13,6 +13,8 @@
     "@fortawesome/free-brands-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@heroui/modal": "^2.2.8",
+    "@heroui/popover": "^2.3.10",
+    "@heroui/switch": "^2.2.9",
     "@nextui-org/alert": "^2.2.9",
     "@nextui-org/react": "^2.6.8",
     "@nextui-org/system": "^2.2.6",
