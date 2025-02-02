@@ -79,14 +79,14 @@
     left: 0;
     right: 0;
     display: flex;
-    width: 100%;
+    width: 80vw;
     font-size: 30px;
     z-index: 10;
     background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(10px);
     transform: translateX(-100%); /* Начальная позиция за пределами экрана */
     transition: transform 0.1s ease-in-out;
-    width: 300px;
+    // width: 300px;
 
     .subItems_list {
       margin: 5vh 0 0 0;

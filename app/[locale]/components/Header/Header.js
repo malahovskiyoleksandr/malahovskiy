@@ -89,7 +89,6 @@ export default function Header() {
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
-    console.log(isMenuOpen ? "close" : "open");
   };
 
   return (
