@@ -1,8 +1,7 @@
 .type_pictures {
   display: grid;
   height: calc(var(--size-body) - var(--header-height));
-  font-size: 20px;
-  background-color: #555;
+  font-size: 20px;  
 
   .link {
     position: relative;
@@ -11,7 +10,18 @@
     transition: transform 0.3s ease;
     overflow: hidden;
     padding: 0 10%;
-
+    
+    &::after {
+      content: '';
+      z-index: 10;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to bottom, transparent, 90%, rgba(131, 181, 255, 0.5));
+    }
+    
     .image {
       transition: transform 0.3s ease;
     }
