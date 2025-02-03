@@ -19,8 +19,9 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: linear-gradient(to bottom, transparent, 90%, rgba(255 214 163, 0.35));
-    }    
+      background: linear-gradient(to bottom, transparent, 90%, rgba(255, 214, 163, 0.35));
+    //linear-gradient(180deg, transparent, 90%, rgb(255 214 163 / 35%))
+    }
     .image {
       transition: transform 0.3s ease;
     }
