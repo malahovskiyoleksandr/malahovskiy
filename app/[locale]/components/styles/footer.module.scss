@@ -6,7 +6,10 @@
   min-height: var(--size-footer);
   padding: 0.5rem 0;
   color: black;
-  background-color: #ffbe98;
+  // background-color: #ffbe98; rgb(255, 190, 152)
+  // background-color: rgb(255, 190, 152);
+  background: linear-gradient(to top, #ffbe98, 97%, rgb(255, 255, 255));
+  // background: linear-gradient(to bottom, transparent, 90%, rgba(255, 214, 163, 0.35));
   font-family: "Mariupol-Regular";
 
   >*{

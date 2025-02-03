@@ -127,11 +127,11 @@ export default async function Home({ params }) {
           </div>
         </div>
       </section>
-      <div className={styles.dividing_strip}>
+      <div className={styles.dividing_strip1}>
         <span>{blackout[locale]}</span>
       </div>
       <Gallery params={{ locale }} />
-      <div className={styles.dividing_strip}>
+      <div className={styles.dividing_strip2}>
         <span>{no_ai[locale]}</span>
         <Image
           className={styles.image}
