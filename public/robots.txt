@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://oleksandrmalakhovskyi.vercel.app
+
+# Sitemaps
+Sitemap: https://oleksandrmalakhovskyi.vercel.app/sitemap.xml

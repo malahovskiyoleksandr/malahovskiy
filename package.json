@@ -7,7 +7,8 @@
     "dev": "rmdir /s /q .next && next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "map": "next-sitemap"
   },
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^6.6.0",
@@ -39,6 +40,7 @@
     "multer-gridfs-storage": "^5.0.2",
     "next": "14.2.13",
     "next-i18n-router": "^5.5.1",
+    "next-sitemap": "^4.2.3",
     "nextui-cli": "^0.3.4",
     "nodemailer": "^6.10.0",
     "nodemon": "^3.1.7",

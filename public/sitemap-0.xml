@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url><loc>https://oleksandrmalakhovskyi.vercel.app/de/home</loc><lastmod>2025-02-19T11:32:14.178Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://oleksandrmalakhovskyi.vercel.app/en/home</loc><lastmod>2025-02-19T11:32:14.180Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://oleksandrmalakhovskyi.vercel.app/uk/home</loc><lastmod>2025-02-19T11:32:14.180Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://oleksandrmalakhovskyi.vercel.app/de/gallery/dark_side</loc><lastmod>2025-02-19T11:32:14.178Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://oleksandrmalakhovskyi.vercel.app/en/gallery/dark_side</loc><lastmod>2025-02-19T11:32:14.180Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://oleksandrmalakhovskyi.vercel.app/uk/gallery/dark_side</loc><lastmod>2025-02-19T11:32:14.180Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://oleksandrmalakhovskyi.vercel.app/de/gallery/portraits</loc><lastmod>2025-02-19T11:32:14.180Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://oleksandrmalakhovskyi.vercel.app/en/gallery/portraits</loc><lastmod>2025-02-19T11:32:14.180Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://oleksandrmalakhovskyi.vercel.app/uk/gallery/portraits</loc><lastmod>2025-02-19T11:32:14.180Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://oleksandrmalakhovskyi.vercel.app/de/admin</loc><lastmod>2025-02-19T11:32:14.180Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://oleksandrmalakhovskyi.vercel.app/en/admin</loc><lastmod>2025-02-19T11:32:14.180Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://oleksandrmalakhovskyi.vercel.app/uk/admin</loc><lastmod>2025-02-19T11:32:14.180Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://oleksandrmalakhovskyi.vercel.app/de/login</loc><lastmod>2025-02-19T11:32:14.180Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://oleksandrmalakhovskyi.vercel.app/en/login</loc><lastmod>2025-02-19T11:32:14.180Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://oleksandrmalakhovskyi.vercel.app/uk/login</loc><lastmod>2025-02-19T11:32:14.180Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://oleksandrmalakhovskyi.vercel.app/de/gallery/industrial</loc><lastmod>2025-02-19T11:32:14.180Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://oleksandrmalakhovskyi.vercel.app/en/gallery/industrial</loc><lastmod>2025-02-19T11:32:14.180Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://oleksandrmalakhovskyi.vercel.app/uk/gallery/industrial</loc><lastmod>2025-02-19T11:32:14.180Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://oleksandrmalakhovskyi.vercel.app/de/events</loc><lastmod>2025-02-19T11:32:14.178Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://oleksandrmalakhovskyi.vercel.app/en/events</loc><lastmod>2025-02-19T11:32:14.180Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://oleksandrmalakhovskyi.vercel.app/uk/events</loc><lastmod>2025-02-19T11:32:14.180Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+</urlset>
