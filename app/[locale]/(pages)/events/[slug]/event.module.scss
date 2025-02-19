@@ -39,6 +39,18 @@
         line-height: 1.3;
         color: #2e2e2e;
       }
+
+      .event_link {
+        display: inline-block; /* Чтобы ограничения по ширине работали */
+        width: 100%; /* Ограничиваем ширину */
+        white-space: nowrap; /* Запрещаем перенос строк */
+        overflow: hidden; /* Обрезаем текст */
+        text-overflow: ellipsis; /* Добавляем многоточие */
+        vertical-align: middle;
+        border-bottom: solid black 1px;
+        margin: 0.5rem 0;
+      }
+
       .image {
         display: block;
         width: 100%;

@@ -46,6 +46,7 @@
         font-family: "Mariupol-Bold";
 
         .firstName {
+          display: block;
           font-size: clamp(2.5rem, 6vw, 5rem);
           color: #ffdbc7;
           text-align: right;

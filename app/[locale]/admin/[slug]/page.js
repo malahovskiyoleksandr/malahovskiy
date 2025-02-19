@@ -132,7 +132,7 @@ export default function EventPage({ params }) {
       });
 
       if (response.ok) {
-        console.log("Успішне оновлення бази")
+        console.log("Успішне оновлення бази");
       } else {
         throw new Error("Failed to update data");
       }
@@ -175,6 +175,18 @@ export default function EventPage({ params }) {
       ],
     }));
   };
+  const handleAddLinkBlock = () => {
+    setDatabase((prev) => ({
+      ...prev,
+      content: [
+        ...prev.content,
+        {
+          type: "link",
+          value: "",
+        },
+      ],
+    }));
+  };
   const handleAddImageBlock = () => {
     setDatabase((prev) => ({
       ...prev,
@@ -192,7 +204,6 @@ export default function EventPage({ params }) {
     // console.log(event.target.files[0].name);
     setSelectedFile(event.target.files[0]);
   };
-
 
   const uploadImageToGitHub = (pathImg) => {
     const reader = new FileReader();
@@ -323,7 +334,7 @@ export default function EventPage({ params }) {
   };
 
   const handleDeleteBlock = (index, photo) => {
-    console.log(photo)
+    console.log(photo);
     if (photo) {
       deleteImgFromGitgub(photo, `events/id${database.id}`);
     }
@@ -332,7 +343,6 @@ export default function EventPage({ params }) {
       content: prev.content.filter((_, i) => i !== index),
     }));
   };
-
 
   if (!database) {
     return (
@@ -355,10 +365,13 @@ export default function EventPage({ params }) {
         </Button>
         {/* <div className={styles.buttons}> */}
         <Button onPress={handleAddTextBlock} color="primary">
-          Add Text Block
+          Додати текст
         </Button>
-        <Button onPress={handleAddImageBlock} color="secondary">
-          Add Image Block
+        <Button onPress={handleAddLinkBlock} color="primary">
+          Додати силку
+        </Button>
+        <Button onPress={handleAddImageBlock} color="primary">
+          Додати зображення
         </Button>
         {/* </div> */}
       </header>
@@ -423,6 +436,35 @@ export default function EventPage({ params }) {
                       </Tab>
                     ))}
                   </Tabs>
+                  <div className={styles.block_actions}>
+                    <Button onPress={() => handleMoveBlock(index, "up")}>
+                      Up
+                    </Button>
+                    <Button onPress={() => handleMoveBlock(index, "down")}>
+                      Down
+                    </Button>
+                    <Button
+                      color="danger"
+                      onPress={() => handleDeleteBlock(index)}
+                    >
+                      Delete
+                    </Button>
+                  </div>
+                </div>
+              );
+            }
+
+            if (block.type === "link") {
+              return (
+                <div key={index} className={styles.block_type_text}>
+                  <Textarea
+                    className={styles.block_type_text__textarea}
+                    label={`Link Content`}
+                    value={block.value}
+                    onChange={(e) =>
+                      handleChange(e, `content.${index}.value`)
+                    }
+                  />
                   <div className={styles.block_actions}>
                     <Button onPress={() => handleMoveBlock(index, "up")}>
                       Up

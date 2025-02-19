@@ -3,7 +3,7 @@
   min-height: calc(var(--size-body) - var(--header-height));
   padding: 3% 10%;
 
-  .zahodu_pidii {
+  .zahodu_podii {
     font-size: 2.5rem;
     font-family: "Extatica-Medium", sans-serif;
     margin: 2rem 1rem;
@@ -25,7 +25,7 @@
         
         .image_box {
           position: relative;
-          height: 200px;
+          height: 20vh;
           margin-bottom: 1rem;
 
           .image {
@@ -41,8 +41,9 @@
         }
 
         .event_name {
-          font-size: 1.5rem;
-          line-height: 1.5rem;
+          // font-size: 1.5rem;
+          font-size: 2rem;
+          // line-height: 1.5rem;
           font-family: "Extatica-Medium", sans-serif;
           margin-top: 1rem;
         }

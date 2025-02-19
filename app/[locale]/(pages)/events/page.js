@@ -66,7 +66,7 @@ export default async function Events({ params }) {
   return (
     <>
       <section className={styles.main_block}>
-        <h1 className={styles.zahodu_pidii}>{events[locale]}</h1>
+        <h1 className={styles.zahodu_podii}>{events[locale]}</h1>
         <div
           className={`${styles.event_list} grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-6`}
         >

@@ -4,6 +4,7 @@
   align-items: center;
   width: 100%;
   font-family: var(--header-font-family);
+  font-size:  var(--header-font-size);
   padding: var(--header-padding);
   height: var(--header-height);
   background-color: var(--header-background-color);
@@ -15,7 +16,7 @@
     .burger_btn {
       position: relative;
       margin: 0 1vh;
-      font-size: 25px;
+      // font-size: 25px;
     }
 
     .link_logo {
@@ -23,7 +24,7 @@
 
       .image {
         height: auto;
-        width: 2.8rem;
+        width: 5vh;
       }
     }
   }

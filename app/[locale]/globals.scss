@@ -4,10 +4,12 @@
 @tailwind utilities;
 
 :root {
-  --header-height: 2.5rem;
+  // --header-height: 2.5rem;
+  --header-height: 5vh;
   --header-background-color: #ffbe98;
   --header-padding: 0 5vw;
-  --header-font-size: 2rem;
+  // --header-font-size: 2rem;
+  --header-font-size: 2vh;
   --header-font-family: "Mariupol-Regular";
 
   --text-color: #ffbe98;
