@@ -6,6 +6,12 @@ import Gallery from "../gallery/page";
 import Events from "../events/page";
 import Logo from "@/public/icons/NO AI.PNG";
 
+export const metadata = {
+  other: {
+    "google-site-verification": "googlee210a71ad2956609.html",
+  },
+};
+
 export const revalidate = 5;
 
 export async function getData() {
