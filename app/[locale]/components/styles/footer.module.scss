@@ -6,39 +6,52 @@
   min-height: var(--size-footer);
   padding: 0.5rem 0;
   color: black;
-  // background-color: #ffbe98; rgb(255, 190, 152)
-  // background-color: rgb(255, 190, 152);
   background: linear-gradient(to top, #ffbe98, 97%, rgb(255, 255, 255));
-  // background: linear-gradient(to bottom, transparent, 90%, rgba(255, 214, 163, 0.35));
   font-family: "Mariupol-Regular";
 
   >*{
-    margin: 0.2rem 0;
+    margin: 0.2rem 1rem;
   }
 
   .main {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
     .icon_box {
-      display: block;
-      > * {
-        margin: 0.5rem;
+      display: flex;
+      width: 100%;
+      justify-content: space-around;
+
+      a {
+
+        svg {
+          font-size: 3vh; // Меньший размер иконок
+        }
       }
     }
+
     .email {
       display: block;
       margin-top: 0.5rem;
+      font-size: 1.5vh;
     }
   }
 
   .rights {
-    font-size: 0.8rem;
+    // font-size: 0.8rem;
+    font-size: 1.5vh;
+    text-align: center;
   }
 
   .developer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 0.8rem;
+    // font-size: 0.8rem;
+    font-size: 1.5vh;
+    text-align: center;
 
     .developer_name {
     }
@@ -49,7 +62,6 @@
 
 @media (max-width: 668px) {
     .footer {
-        flex-direction: column;
 
         .main {
 
@@ -69,4 +81,28 @@
           font-size: 0.8rem;
         }
     }
+}
+
+@media (max-width: 768px) {
+  .footer {
+      flex-direction: column;
+
+      .main {
+
+        .icon_box {
+
+        }
+        .email {
+          font-size: 0.8rem;
+        }
+      }
+
+      .rights {
+        font-size: 0.8rem;
+      }
+
+      .developer {
+        font-size: 0.8rem;
+      }
+  }
 }

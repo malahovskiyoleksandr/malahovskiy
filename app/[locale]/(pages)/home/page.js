@@ -7,6 +7,12 @@ import Events from "../events/page";
 import Logo from "@/public/icons/NO AI.PNG";
 
 export const metadata = {
+  title: "Александр Малаховський. Головна сторiнка художника",
+  description: "Головна сторiнка художника",
+  robots: {
+    index: true,
+    follow: true,
+  },
   other: {
     "google-site-verification": "googlee210a71ad2956609.html",
   },

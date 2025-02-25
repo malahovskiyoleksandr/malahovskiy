@@ -164,6 +164,7 @@ export default function EventPage({ params }) {
             } else if (block.type === "link") {
               return (
                 <Link
+                  key={index}
                   href={block.value}
                   className={styles.event_link}
                   target="_blank"

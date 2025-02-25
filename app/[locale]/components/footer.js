@@ -31,28 +31,28 @@ export default function Footer({ params }) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FontAwesomeIcon icon={faFacebook} size="2x" />
+            <FontAwesomeIcon icon={faFacebook} />
           </Link>
           <Link
             href="https://www.instagram.com/alexandr_malahovsky/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FontAwesomeIcon icon={faInstagram} size="2x" />
+            <FontAwesomeIcon icon={faInstagram} />
           </Link>
           <Link
             href="https://www.youtube.com/@alexmalahovskyi9866/videos"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FontAwesomeIcon icon={faYoutube} size="2x" />
+            <FontAwesomeIcon icon={faYoutube} />
           </Link>
           <Link
             href="https://www.artstation.com/malakhovsky"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FontAwesomeIcon icon={faArtstation} size="2x" />
+            <FontAwesomeIcon icon={faArtstation} />
           </Link>
         </div>
         <span className={styles.email}>malahovskiy1404@gmail.com</span>

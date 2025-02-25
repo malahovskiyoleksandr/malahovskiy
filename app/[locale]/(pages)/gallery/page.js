@@ -4,6 +4,12 @@ import Image from "next/image";
 import { NextResponse } from "next/server";
 import { Spinner } from "@nextui-org/react";
 
+export const metadata = {
+  other: {
+    "google-site-verification": "googlee210a71ad2956609.html",
+  },
+};
+
 export const revalidate = 5;
 
 export async function getData() {

@@ -4,6 +4,19 @@ import Image from "next/image";
 import { Spinner } from "@nextui-org/react";
 import { NextResponse } from "next/server";
 
+export const metadata = {
+  title: "Александр Малаховський. Iвенти",
+  description: "Iвенти",
+  robots: {
+    index: true,
+    follow: true,
+  },
+  other: {
+    "google-site-verification": "googlee210a71ad2956609.html",
+  },
+};
+
+
 export async function getData() {
   try {
     const response = await fetch(
@@ -68,7 +81,7 @@ export default async function Events({ params }) {
       <section className={styles.main_block}>
         <h1 className={styles.zahodu_podii}>{events[locale]}</h1>
         <div
-          className={`${styles.event_list} grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-6`}
+          className={styles.event_list}
         >
           {database?.events &&
             Object.entries(database.events).map(([key, value], index) => (

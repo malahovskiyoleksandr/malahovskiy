@@ -1,11 +1,14 @@
 .main_block {
+  display: flex;
+  justify-content: center;
   padding: 20px;
   background-color: #f9f9f9;
   min-height: calc(var(--size-body) - var(--size-header));
 
   .event {
+    // width: clamp(350px, 50vw, 70vw);
+    width: 100%;
     max-width: 800px;
-    margin: 0 auto;
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -13,7 +16,7 @@
     padding: 20px;
 
     .event_name {
-      font-size: 2rem;
+      font-size: 4vh;
       font-weight: bold;
       font-family: "Extatica-Medium", sans-serif;
       text-align: center;
@@ -42,7 +45,7 @@
 
       .event_link {
         display: inline-block; /* Чтобы ограничения по ширине работали */
-        width: 100%; /* Ограничиваем ширину */
+        max-width: 100%; /* Ограничиваем ширину */
         white-space: nowrap; /* Запрещаем перенос строк */
         overflow: hidden; /* Обрезаем текст */
         text-overflow: ellipsis; /* Добавляем многоточие */
