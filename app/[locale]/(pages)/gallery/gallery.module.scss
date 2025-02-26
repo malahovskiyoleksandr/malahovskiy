@@ -29,8 +29,8 @@
       font-family: "Extatica-Medium";
       position: relative;
       // max-width: 51rem;
-      max-width: clamp(30rem, 5vw, 51rem);
-      background-color: blue;
+      // max-width: clamp(30rem, 5vw, 51rem);
+      // background-color: blue;
       transition: transform 0.3s ease;
 
       .name {
@@ -69,14 +69,11 @@
 
   .image_Link {
     position: relative;
-    flex: 0 0 30vw;
-    // display: flex;
-    // min-width: 700px;
-    // border-radius: 5px;
+    flex: 0 0 clamp(400px, 30vw, 700px);
+    border-radius: 5px;
     scroll-snap-align: center;
     overflow: hidden;
-    // height: 30vw;
-    height: clamp(55vh, 30vw, 600px);;
+    height: clamp(55vh, 30vw, 600px);
     box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.5);
 
     .image {

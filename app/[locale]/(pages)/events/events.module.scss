@@ -13,8 +13,8 @@
 
   .event_list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    // gap: 80px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
     margin: 0 auto;
 
     .event {
@@ -24,10 +24,8 @@
       .link {
         .image_box {
           position: relative;
-          height: 20vh;
+          height: clamp(30vh, 20vw, 25vh);
           max-width: 450px;
-          // height: 15vw;
-          // min-height: 180px;
           margin-bottom: 1rem;
 
           .image {
@@ -64,7 +62,6 @@
     }
 
     .event_list {
-      // grid-template-columns: repeat(1 1fr);
 
       .event {
         .link {
