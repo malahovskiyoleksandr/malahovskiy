@@ -60,7 +60,7 @@ function generateSlug(title) {
 }
 
 export default async function Events({ params }) {
-  const { locale } = params;
+  const { locale } = await params;
   const database = await getData();
   const events = {
     uk: "Заходи та події",

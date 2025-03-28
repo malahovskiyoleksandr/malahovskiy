@@ -26,7 +26,8 @@ const generateSlug = (title) => {
 };
 
 export default function AdminPage({ params, onUpload }) {
-  const locale = params.locale;
+  // console.log(params.locale)
+  const {locale} = React.use(params);
   const router = useRouter();
   const [user, setUser] = useState(null);
   const [database, setDatabase] = useState(null);

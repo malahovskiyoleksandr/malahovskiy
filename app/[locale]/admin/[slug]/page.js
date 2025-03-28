@@ -7,9 +7,11 @@ import { useEffect, useState } from "react";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import { Textarea, Button, Spinner } from "@nextui-org/react";
 import { Tabs, Tab, Card, CardBody, Input, Alert } from "@nextui-org/react";
+import { FaFilePdf, FaLink, FaSave  } from "react-icons/fa";
+import { BsCardImage, BsChatRightText  } from "react-icons/bs";
 
 export default function EventPage({ params }) {
-  const { slug, locale } = params;
+  const { slug, locale } = React.use(params);
   const [database, setDatabase] = useState();
   const [fullDatabase, setFullDatabase] = useState();
   const [isLoading, setIsLoading] = useState(true);
@@ -82,14 +84,12 @@ export default function EventPage({ params }) {
   const showAlert = (message) => {
     setAlertMessage(message);
     setAlertVisible(true);
-    setTimeout(() => setAlertVisible(false), 3000); // Скрыть алерт через 3 секунды
+    setTimeout(() => setAlertVisible(false), 5000);
   };
 
   const handleSomeAction = async (message) => {
     try {
-      // Ваш код действия, например, загрузка файла
-      // ...
-      showAlert(message); // Показываем алерт
+      showAlert(message);
     } catch (error) {
       console.error("Ошибка:", error.message);
       showAlert("Ошибка при выполнении действия.");
@@ -200,9 +200,57 @@ export default function EventPage({ params }) {
       ],
     }));
   };
+  const handleAddPDFBlock = () => {
+    setDatabase((prev) => ({
+      ...prev,
+      content: [
+        ...prev.content,
+        {
+          type: "pdf",
+          src: "",
+          name: "",
+        },
+      ],
+    }));
+  };
   const handleFileChange = (event) => {
-    // console.log(event.target.files[0].name);
     setSelectedFile(event.target.files[0]);
+  };
+
+  const uploadPDFToGitHub = (pathImg) => {
+    const reader = new FileReader();
+
+    return new Promise((resolve, reject) => {
+      reader.onload = async (event) => {
+        try {
+          const filePath = `public/pdf/${pathImg}/${selectedFile.name}`;
+          const fileContent = event.target.result.split(",")[1];
+          const commitMessage = `Добавлено PDF: ${selectedFile.name}`;
+
+          const response = await fetch("/api/github-upload", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ filePath, fileContent, commitMessage }),
+          });
+
+          if (!response.ok) {
+            throw new Error("Ошибка загрузки PDF");
+          }
+
+          const data = await response.json();
+          resolve(data);
+        } catch (error) {
+          reject(error);
+        }
+      };
+
+      reader.onerror = (error) => reject(error);
+
+      // Читаем файл как Base64
+      reader.readAsDataURL(selectedFile);
+    });
   };
 
   const uploadImageToGitHub = (pathImg) => {
@@ -241,6 +289,24 @@ export default function EventPage({ params }) {
     });
   };
 
+  const UploadPDF = async (DBsrcValue, pathPDF, pathDB, index) => {
+    if (!selectedFile) {
+      alert("Выберите файл!");
+      return;
+    }
+    const fileExists = await checkIfFileExists(pathPDF, selectedFile.name);
+    if (fileExists) {
+      alert("Файл с таким именем уже существует!");
+      return;
+    }
+    if (!DBsrcValue == "") {
+      await deletePDFFromGitgub(DBsrcValue, pathPDF);
+    }
+    await uploadPDFToGitHub(pathPDF);
+    await updatePDFPathInDatabase(pathPDF, pathDB);
+    await updateDB();
+  };
+
   const UploadPhoto = async (DBsrcValue, pathImg, pathDB, index) => {
     if (!selectedFile) {
       alert("Выберите файл!");
@@ -257,6 +323,29 @@ export default function EventPage({ params }) {
     await uploadImageToGitHub(pathImg);
     await updateImagePathInDatabase(pathImg, pathDB);
     await updateDB();
+  };
+
+  const updatePDFPathInDatabase = async (pathPDF, pathDB) => {
+    const newImagePath = `https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/pdf/${pathPDF}/${selectedFile.name}`;
+
+    setDatabase((prev) => {
+      const updated = { ...prev };
+      const keys = pathDB.split(".");
+      let target = updated;
+
+      keys.slice(0, -1).forEach((key) => {
+        if (!target[key]) target[key] = {};
+        target = target[key];
+      });
+
+      target[keys[keys.length - 1]] = newImagePath;
+
+      const updatedFullDatabase = { ...fullDatabase };
+      updatedFullDatabase.events[eventIndex] = { ...updated };
+
+      setFullDatabase(updatedFullDatabase);
+      return updated;
+    });
   };
 
   const updateImagePathInDatabase = async (pathImg, pathDB) => {
@@ -304,6 +393,33 @@ export default function EventPage({ params }) {
 
     const data = await response.json();
     return data.exists; // Возвращает true, если файл существует, и false, если нет
+  };
+
+  const deletePDFFromGitgub = async (pathOldImgInGithub, pathImg) => {
+    const oldPhoto = pathOldImgInGithub.replace(
+      `https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/public/pdf/${pathImg}/`,
+      ""
+    );
+    const fileExists = await checkIfFileExists(pathImg, oldPhoto);
+    if (!fileExists) {
+      alert("Такого файла не существует на GitHub.");
+      return;
+    }
+    const filePath = pathOldImgInGithub.replace(
+      "https://raw.githubusercontent.com/malahovskiyoleksandr/DataBase/main/",
+      ""
+    );
+    const response = await fetch("/api/github-delete", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ filePath, isDirectory: false }),
+    });
+
+    if (response.ok) {
+      console.log("Успішне видалення файла з github");
+    } else {
+      throw new Error("Ошибка удаления файла из репозитория");
+    }
   };
 
   const deleteImgFromGitgub = async (pathOldImgInGithub, pathImg) => {
@@ -361,27 +477,29 @@ export default function EventPage({ params }) {
           onPress={updateDB}
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Saving..." : "Зберегти"}
+          {isSubmitting ? "Saving..." : <FaSave />}
         </Button>
-        {/* <div className={styles.buttons}> */}
         <Button onPress={handleAddTextBlock} color="primary">
-          Додати текст
+          <BsChatRightText />
         </Button>
         <Button onPress={handleAddLinkBlock} color="primary">
-          Додати силку
+          <FaLink />
         </Button>
         <Button onPress={handleAddImageBlock} color="primary">
-          Додати зображення
+          <BsCardImage />
+        </Button>
+        <Button onPress={handleAddPDFBlock} color="primary">
+        <FaFilePdf />
         </Button>
         {/* </div> */}
       </header>
       <div className={styles.alert}>
         {alertVisible && (
           <Alert
-            color="success"
             variant="faded"
             description={alertMessage}
             title="Повідомлення"
+            style={{ backgroundColor: "rgb(44, 170, 44)" }}
           />
         )}
       </div>
@@ -461,9 +579,7 @@ export default function EventPage({ params }) {
                     className={styles.block_type_text__textarea}
                     label={`Link Content`}
                     value={block.value}
-                    onChange={(e) =>
-                      handleChange(e, `content.${index}.value`)
-                    }
+                    onChange={(e) => handleChange(e, `content.${index}.value`)}
                   />
                   <div className={styles.block_actions}>
                     <Button onPress={() => handleMoveBlock(index, "up")}>
@@ -475,6 +591,61 @@ export default function EventPage({ params }) {
                     <Button
                       color="danger"
                       onPress={() => handleDeleteBlock(index)}
+                    >
+                      Delete
+                    </Button>
+                  </div>
+                </div>
+              );
+            }
+
+            if (block.type === "pdf") {
+              return (
+                <div key={index} className={styles.block_type_pdf}>
+                  <div>
+                    <Input
+                      className={styles.input_downloadFile}
+                      type="file"
+                      onChange={handleFileChange}
+                    />
+                    <Button
+                      className={styles.button_downloadFile}
+                      color="success"
+                      onPress={() =>
+                        UploadPDF(
+                          block.src,
+                          `id${database.id}`,
+                          `content.${index}.src`,
+                          index
+                        )
+                      }
+                      isDisabled={isUploading}
+                    >
+                      {isUploading ? "Загрузка..." : "Загрузить файл"}
+                    </Button>
+                  </div>
+                  <Textarea
+                    className={styles.block_type_image__textarea}
+                    label="Назва PDF"
+                    value={block.name}
+                    onChange={(e) => handleChange(e, `content.${index}.name`)}
+                  />
+                  <Input
+                    className={styles.block_type_pdf__input}
+                    label="Розташування PDF"
+                    value={block.src}
+                    onChange={(e) => handleChange(e, `content.${index}.src`)}
+                  />
+                  <div className={styles.block_actions}>
+                    <Button onPress={() => handleMoveBlock(index, "up")}>
+                      Up
+                    </Button>
+                    <Button onPress={() => handleMoveBlock(index, "down")}>
+                      Down
+                    </Button>
+                    <Button
+                      color="danger"
+                      onPress={() => handleDeleteBlock(index, block.src)}
                     >
                       Delete
                     </Button>

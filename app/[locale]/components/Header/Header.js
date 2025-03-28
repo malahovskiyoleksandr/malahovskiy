@@ -47,6 +47,18 @@ const menu_item = [
     },
     href: "/events",
   },
+  {
+    uk: {
+      name: "Other",
+    },
+    en: {
+      name: "Other",
+    },
+    de: {
+      name: "Other",
+    },
+    href: "/other",
+  },
 ];
 
 export default function Header() {

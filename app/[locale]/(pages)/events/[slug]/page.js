@@ -1,19 +1,64 @@
 "use client";
 
+import React from "react";
 import styles from "./event.module.scss";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Spinner } from "@nextui-org/react";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+  useDisclosure,
+} from "@heroui/react";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import { notFound } from "next/navigation";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
+import { Document, Page, pdfjs } from "react-pdf";
+import "react-pdf/dist/Page/AnnotationLayer.css";
+import "react-pdf/dist/Page/TextLayer.css";
+import { FaDownload, FaTimes } from "react-icons/fa";
+import { FaFilePdf } from "react-icons/fa6";
+
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  "pdfjs-dist/build/pdf.worker.min.mjs",
+  import.meta.url
+).toString();
+
 export default function EventPage({ params }) {
-  const { slug, locale } = params; // Получаем slug и текущую локаль
+  const { slug, locale } = React.use(params);
 
   const [database, setDatabase] = useState();
   const [isLoading, setIsLoading] = useState(true);
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [size, setSize] = React.useState("md");
+
+  const [numPages, setNumPages] = useState(null);
+  const [pages, setPages] = useState([]);
+
+  function onDocumentLoadSuccess({ numPages }) {
+    setNumPages(numPages);
+    setPages(
+      Array.from(new Array(numPages), (el, index) => (
+        <Page
+          key={`page_${index + 1}`}
+          pageNumber={index + 1}
+          style={{ display: "block" }}
+        />
+      ))
+    );
+  }
+
+  const handleOpen = (size) => {
+    setSize("full");
+    onOpen();
+  };
 
   function generateSlug(title) {
     return title
@@ -52,22 +97,6 @@ export default function EventPage({ params }) {
 
     loadData();
   }, [slug, locale]);
-
-  // useEffect(() => {
-  //   const loadData = async () => {
-  //     try {
-  //       const response = await fetch("/api/github-get");
-  //       if (!response.ok) {
-  //         throw new Error("Ошибка при обращении к API GET");
-  //       }
-  //       const data = await response.json();
-  //       setDatabase(data);
-  //     } catch (error) {
-  //       console.error("Ошибка: fetch(github-get)", error);
-  //     }
-  //   };
-  //   loadData();
-  // }, []);
 
   useEffect(() => {
     let lightbox; // Инициализация Lightbox
@@ -172,6 +201,74 @@ export default function EventPage({ params }) {
                 >
                   {block.value}
                 </Link>
+              );
+            } else if (block.type === "pdf") {
+              return (
+                <div key={index}>
+                  <div className="flex flex-wrap gap-3">
+                    <Button onPress={() => handleOpen(size)}><FaFilePdf />{block.name}</Button>
+                  </div>
+                  <Modal
+                    isOpen={isOpen}
+                    size={size}
+                    onClose={onClose}
+                    hideCloseButton
+                  >
+                    <ModalContent>
+                      {(onClose) => (
+                        <>
+                          <ModalHeader
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                              alignItems: "center",
+                              width: "100%",
+                              backgroundColor: "#999",
+                            }}
+                          >
+                            <h2>{block.name}</h2>
+                            <>
+                              <a
+                                href={block.value}
+                                download="Catalog_PM6_2025 PDF.pdf"
+                              >
+                                <FaDownload />
+                              </a>
+                              <Button
+                                color="black"
+                                // variant="light"
+                                onPress={onClose}
+                              >
+                                <FaTimes />
+                              </Button>
+                            </>
+                          </ModalHeader>
+                          <ModalBody>
+                            <div
+                              style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                // alignItems: "center",
+                                height: "85vh",
+                                width: "100%",
+                                overflow: "auto",
+                              }}
+                            >
+                              <Document
+                                file={block.src}
+                                onLoadSuccess={onDocumentLoadSuccess}
+                              >
+                                {pages}
+                              </Document>
+                            </div>
+                          </ModalBody>
+                          <ModalFooter>
+                          </ModalFooter>
+                        </>
+                      )}
+                    </ModalContent>
+                  </Modal>
+                </div>
               );
             } else if (block.type === "image") {
               return (

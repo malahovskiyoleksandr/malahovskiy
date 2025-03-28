@@ -56,7 +56,7 @@ export async function getData() {
 }
 
 export default async function Home({ params }) {
-  const { locale } = params;
+  const { locale } = await params;
   const database = await getData();
   const blackout = {
     uk: "Cайт працює під час відключення електроенергії",

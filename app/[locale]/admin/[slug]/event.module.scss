@@ -20,8 +20,8 @@
 
   .alert {
     position: fixed;
-    top: 50px;
-    left: calc(50% - 150px);
+    left: 50px;
+    bottom: 100px;
     z-index: 1000;
     width: 300px;
     transition: 2s;
@@ -60,6 +60,15 @@
       background-color: #555;
 
       .block_type_text {
+        margin: 1rem 0;
+        border-radius: 10px;
+        background-color: #f0f0f0;
+        padding: 1rem;
+        .block_type_text__textarea {
+        }
+      }
+
+      .block_type_pdf {
         margin: 1rem 0;
         border-radius: 10px;
         background-color: #f0f0f0;

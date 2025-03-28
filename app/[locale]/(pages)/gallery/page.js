@@ -48,7 +48,7 @@ export async function getData() {
 }
 
 export default async function Gallery({ params }) {
-  const locale = params.locale;
+  const { locale } = await params;
   const collectionLines = await getData();
 
   if (!collectionLines) {
